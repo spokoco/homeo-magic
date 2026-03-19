@@ -126,6 +126,22 @@
       justify-content: center;
     }
     .symptom-tag button:hover { background: #b91c1c; }
+    .symptom-tag.hidden-tag {
+      background: #f3f4f6;
+      color: #6b7280;
+      opacity: 0.7;
+      cursor: pointer;
+    }
+    .symptom-tag.hidden-tag:hover {
+      opacity: 1;
+      background: #e5e7eb;
+    }
+    .hidden-icon { font-size: 12px; margin-right: 4px; }
+    .hidden-divider {
+      color: #d1d5db;
+      font-size: 20px;
+      margin: 0 4px;
+    }
     @keyframes fadeIn { from { opacity: 0; transform: scale(0.9); } }
     
     /* Results table */
@@ -266,14 +282,12 @@
       align-items: center;
       gap: 8px;
     }
-    .symptom-cell .remove-btn {
-      background: #dc2626;
-      color: white;
+    .symptom-cell .action-btn {
       border: none;
-      width: 18px;
-      height: 18px;
+      width: 20px;
+      height: 20px;
       border-radius: 50%;
-      font-size: 12px;
+      font-size: 11px;
       cursor: pointer;
       opacity: 0;
       transition: opacity 0.15s;
@@ -282,11 +296,18 @@
       justify-content: center;
       flex-shrink: 0;
     }
-    .symptom-row td:first-child:hover .remove-btn {
-      opacity: 1;
+    .symptom-cell .remove-btn {
+      background: #dc2626;
+      color: white;
     }
-    .symptom-cell .remove-btn:hover {
-      background: #b91c1c;
+    .symptom-cell .remove-btn:hover { background: #b91c1c; }
+    .symptom-cell .hide-btn {
+      background: #6b7280;
+      color: white;
+    }
+    .symptom-cell .hide-btn:hover { background: #4b5563; }
+    .symptom-row td:first-child:hover .action-btn {
+      opacity: 1;
     }
     .symptom-cell .symptom-name {
       flex: 1;
@@ -436,6 +457,7 @@
     let symptoms = null;
     let remedies = null;
     let selectedSymptoms = [];
+    let hiddenSymptoms = new Set(); // Symptoms hidden from table but not removed
     let minScore = 0; // Minimum score threshold
 
     // Fetch with progress
@@ -559,23 +581,54 @@
 
     function removeSymptom(sym) {
       selectedSymptoms = selectedSymptoms.filter(s => s !== sym);
+      hiddenSymptoms.delete(sym);
+      renderSelected();
+      renderResults();
+    }
+    
+    function hideSymptom(sym) {
+      hiddenSymptoms.add(sym);
+      renderSelected();
+      renderResults();
+    }
+    
+    function showSymptom(sym) {
+      hiddenSymptoms.delete(sym);
       renderSelected();
       renderResults();
     }
 
     function renderSelected() {
       const el = document.getElementById('selected');
-      el.innerHTML = selectedSymptoms.map(s => `
+      const visible = selectedSymptoms.filter(s => !hiddenSymptoms.has(s));
+      const hidden = selectedSymptoms.filter(s => hiddenSymptoms.has(s));
+      
+      let html = visible.map(s => `
         <span class="symptom-tag">
           ${s}
           <button onclick="removeSymptom('${s.replace(/'/g, "\\'")}')">×</button>
         </span>
       `).join('');
+      
+      if (hidden.length > 0) {
+        html += `<span class="hidden-divider">|</span>`;
+        html += hidden.map(s => `
+          <span class="symptom-tag hidden-tag" onclick="showSymptom('${s.replace(/'/g, "\\'")}')">
+            <span class="hidden-icon">👁</span>
+            ${s}
+            <button onclick="event.stopPropagation(); removeSymptom('${s.replace(/'/g, "\\'")}')">×</button>
+          </span>
+        `).join('');
+      }
+      
+      el.innerHTML = html;
     }
 
     // Calculate and render results
     function renderResults() {
       const container = document.getElementById('results');
+      
+      const visibleCount = selectedSymptoms.filter(s => !hiddenSymptoms.has(s)).length;
       
       if (!selectedSymptoms.length) {
         container.innerHTML = `
@@ -585,12 +638,22 @@
           </div>`;
         return;
       }
+      
+      if (!visibleCount) {
+        container.innerHTML = `
+          <div class="empty-state">
+            <div class="icon">👁</div>
+            <p>All ${selectedSymptoms.length} symptoms are hidden. Click a hidden symptom above to show it.</p>
+          </div>`;
+        return;
+      }
 
-      // Calculate scores
+      // Calculate scores (only visible symptoms)
+      const visibleSymptoms = selectedSymptoms.filter(s => !hiddenSymptoms.has(s));
       const scores = {};
       const gradeMap = {}; // remedy -> symptom -> grade
       
-      for (const sym of selectedSymptoms) {
+      for (const sym of visibleSymptoms) {
         const data = symptoms[sym];
         if (!data) continue;
         for (const [rem, grade] of Object.entries(data.remedies)) {
@@ -655,14 +718,15 @@
                 <td>Score</td>
                 ${normalizedScores.map(([rem, score]) => `<td onclick="setMinScore(${score})" title="Click to set minimum score to ${score}">${score}</td>`).join('')}
               </tr>
-              ${selectedSymptoms.map(sym => {
+              ${selectedSymptoms.filter(sym => !hiddenSymptoms.has(sym)).map(sym => {
                 const symData = symptoms[sym];
                 const symCount = symData ? Object.keys(symData.remedies).length : 0;
                 return `
                   <tr class="symptom-row">
                     <td onclick="showSymptomDetail('${sym.replace(/'/g, "\\'")}')">
                       <div class="symptom-cell">
-                        <button class="remove-btn" onclick="event.stopPropagation(); removeSymptom('${sym.replace(/'/g, "\\'")}')">×</button>
+                        <button class="action-btn remove-btn" onclick="event.stopPropagation(); removeSymptom('${sym.replace(/'/g, "\\'")}')">×</button>
+                        <button class="action-btn hide-btn" onclick="event.stopPropagation(); hideSymptom('${sym.replace(/'/g, "\\'")}')">👁</button>
                         <span class="symptom-name">${sym}</span>
                         <span style="color:#9ca3af;font-size:11px">(${symCount})</span>
                       </div>
