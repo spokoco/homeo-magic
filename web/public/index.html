@@ -131,12 +131,21 @@
       color: #6b7280;
       opacity: 0.7;
       cursor: pointer;
+      text-decoration: line-through;
+      text-decoration-color: #9ca3af;
     }
     .symptom-tag.hidden-tag:hover {
       opacity: 1;
       background: #e5e7eb;
     }
-    .hidden-icon { font-size: 12px; margin-right: 4px; }
+    .hidden-icon { 
+      display: inline-block;
+      width: 14px; 
+      height: 14px; 
+      vertical-align: middle;
+      margin-right: 6px;
+      background: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='%236b7280' stroke-width='2' stroke-linecap='round' stroke-linejoin='round'%3E%3Cpath d='M17.94 17.94A10.07 10.07 0 0 1 12 20c-7 0-11-8-11-8a18.45 18.45 0 0 1 5.06-5.94M9.9 4.24A9.12 9.12 0 0 1 12 4c7 0 11 8 11 8a18.5 18.5 0 0 1-2.16 3.19m-6.72-1.07a3 3 0 1 1-4.24-4.24'%3E%3C/path%3E%3Cline x1='1' y1='1' x2='23' y2='23'%3E%3C/line%3E%3C/svg%3E") center/contain no-repeat;
+    }
     .hidden-divider {
       color: #d1d5db;
       font-size: 20px;
@@ -284,33 +293,46 @@
     }
     .symptom-cell .action-btn {
       border: none;
-      width: 20px;
-      height: 20px;
-      border-radius: 50%;
-      font-size: 11px;
+      width: 22px;
+      height: 22px;
+      border-radius: 4px;
+      font-size: 12px;
       cursor: pointer;
       opacity: 0;
-      transition: opacity 0.15s;
+      transition: all 0.15s;
       display: flex;
       align-items: center;
       justify-content: center;
       flex-shrink: 0;
     }
-    .symptom-cell .remove-btn {
-      background: #dc2626;
-      color: white;
-    }
-    .symptom-cell .remove-btn:hover { background: #b91c1c; }
     .symptom-cell .hide-btn {
-      background: #6b7280;
-      color: white;
+      background: #e5e7eb;
+      color: #374151;
     }
-    .symptom-cell .hide-btn:hover { background: #4b5563; }
+    .symptom-cell .hide-btn:hover { background: #d1d5db; }
+    .symptom-cell .remove-btn {
+      background: #fee2e2;
+      color: #dc2626;
+      margin-left: auto;
+    }
+    .symptom-cell .remove-btn:hover { background: #fecaca; color: #b91c1c; }
     .symptom-row td:first-child:hover .action-btn {
       opacity: 1;
     }
     .symptom-cell .symptom-name {
       flex: 1;
+    }
+    /* Eye icons */
+    .icon-eye { width: 14px; height: 14px; }
+    .icon-eye-open { 
+      background: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='%23374151' stroke-width='2' stroke-linecap='round' stroke-linejoin='round'%3E%3Cpath d='M1 12s4-8 11-8 11 8 11 8-4 8-11 8-11-8-11-8z'%3E%3C/path%3E%3Ccircle cx='12' cy='12' r='3'%3E%3C/circle%3E%3C/svg%3E") center/contain no-repeat;
+    }
+    .icon-eye-closed {
+      background: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='%236b7280' stroke-width='2' stroke-linecap='round' stroke-linejoin='round'%3E%3Cpath d='M17.94 17.94A10.07 10.07 0 0 1 12 20c-7 0-11-8-11-8a18.45 18.45 0 0 1 5.06-5.94M9.9 4.24A9.12 9.12 0 0 1 12 4c7 0 11 8 11 8a18.5 18.5 0 0 1-2.16 3.19m-6.72-1.07a3 3 0 1 1-4.24-4.24'%3E%3C/path%3E%3Cline x1='1' y1='1' x2='23' y2='23'%3E%3C/line%3E%3C/svg%3E") center/contain no-repeat;
+    }
+    .icon-trash {
+      width: 12px; height: 12px;
+      background: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='%23dc2626' stroke-width='2' stroke-linecap='round' stroke-linejoin='round'%3E%3Cpolyline points='3 6 5 6 21 6'%3E%3C/polyline%3E%3Cpath d='M19 6v14a2 2 0 0 1-2 2H7a2 2 0 0 1-2-2V6m3 0V4a2 2 0 0 1 2-2h4a2 2 0 0 1 2 2v2'%3E%3C/path%3E%3C/svg%3E") center/contain no-repeat;
     }
     
     /* Grade cells */
@@ -614,7 +636,7 @@
         html += `<span class="hidden-divider">|</span>`;
         html += hidden.map(s => `
           <span class="symptom-tag hidden-tag" onclick="showSymptom('${s.replace(/'/g, "\\'")}')">
-            <span class="hidden-icon">👁</span>
+            <span class="hidden-icon"></span>
             ${s}
             <button onclick="event.stopPropagation(); removeSymptom('${s.replace(/'/g, "\\'")}')">×</button>
           </span>
@@ -725,10 +747,14 @@
                   <tr class="symptom-row">
                     <td onclick="showSymptomDetail('${sym.replace(/'/g, "\\'")}')">
                       <div class="symptom-cell">
-                        <button class="action-btn remove-btn" onclick="event.stopPropagation(); removeSymptom('${sym.replace(/'/g, "\\'")}')">×</button>
-                        <button class="action-btn hide-btn" onclick="event.stopPropagation(); hideSymptom('${sym.replace(/'/g, "\\'")}')">👁</button>
+                        <button class="action-btn hide-btn" onclick="event.stopPropagation(); hideSymptom('${sym.replace(/'/g, "\\'")}')">
+                          <span class="icon-eye icon-eye-open"></span>
+                        </button>
                         <span class="symptom-name">${sym}</span>
                         <span style="color:#9ca3af;font-size:11px">(${symCount})</span>
+                        <button class="action-btn remove-btn" onclick="event.stopPropagation(); removeSymptom('${sym.replace(/'/g, "\\'")}')">
+                          <span class="icon-trash"></span>
+                        </button>
                       </div>
                     </td>
                     ${sorted.map(([rem]) => {
