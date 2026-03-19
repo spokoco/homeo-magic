@@ -438,27 +438,75 @@
     let selectedSymptoms = [];
     let minScore = 0; // Minimum score threshold
 
+    // Fetch with progress
+    async function fetchWithProgress(url, onProgress) {
+      const response = await fetch(url);
+      if (!response.ok) throw new Error(`HTTP ${response.status}`);
+      
+      const contentLength = response.headers.get('content-length');
+      const total = contentLength ? parseInt(contentLength, 10) : 0;
+      
+      const reader = response.body.getReader();
+      const chunks = [];
+      let received = 0;
+      
+      while (true) {
+        const { done, value } = await reader.read();
+        if (done) break;
+        chunks.push(value);
+        received += value.length;
+        if (onProgress) onProgress(received, total);
+      }
+      
+      const allChunks = new Uint8Array(received);
+      let position = 0;
+      for (const chunk of chunks) {
+        allChunks.set(chunk, position);
+        position += chunk.length;
+      }
+      
+      const text = new TextDecoder().decode(allChunks);
+      return JSON.parse(text);
+    }
+    
+    function formatBytes(bytes) {
+      if (bytes < 1024) return bytes + ' B';
+      if (bytes < 1024 * 1024) return (bytes / 1024).toFixed(1) + ' KB';
+      return (bytes / (1024 * 1024)).toFixed(1) + ' MB';
+    }
+
     // Load data
     async function loadData() {
       const status = document.getElementById('status');
       const search = document.getElementById('search');
       
       try {
-        const remediesRes = await fetch('/data/remedies.json');
-        if (!remediesRes.ok) throw new Error('Failed to load remedies');
-        remedies = await remediesRes.json();
+        // Load remedies (small file)
+        status.innerHTML = '📥 Loading remedies...';
+        remedies = await fetchWithProgress('/data/remedies.json', (received, total) => {
+          status.innerHTML = `📥 Remedies: ${formatBytes(received)}${total ? ' / ' + formatBytes(total) : ''}`;
+        });
+        status.innerHTML = `✓ Remedies loaded (${Object.keys(remedies).length.toLocaleString()})`;
         
-        status.textContent = 'Loading symptoms...';
-        const symptomsRes = await fetch('/data/symptoms.json');
-        if (!symptomsRes.ok) throw new Error('Failed to load symptoms');
-        symptoms = await symptomsRes.json();
+        // Load symptoms (large file ~20MB)
+        status.innerHTML = '📥 Loading symptoms (large file)...';
+        const startTime = Date.now();
+        symptoms = await fetchWithProgress('/data/symptoms.json', (received, total) => {
+          const pct = total ? Math.round((received / total) * 100) : 0;
+          const bar = total ? `<span style="display:inline-block;width:100px;height:8px;background:#e9d5ff;border-radius:4px;overflow:hidden;vertical-align:middle;margin:0 8px"><span style="display:block;width:${pct}%;height:100%;background:#7c3aed"></span></span>` : '';
+          status.innerHTML = `📥 Symptoms: ${formatBytes(received)}${total ? ' / ' + formatBytes(total) : ''} ${bar} ${pct}%`;
+        });
+        const elapsed = ((Date.now() - startTime) / 1000).toFixed(1);
+        status.innerHTML = `✓ Loaded in ${elapsed}s`;
         
-        status.textContent = `${Object.keys(symptoms).length.toLocaleString()} symptoms • ${Object.keys(remedies).length.toLocaleString()} remedies`;
+        // Ready
+        await new Promise(r => setTimeout(r, 500)); // Brief pause to show completion
+        status.innerHTML = `🔮 ${Object.keys(symptoms).length.toLocaleString()} symptoms • ${Object.keys(remedies).length.toLocaleString()} remedies`;
         status.classList.remove('loading');
         search.disabled = false;
         search.focus();
       } catch (e) {
-        status.textContent = 'Error: ' + e.message;
+        status.innerHTML = '❌ Error: ' + e.message;
         status.style.color = '#fca5a5';
         console.error(e);
       }
