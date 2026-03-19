@@ -15,22 +15,33 @@ export function useRepertorize() {
   useEffect(() => {
     async function loadData() {
       try {
-        const [symptomsRes, remediesRes] = await Promise.all([
-          fetch("/data/symptoms.json"),
-          fetch("/data/remedies.json"),
-        ]);
-
-        if (!symptomsRes.ok || !remediesRes.ok) {
-          throw new Error("Failed to load data files");
+        console.log("Starting data load...");
+        
+        // Load remedies first (smaller file)
+        console.log("Fetching remedies...");
+        const remediesRes = await fetch("/data/remedies.json");
+        if (!remediesRes.ok) {
+          throw new Error(`Remedies fetch failed: ${remediesRes.status}`);
         }
-
-        const symptomsData = await symptomsRes.json();
         const remediesData = await remediesRes.json();
+        console.log(`Loaded ${Object.keys(remediesData).length} remedies`);
+        setRemedies(remediesData);
+        
+        // Then load symptoms (larger file - 20MB)
+        console.log("Fetching symptoms (large file)...");
+        const symptomsRes = await fetch("/data/symptoms.json");
+        if (!symptomsRes.ok) {
+          throw new Error(`Symptoms fetch failed: ${symptomsRes.status}`);
+        }
+        console.log("Parsing symptoms JSON...");
+        const symptomsData = await symptomsRes.json();
+        console.log(`Loaded ${Object.keys(symptomsData).length} symptoms`);
 
         setSymptoms(symptomsData);
-        setRemedies(remediesData);
         setLoading(false);
+        console.log("Data load complete!");
       } catch (err) {
+        console.error("Data load error:", err);
         setError(err instanceof Error ? err.message : "Failed to load data");
         setLoading(false);
       }
