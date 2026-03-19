@@ -527,7 +527,7 @@
       try {
         // Load remedies (small file)
         status.innerHTML = '📥 Loading remedies...';
-        remedies = await fetchWithProgress('/data/remedies.json', (received, total) => {
+        remedies = await fetchWithProgress('data/remedies.json', (received, total) => {
           status.innerHTML = `📥 Remedies: ${formatBytes(received)}${total ? ' / ' + formatBytes(total) : ''}`;
         });
         status.innerHTML = `✓ Remedies loaded (${Object.keys(remedies).length.toLocaleString()})`;
@@ -535,7 +535,7 @@
         // Load symptoms (large file ~20MB)
         status.innerHTML = '📥 Loading symptoms (large file)...';
         const startTime = Date.now();
-        symptoms = await fetchWithProgress('/data/symptoms.json', (received, total) => {
+        symptoms = await fetchWithProgress('data/symptoms.json', (received, total) => {
           const pct = total ? Math.round((received / total) * 100) : 0;
           const bar = total ? `<span style="display:inline-block;width:100px;height:8px;background:#e9d5ff;border-radius:4px;overflow:hidden;vertical-align:middle;margin:0 8px"><span style="display:block;width:${pct}%;height:100%;background:#7c3aed"></span></span>` : '';
           status.innerHTML = `📥 Symptoms: ${formatBytes(received)}${total ? ' / ' + formatBytes(total) : ''} ${bar} ${pct}%`;
