@@ -16,7 +16,8 @@ export interface RemediesData {
 export interface RepertoResult {
   abbrev: string;
   fullName: string;
-  totalScore: number;
+  totalScore: number; // normalized 0-100
+  rawScore: number; // actual sum of grades
   breakdown: {
     [symptom: string]: number;
   };

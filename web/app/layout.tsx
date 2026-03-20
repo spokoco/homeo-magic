@@ -1,9 +1,17 @@
 import type { Metadata } from "next";
+import { Unica_One } from "next/font/google";
 import "./globals.css";
+
+const unicaOne = Unica_One({
+  weight: "400",
+  subsets: ["latin"],
+  display: "swap",
+});
 
 export const metadata: Metadata = {
   title: "Homeo-Magic | Homeopathic Repertorization",
-  description: "Find matching homeopathic remedies by selecting symptoms. Repertorization tool with 74,000+ symptoms and 2,400+ remedies.",
+  description:
+    "Find matching homeopathic remedies by selecting symptoms. 74,000+ symptoms, 2,400+ remedies.",
 };
 
 export default function RootLayout({
@@ -13,7 +21,7 @@ export default function RootLayout({
 }>) {
   return (
     <html lang="en" suppressHydrationWarning>
-      <body className="antialiased">{children}</body>
+      <body className={`${unicaOne.className} antialiased`}>{children}</body>
     </html>
   );
 }

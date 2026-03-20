@@ -13,7 +13,7 @@ const https = require('https');
 const { spawn, execSync } = require('child_process');
 
 // Configuration
-const SERVER_URL = process.argv.find(a => a.startsWith('--server-url='))?.split('=')[1] || 'http://localhost:3333';
+const SERVER_URL = process.argv.find(a => a.startsWith('--server-url='))?.split('=')[1] || `http://localhost:${process.env.PORT || 3333}`;
 const DATA_DIR = path.join(__dirname, 'data');
 const WEB_DATA_DIR = path.join(__dirname, 'web/public/data');
 

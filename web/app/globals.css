@@ -1,27 +1,21 @@
 @import "tailwindcss";
 
 :root {
-  --background: #faf5ff;
-  --foreground: #1e1b4b;
-}
-
-@theme inline {
-  --color-background: var(--background);
-  --color-foreground: var(--foreground);
-}
-
-@media (prefers-color-scheme: dark) {
-  :root {
-    --background: #0f0a1a;
-    --foreground: #e9d5ff;
-  }
+  --navy-dark: #042B58;
+  --navy: #065774;
+  --teal: #0a7e8c;
+  --amber: #EF9B0C;
+  --amber-dark: #EA5F21;
+  --border: #D3DCDE;
+  --bg-light: #eef1f2;
+  --bg-table-header: #f3f6f7;
 }
 
 body {
-  background: var(--background);
-  color: var(--foreground);
-  font-family: system-ui, -apple-system, sans-serif;
+  background: linear-gradient(135deg, var(--navy) 0%, var(--navy-dark) 100%);
+  color: #1f2937;
   min-height: 100vh;
+  padding: 20px;
 }
 
 /* Custom scrollbar */
@@ -30,14 +24,37 @@ body {
 }
 
 ::-webkit-scrollbar-track {
-  background: rgba(139, 92, 246, 0.1);
+  background: rgba(6, 87, 116, 0.1);
 }
 
 ::-webkit-scrollbar-thumb {
-  background: rgba(139, 92, 246, 0.4);
+  background: rgba(6, 87, 116, 0.4);
   border-radius: 4px;
 }
 
 ::-webkit-scrollbar-thumb:hover {
-  background: rgba(139, 92, 246, 0.6);
+  background: rgba(6, 87, 116, 0.6);
 }
+
+/* Grade cells */
+.grade {
+  width: 28px;
+  height: 28px;
+  border-radius: 4px;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  font-weight: 600;
+  font-size: 12px;
+}
+.grade-1 { background: #fef3c7; color: #92400e; }
+.grade-2 { background: #fed7aa; color: #9a3412; }
+.grade-3 { background: #fca5a5; color: #991b1b; }
+
+/* Animations */
+@keyframes fadeIn { from { opacity: 0; transform: scale(0.9); } }
+@keyframes slideUp { from { opacity: 0; transform: translateY(10px); } to { opacity: 1; transform: translateY(0); } }
+@keyframes pulse { 0%, 100% { opacity: 1; } 50% { opacity: 0.5; } }
+.animate-fade-in { animation: fadeIn 0.2s ease-out; }
+.animate-slide-up { animation: slideUp 0.2s ease-out; }
+.loading-pulse { animation: pulse 1.5s infinite; }

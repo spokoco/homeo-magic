@@ -7,7 +7,7 @@
 const http = require('http');
 const https = require('https');
 
-const SERVER_URL = process.argv[2] || 'http://localhost:3333';
+const SERVER_URL = process.argv[2] || `http://localhost:${process.env.PORT || 3333}`;
 
 async function fetch(url, options = {}) {
   return new Promise((resolve, reject) => {
