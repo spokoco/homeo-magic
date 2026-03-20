@@ -51,30 +51,27 @@ function formatBytes(bytes: number): string {
 export function useRepertorize() {
   const [symptoms, setSymptoms] = useState<SymptomsData | null>(null);
   const [remedies, setRemedies] = useState<RemediesData | null>(null);
-  const [selectedSymptoms, setSelectedSymptoms] = useState<string[]>(() => {
+  const [selectedSymptoms, setSelectedSymptoms] = useState<string[]>([]);
+  const [hiddenSymptoms, setHiddenSymptoms] = useState<Set<string>>(new Set());
+  const [minScore, setMinScore] = useState(0);
+
+  // Restore persisted state after hydration to avoid SSR mismatch
+  useEffect(() => {
     try {
       const raw = sessionStorage.getItem("homeo-magic-state");
-      if (raw) return JSON.parse(raw).selectedSymptoms || [];
-    } catch {}
-    return [];
-  });
-  const [hiddenSymptoms, setHiddenSymptoms] = useState<Set<string>>(() => {
-    try {
-      const raw = sessionStorage.getItem("homeo-magic-state");
-      if (raw) {
-        const arr = JSON.parse(raw).hiddenSymptoms;
-        if (Array.isArray(arr)) return new Set(arr);
+      if (!raw) return;
+      const saved = JSON.parse(raw);
+      if (Array.isArray(saved.selectedSymptoms) && saved.selectedSymptoms.length > 0) {
+        setSelectedSymptoms(saved.selectedSymptoms);
+      }
+      if (Array.isArray(saved.hiddenSymptoms) && saved.hiddenSymptoms.length > 0) {
+        setHiddenSymptoms(new Set(saved.hiddenSymptoms));
+      }
+      if (typeof saved.minScore === "number" && saved.minScore > 0) {
+        setMinScore(saved.minScore);
       }
     } catch {}
-    return new Set();
-  });
-  const [minScore, setMinScore] = useState(() => {
-    try {
-      const raw = sessionStorage.getItem("homeo-magic-state");
-      if (raw) return JSON.parse(raw).minScore || 0;
-    } catch {}
-    return 0;
-  });
+  }, []);
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState<string | null>(null);
   const [loadProgress, setLoadProgress] = useState<LoadProgress>({

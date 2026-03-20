@@ -5,28 +5,25 @@ import { useRepertorize } from "./useRepertorize";
 import chroma from "chroma-js";
 
 // Color scale for score heat-mapping
-function loadSavedScale(): { fn: ReturnType<typeof chroma.scale>; colors?: string[] } {
-  if (typeof window === "undefined") {
-    return { fn: chroma.scale(["#fef3c7", "#fca5a5"]).mode("lab") };
-  }
-  try {
-    const raw = localStorage.getItem("homeo-magic-color-scale");
-    if (!raw) return { fn: chroma.scale(["#fef3c7", "#fca5a5"]).mode("lab") };
-    const data = JSON.parse(raw);
-    const scale = data.scale;
-    if (Array.isArray(scale) && scale.length >= 3) {
-      return { fn: chroma.scale(scale).mode(data.mode || "lab"), colors: scale };
-    }
-  } catch { /* ignore */ }
-  return { fn: chroma.scale(["#fef3c7", "#fca5a5"]).mode("lab") };
-}
+const defaultScale = () => chroma.scale(["#fef3c7", "#fca5a5"]).mode("lab");
 
 function useColorScale() {
-  const [scaleRef] = useState(() => loadSavedScale());
+  const [scaleRef, setScaleRef] = useState<{ fn: ReturnType<typeof chroma.scale>; colors?: string[] }>(() => ({ fn: defaultScale() }));
+
+  useEffect(() => {
+    try {
+      const raw = localStorage.getItem("homeo-magic-color-scale");
+      if (!raw) return;
+      const data = JSON.parse(raw);
+      const scale = data.scale;
+      if (Array.isArray(scale) && scale.length >= 3) {
+        setScaleRef({ fn: chroma.scale(scale).mode(data.mode || "lab"), colors: scale });
+      }
+    } catch { /* ignore */ }
+  }, []);
 
   useEffect(() => {
     if (!scaleRef.colors) return;
-    // Generate dynamic grade styles to override defaults
     let styleEl = document.getElementById("dynamic-grade-styles");
     if (!styleEl) {
       styleEl = document.createElement("style");
