@@ -96,8 +96,8 @@ async function main() {
       console.log(`   Parsed in ${parseTime}ms`);
       
       const count = Object.keys(data).length;
-      if (count < 70000) {
-        console.log(`   ❌ FAIL: Only ${count} symptoms`);
+      if (count !== 74481) {
+        console.log(`   ❌ FAIL: Expected 74,481 symptoms, got ${count}`);
         failed = true;
       } else {
         console.log(`   ✅ PASS: ${count} symptoms loaded`);

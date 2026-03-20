@@ -110,14 +110,14 @@ async function testDataFiles() {
   
   const data = loadDataFiles();
   
-  await test('symptoms.json has 70,000+ entries', () => {
+  await test('symptoms.json has exactly 74,481 entries', () => {
     const count = Object.keys(data.symptoms).length;
-    if (count < 70000) throw new Error(`Only ${count} symptoms`);
+    if (count !== 74481) throw new Error(`Expected 74,481 symptoms, got ${count}`);
   });
-  
-  await test('remedies.json has 2,000+ entries', () => {
+
+  await test('remedies.json has exactly 2,432 entries', () => {
     const count = Object.keys(data.remedies).length;
-    if (count < 2000) throw new Error(`Only ${count} remedies`);
+    if (count !== 2432) throw new Error(`Expected 2,432 remedies, got ${count}`);
   });
   
   await test('Symptoms have correct structure', () => {

@@ -45,14 +45,14 @@ test('Data files exist', () => {
   remedies = JSON.parse(fs.readFileSync(remediesPath, 'utf8'));
 });
 
-test('Symptoms count > 70,000', () => {
+test('Symptoms count is exactly 74,481', () => {
   const count = Object.keys(symptoms).length;
-  if (count < 70000) throw new Error(`Only ${count} symptoms`);
+  if (count !== 74481) throw new Error(`Expected 74,481 symptoms, got ${count}`);
 });
 
-test('Remedies count > 2,000', () => {
+test('Remedies count is exactly 2,432', () => {
   const count = Object.keys(remedies).length;
-  if (count < 2000) throw new Error(`Only ${count} remedies`);
+  if (count !== 2432) throw new Error(`Expected 2,432 remedies, got ${count}`);
 });
 
 test('Symptoms have correct structure', () => {
