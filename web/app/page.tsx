@@ -15,9 +15,25 @@ function useColorScale() {
       const raw = localStorage.getItem("homeo-magic-color-scale");
       if (!raw) return;
       const data = JSON.parse(raw);
-      if (Array.isArray(data.scale) && data.scale.length >= 3) {
-        setScaleRef({ fn: chroma.scale(data.scale).mode(data.mode || "lab") });
+      const scale = data.scale;
+      if (!Array.isArray(scale) || scale.length < 3) return;
+
+      setScaleRef({ fn: chroma.scale(scale).mode(data.mode || "lab") });
+
+      // Generate dynamic grade styles to override defaults
+      let styleEl = document.getElementById("dynamic-grade-styles");
+      if (!styleEl) {
+        styleEl = document.createElement("style");
+        styleEl.id = "dynamic-grade-styles";
+        document.head.appendChild(styleEl);
       }
+      let css = "";
+      for (let i = 0; i < scale.length; i++) {
+        const bg = scale[i];
+        const fg = getTextColor(bg);
+        css += `.grade-${i + 1} { background: ${bg} !important; color: ${fg} !important; }\n`;
+      }
+      styleEl.textContent = css;
     } catch {
       /* ignore */
     }
