@@ -1,43 +1,46 @@
 "use client";
 
-import { useState, useRef, useEffect, useCallback } from "react";
+import { useState, useRef, useEffect, useCallback, useMemo } from "react";
 import { useRepertorize } from "./useRepertorize";
 import chroma from "chroma-js";
 
 // Color scale for score heat-mapping
+function loadSavedScale(): { fn: ReturnType<typeof chroma.scale>; colors?: string[] } {
+  if (typeof window === "undefined") {
+    return { fn: chroma.scale(["#fef3c7", "#fca5a5"]).mode("lab") };
+  }
+  try {
+    const raw = localStorage.getItem("homeo-magic-color-scale");
+    if (!raw) return { fn: chroma.scale(["#fef3c7", "#fca5a5"]).mode("lab") };
+    const data = JSON.parse(raw);
+    const scale = data.scale;
+    if (Array.isArray(scale) && scale.length >= 3) {
+      return { fn: chroma.scale(scale).mode(data.mode || "lab"), colors: scale };
+    }
+  } catch { /* ignore */ }
+  return { fn: chroma.scale(["#fef3c7", "#fca5a5"]).mode("lab") };
+}
+
 function useColorScale() {
-  const [scaleRef, setScaleRef] = useState(() => ({
-    fn: chroma.scale(["#fef3c7", "#fca5a5"]).mode("lab"),
-  }));
+  const [scaleRef] = useState(() => loadSavedScale());
 
   useEffect(() => {
-    try {
-      const raw = localStorage.getItem("homeo-magic-color-scale");
-      if (!raw) return;
-      const data = JSON.parse(raw);
-      const scale = data.scale;
-      if (!Array.isArray(scale) || scale.length < 3) return;
-
-      setScaleRef({ fn: chroma.scale(scale).mode(data.mode || "lab") });
-
-      // Generate dynamic grade styles to override defaults
-      let styleEl = document.getElementById("dynamic-grade-styles");
-      if (!styleEl) {
-        styleEl = document.createElement("style");
-        styleEl.id = "dynamic-grade-styles";
-        document.head.appendChild(styleEl);
-      }
-      let css = "";
-      for (let i = 0; i < scale.length; i++) {
-        const bg = scale[i];
-        const fg = getTextColor(bg);
-        css += `.grade-${i + 1} { background: ${bg} !important; color: ${fg} !important; }\n`;
-      }
-      styleEl.textContent = css;
-    } catch {
-      /* ignore */
+    if (!scaleRef.colors) return;
+    // Generate dynamic grade styles to override defaults
+    let styleEl = document.getElementById("dynamic-grade-styles");
+    if (!styleEl) {
+      styleEl = document.createElement("style");
+      styleEl.id = "dynamic-grade-styles";
+      document.head.appendChild(styleEl);
     }
-  }, []);
+    let css = "";
+    for (let i = 0; i < scaleRef.colors.length; i++) {
+      const bg = scaleRef.colors[i];
+      const fg = getTextColor(bg);
+      css += `.grade-${i + 1} { background: ${bg} !important; color: ${fg} !important; }\n`;
+    }
+    styleEl.textContent = css;
+  }, [scaleRef]);
 
   const getScoreColor = useCallback(
     (t: number) => scaleRef.fn(t).hex(),
@@ -75,8 +78,7 @@ export default function Home() {
   } = useRepertorize();
 
   const [query, setQuery] = useState("");
-  const [suggestions, setSuggestions] = useState<string[]>([]);
-  const [showDropdown, setShowDropdown] = useState(false);
+  const [dropdownOpen, setDropdownOpen] = useState(false);
   const [highlightedIndex, setHighlightedIndex] = useState(-1);
   const [detailPanel, setDetailPanel] = useState<{
     type: "remedy" | "symptom";
@@ -86,17 +88,11 @@ export default function Home() {
   const dropdownRef = useRef<HTMLDivElement>(null);
   const { getScoreColor } = useColorScale();
 
-  useEffect(() => {
-    if (query.trim().length >= 2) {
-      const matches = searchSymptoms(query, 50);
-      setSuggestions(matches);
-      setShowDropdown(matches.length > 0);
-      setHighlightedIndex(-1);
-    } else {
-      setSuggestions([]);
-      setShowDropdown(false);
-    }
+  const suggestions = useMemo(() => {
+    if (query.trim().length < 2) return [];
+    return searchSymptoms(query, 50);
   }, [query, searchSymptoms]);
+  const showDropdown = dropdownOpen && suggestions.length > 0;
 
   useEffect(() => {
     function handleClickOutside(e: MouseEvent) {
@@ -106,7 +102,7 @@ export default function Home() {
         inputRef.current &&
         !inputRef.current.contains(e.target as Node)
       ) {
-        setShowDropdown(false);
+        setDropdownOpen(false);
       }
     }
     document.addEventListener("mousedown", handleClickOutside);
@@ -115,7 +111,7 @@ export default function Home() {
 
   function handleKeyDown(e: React.KeyboardEvent) {
     if (!showDropdown || suggestions.length === 0) {
-      if (e.key === "Escape") setShowDropdown(false);
+      if (e.key === "Escape") setDropdownOpen(false);
       return;
     }
     switch (e.key) {
@@ -136,7 +132,7 @@ export default function Home() {
         if (highlightedIndex >= 0) handleSelectSuggestion(suggestions[highlightedIndex]);
         break;
       case "Escape":
-        setShowDropdown(false);
+        setDropdownOpen(false);
         break;
     }
   }
@@ -144,8 +140,7 @@ export default function Home() {
   function handleSelectSuggestion(symptom: string) {
     addSymptom(symptom);
     setQuery("");
-    setSuggestions([]);
-    setShowDropdown(false);
+    setDropdownOpen(false);
     inputRef.current?.focus();
   }
 
@@ -212,9 +207,9 @@ export default function Home() {
             id="search"
             type="text"
             value={query}
-            onChange={(e) => setQuery(e.target.value)}
+            onChange={(e) => { setQuery(e.target.value); setDropdownOpen(true); }}
             onKeyDown={handleKeyDown}
-            onFocus={() => { if (suggestions.length > 0) setShowDropdown(true); }}
+            onFocus={() => { if (suggestions.length > 0) setDropdownOpen(true); }}
             placeholder="Type to search (e.g., headache, anxiety, burning)..."
             className="w-full px-[18px] py-[14px] text-base border-2 border-[#D3DCDE] rounded-[10px] outline-none transition-all font-inherit focus:border-[#EF9B0C] focus:shadow-[0_0_0_3px_rgba(239,155,12,0.2)] disabled:bg-[#eef1f2] disabled:cursor-not-allowed"
             autoComplete="off"
