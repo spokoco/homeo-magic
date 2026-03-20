@@ -203,6 +203,15 @@ export function useRepertorize() {
     });
   }, []);
 
+  const reorderSymptoms = useCallback((fromIndex: number, toIndex: number) => {
+    setSelectedSymptoms((prev) => {
+      const next = [...prev];
+      const [moved] = next.splice(fromIndex, 1);
+      next.splice(toIndex, 0, moved);
+      return next;
+    });
+  }, []);
+
   const clearSymptoms = useCallback(() => {
     setSelectedSymptoms([]);
     setHiddenSymptoms(new Set());
@@ -283,6 +292,7 @@ export function useRepertorize() {
     hideSymptom,
     showSymptom,
     clearSymptoms,
+    reorderSymptoms,
     symptomCount: symptoms ? Object.keys(symptoms).length : 0,
     remedyCount: remedies ? Object.keys(remedies).length : 0,
   };

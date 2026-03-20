@@ -9,7 +9,7 @@
 </head>
 <body>
   <div class="container">
-    <a href="index.html" class="nav-link">
+    <a href="./" class="nav-link">
       <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="15 18 9 12 15 6"/></svg>
       Back to Repertorization
     </a>
@@ -18,6 +18,21 @@
       <h1>Color Scale Settings</h1>
       <p>Configure the grade colors used in the results matrix</p>
     </header>
+
+    <!-- Preview -->
+    <div class="card">
+      <h2>Preview</h2>
+      <div class="preview-section">
+        <div class="preview-label">Gradient</div>
+        <div id="gradientBar" class="gradient-bar"></div>
+
+        <div class="preview-label">Discrete Swatches</div>
+        <div id="swatches" class="swatches"></div>
+
+        <div class="preview-label" style="margin-top: 16px;">Grade Cells (as in results matrix)</div>
+        <div id="gradePreview" class="grade-preview"></div>
+      </div>
+    </div>
 
     <!-- Presets -->
     <div class="card">
@@ -58,21 +73,6 @@
           <label class="field-label" for="stepsCount">Number of grades</label>
           <input type="number" id="stepsCount" min="3" max="10" value="4" onchange="onStepsChange(this.value)">
         </div>
-      </div>
-    </div>
-
-    <!-- Preview -->
-    <div class="card">
-      <h2>Preview</h2>
-      <div class="preview-section">
-        <div class="preview-label">Gradient</div>
-        <div id="gradientBar" class="gradient-bar"></div>
-
-        <div class="preview-label">Discrete Swatches</div>
-        <div id="swatches" class="swatches"></div>
-
-        <div class="preview-label" style="margin-top: 16px;">Grade Cells (as in results matrix)</div>
-        <div id="gradePreview" class="grade-preview"></div>
       </div>
     </div>
 
