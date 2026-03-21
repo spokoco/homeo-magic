@@ -344,6 +344,72 @@ export default function RemedyReader({ slug }: { slug: string }) {
     const cleaned = cleanMarkdown(markdown);
     const cleanedLower = cleaned.toLowerCase();
 
+    // Normalize whitespace for fuzzy matching: collapse all runs of whitespace to single space
+    function normalizeWS(s: string): string {
+      return s.replace(/\s+/g, " ").trim();
+    }
+
+    // Find a passage in the cleaned text using normalized whitespace matching
+    // Returns { start, end } in the original cleaned text, or null
+    function findPassageRange(passage: string): { start: number; end: number } | null {
+      const passageLower = passage.toLowerCase();
+      // Try exact match first
+      let idx = cleanedLower.indexOf(passageLower);
+      if (idx !== -1) return { start: idx, end: idx + passage.length };
+
+      // Try normalized whitespace match
+      const normPassage = normalizeWS(passageLower);
+      const normCleaned = normalizeWS(cleanedLower);
+      const normIdx = normCleaned.indexOf(normPassage);
+      if (normIdx === -1) return null;
+
+      // Map normalized position back to original cleaned text position
+      // Walk through cleaned text, tracking normalized position
+      let origPos = 0;
+      let normPos = 0;
+      let matchStart = -1;
+      let inWhitespace = false;
+
+      // Skip leading whitespace in cleaned text
+      while (origPos < cleaned.length && normPos < normIdx) {
+        const ch = cleanedLower[origPos];
+        if (/\s/.test(ch)) {
+          if (!inWhitespace) {
+            normPos++; // collapsed whitespace = one space in normalized
+            inWhitespace = true;
+          }
+          origPos++;
+        } else {
+          normPos++;
+          inWhitespace = false;
+          origPos++;
+        }
+      }
+      // Skip any whitespace at match boundary
+      while (origPos < cleaned.length && /\s/.test(cleanedLower[origPos])) origPos++;
+      matchStart = origPos;
+
+      // Now find the end
+      const normMatchEnd = normIdx + normPassage.length;
+      while (origPos < cleaned.length && normPos < normMatchEnd) {
+        const ch = cleanedLower[origPos];
+        if (/\s/.test(ch)) {
+          if (!inWhitespace) {
+            normPos++;
+            inWhitespace = true;
+          }
+          origPos++;
+        } else {
+          normPos++;
+          inWhitespace = false;
+          origPos++;
+        }
+      }
+
+      if (matchStart >= 0) return { start: matchStart, end: origPos };
+      return null;
+    }
+
     const allPassages = Object.entries(matchedPassages);
     const ranges: Array<{
       start: number;
@@ -358,26 +424,16 @@ export default function RemedyReader({ slug }: { slug: string }) {
       const isPrimary = passage === highlightParam;
       if (isPrimary) primaryPassage = passage;
 
-      const passageLower = passage.toLowerCase();
-      const idx = cleanedLower.indexOf(passageLower);
-      if (idx !== -1) {
-        ranges.push({
-          start: idx,
-          end: idx + passage.length,
-          primary: isPrimary,
-        });
+      const range = findPassageRange(passage);
+      if (range) {
+        ranges.push({ ...range, primary: isPrimary });
       }
     }
 
     if (highlightParam && !primaryPassage) {
-      const hlLower = highlightParam.toLowerCase();
-      const idx = cleanedLower.indexOf(hlLower);
-      if (idx !== -1) {
-        ranges.push({
-          start: idx,
-          end: idx + highlightParam.length,
-          primary: true,
-        });
+      const range = findPassageRange(highlightParam);
+      if (range) {
+        ranges.push({ ...range, primary: true });
         primaryPassage = highlightParam;
       }
     }
