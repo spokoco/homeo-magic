@@ -12,6 +12,22 @@ export interface RemediesData {
   [abbrev: string]: string; // full name
 }
 
+// Materia medica profile from profiles.json
+export interface MateriaProfile {
+  remedy: string;
+  abbreviations: string[];
+  file: string;
+  total_symptoms_in_repertory: number;
+  personality: string;
+  mental_state: string;
+  emotional_pattern: string;
+}
+
+export type ProfilesData = Record<string, MateriaProfile>;
+
+// Symptom index from symptom_index.json - remedy abbrev -> symptom path -> Kent quote
+export type SymptomIndexData = Record<string, Record<string, string>>;
+
 // Result of repertorization
 export interface RepertoResult {
   abbrev: string;
