@@ -41,6 +41,68 @@ async function loadMateriaData(): Promise<{
   }
 }
 
+/**
+ * Search remedy markdown text for passages matching the selected symptoms.
+ * Extracts ~200 chars of surrounding context for each match.
+ */
+function findPassagesInText(text: string, symptoms: string[]): Record<string, string> {
+  const results: Record<string, string> = {};
+  const textLower = text.toLowerCase();
+
+  for (const sym of symptoms) {
+    // Extract search keywords from the symptom path
+    const parts = sym.split(",").map(s => s.trim().toLowerCase());
+    // Use the most specific parts (skip very generic ones)
+    const keywords = parts
+      .filter(p => p.length > 2)
+      .flatMap(p => p.replace(/[()]/g, "").split(/\s+/))
+      .filter(w => w.length > 3 && !["with", "from", "morbid", "desire"].includes(w));
+
+    if (keywords.length === 0) continue;
+
+    // Search for the best matching passage
+    let bestIdx = -1;
+    let bestScore = 0;
+
+    for (let i = 0; i < textLower.length - 50; i += 20) {
+      const window = textLower.slice(i, i + 300);
+      let score = 0;
+      for (const kw of keywords) {
+        if (window.includes(kw)) score++;
+      }
+      if (score > bestScore) {
+        bestScore = score;
+        bestIdx = i;
+      }
+    }
+
+    if (bestScore >= 1 && bestIdx >= 0) {
+      // Extract context around the match
+      const start = Math.max(0, bestIdx - 50);
+      const end = Math.min(text.length, bestIdx + 250);
+      let passage = text.slice(start, end).trim();
+
+      // Clean up: start at a word boundary
+      const firstSpace = passage.indexOf(" ");
+      if (start > 0 && firstSpace > 0 && firstSpace < 20) {
+        passage = passage.slice(firstSpace + 1);
+      }
+      // End at a sentence boundary if possible
+      const lastPeriod = passage.lastIndexOf(".");
+      if (lastPeriod > passage.length * 0.5) {
+        passage = passage.slice(0, lastPeriod + 1);
+      }
+
+      // Strip markdown formatting
+      passage = passage.replace(/^#+\s*/gm, "").replace(/\*\*/g, "").replace(/\*/g, "");
+
+      results[sym] = passage;
+    }
+  }
+
+  return results;
+}
+
 export function MateriaPanel({
   remedyAbbrev,
   selectedSymptoms,
@@ -59,18 +121,60 @@ export function MateriaPanel({
     setLoading(true);
     setNotFound(false);
 
-    loadMateriaData().then(({ profiles, symptomIndex, archiveLinks }) => {
+    loadMateriaData().then(async ({ profiles, symptomIndex, archiveLinks }) => {
       if (cancelled) return;
       if (!profiles || !profiles[remedyAbbrev]) {
         setNotFound(true);
         setLoading(false);
         return;
       }
-      setProfile(profiles[remedyAbbrev]);
-      setPassages(symptomIndex?.[remedyAbbrev] ?? {});
-      // Find archive link by matching remedy name
-      if (archiveLinks && profiles[remedyAbbrev]) {
-        const remedyName = profiles[remedyAbbrev].remedy;
+      const prof = profiles[remedyAbbrev];
+      setProfile(prof);
+
+      // Start with pre-computed passages
+      const preComputed = symptomIndex?.[remedyAbbrev] ?? {};
+
+      // Load the remedy markdown for live keyword matching
+      let liveMatches: Record<string, string> = {};
+      try {
+        const mdRes = await fetch(`/data/kent/remedy_markdown/${prof.file}`);
+        if (mdRes.ok) {
+          const mdText = await mdRes.text();
+          liveMatches = findPassagesInText(mdText, selectedSymptoms);
+        }
+      } catch { /* ignore */ }
+
+      // Merge: pre-computed takes priority, then live keyword matches
+      const merged: Record<string, string> = {};
+      for (const sym of selectedSymptoms) {
+        if (preComputed[sym]) {
+          merged[sym] = preComputed[sym];
+        } else if (liveMatches[sym]) {
+          merged[sym] = liveMatches[sym];
+        } else {
+          // Try fuzzy match on pre-computed keys
+          const symParts = sym.toLowerCase().split(",").map(s => s.trim());
+          let found = false;
+          for (const [key, val] of Object.entries(preComputed)) {
+            const keyParts = key.toLowerCase().split(",").map(s => s.trim());
+            const shorter = symParts.length <= keyParts.length ? symParts : keyParts;
+            const longer = symParts.length <= keyParts.length ? keyParts : symParts;
+            if (shorter.every(p => longer.some(lp => lp.includes(p) || p.includes(lp)))) {
+              merged[sym] = val;
+              found = true;
+              break;
+            }
+          }
+          if (!found) {
+            merged[sym] = "";
+          }
+        }
+      }
+      setPassages(merged);
+
+      // Find archive link
+      if (archiveLinks && prof) {
+        const remedyName = prof.remedy;
         if (archiveLinks[remedyName]) {
           setArchiveUrl(archiveLinks[remedyName].url);
         }
@@ -115,22 +219,7 @@ export function MateriaPanel({
           </h3>
           <div className="space-y-3">
             {selectedSymptoms.map((sym) => {
-              // Try exact match first, then fuzzy match on symptom path parts
-              let passage = passages?.[sym];
-              if (!passage && passages) {
-                // Try matching on key parts of the symptom path
-                const symParts = sym.toLowerCase().split(",").map(s => s.trim());
-                for (const [key, val] of Object.entries(passages)) {
-                  const keyParts = key.toLowerCase().split(",").map(s => s.trim());
-                  // Match if all parts of the shorter path are in the longer one
-                  const shorter = symParts.length <= keyParts.length ? symParts : keyParts;
-                  const longer = symParts.length <= keyParts.length ? keyParts : symParts;
-                  if (shorter.every(p => longer.some(lp => lp.includes(p) || p.includes(lp)))) {
-                    passage = val;
-                    break;
-                  }
-                }
-              }
+              const passage = passages?.[sym];
               return (
                 <div
                   key={sym}
