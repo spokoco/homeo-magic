@@ -215,7 +215,7 @@ export default function Home() {
           </label>
           {selectedSymptoms.length > 0 && (
             <button
-              onClick={() => { clearSymptoms(); sessionStorage.removeItem("homeo-magic-state"); }}
+              onClick={() => { clearSymptoms(); setSelectedRemedy(null); sessionStorage.removeItem("homeo-magic-state"); }}
               className="px-3 py-1 bg-[#dc2626] text-white border-none rounded-md text-xs font-medium cursor-pointer hover:bg-[#b91c1c] transition-colors"
               data-testid="clear-all-symptoms"
             >
