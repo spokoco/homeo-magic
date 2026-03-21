@@ -95,6 +95,23 @@ function matchPassagesFromIndex(
   return results;
 }
 
+function buildRemedyUrl(
+  file: string,
+  symptoms: string[],
+  highlight?: string
+): string {
+  const slug = file.replace(/\.md$/, "");
+  const params = new URLSearchParams();
+  if (symptoms.length > 0) {
+    params.set("symptoms", symptoms.join("|"));
+  }
+  if (highlight) {
+    params.set("highlight", highlight);
+  }
+  const qs = params.toString();
+  return `/remedy/${encodeURIComponent(slug)}${qs ? `?${qs}` : ""}`;
+}
+
 export function MateriaPanel({
   remedyAbbrev,
   selectedSymptoms,
@@ -200,9 +217,15 @@ export function MateriaPanel({
                     {sym}
                   </div>
                   {passage ? (
-                    <p className="text-[13px] text-[#374151] leading-relaxed italic">
+                    <a
+                      href={buildRemedyUrl(profile.file, selectedSymptoms, passage)}
+                      target="_blank"
+                      rel="noopener noreferrer"
+                      className="block text-[13px] text-[#374151] leading-relaxed italic hover:bg-[#fefce8] rounded p-1 -m-1 transition-colors no-underline"
+                    >
                       &ldquo;{passage}&rdquo;
-                    </p>
+                      <span className="text-[11px] text-[#065774] not-italic ml-1">&rarr; view in context</span>
+                    </a>
                   ) : (
                     <p className="text-[13px] text-[#9ca3af] italic">
                       No specific passage found.
@@ -245,7 +268,7 @@ export function MateriaPanel({
         </h3>
         <div className="flex flex-wrap gap-3">
           <a
-            href={`/data/kent/remedy_markdown/${profile.file}`}
+            href={buildRemedyUrl(profile.file, selectedSymptoms)}
             target="_blank"
             rel="noopener noreferrer"
             className="inline-flex items-center gap-2 px-4 py-2.5 bg-[#065774] text-white rounded-lg text-sm font-medium hover:bg-[#042B58] transition-colors no-underline"

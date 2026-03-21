@@ -105,6 +105,23 @@ body {
   cursor: pointer;
 }
 
+/* Remedy text reader */
+.remedy-text {
+  font-family: Georgia, 'Times New Roman', serif;
+  max-width: 100%;
+}
+.remedy-text h1,
+.remedy-text h2 {
+  font-family: Georgia, 'Times New Roman', serif;
+}
+.remedy-text p {
+  text-align: justify;
+  hyphens: auto;
+}
+.remedy-text blockquote {
+  font-family: Georgia, 'Times New Roman', serif;
+}
+
 /* Symptom row hover actions */
 .symptom-row .hover-action { opacity: 0; transition: opacity 0.15s; }
 .symptom-row:hover .hover-action { opacity: 1; }
