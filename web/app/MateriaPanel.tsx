@@ -5,33 +5,39 @@ import type { ProfilesData, SymptomIndexData, MateriaProfile } from "./types";
 
 let cachedProfiles: ProfilesData | null = null;
 let cachedSymptomIndex: SymptomIndexData | null = null;
+let cachedArchiveLinks: Record<string, { leaf: number; url: string }> | null = null;
 
 /** Reset the module-level cache (for testing) */
 export function resetMateriaCache() {
   cachedProfiles = null;
   cachedSymptomIndex = null;
+  cachedArchiveLinks = null;
 }
 
 async function loadMateriaData(): Promise<{
   profiles: ProfilesData | null;
   symptomIndex: SymptomIndexData | null;
+  archiveLinks: Record<string, { leaf: number; url: string }> | null;
 }> {
   if (cachedProfiles && cachedSymptomIndex) {
-    return { profiles: cachedProfiles, symptomIndex: cachedSymptomIndex };
+    return { profiles: cachedProfiles, symptomIndex: cachedSymptomIndex, archiveLinks: cachedArchiveLinks };
   }
   try {
-    const [profilesRes, indexRes] = await Promise.all([
+    const [profilesRes, indexRes, linksRes] = await Promise.all([
       fetch("/data/kent/profiles.json"),
       fetch("/data/kent/symptom_index.json"),
+      fetch("/data/kent/archive_links.json"),
     ]);
     if (!profilesRes.ok || !indexRes.ok) throw new Error("Failed to load");
     const profiles = (await profilesRes.json()) as ProfilesData;
     const symptomIndex = (await indexRes.json()) as SymptomIndexData;
+    const archiveLinks = linksRes.ok ? await linksRes.json() : null;
     cachedProfiles = profiles;
     cachedSymptomIndex = symptomIndex;
-    return { profiles, symptomIndex };
+    cachedArchiveLinks = archiveLinks;
+    return { profiles, symptomIndex, archiveLinks };
   } catch {
-    return { profiles: null, symptomIndex: null };
+    return { profiles: null, symptomIndex: null, archiveLinks: null };
   }
 }
 
@@ -44,6 +50,7 @@ export function MateriaPanel({
 }) {
   const [profile, setProfile] = useState<MateriaProfile | null>(null);
   const [passages, setPassages] = useState<Record<string, string> | null>(null);
+  const [archiveUrl, setArchiveUrl] = useState<string | null>(null);
   const [loading, setLoading] = useState(true);
   const [notFound, setNotFound] = useState(false);
 
@@ -52,7 +59,7 @@ export function MateriaPanel({
     setLoading(true);
     setNotFound(false);
 
-    loadMateriaData().then(({ profiles, symptomIndex }) => {
+    loadMateriaData().then(({ profiles, symptomIndex, archiveLinks }) => {
       if (cancelled) return;
       if (!profiles || !profiles[remedyAbbrev]) {
         setNotFound(true);
@@ -61,6 +68,13 @@ export function MateriaPanel({
       }
       setProfile(profiles[remedyAbbrev]);
       setPassages(symptomIndex?.[remedyAbbrev] ?? {});
+      // Find archive link by matching remedy name
+      if (archiveLinks && profiles[remedyAbbrev]) {
+        const remedyName = profiles[remedyAbbrev].remedy;
+        if (archiveLinks[remedyName]) {
+          setArchiveUrl(archiveLinks[remedyName].url);
+        }
+      }
       setLoading(false);
     });
 
@@ -154,19 +168,36 @@ export function MateriaPanel({
           </svg>
           Full Book Text
         </h3>
-        <a
-          href={`/data/kent/remedy_markdown/${profile.file}`}
-          target="_blank"
-          rel="noopener noreferrer"
-          className="inline-flex items-center gap-2 px-4 py-2.5 bg-[#065774] text-white rounded-lg text-sm font-medium hover:bg-[#042B58] transition-colors no-underline"
-        >
-          Read full Kent lecture: {profile.remedy}
-          <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
-            <path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6" />
-            <polyline points="15 3 21 3 21 9" />
-            <line x1="10" y1="14" x2="21" y2="3" />
-          </svg>
-        </a>
+        <div className="flex flex-wrap gap-3">
+          <a
+            href={`/data/kent/remedy_markdown/${profile.file}`}
+            target="_blank"
+            rel="noopener noreferrer"
+            className="inline-flex items-center gap-2 px-4 py-2.5 bg-[#065774] text-white rounded-lg text-sm font-medium hover:bg-[#042B58] transition-colors no-underline"
+          >
+            Read full Kent lecture: {profile.remedy}
+            <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
+              <path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6" />
+              <polyline points="15 3 21 3 21 9" />
+              <line x1="10" y1="14" x2="21" y2="3" />
+            </svg>
+          </a>
+          {archiveUrl && (
+            <a
+              href={archiveUrl}
+              target="_blank"
+              rel="noopener noreferrer"
+              className="inline-flex items-center gap-2 px-4 py-2.5 bg-[#8B4513] text-white rounded-lg text-sm font-medium hover:bg-[#6B3410] transition-colors no-underline"
+            >
+              View original in Internet Archive
+              <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
+                <path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6" />
+                <polyline points="15 3 21 3 21 9" />
+                <line x1="10" y1="14" x2="21" y2="3" />
+              </svg>
+            </a>
+          )}
+        </div>
       </section>
     </div>
   );

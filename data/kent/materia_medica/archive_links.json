@@ -1,0 +1,698 @@
+{
+  "Abrotanum": {
+    "leaf": 2,
+    "url": "https://archive.org/details/kents-lectures-on-materia-medica/page/n2/mode/2up"
+  },
+  "Acetic Acidum": {
+    "leaf": 2,
+    "url": "https://archive.org/details/kents-lectures-on-materia-medica/page/n2/mode/2up"
+  },
+  "Aconitum Napellus": {
+    "leaf": 3,
+    "url": "https://archive.org/details/kents-lectures-on-materia-medica/page/n3/mode/2up"
+  },
+  "Actea Racemosa": {
+    "leaf": 17,
+    "url": "https://archive.org/details/kents-lectures-on-materia-medica/page/n17/mode/2up"
+  },
+  "Aesculus Hippocastanum": {
+    "leaf": 23,
+    "url": "https://archive.org/details/kents-lectures-on-materia-medica/page/n23/mode/2up"
+  },
+  "Aethusa Cynapium": {
+    "leaf": 28,
+    "url": "https://archive.org/details/kents-lectures-on-materia-medica/page/n28/mode/2up"
+  },
+  "Agaricus Muscarius": {
+    "leaf": 31,
+    "url": "https://archive.org/details/kents-lectures-on-materia-medica/page/n31/mode/2up"
+  },
+  "Agnus Castus": {
+    "leaf": 37,
+    "url": "https://archive.org/details/kents-lectures-on-materia-medica/page/n37/mode/2up"
+  },
+  "Ailanthus Glandulosa": {
+    "leaf": 38,
+    "url": "https://archive.org/details/kents-lectures-on-materia-medica/page/n38/mode/2up"
+  },
+  "Allium Cepa": {
+    "leaf": 42,
+    "url": "https://archive.org/details/kents-lectures-on-materia-medica/page/n42/mode/2up"
+  },
+  "Aloe": {
+    "leaf": 46,
+    "url": "https://archive.org/details/kents-lectures-on-materia-medica/page/n46/mode/2up"
+  },
+  "Alumen": {
+    "leaf": 50,
+    "url": "https://archive.org/details/kents-lectures-on-materia-medica/page/n50/mode/2up"
+  },
+  "Alumina": {
+    "leaf": 55,
+    "url": "https://archive.org/details/kents-lectures-on-materia-medica/page/n55/mode/2up"
+  },
+  "Ambra Grisea": {
+    "leaf": 69,
+    "url": "https://archive.org/details/kents-lectures-on-materia-medica/page/n69/mode/2up"
+  },
+  "Ammonium Carbonicum": {
+    "leaf": 76,
+    "url": "https://archive.org/details/kents-lectures-on-materia-medica/page/n76/mode/2up"
+  },
+  "Ammonium Muriaticum": {
+    "leaf": 81,
+    "url": "https://archive.org/details/kents-lectures-on-materia-medica/page/n81/mode/2up"
+  },
+  "Anacardium Orientale": {
+    "leaf": 83,
+    "url": "https://archive.org/details/kents-lectures-on-materia-medica/page/n83/mode/2up"
+  },
+  "Antimonium Crudum": {
+    "leaf": 86,
+    "url": "https://archive.org/details/kents-lectures-on-materia-medica/page/n86/mode/2up"
+  },
+  "Antimonium Tartaricum": {
+    "leaf": 90,
+    "url": "https://archive.org/details/kents-lectures-on-materia-medica/page/n90/mode/2up"
+  },
+  "Apis Mellifica": {
+    "leaf": 97,
+    "url": "https://archive.org/details/kents-lectures-on-materia-medica/page/n97/mode/2up"
+  },
+  "Apocynum Cannabinum": {
+    "leaf": 105,
+    "url": "https://archive.org/details/kents-lectures-on-materia-medica/page/n105/mode/2up"
+  },
+  "Argentum Metallicum": {
+    "leaf": 111,
+    "url": "https://archive.org/details/kents-lectures-on-materia-medica/page/n111/mode/2up"
+  },
+  "Argentum Nitricum": {
+    "leaf": 119,
+    "url": "https://archive.org/details/kents-lectures-on-materia-medica/page/n119/mode/2up"
+  },
+  "Arnica Montana": {
+    "leaf": 127,
+    "url": "https://archive.org/details/kents-lectures-on-materia-medica/page/n127/mode/2up"
+  },
+  "Arsenicum Album": {
+    "leaf": 134,
+    "url": "https://archive.org/details/kents-lectures-on-materia-medica/page/n134/mode/2up"
+  },
+  "Arsenicum Iodatum": {
+    "leaf": 151,
+    "url": "https://archive.org/details/kents-lectures-on-materia-medica/page/n151/mode/2up"
+  },
+  "Arum Triphyllum": {
+    "leaf": 157,
+    "url": "https://archive.org/details/kents-lectures-on-materia-medica/page/n157/mode/2up"
+  },
+  "Asa Foetida": {
+    "leaf": 161,
+    "url": "https://archive.org/details/kents-lectures-on-materia-medica/page/n161/mode/2up"
+  },
+  "Aurum Metallicum": {
+    "leaf": 166,
+    "url": "https://archive.org/details/kents-lectures-on-materia-medica/page/n166/mode/2up"
+  },
+  "Aurum Muriaticum": {
+    "leaf": 175,
+    "url": "https://archive.org/details/kents-lectures-on-materia-medica/page/n175/mode/2up"
+  },
+  "Baptisia": {
+    "leaf": 178,
+    "url": "https://archive.org/details/kents-lectures-on-materia-medica/page/n178/mode/2up"
+  },
+  "Baryta Carbonica": {
+    "leaf": 184,
+    "url": "https://archive.org/details/kents-lectures-on-materia-medica/page/n184/mode/2up"
+  },
+  "Baryta Muriatica": {
+    "leaf": 194,
+    "url": "https://archive.org/details/kents-lectures-on-materia-medica/page/n194/mode/2up"
+  },
+  "Belladonna": {
+    "leaf": 199,
+    "url": "https://archive.org/details/kents-lectures-on-materia-medica/page/n199/mode/2up"
+  },
+  "Benzoicum Acidum": {
+    "leaf": 225,
+    "url": "https://archive.org/details/kents-lectures-on-materia-medica/page/n225/mode/2up"
+  },
+  "Berberis": {
+    "leaf": 231,
+    "url": "https://archive.org/details/kents-lectures-on-materia-medica/page/n231/mode/2up"
+  },
+  "Borax": {
+    "leaf": 237,
+    "url": "https://archive.org/details/kents-lectures-on-materia-medica/page/n237/mode/2up"
+  },
+  "Bromium": {
+    "leaf": 243,
+    "url": "https://archive.org/details/kents-lectures-on-materia-medica/page/n243/mode/2up"
+  },
+  "Bryonia Alba": {
+    "leaf": 250,
+    "url": "https://archive.org/details/kents-lectures-on-materia-medica/page/n250/mode/2up"
+  },
+  "Bufo": {
+    "leaf": 267,
+    "url": "https://archive.org/details/kents-lectures-on-materia-medica/page/n267/mode/2up"
+  },
+  "Cactus Grandiflorus": {
+    "leaf": 274,
+    "url": "https://archive.org/details/kents-lectures-on-materia-medica/page/n274/mode/2up"
+  },
+  "Cadmium Sulphuricum": {
+    "leaf": 281,
+    "url": "https://archive.org/details/kents-lectures-on-materia-medica/page/n281/mode/2up"
+  },
+  "Caladium": {
+    "leaf": 283,
+    "url": "https://archive.org/details/kents-lectures-on-materia-medica/page/n283/mode/2up"
+  },
+  "Calcarea Arsenicosa": {
+    "leaf": 286,
+    "url": "https://archive.org/details/kents-lectures-on-materia-medica/page/n286/mode/2up"
+  },
+  "Calcarea Carbonica": {
+    "leaf": 288,
+    "url": "https://archive.org/details/kents-lectures-on-materia-medica/page/n288/mode/2up"
+  },
+  "Calcarea Fluorica": {
+    "leaf": 307,
+    "url": "https://archive.org/details/kents-lectures-on-materia-medica/page/n307/mode/2up"
+  },
+  "Calcarea Phosphorica": {
+    "leaf": 308,
+    "url": "https://archive.org/details/kents-lectures-on-materia-medica/page/n308/mode/2up"
+  },
+  "Calcarea Sulphurica": {
+    "leaf": 311,
+    "url": "https://archive.org/details/kents-lectures-on-materia-medica/page/n311/mode/2up"
+  },
+  "Camphor": {
+    "leaf": 318,
+    "url": "https://archive.org/details/kents-lectures-on-materia-medica/page/n318/mode/2up"
+  },
+  "Cannabis Indica": {
+    "leaf": 322,
+    "url": "https://archive.org/details/kents-lectures-on-materia-medica/page/n322/mode/2up"
+  },
+  "Cannabis Sativa": {
+    "leaf": 323,
+    "url": "https://archive.org/details/kents-lectures-on-materia-medica/page/n323/mode/2up"
+  },
+  "Cantharis": {
+    "leaf": 324,
+    "url": "https://archive.org/details/kents-lectures-on-materia-medica/page/n324/mode/2up"
+  },
+  "Capsicum": {
+    "leaf": 327,
+    "url": "https://archive.org/details/kents-lectures-on-materia-medica/page/n327/mode/2up"
+  },
+  "Carbo Animalis": {
+    "leaf": 331,
+    "url": "https://archive.org/details/kents-lectures-on-materia-medica/page/n331/mode/2up"
+  },
+  "Carbo Vegetabilis": {
+    "leaf": 333,
+    "url": "https://archive.org/details/kents-lectures-on-materia-medica/page/n333/mode/2up"
+  },
+  "Carboneum Sulphuratum": {
+    "leaf": 349,
+    "url": "https://archive.org/details/kents-lectures-on-materia-medica/page/n349/mode/2up"
+  },
+  "Carduus Marianus": {
+    "leaf": 357,
+    "url": "https://archive.org/details/kents-lectures-on-materia-medica/page/n357/mode/2up"
+  },
+  "Causticum": {
+    "leaf": 359,
+    "url": "https://archive.org/details/kents-lectures-on-materia-medica/page/n359/mode/2up"
+  },
+  "Chamomilla": {
+    "leaf": 365,
+    "url": "https://archive.org/details/kents-lectures-on-materia-medica/page/n365/mode/2up"
+  },
+  "Chelidonium": {
+    "leaf": 375,
+    "url": "https://archive.org/details/kents-lectures-on-materia-medica/page/n375/mode/2up"
+  },
+  "Chininum Arsenicosum": {
+    "leaf": 380,
+    "url": "https://archive.org/details/kents-lectures-on-materia-medica/page/n380/mode/2up"
+  },
+  "Cicuta Virosa": {
+    "leaf": 385,
+    "url": "https://archive.org/details/kents-lectures-on-materia-medica/page/n385/mode/2up"
+  },
+  "Cina": {
+    "leaf": 387,
+    "url": "https://archive.org/details/kents-lectures-on-materia-medica/page/n387/mode/2up"
+  },
+  "Cinchona (China)": {
+    "leaf": 390,
+    "url": "https://archive.org/details/kents-lectures-on-materia-medica/page/n390/mode/2up"
+  },
+  "Cinnabaris": {
+    "leaf": 395,
+    "url": "https://archive.org/details/kents-lectures-on-materia-medica/page/n395/mode/2up"
+  },
+  "Cistus Canadensis": {
+    "leaf": 397,
+    "url": "https://archive.org/details/kents-lectures-on-materia-medica/page/n397/mode/2up"
+  },
+  "Clematis Erecta": {
+    "leaf": 399,
+    "url": "https://archive.org/details/kents-lectures-on-materia-medica/page/n399/mode/2up"
+  },
+  "Cocculus Indicus": {
+    "leaf": 402,
+    "url": "https://archive.org/details/kents-lectures-on-materia-medica/page/n402/mode/2up"
+  },
+  "Coccus Cacti": {
+    "leaf": 406,
+    "url": "https://archive.org/details/kents-lectures-on-materia-medica/page/n406/mode/2up"
+  },
+  "Coffea": {
+    "leaf": 409,
+    "url": "https://archive.org/details/kents-lectures-on-materia-medica/page/n409/mode/2up"
+  },
+  "Colchicum": {
+    "leaf": 413,
+    "url": "https://archive.org/details/kents-lectures-on-materia-medica/page/n413/mode/2up"
+  },
+  "Colocynthis": {
+    "leaf": 418,
+    "url": "https://archive.org/details/kents-lectures-on-materia-medica/page/n418/mode/2up"
+  },
+  "Conium Maculatum": {
+    "leaf": 421,
+    "url": "https://archive.org/details/kents-lectures-on-materia-medica/page/n421/mode/2up"
+  },
+  "Crotalus Horridus": {
+    "leaf": 427,
+    "url": "https://archive.org/details/kents-lectures-on-materia-medica/page/n427/mode/2up"
+  },
+  "Croton Tiglium": {
+    "leaf": 433,
+    "url": "https://archive.org/details/kents-lectures-on-materia-medica/page/n433/mode/2up"
+  },
+  "Cuprum Metallicum": {
+    "leaf": 437,
+    "url": "https://archive.org/details/kents-lectures-on-materia-medica/page/n437/mode/2up"
+  },
+  "Cyclamen": {
+    "leaf": 444,
+    "url": "https://archive.org/details/kents-lectures-on-materia-medica/page/n444/mode/2up"
+  },
+  "Drosera Rotundifolia": {
+    "leaf": 451,
+    "url": "https://archive.org/details/kents-lectures-on-materia-medica/page/n451/mode/2up"
+  },
+  "Dulcamara": {
+    "leaf": 453,
+    "url": "https://archive.org/details/kents-lectures-on-materia-medica/page/n453/mode/2up"
+  },
+  "Euphrasia": {
+    "leaf": 464,
+    "url": "https://archive.org/details/kents-lectures-on-materia-medica/page/n464/mode/2up"
+  },
+  "Ferrum Metallicum": {
+    "leaf": 465,
+    "url": "https://archive.org/details/kents-lectures-on-materia-medica/page/n465/mode/2up"
+  },
+  "Ferrum Phosphoricum": {
+    "leaf": 470,
+    "url": "https://archive.org/details/kents-lectures-on-materia-medica/page/n470/mode/2up"
+  },
+  "Fluoricum Acidum": {
+    "leaf": 476,
+    "url": "https://archive.org/details/kents-lectures-on-materia-medica/page/n476/mode/2up"
+  },
+  "Gelsemium": {
+    "leaf": 482,
+    "url": "https://archive.org/details/kents-lectures-on-materia-medica/page/n482/mode/2up"
+  },
+  "Glonoinum": {
+    "leaf": 486,
+    "url": "https://archive.org/details/kents-lectures-on-materia-medica/page/n486/mode/2up"
+  },
+  "Graphites": {
+    "leaf": 490,
+    "url": "https://archive.org/details/kents-lectures-on-materia-medica/page/n490/mode/2up"
+  },
+  "Gratiola": {
+    "leaf": 497,
+    "url": "https://archive.org/details/kents-lectures-on-materia-medica/page/n497/mode/2up"
+  },
+  "Guaiacum": {
+    "leaf": 498,
+    "url": "https://archive.org/details/kents-lectures-on-materia-medica/page/n498/mode/2up"
+  },
+  "Helleborus Niger": {
+    "leaf": 501,
+    "url": "https://archive.org/details/kents-lectures-on-materia-medica/page/n501/mode/2up"
+  },
+  "Hepar Sulphur": {
+    "leaf": 505,
+    "url": "https://archive.org/details/kents-lectures-on-materia-medica/page/n505/mode/2up"
+  },
+  "Hydrastis Canadensis": {
+    "leaf": 511,
+    "url": "https://archive.org/details/kents-lectures-on-materia-medica/page/n511/mode/2up"
+  },
+  "Hyoscyamus": {
+    "leaf": 514,
+    "url": "https://archive.org/details/kents-lectures-on-materia-medica/page/n514/mode/2up"
+  },
+  "Hypericum": {
+    "leaf": 523,
+    "url": "https://archive.org/details/kents-lectures-on-materia-medica/page/n523/mode/2up"
+  },
+  "Ignatia": {
+    "leaf": 527,
+    "url": "https://archive.org/details/kents-lectures-on-materia-medica/page/n527/mode/2up"
+  },
+  "Iodum (Iodine)": {
+    "leaf": 533,
+    "url": "https://archive.org/details/kents-lectures-on-materia-medica/page/n533/mode/2up"
+  },
+  "Ipecac": {
+    "leaf": 539,
+    "url": "https://archive.org/details/kents-lectures-on-materia-medica/page/n539/mode/2up"
+  },
+  "Kalium Bichromicum": {
+    "leaf": 543,
+    "url": "https://archive.org/details/kents-lectures-on-materia-medica/page/n543/mode/2up"
+  },
+  "Kalium Carbonicum": {
+    "leaf": 549,
+    "url": "https://archive.org/details/kents-lectures-on-materia-medica/page/n549/mode/2up"
+  },
+  "Kalium Iodatum": {
+    "leaf": 560,
+    "url": "https://archive.org/details/kents-lectures-on-materia-medica/page/n560/mode/2up"
+  },
+  "Kalium Phosphoricum": {
+    "leaf": 564,
+    "url": "https://archive.org/details/kents-lectures-on-materia-medica/page/n564/mode/2up"
+  },
+  "Kalium Sulphuricum": {
+    "leaf": 572,
+    "url": "https://archive.org/details/kents-lectures-on-materia-medica/page/n572/mode/2up"
+  },
+  "Kalmia Latifolia": {
+    "leaf": 579,
+    "url": "https://archive.org/details/kents-lectures-on-materia-medica/page/n579/mode/2up"
+  },
+  "Kreosotum": {
+    "leaf": 582,
+    "url": "https://archive.org/details/kents-lectures-on-materia-medica/page/n582/mode/2up"
+  },
+  "Lac Caninum": {
+    "leaf": 585,
+    "url": "https://archive.org/details/kents-lectures-on-materia-medica/page/n585/mode/2up"
+  },
+  "Lac Vaccinum Defloratum": {
+    "leaf": 588,
+    "url": "https://archive.org/details/kents-lectures-on-materia-medica/page/n588/mode/2up"
+  },
+  "Lachesis": {
+    "leaf": 592,
+    "url": "https://archive.org/details/kents-lectures-on-materia-medica/page/n592/mode/2up"
+  },
+  "Laurocerasus": {
+    "leaf": 601,
+    "url": "https://archive.org/details/kents-lectures-on-materia-medica/page/n601/mode/2up"
+  },
+  "Ledum Palustre": {
+    "leaf": 603,
+    "url": "https://archive.org/details/kents-lectures-on-materia-medica/page/n603/mode/2up"
+  },
+  "Lycopodium": {
+    "leaf": 609,
+    "url": "https://archive.org/details/kents-lectures-on-materia-medica/page/n609/mode/2up"
+  },
+  "Magnesia Carbonica": {
+    "leaf": 620,
+    "url": "https://archive.org/details/kents-lectures-on-materia-medica/page/n620/mode/2up"
+  },
+  "Magnesia Muriatica": {
+    "leaf": 624,
+    "url": "https://archive.org/details/kents-lectures-on-materia-medica/page/n624/mode/2up"
+  },
+  "Magnesia Phosphorica": {
+    "leaf": 626,
+    "url": "https://archive.org/details/kents-lectures-on-materia-medica/page/n626/mode/2up"
+  },
+  "Manganum": {
+    "leaf": 628,
+    "url": "https://archive.org/details/kents-lectures-on-materia-medica/page/n628/mode/2up"
+  },
+  "Medorrhinum": {
+    "leaf": 633,
+    "url": "https://archive.org/details/kents-lectures-on-materia-medica/page/n633/mode/2up"
+  },
+  "Mercurius": {
+    "leaf": 638,
+    "url": "https://archive.org/details/kents-lectures-on-materia-medica/page/n638/mode/2up"
+  },
+  "Mercurius Corrosivus": {
+    "leaf": 647,
+    "url": "https://archive.org/details/kents-lectures-on-materia-medica/page/n647/mode/2up"
+  },
+  "Mercurius Cyanatus": {
+    "leaf": 648,
+    "url": "https://archive.org/details/kents-lectures-on-materia-medica/page/n648/mode/2up"
+  },
+  "Mercurius Iodatus Flavus": {
+    "leaf": 648,
+    "url": "https://archive.org/details/kents-lectures-on-materia-medica/page/n648/mode/2up"
+  },
+  "Mercurius Sulphuricus": {
+    "leaf": 649,
+    "url": "https://archive.org/details/kents-lectures-on-materia-medica/page/n649/mode/2up"
+  },
+  "Mezereum": {
+    "leaf": 649,
+    "url": "https://archive.org/details/kents-lectures-on-materia-medica/page/n649/mode/2up"
+  },
+  "Millefolium": {
+    "leaf": 652,
+    "url": "https://archive.org/details/kents-lectures-on-materia-medica/page/n652/mode/2up"
+  },
+  "Moschus": {
+    "leaf": 653,
+    "url": "https://archive.org/details/kents-lectures-on-materia-medica/page/n653/mode/2up"
+  },
+  "Muriaticum Acidum": {
+    "leaf": 656,
+    "url": "https://archive.org/details/kents-lectures-on-materia-medica/page/n656/mode/2up"
+  },
+  "Natrum Arsenicosum": {
+    "leaf": 660,
+    "url": "https://archive.org/details/kents-lectures-on-materia-medica/page/n660/mode/2up"
+  },
+  "Natrum Carbonicum": {
+    "leaf": 666,
+    "url": "https://archive.org/details/kents-lectures-on-materia-medica/page/n666/mode/2up"
+  },
+  "Natrum Muriaticum": {
+    "leaf": 670,
+    "url": "https://archive.org/details/kents-lectures-on-materia-medica/page/n670/mode/2up"
+  },
+  "Natrum Phosphoricum": {
+    "leaf": 676,
+    "url": "https://archive.org/details/kents-lectures-on-materia-medica/page/n676/mode/2up"
+  },
+  "Natrum Sulphuricum": {
+    "leaf": 684,
+    "url": "https://archive.org/details/kents-lectures-on-materia-medica/page/n684/mode/2up"
+  },
+  "Nitricum Acidum": {
+    "leaf": 689,
+    "url": "https://archive.org/details/kents-lectures-on-materia-medica/page/n689/mode/2up"
+  },
+  "Nux Moschata": {
+    "leaf": 695,
+    "url": "https://archive.org/details/kents-lectures-on-materia-medica/page/n695/mode/2up"
+  },
+  "Nux Vomica": {
+    "leaf": 697,
+    "url": "https://archive.org/details/kents-lectures-on-materia-medica/page/n697/mode/2up"
+  },
+  "Opium": {
+    "leaf": 702,
+    "url": "https://archive.org/details/kents-lectures-on-materia-medica/page/n702/mode/2up"
+  },
+  "Oxalicum Acidum": {
+    "leaf": 705,
+    "url": "https://archive.org/details/kents-lectures-on-materia-medica/page/n705/mode/2up"
+  },
+  "Petroleum": {
+    "leaf": 708,
+    "url": "https://archive.org/details/kents-lectures-on-materia-medica/page/n708/mode/2up"
+  },
+  "Phosphoricum Acidum": {
+    "leaf": 712,
+    "url": "https://archive.org/details/kents-lectures-on-materia-medica/page/n712/mode/2up"
+  },
+  "Phosphorus": {
+    "leaf": 716,
+    "url": "https://archive.org/details/kents-lectures-on-materia-medica/page/n716/mode/2up"
+  },
+  "Phytolacca": {
+    "leaf": 727,
+    "url": "https://archive.org/details/kents-lectures-on-materia-medica/page/n727/mode/2up"
+  },
+  "Picricum Acidum": {
+    "leaf": 730,
+    "url": "https://archive.org/details/kents-lectures-on-materia-medica/page/n730/mode/2up"
+  },
+  "Platinum": {
+    "leaf": 732,
+    "url": "https://archive.org/details/kents-lectures-on-materia-medica/page/n732/mode/2up"
+  },
+  "Plumbum Metallicum": {
+    "leaf": 735,
+    "url": "https://archive.org/details/kents-lectures-on-materia-medica/page/n735/mode/2up"
+  },
+  "Podophyllum": {
+    "leaf": 739,
+    "url": "https://archive.org/details/kents-lectures-on-materia-medica/page/n739/mode/2up"
+  },
+  "Psorinum": {
+    "leaf": 742,
+    "url": "https://archive.org/details/kents-lectures-on-materia-medica/page/n742/mode/2up"
+  },
+  "Pulsatilla": {
+    "leaf": 747,
+    "url": "https://archive.org/details/kents-lectures-on-materia-medica/page/n747/mode/2up"
+  },
+  "Pyrogenium": {
+    "leaf": 760,
+    "url": "https://archive.org/details/kents-lectures-on-materia-medica/page/n760/mode/2up"
+  },
+  "Ranunculus Bulbosus": {
+    "leaf": 764,
+    "url": "https://archive.org/details/kents-lectures-on-materia-medica/page/n764/mode/2up"
+  },
+  "Rhododendron": {
+    "leaf": 766,
+    "url": "https://archive.org/details/kents-lectures-on-materia-medica/page/n766/mode/2up"
+  },
+  "Rhus Toxicodendron": {
+    "leaf": 768,
+    "url": "https://archive.org/details/kents-lectures-on-materia-medica/page/n768/mode/2up"
+  },
+  "Rumex Crispus": {
+    "leaf": 774,
+    "url": "https://archive.org/details/kents-lectures-on-materia-medica/page/n774/mode/2up"
+  },
+  "Ruta Graveolens": {
+    "leaf": 779,
+    "url": "https://archive.org/details/kents-lectures-on-materia-medica/page/n779/mode/2up"
+  },
+  "Sabadilla": {
+    "leaf": 782,
+    "url": "https://archive.org/details/kents-lectures-on-materia-medica/page/n782/mode/2up"
+  },
+  "Sabina": {
+    "leaf": 785,
+    "url": "https://archive.org/details/kents-lectures-on-materia-medica/page/n785/mode/2up"
+  },
+  "Sanguinaria": {
+    "leaf": 789,
+    "url": "https://archive.org/details/kents-lectures-on-materia-medica/page/n789/mode/2up"
+  },
+  "Sarsaparilla": {
+    "leaf": 793,
+    "url": "https://archive.org/details/kents-lectures-on-materia-medica/page/n793/mode/2up"
+  },
+  "Secale Cornutum": {
+    "leaf": 796,
+    "url": "https://archive.org/details/kents-lectures-on-materia-medica/page/n796/mode/2up"
+  },
+  "Selenium": {
+    "leaf": 799,
+    "url": "https://archive.org/details/kents-lectures-on-materia-medica/page/n799/mode/2up"
+  },
+  "Senecio Aureus": {
+    "leaf": 801,
+    "url": "https://archive.org/details/kents-lectures-on-materia-medica/page/n801/mode/2up"
+  },
+  "Senega": {
+    "leaf": 803,
+    "url": "https://archive.org/details/kents-lectures-on-materia-medica/page/n803/mode/2up"
+  },
+  "Sepia": {
+    "leaf": 806,
+    "url": "https://archive.org/details/kents-lectures-on-materia-medica/page/n806/mode/2up"
+  },
+  "Silicea": {
+    "leaf": 814,
+    "url": "https://archive.org/details/kents-lectures-on-materia-medica/page/n814/mode/2up"
+  },
+  "Spigelia Anthelmintica": {
+    "leaf": 824,
+    "url": "https://archive.org/details/kents-lectures-on-materia-medica/page/n824/mode/2up"
+  },
+  "Squilla": {
+    "leaf": 830,
+    "url": "https://archive.org/details/kents-lectures-on-materia-medica/page/n830/mode/2up"
+  },
+  "Stannum Metallicum": {
+    "leaf": 831,
+    "url": "https://archive.org/details/kents-lectures-on-materia-medica/page/n831/mode/2up"
+  },
+  "Staphysagria": {
+    "leaf": 834,
+    "url": "https://archive.org/details/kents-lectures-on-materia-medica/page/n834/mode/2up"
+  },
+  "Stramonium": {
+    "leaf": 838,
+    "url": "https://archive.org/details/kents-lectures-on-materia-medica/page/n838/mode/2up"
+  },
+  "Sulphur": {
+    "leaf": 840,
+    "url": "https://archive.org/details/kents-lectures-on-materia-medica/page/n840/mode/2up"
+  },
+  "Sulphuricum Acidum": {
+    "leaf": 863,
+    "url": "https://archive.org/details/kents-lectures-on-materia-medica/page/n863/mode/2up"
+  },
+  "Syphilinum": {
+    "leaf": 867,
+    "url": "https://archive.org/details/kents-lectures-on-materia-medica/page/n867/mode/2up"
+  },
+  "Tarentula Hispanica": {
+    "leaf": 871,
+    "url": "https://archive.org/details/kents-lectures-on-materia-medica/page/n871/mode/2up"
+  },
+  "Theridion": {
+    "leaf": 876,
+    "url": "https://archive.org/details/kents-lectures-on-materia-medica/page/n876/mode/2up"
+  },
+  "Thuja Occidentalis": {
+    "leaf": 878,
+    "url": "https://archive.org/details/kents-lectures-on-materia-medica/page/n878/mode/2up"
+  },
+  "Tuberculinum Bovinum": {
+    "leaf": 882,
+    "url": "https://archive.org/details/kents-lectures-on-materia-medica/page/n882/mode/2up"
+  },
+  "Valeriana": {
+    "leaf": 889,
+    "url": "https://archive.org/details/kents-lectures-on-materia-medica/page/n889/mode/2up"
+  },
+  "Veratrum Album": {
+    "leaf": 891,
+    "url": "https://archive.org/details/kents-lectures-on-materia-medica/page/n891/mode/2up"
+  },
+  "Zincum Metallicum": {
+    "leaf": 893,
+    "url": "https://archive.org/details/kents-lectures-on-materia-medica/page/n893/mode/2up"
+  }
+}
