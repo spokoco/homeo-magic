@@ -435,6 +435,55 @@ describe("Home page", () => {
     });
   });
 
+  describe("clear all symptoms", () => {
+    it("shows clear button with count when symptoms are selected", async () => {
+      mockSessionStorage["homeo-magic-state"] = JSON.stringify({
+        selectedSymptoms: ["Mind, anxiety", "Head, pain, forehead"],
+        hiddenSymptoms: [],
+        minScore: 0,
+      });
+      setupFetchMock();
+      render(<Home />);
+
+      await waitFor(() => {
+        const clearBtn = screen.getByTestId("clear-all-symptoms");
+        expect(clearBtn).toBeInTheDocument();
+        expect(clearBtn).toHaveTextContent("Clear All (2)");
+      });
+    });
+
+    it("does not show clear button when no symptoms selected", async () => {
+      setupFetchMock();
+      render(<Home />);
+
+      await waitFor(() => {
+        expect(screen.queryByTestId("clear-all-symptoms")).not.toBeInTheDocument();
+      });
+    });
+
+    it("removes all symptoms and clears sessionStorage when clicked", async () => {
+      mockSessionStorage["homeo-magic-state"] = JSON.stringify({
+        selectedSymptoms: ["Mind, anxiety", "Head, pain, forehead"],
+        hiddenSymptoms: [],
+        minScore: 0,
+      });
+      setupFetchMock();
+      render(<Home />);
+
+      await waitFor(() =>
+        expect(screen.getByTestId("clear-all-symptoms")).toBeInTheDocument()
+      );
+
+      fireEvent.click(screen.getByTestId("clear-all-symptoms"));
+
+      await waitFor(() => {
+        expect(screen.queryByText("Mind, anxiety")).not.toBeInTheDocument();
+        expect(screen.queryByText("Head, pain, forehead")).not.toBeInTheDocument();
+        expect(screen.queryByTestId("clear-all-symptoms")).not.toBeInTheDocument();
+      });
+    });
+  });
+
   describe("settings link", () => {
     it("renders settings link pointing to settings.html", async () => {
       setupFetchMock();

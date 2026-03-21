@@ -71,6 +71,7 @@ export default function Home() {
     removeSymptom,
     hideSymptom,
     showSymptom,
+    clearSymptoms,
     reorderSymptoms,
     symptomCount,
     remedyCount,
@@ -208,9 +209,20 @@ export default function Home() {
 
       {/* Search */}
       <div className="bg-white rounded-2xl p-5 shadow-[0_10px_40px_rgba(0,0,0,0.2)] mb-5">
-        <label htmlFor="search" className="block font-semibold text-[#065774] mb-2">
-          Add symptoms:
-        </label>
+        <div className="flex items-center justify-between mb-2">
+          <label htmlFor="search" className="block font-semibold text-[#065774]">
+            Add symptoms:
+          </label>
+          {selectedSymptoms.length > 0 && (
+            <button
+              onClick={() => { clearSymptoms(); sessionStorage.removeItem("homeo-magic-state"); }}
+              className="px-3 py-1 bg-[#dc2626] text-white border-none rounded-md text-xs font-medium cursor-pointer hover:bg-[#b91c1c] transition-colors"
+              data-testid="clear-all-symptoms"
+            >
+              Clear All ({selectedSymptoms.length})
+            </button>
+          )}
+        </div>
         <div className="relative">
           <input
             ref={inputRef}
