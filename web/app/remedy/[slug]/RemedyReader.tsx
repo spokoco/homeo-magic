@@ -411,7 +411,7 @@ export default function RemedyReader({ slug }: { slug: string }) {
     }
 
     const allPassages = Object.entries(matchedPassages);
-    const ranges: Array<{
+    const rangesRaw: Array<{
       start: number;
       end: number;
       primary: boolean;
@@ -426,15 +426,31 @@ export default function RemedyReader({ slug }: { slug: string }) {
 
       const range = findPassageRange(passage);
       if (range) {
-        ranges.push({ ...range, primary: isPrimary });
+        rangesRaw.push({ ...range, primary: isPrimary });
       }
     }
 
     if (highlightParam && !primaryPassage) {
       const range = findPassageRange(highlightParam);
       if (range) {
-        ranges.push({ ...range, primary: true });
+        rangesRaw.push({ ...range, primary: true });
         primaryPassage = highlightParam;
+      }
+    }
+
+    // Deduplicate and merge overlapping ranges.
+    // Multiple symptoms can match the same passage text, creating duplicate ranges.
+    // Merge overlapping ranges, preserving primary status if any overlap is primary.
+    const sorted = rangesRaw.sort((a, b) => a.start - b.start || a.end - b.end);
+    const ranges: typeof rangesRaw = [];
+    for (const r of sorted) {
+      const last = ranges[ranges.length - 1];
+      if (last && r.start < last.end) {
+        // Overlapping -- merge, keep the wider range and preserve primary
+        last.end = Math.max(last.end, r.end);
+        if (r.primary) last.primary = true;
+      } else {
+        ranges.push({ ...r });
       }
     }
 
