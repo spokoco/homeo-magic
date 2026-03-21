@@ -33,16 +33,20 @@ export function useRepertorize() {
       const raw = sessionStorage.getItem("homeo-magic-state");
       if (raw) {
         const saved = JSON.parse(raw);
+        let restored = false;
         if (Array.isArray(saved.selectedSymptoms) && saved.selectedSymptoms.length > 0) {
           setSelectedSymptoms(saved.selectedSymptoms);
+          restored = true;
         }
         if (Array.isArray(saved.hiddenSymptoms) && saved.hiddenSymptoms.length > 0) {
           setHiddenSymptoms(new Set(saved.hiddenSymptoms));
+          restored = true;
         }
         if (typeof saved.minScore === "number" && saved.minScore > 0) {
           setMinScore(saved.minScore);
+          restored = true;
         }
-        return; // Had persisted state, skip defaults
+        if (restored) return; // Had meaningful persisted state, skip defaults
       }
     } catch {}
 

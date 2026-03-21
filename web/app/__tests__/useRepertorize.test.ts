@@ -684,6 +684,59 @@ describe("useRepertorize", () => {
       expect(bell!.rawScore).toBe(4);
     });
 
+    it("BUG #3: after clearSymptoms, remounting loads defaults instead of empty state", async () => {
+      // Simulate: user had symptoms, cleared them, navigated away, came back
+      // The persist effect writes {selectedSymptoms: []} after clearSymptoms().
+      // On remount, the restore effect should NOT treat this as "had persisted state"
+      // and should fall through to loading defaults.
+      mockSessionStorage["homeo-magic-state"] = JSON.stringify({
+        selectedSymptoms: [],
+        hiddenSymptoms: [],
+        minScore: 0,
+      });
+
+      // Also set up a default-symptoms.json endpoint
+      const defaultSymptoms = ["Mind, anxiety", "Head, pain, forehead"];
+      mockFetch.mockImplementation((url: string) => {
+        if (url.includes("repertory_index.json")) {
+          return Promise.resolve({
+            ok: true,
+            json: () =>
+              Promise.resolve({
+                symptoms: { Mind: ["Mind, anxiety"], Head: ["Head, pain, forehead"] },
+                remedies: { "Acon.": "Aconitum Napellus" },
+              }),
+          });
+        }
+        if (url.includes("default-symptoms.json")) {
+          return Promise.resolve({
+            ok: true,
+            json: () => Promise.resolve(defaultSymptoms),
+          });
+        }
+        if (url.includes("body_systems/")) {
+          return Promise.resolve({
+            ok: true,
+            json: () =>
+              Promise.resolve({
+                "Mind, anxiety": { remedies: { "Acon.": 3 } },
+                "Head, pain, forehead": { remedies: { "Acon.": 1 } },
+              }),
+          });
+        }
+        return Promise.resolve({ ok: false });
+      });
+
+      const { result } = renderHook(() => useRepertorize());
+      await waitFor(() => expect(result.current.loading).toBe(false));
+
+      // Should have loaded defaults, NOT stayed empty
+      await waitFor(() => {
+        expect(result.current.selectedSymptoms.length).toBeGreaterThan(0);
+      });
+      expect(result.current.selectedSymptoms).toEqual(defaultSymptoms);
+    });
+
     it("persist effect does not clobber sessionStorage before restore completes", async () => {
       const savedState = {
         selectedSymptoms: ["Mind, anxiety", "Head, pain, forehead"],

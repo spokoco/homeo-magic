@@ -495,6 +495,253 @@ describe("RemedyReader", () => {
   });
 });
 
+// ==========================================================================
+// Real-data Nux vomica tests — expose known bugs with actual content
+// ==========================================================================
+
+// Real markdown from nux_vomica.md (subset with formatting markers)
+const nuxMarkdown = [
+  "# Nux Vomica",
+  "",
+  "## Stomach",
+  "",
+  "*Nux* suffers from a disordered stomach. A stasis of the portal system is present, portal congestion; stasis in haemorrhoidal veins with hemorrhoids; constipation; dysentery; paralysis of the rectum.",
+  "",
+  "Stomach symptoms like **Puls.**; worse in the morning; foul mouth in the morning also like **Puls.** Bursting sensation in the head as if a stone crushed the vertex after disordered stomach.",
+  "",
+  "## Bladder",
+  "",
+  "The same condition is found in the bladder. He must strain to urinate. There is tenesmus, urging. The bladder is full and the urine dribbles away, yet when he strains it ceases to dribble. In regard to the bowels, though the patient strains much, he passes but a scanty stool.",
+].join("\n");
+
+const nuxProfiles = {
+  "Nux-v.": {
+    remedy: "Nux Vomica",
+    file: "nux_vomica.md",
+    abbreviations: ["Nux-v."],
+  },
+};
+
+// Real passage entries from passage_index.json — note NO markdown formatting
+const nuxPassageIndex = {
+  "Nux-v.": [
+    {
+      keywords: ["stomach", "portal congestion", "hemorrhoids", "constipation", "dysentery", "rectum", "paralysis"],
+      passage: "Nux suffers from a disordered stomach. A stasis of the portal system is present, portal congestion; stasis in haemorrhoidal veins with hemorrhoids; constipation; dysentery; paralysis of the rectum.",
+    },
+    {
+      keywords: ["stomach", "worse morning", "foul mouth", "morning"],
+      passage: "Stomach symptoms like Puls.; worse in the morning; foul mouth in the morning also like Puls.",
+    },
+    {
+      keywords: ["bladder", "urine", "straining", "tenesmus", "dribbling"],
+      passage: "He must strain to urinate. There is tenesmus, urging. The bladder is full and the urine dribbles away, yet when he strains it ceases to dribble.",
+    },
+  ],
+};
+
+function setupNuxFetchMock() {
+  mockFetch.mockImplementation((url: string) => {
+    if (url.includes("profiles.json")) {
+      return Promise.resolve({
+        ok: true,
+        json: () => Promise.resolve(nuxProfiles),
+      });
+    }
+    if (url.includes("passage_index.json")) {
+      return Promise.resolve({
+        ok: true,
+        json: () => Promise.resolve(nuxPassageIndex),
+      });
+    }
+    if (url.includes("remedy_markdown/")) {
+      return Promise.resolve({
+        ok: true,
+        text: () => Promise.resolve(nuxMarkdown),
+      });
+    }
+    return Promise.reject(new Error(`Unexpected fetch: ${url}`));
+  });
+}
+
+describe("Real-data Nux vomica highlighting", () => {
+  describe("BUG #1: markdown formatting causes wrong/missing highlight", () => {
+    it("highlights the passage specified in ?highlight= when markdown has *italic* markers", async () => {
+      // passage_index says "Nux suffers..." but markdown has "*Nux* suffers..."
+      const passage = nuxPassageIndex["Nux-v."][0].passage;
+      setQueryParams({
+        symptoms: "Stomach, constipation",
+        highlight: passage,
+      });
+      setupNuxFetchMock();
+      render(<RemedyReader slug="nux_vomica" />);
+
+      await waitFor(() => {
+        const primaryMark = document.querySelector('[data-highlight="primary"]');
+        expect(primaryMark).toBeTruthy();
+        expect(primaryMark!.textContent).toContain("disordered stomach");
+      });
+    });
+
+    it("highlights the passage specified in ?highlight= when markdown has **bold** markers", async () => {
+      // passage_index says "...like Puls." but markdown has "...like **Puls.**"
+      const passage = nuxPassageIndex["Nux-v."][1].passage;
+      setQueryParams({
+        symptoms: "Stomach, worse morning",
+        highlight: passage,
+      });
+      setupNuxFetchMock();
+      render(<RemedyReader slug="nux_vomica" />);
+
+      await waitFor(() => {
+        const primaryMark = document.querySelector('[data-highlight="primary"]');
+        expect(primaryMark).toBeTruthy();
+        expect(primaryMark!.textContent).toContain("worse in the morning");
+      });
+    });
+
+    it("primary highlight corresponds to ?highlight= param, not a different passage", async () => {
+      // Set highlight to the stomach passage; bladder passage is also matched via symptoms
+      const stomachPassage = nuxPassageIndex["Nux-v."][0].passage;
+      setQueryParams({
+        symptoms: "Stomach, constipation|Bladder, urging to urinate (morbid desire), frequent",
+        highlight: stomachPassage,
+      });
+      setupNuxFetchMock();
+      render(<RemedyReader slug="nux_vomica" />);
+
+      await waitFor(() => {
+        const primaryMark = document.querySelector('[data-highlight="primary"]');
+        expect(primaryMark).toBeTruthy();
+        // Primary must contain the stomach passage text, NOT the bladder passage
+        expect(primaryMark!.textContent).toContain("disordered stomach");
+        expect(primaryMark!.textContent).not.toContain("strain to urinate");
+      });
+    });
+
+    it("strips markdown formatting from rendered text (no literal asterisks)", async () => {
+      setupNuxFetchMock();
+      render(<RemedyReader slug="nux_vomica" />);
+
+      await waitFor(() => {
+        const titles = screen.getAllByText(/Nux Vomica/);
+        expect(titles.length).toBeGreaterThanOrEqual(1);
+      });
+
+      // The rendered text should show "Nux suffers" not "*Nux* suffers"
+      const remedyText = document.querySelector(".remedy-text")!;
+      expect(remedyText.textContent).toContain("Nux suffers from a disordered stomach");
+      expect(remedyText.textContent).not.toContain("*Nux*");
+      expect(remedyText.textContent).not.toContain("**Puls.**");
+    });
+  });
+
+  describe("BUG #2: overlapping ranges — multiple symptoms matching one passage", () => {
+    it("renders bladder passage text exactly once when 5 symptoms match it", async () => {
+      // These are real default symptoms that all score highest on the bladder passage
+      setQueryParams({
+        symptoms: [
+          "Urine, bloody",
+          "Urine, odor offensive",
+          "Urine, specific gravity increased",
+          "Bladder, urging to urinate (morbid desire), frequent",
+          "Bladder, urination, dysuria",
+        ].join("|"),
+      });
+      setupNuxFetchMock();
+      render(<RemedyReader slug="nux_vomica" />);
+
+      await waitFor(() => {
+        expect(screen.getByText(/matching passage/)).toBeInTheDocument();
+      });
+
+      // Count occurrences of the unique bladder passage phrase in DOM text
+      const remedyText = document.querySelector(".remedy-text")!.textContent!;
+      const phrase = "He must strain to urinate";
+      const occurrences = remedyText.split(phrase).length - 1;
+      expect(occurrences).toBe(1);
+    });
+
+    it("produces exactly one <mark> range for 5 duplicate overlapping matches", async () => {
+      setQueryParams({
+        symptoms: [
+          "Urine, bloody",
+          "Urine, odor offensive",
+          "Urine, specific gravity increased",
+          "Bladder, urging to urinate (morbid desire), frequent",
+          "Bladder, urination, dysuria",
+        ].join("|"),
+      });
+      setupNuxFetchMock();
+      render(<RemedyReader slug="nux_vomica" />);
+
+      await waitFor(() => {
+        const marks = document.querySelectorAll("mark");
+        expect(marks.length).toBeGreaterThan(0);
+      });
+
+      // All 5 symptoms map to the same passage — should produce ONE merged <mark>, not 5
+      const marks = document.querySelectorAll("mark");
+      // Count marks that contain the bladder passage text
+      const bladderMarks = Array.from(marks).filter((m) =>
+        m.textContent?.includes("strain to urinate")
+      );
+      expect(bladderMarks.length).toBe(1);
+    });
+  });
+
+  describe("cleanMarkdown + findPassageRange integration with real markdown", () => {
+    it("passage without formatting matches text that had *italic* stripped", async () => {
+      // The passage "Nux suffers..." should be findable in cleaned markdown
+      const passage = nuxPassageIndex["Nux-v."][0].passage;
+      setQueryParams({
+        symptoms: "Stomach, constipation",
+        highlight: passage,
+      });
+      setupNuxFetchMock();
+      render(<RemedyReader slug="nux_vomica" />);
+
+      await waitFor(() => {
+        // If findPassageRange works, there should be a highlight
+        const marks = document.querySelectorAll("mark");
+        expect(marks.length).toBeGreaterThan(0);
+      });
+    });
+
+    it("passage without formatting matches text that had **bold** stripped", async () => {
+      const passage = nuxPassageIndex["Nux-v."][1].passage;
+      setQueryParams({
+        symptoms: "Stomach, worse morning",
+        highlight: passage,
+      });
+      setupNuxFetchMock();
+      render(<RemedyReader slug="nux_vomica" />);
+
+      await waitFor(() => {
+        const marks = document.querySelectorAll("mark");
+        expect(marks.length).toBeGreaterThan(0);
+      });
+    });
+
+    it("plain passage (no formatting difference) still matches correctly", async () => {
+      // The bladder passage has no formatting differences
+      const passage = nuxPassageIndex["Nux-v."][2].passage;
+      setQueryParams({
+        symptoms: "Bladder, urging to urinate (morbid desire), frequent",
+        highlight: passage,
+      });
+      setupNuxFetchMock();
+      render(<RemedyReader slug="nux_vomica" />);
+
+      await waitFor(() => {
+        const primaryMark = document.querySelector('[data-highlight="primary"]');
+        expect(primaryMark).toBeTruthy();
+        expect(primaryMark!.textContent).toContain("strain to urinate");
+      });
+    });
+  });
+});
+
 // ---------- unit tests for exported helper functions ----------
 // We test the internal functions by importing the module and testing through rendering
 describe("cleanMarkdown (tested via rendering)", () => {

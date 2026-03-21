@@ -63,7 +63,14 @@ function cleanMarkdown(raw: string): string {
     }
   }
 
-  return cleaned.join("\n\n");
+  let result = cleaned.join("\n\n");
+
+  // Strip markdown emphasis markers so passage matching works
+  // (passage_index.json stores plain text without formatting)
+  result = result.replace(/\*\*(.+?)\*\*/g, "$1"); // **bold** -> bold
+  result = result.replace(/\*(.+?)\*/g, "$1"); // *italic* -> italic
+
+  return result;
 }
 
 // ---------- render markdown to React elements ----------
