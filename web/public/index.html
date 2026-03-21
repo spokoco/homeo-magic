@@ -8,22 +8,22 @@
   <script src="https://cdnjs.cloudflare.com/ajax/libs/chroma-js/2.4.2/chroma.min.js"></script>
   <style>
     @font-face {
-      font-family: 'Host Grotesk';
-      src: url('fonts/HostGrotesk-VariableFont_wght.ttf') format('truetype');
-      font-weight: 100 900;
+      font-family: 'Carlito';
+      src: url('_next/static/media/Carlito-Regular.woff2') format('woff2');
+      font-weight: 400;
       font-style: normal;
       font-display: swap;
     }
     @font-face {
-      font-family: 'Host Grotesk';
-      src: url('fonts/HostGrotesk-Italic-VariableFont_wght.ttf') format('truetype');
-      font-weight: 100 900;
-      font-style: italic;
+      font-family: 'Carlito';
+      src: url('_next/static/media/Carlito-Bold.woff2') format('woff2');
+      font-weight: 700;
+      font-style: normal;
       font-display: swap;
     }
     * { box-sizing: border-box; margin: 0; padding: 0; }
     body {
-      font-family: 'Host Grotesk', sans-serif;
+      font-family: 'Carlito', system-ui, sans-serif;
       background: linear-gradient(135deg, #065774 0%, #042B58 100%);
       min-height: 100vh;
       padding: 20px;
@@ -554,39 +554,72 @@
       return (bytes / (1024 * 1024)).toFixed(1) + ' MB';
     }
 
-    // Load data
+    // Decode compact base-36 symptom index using pairs mapping
+    let symptomNames = [];
+    function decodeSymptomIndex(pairs, encoded) {
+      return encoded.map(code => {
+        const colonIdx = code.indexOf(':');
+        if (colonIdx === -1) {
+          return pairs[parseInt(code, 36)];
+        }
+        const pair = pairs[parseInt(code.substring(0, colonIdx), 36)];
+        return pair + ', ' + code.substring(colonIdx + 1);
+      });
+    }
+
+    // Determine fetch URL for a symptom's body-system subcategory file
+    const fetchedFiles = new Set();
+    function getSymptomFileUrl(name) {
+      const parts = name.split(', ');
+      const bodySystem = parts[0];
+      const subcat = parts.length > 1 ? parts[1] : '_root';
+      const safeName = subcat.replace(/[^\w\s\-.]/g, '').trim() || '_other';
+      return 'data/symptoms/' + bodySystem + '/' + safeName + '.json';
+    }
+
+    // Fetch symptom data on demand (loads entire body-system subcategory file)
+    async function fetchSymptomData(name) {
+      const url = getSymptomFileUrl(name);
+      if (fetchedFiles.has(url)) return;
+      fetchedFiles.add(url);
+      try {
+        const res = await fetch(url);
+        if (!res.ok) { fetchedFiles.delete(url); return; }
+        const data = await res.json();
+        Object.assign(symptoms, data);
+      } catch { fetchedFiles.delete(url); }
+    }
+
+    // Load data (lazy: indexes only, ~2 MB instead of 20 MB)
     async function loadData() {
       const status = document.getElementById('status');
       const search = document.getElementById('search');
-      
+
       try {
-        // Load remedies (small file)
-        status.innerHTML = '📥 Loading remedies...';
-        remedies = await fetchWithProgress('data/remedies.json', (received, total) => {
-          status.innerHTML = `📥 Remedies: ${formatBytes(received)}${total ? ' / ' + formatBytes(total) : ''}`;
-        });
-        status.innerHTML = `✓ Remedies loaded (${Object.keys(remedies).length.toLocaleString()})`;
-        
-        // Load symptoms (large file ~20MB)
-        status.innerHTML = '📥 Loading symptoms (large file)...';
-        const startTime = Date.now();
-        symptoms = await fetchWithProgress('data/symptoms.json', (received, total) => {
-          const pct = total ? Math.round((received / total) * 100) : 0;
-          const bar = total ? `<span style="display:inline-block;width:100px;height:8px;background:#D3DCDE;border-radius:4px;overflow:hidden;vertical-align:middle;margin:0 8px"><span style="display:block;width:${pct}%;height:100%;background:#EF9B0C"></span></span>` : '';
-          status.innerHTML = `📥 Symptoms: ${formatBytes(received)}${total ? ' / ' + formatBytes(total) : ''} ${bar} ${pct}%`;
-        });
-        const elapsed = ((Date.now() - startTime) / 1000).toFixed(1);
-        status.innerHTML = `✓ Loaded in ${elapsed}s`;
-        
-        // Ready
-        await new Promise(r => setTimeout(r, 500)); // Brief pause to show completion
-        status.innerHTML = `${Object.keys(symptoms).length.toLocaleString()} symptoms • ${Object.keys(remedies).length.toLocaleString()} remedies`;
+        status.innerHTML = '📥 Loading index...';
+        const [pairsRes, indexRes, remedyRes] = await Promise.all([
+          fetch('data/symptom_pairs.json'),
+          fetch('data/symptoms/index.json'),
+          fetch('data/remedies/index.json'),
+        ]);
+        if (!pairsRes.ok || !indexRes.ok || !remedyRes.ok) throw new Error('Failed to fetch index files');
+
+        const [pairs, encoded, remedyData] = await Promise.all([
+          pairsRes.json(), indexRes.json(), remedyRes.json(),
+        ]);
+
+        symptomNames = decodeSymptomIndex(pairs, encoded);
+        remedies = remedyData;
+        symptoms = {}; // Start empty, populated on demand
+
+        status.innerHTML = `${symptomNames.length.toLocaleString()} symptoms • ${Object.keys(remedies).length.toLocaleString()} remedies`;
         status.classList.remove('loading');
         search.disabled = false;
 
-        // Restore previous state (selected symptoms, filters) if returning from settings
+        // Restore previous state and fetch needed body-system data
         restoreState();
         if (selectedSymptoms.length) {
+          await Promise.all(selectedSymptoms.map(s => fetchSymptomData(s)));
           renderSelected();
           renderResults();
         }
@@ -598,18 +631,41 @@
       }
     }
 
-    // Search
+    // Fuzzy search against decoded symptom names
     function searchSymptoms(query) {
-      if (!symptoms || query.length < 2) return [];
-      const q = query.toLowerCase();
-      const matches = [];
-      for (const sym of Object.keys(symptoms)) {
-        if (sym.toLowerCase().includes(q) && !selectedSymptoms.includes(sym)) {
-          matches.push(sym);
-          if (matches.length >= 50) break;
+      if (!symptomNames.length || query.length < 2) return [];
+      const qLower = query.toLowerCase();
+      const qTokens = qLower.split(/[\s,]+/).filter(t => t.length > 0);
+      if (!qTokens.length) return [];
+
+      const scored = [];
+      for (let i = 0; i < symptomNames.length; i++) {
+        const name = symptomNames[i];
+        if (selectedSymptoms.includes(name)) continue;
+        const nameLower = name.toLowerCase();
+        const nameTokens = nameLower.split(/[\s,]+/).filter(t => t.length > 0);
+
+        let totalScore = 0;
+        if (nameLower === qLower) totalScore += 100;
+        else if (nameLower.startsWith(qLower)) totalScore += 50;
+
+        let allMatch = true;
+        for (const qt of qTokens) {
+          let best = 0;
+          for (const st of nameTokens) {
+            if (qt === st) { best = Math.max(best, 10); }
+            else if (st.startsWith(qt)) { best = Math.max(best, 8); }
+            else if (st.includes(qt)) { best = Math.max(best, 5); }
+          }
+          if (best === 0) { allMatch = false; break; }
+          totalScore += best;
         }
+        if (!allMatch || totalScore === 0) continue;
+        totalScore -= nameTokens.length * 0.1;
+        scored.push({ name, score: totalScore });
       }
-      return matches;
+      scored.sort((a, b) => b.score - a.score);
+      return scored.slice(0, 50).map(r => r.name);
     }
 
     function highlightMatch(text, query) {
@@ -633,11 +689,13 @@
     }
 
     // Symptom management
-    function addSymptom(sym) {
+    async function addSymptom(sym) {
       if (!selectedSymptoms.includes(sym)) {
         selectedSymptoms.push(sym);
         saveState();
         renderSelected();
+        // Fetch body-system data on demand, then re-render with scores
+        await fetchSymptomData(sym);
         renderResults();
       }
       document.getElementById('search').value = '';

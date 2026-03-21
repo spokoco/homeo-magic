@@ -28,35 +28,77 @@ const sampleRemedies: RemediesData = {
 };
 
 // ---------- helpers ----------
-function createMockStreamResponse(data: unknown) {
-  const text = JSON.stringify(data);
-  const encoder = new TextEncoder();
-  const encoded = encoder.encode(text);
-  const stream = new ReadableStream({
-    start(controller) {
-      controller.enqueue(encoded);
-      controller.close();
-    },
-  });
-  return {
-    ok: true,
-    headers: new Headers({ "content-length": String(encoded.length) }),
-    body: stream,
-  };
-}
+// Build pairs and encoded index from the sample symptoms to match the lazy loading format.
+// pairs = ["Mind, anxiety", "Head, pain", "Stomach, nausea", "Mind, fear of death"]
+// Sorted by frequency (each appears once, so order is stable by insertion).
+const samplePairs = ["Mind, anxiety", "Mind, fear of death", "Head, pain", "Stomach, nausea"];
+const sampleEncoded = [
+  "0",            // "Mind, anxiety" (pair 0, no remaining)
+  "2:forehead",   // "Head, pain, forehead" (pair 2 = "Head, pain", remaining = "forehead")
+  "3",            // "Stomach, nausea" (pair 3, no remaining)
+  "1",            // "Mind, fear of death" (pair 1, no remaining)
+];
+
+// Split symptom files by body-system/subcategory
+const mindAnxietyFile: SymptomsData = {
+  "Mind, anxiety": sampleSymptoms["Mind, anxiety"],
+};
+const mindFearFile: SymptomsData = {
+  "Mind, fear of death": sampleSymptoms["Mind, fear of death"],
+};
+const headPainFile: SymptomsData = {
+  "Head, pain, forehead": sampleSymptoms["Head, pain, forehead"],
+};
+const stomachNauseaFile: SymptomsData = {
+  "Stomach, nausea": sampleSymptoms["Stomach, nausea"],
+};
 
 function setupFetchMock(
-  remedies: RemediesData = sampleRemedies,
-  symptoms: SymptomsData = sampleSymptoms,
   defaultSymptoms: string[] | null = null
 ) {
   (global.fetch as ReturnType<typeof vi.fn>).mockImplementation(
     (url: string) => {
-      if (url.includes("remedies.json")) {
-        return Promise.resolve(createMockStreamResponse(remedies));
+      if (url.includes("symptom_pairs.json")) {
+        return Promise.resolve({
+          ok: true,
+          json: () => Promise.resolve(samplePairs),
+        });
       }
-      if (url.includes("symptoms.json")) {
-        return Promise.resolve(createMockStreamResponse(symptoms));
+      if (url.includes("symptoms/index.json")) {
+        return Promise.resolve({
+          ok: true,
+          json: () => Promise.resolve(sampleEncoded),
+        });
+      }
+      if (url.includes("remedies/index.json")) {
+        return Promise.resolve({
+          ok: true,
+          json: () => Promise.resolve(sampleRemedies),
+        });
+      }
+      if (url.includes("symptoms/Mind/anxiety.json")) {
+        return Promise.resolve({
+          ok: true,
+          json: () => Promise.resolve(mindAnxietyFile),
+        });
+      }
+      if (url.includes("symptoms/Mind/fear of death.json")) {
+        return Promise.resolve({
+          ok: true,
+          json: () => Promise.resolve(mindFearFile),
+        });
+      }
+      if (url.includes("symptoms/Head/pain.json")) {
+        return Promise.resolve({
+          ok: true,
+          json: () => Promise.resolve(headPainFile),
+        });
+      }
+      if (url.includes("symptoms/Stomach/nausea.json")) {
+        return Promise.resolve({
+          ok: true,
+          json: () => Promise.resolve(stomachNauseaFile),
+        });
       }
       if (url.includes("default-symptoms.json")) {
         if (defaultSymptoms) {
@@ -131,22 +173,13 @@ describe("useRepertorize", () => {
 
     it("reports error on fetch failure", async () => {
       mockFetch.mockImplementation((url: string) => {
-        if (url.includes("remedies.json")) {
-          return Promise.resolve({
-            ok: false,
-            status: 500,
-            headers: new Headers(),
-            body: new ReadableStream({
-              start(controller) {
-                controller.close();
-              },
-            }),
-          });
+        if (url.includes("symptom_pairs.json")) {
+          return Promise.resolve({ ok: false, status: 500 });
         }
         if (url.includes("default-symptoms.json")) {
           return Promise.resolve({ ok: false });
         }
-        return Promise.reject(new Error("fail"));
+        return Promise.resolve({ ok: false, status: 500 });
       });
       const { result } = renderHook(() => useRepertorize());
       await waitFor(() => expect(result.current.loading).toBe(false));
@@ -157,10 +190,7 @@ describe("useRepertorize", () => {
   describe("REGRESSION: hydration safety (bug #1 - sessionStorage deferred to useEffect)", () => {
     it("does NOT read sessionStorage during initial render (SSR safe)", () => {
       setupFetchMock();
-      // The hook should initialize with empty state, not read sessionStorage
-      // sessionStorage.getItem should only be called inside useEffect, not in useState initializer
       const { result } = renderHook(() => useRepertorize());
-      // Initial render: selectedSymptoms must be empty array (server-safe default)
       expect(result.current.selectedSymptoms).toEqual([]);
       expect(result.current.minScore).toBe(0);
       expect(result.current.hiddenSymptoms.size).toBe(0);
@@ -178,7 +208,6 @@ describe("useRepertorize", () => {
       const { result } = renderHook(() => useRepertorize());
       await waitFor(() => expect(result.current.loading).toBe(false));
 
-      // After useEffect runs, state should be restored
       expect(result.current.selectedSymptoms).toEqual([
         "Mind, anxiety",
         "Head, pain, forehead",
@@ -190,12 +219,11 @@ describe("useRepertorize", () => {
     });
 
     it("fetches default symptoms when no persisted state exists", async () => {
-      setupFetchMock(sampleRemedies, sampleSymptoms, [
+      setupFetchMock([
         "Mind, anxiety",
         "Stomach, nausea",
       ]);
       renderHook(() => useRepertorize());
-      // Verify that default-symptoms.json is fetched when no sessionStorage state
       await waitFor(() => {
         const calls = mockFetch.mock.calls.map((c: unknown[]) => c[0]);
         expect(calls.some((url: string) => url.includes("default-symptoms.json"))).toBe(true);
@@ -208,10 +236,9 @@ describe("useRepertorize", () => {
         hiddenSymptoms: [],
         minScore: 0,
       });
-      setupFetchMock(sampleRemedies, sampleSymptoms, ["Stomach, nausea"]);
+      setupFetchMock(["Stomach, nausea"]);
       const { result } = renderHook(() => useRepertorize());
       await waitFor(() => expect(result.current.loading).toBe(false));
-      // Should use persisted state, not defaults
       expect(result.current.selectedSymptoms).toEqual(["Mind, anxiety"]);
     });
   });
@@ -277,7 +304,6 @@ describe("useRepertorize", () => {
       act(() => result.current.addSymptom("Head, pain, forehead"));
       act(() => result.current.addSymptom("Stomach, nausea"));
 
-      // Move first to last
       act(() => result.current.reorderSymptoms(0, 2));
       expect(result.current.selectedSymptoms).toEqual([
         "Head, pain, forehead",
@@ -366,13 +392,15 @@ describe("useRepertorize", () => {
 
       act(() => result.current.addSymptom("Mind, anxiety"));
 
+      // Wait for lazy fetch to complete
+      await waitFor(() => {
+        expect(result.current.results.items.length).toBe(3);
+      });
+
       // Mind, anxiety: Acon.=3, Ars.=3, Bell.=1
-      // maxScore = 3, so Acon. and Ars. = 100, Bell. = 33
       const items = result.current.results.items;
-      expect(items.length).toBe(3);
       expect(items[0].totalScore).toBe(100);
       expect(items[0].rawScore).toBe(3);
-      // Bell should be last with score ~33
       const bell = items.find((i) => i.abbrev === "Bell.");
       expect(bell).toBeDefined();
       expect(bell!.totalScore).toBe(33);
@@ -386,15 +414,14 @@ describe("useRepertorize", () => {
       act(() => result.current.addSymptom("Mind, anxiety"));
       act(() => result.current.addSymptom("Head, pain, forehead"));
 
-      // Mind, anxiety: Acon.=3, Ars.=3, Bell.=1
-      // Head, pain:    Bell.=3, Bry.=2, Acon.=1
-      // Combined: Acon.=4, Bell.=4, Ars.=3, Bry.=2
+      await waitFor(() => {
+        expect(result.current.results.items.length).toBe(4);
+      });
+
       const items = result.current.results.items;
-      expect(items.length).toBe(4);
       expect(items[0].rawScore).toBe(4); // Acon. or Bell.
       expect(items[0].totalScore).toBe(100);
 
-      // Check breakdown exists
       const acon = items.find((i) => i.abbrev === "Acon.");
       expect(acon).toBeDefined();
       expect(acon!.breakdown["Mind, anxiety"]).toBe(3);
@@ -409,6 +436,10 @@ describe("useRepertorize", () => {
       act(() => result.current.addSymptom("Mind, anxiety"));
       act(() => result.current.addSymptom("Head, pain, forehead"));
 
+      await waitFor(() => {
+        expect(result.current.results.items.length).toBe(4);
+      });
+
       const scores = result.current.results.items.map((i) => i.rawScore);
       for (let i = 1; i < scores.length; i++) {
         expect(scores[i]).toBeLessThanOrEqual(scores[i - 1]);
@@ -422,6 +453,10 @@ describe("useRepertorize", () => {
 
       act(() => result.current.addSymptom("Mind, anxiety"));
       act(() => result.current.addSymptom("Head, pain, forehead"));
+
+      await waitFor(() => {
+        expect(result.current.results.items.length).toBe(4);
+      });
 
       // Hide Mind, anxiety — only Head scores should remain
       act(() => result.current.hideSymptom("Mind, anxiety"));
@@ -440,8 +475,12 @@ describe("useRepertorize", () => {
       await waitFor(() => expect(result.current.loading).toBe(false));
 
       act(() => result.current.addSymptom("Mind, anxiety"));
-      act(() => result.current.hideSymptom("Mind, anxiety"));
 
+      await waitFor(() => {
+        expect(result.current.results.items.length).toBe(3);
+      });
+
+      act(() => result.current.hideSymptom("Mind, anxiety"));
       expect(result.current.results.items).toEqual([]);
     });
 
@@ -451,6 +490,10 @@ describe("useRepertorize", () => {
       await waitFor(() => expect(result.current.loading).toBe(false));
 
       act(() => result.current.addSymptom("Mind, anxiety"));
+
+      await waitFor(() => {
+        expect(result.current.results.items.length).toBe(3);
+      });
 
       const acon = result.current.results.items.find(
         (i) => i.abbrev === "Acon."
@@ -468,7 +511,6 @@ describe("useRepertorize", () => {
       act(() => result.current.addSymptom("Mind, anxiety"));
       act(() => result.current.setMinScore(42));
 
-      // Check sessionStorage was called with correct data
       const lastCall =
         sessionStorageMock.setItem.mock.calls[
           sessionStorageMock.setItem.mock.calls.length - 1

@@ -4,27 +4,37 @@ import { renderHook, act, waitFor } from "@testing-library/react";
 /**
  * Tests for lazy loading of symptom and remedy data.
  *
- * The lazy loading hook should be importable from "../useLazyData" and expose:
- *   - useLazyData(): { index, fetchBodySystem, fetchRemedy, cache, ... }
- *
- * Behavior:
- *   - On mount, fetches only the lightweight index (symptom names + body system mapping)
- *   - Full symptom data is fetched per body-system subcategory on demand
- *   - Remedy detail is fetched per remedy on demand
- *   - Previously fetched data is cached
+ * The lazy loading hook fetches compact indexes on mount (symptom_pairs.json,
+ * symptoms/index.json, remedies/index.json) and decodes symptom names client-side.
+ * Full symptom data is fetched per body-system subcategory on demand.
  */
 
 import { useLazyData } from "../useLazyData";
 
 // ---------- mock data ----------
 
-const mockSymptomIndex = [
+// Compact encoded index matching the split_symptoms.py format
+const mockPairs = [
   "Abdomen, pain",
-  "Abdomen, pain, burning",
   "Head, pain",
-  "Head, pain, forehead",
-  "Extremities, pain, foot",
+  "Extremities, pain",
 ];
+const mockEncodedIndex = [
+  "0",            // "Abdomen, pain"
+  "0:burning",    // "Abdomen, pain, burning"
+  "1",            // "Head, pain"
+  "1:forehead",   // "Head, pain, forehead"
+  "2:foot",       // "Extremities, pain, foot"
+];
+
+const mockRemedyIndex = {
+  "Acon.": "Aconitum Napellus",
+  "Ars.": "Arsenicum Album",
+  "Bell.": "Belladonna",
+  "Bry.": "Bryonia Alba",
+  "Nux-v.": "Nux Vomica",
+  "Nat-m.": "Natrum Muriaticum",
+};
 
 const mockAbdomenPain = {
   "Abdomen, pain": {
@@ -52,15 +62,6 @@ const mockRemedyDetail = {
   },
 };
 
-const mockRemedyIndex = {
-  "Acon.": "Aconitum Napellus",
-  "Ars.": "Arsenicum Album",
-  "Bell.": "Belladonna",
-  "Bry.": "Bryonia Alba",
-  "Nux-v.": "Nux Vomica",
-  "Nat-m.": "Natrum Muriaticum",
-};
-
 // ---------- fetch tracking ----------
 
 let fetchCalls: string[] = [];
@@ -71,13 +72,15 @@ function mockFetch(url: string): Promise<Response> {
 
   let data: unknown;
 
-  if (url.includes("symptoms/index.json")) {
-    data = mockSymptomIndex;
+  if (url.includes("symptom_pairs.json")) {
+    data = mockPairs;
+  } else if (url.includes("symptoms/index.json")) {
+    data = mockEncodedIndex;
   } else if (url.includes("remedies/index.json")) {
     data = mockRemedyIndex;
-  } else if (url.includes("symptoms/abdomen/pain.json") || url.includes("symptoms/Abdomen/pain.json")) {
+  } else if (url.includes("symptoms/Abdomen/pain.json")) {
     data = mockAbdomenPain;
-  } else if (url.includes("symptoms/head/pain.json") || url.includes("symptoms/Head/pain.json")) {
+  } else if (url.includes("symptoms/Head/pain.json")) {
     data = mockHeadPain;
   } else if (url.includes("remedies/") && url.includes("Acon")) {
     data = mockRemedyDetail;
@@ -108,17 +111,17 @@ afterEach(() => {
 // ---------- tests ----------
 
 describe("Lazy loading", () => {
-  // 1. Initial page load fetches only index, not full data
+  // 1. Initial page load fetches only index files, not full data
   it("fetches only index files on initial load", async () => {
     const { result } = renderHook(() => useLazyData());
 
     await waitFor(() => {
-      expect(result.current.indexLoaded).toBe(true);
+      expect(result.current.loading).toBe(false);
     });
 
     // Should have fetched index files
     const indexFetches = fetchCalls.filter(
-      (url) => url.includes("index.json")
+      (url) => url.includes("index.json") || url.includes("symptom_pairs.json")
     );
     expect(indexFetches.length).toBeGreaterThan(0);
 
@@ -139,18 +142,48 @@ describe("Lazy loading", () => {
     expect(remedyDataFetches).toHaveLength(0);
   });
 
-  // 2. Selecting a symptom triggers fetch for body system subcategory
-  it("fetches body system subcategory when symptom selected", async () => {
+  // 2. Index decoding produces correct symptom names
+  it("decodes compact index into full symptom names", async () => {
     const { result } = renderHook(() => useLazyData());
 
     await waitFor(() => {
-      expect(result.current.indexLoaded).toBe(true);
+      expect(result.current.loading).toBe(false);
+    });
+
+    expect(result.current.symptomNames).toEqual([
+      "Abdomen, pain",
+      "Abdomen, pain, burning",
+      "Head, pain",
+      "Head, pain, forehead",
+      "Extremities, pain, foot",
+    ]);
+  });
+
+  // 3. Remedy index is loaded
+  it("loads remedy index with abbreviation to name mapping", async () => {
+    const { result } = renderHook(() => useLazyData());
+
+    await waitFor(() => {
+      expect(result.current.loading).toBe(false);
+    });
+
+    expect(result.current.remedies).toBeDefined();
+    expect(result.current.remedies!["Acon."]).toBe("Aconitum Napellus");
+    expect(Object.keys(result.current.remedies!).length).toBe(6);
+  });
+
+  // 4. Selecting a symptom triggers fetch for body system subcategory
+  it("fetches body system subcategory when symptom data requested", async () => {
+    const { result } = renderHook(() => useLazyData());
+
+    await waitFor(() => {
+      expect(result.current.loading).toBe(false);
     });
 
     fetchCalls = []; // Reset to track only new fetches
 
     await act(async () => {
-      await result.current.fetchBodySystem("Abdomen", "pain");
+      await result.current.fetchSymptomData("Abdomen, pain");
     });
 
     const abdomenFetches = fetchCalls.filter((url) =>
@@ -159,37 +192,17 @@ describe("Lazy loading", () => {
     expect(abdomenFetches.length).toBeGreaterThan(0);
   });
 
-  // 3. Clicking a remedy triggers fetch for remedy detail
-  it("fetches remedy detail when requested", async () => {
-    const { result } = renderHook(() => useLazyData());
-
-    await waitFor(() => {
-      expect(result.current.indexLoaded).toBe(true);
-    });
-
-    fetchCalls = [];
-
-    await act(async () => {
-      await result.current.fetchRemedy("Acon.");
-    });
-
-    const remedyFetches = fetchCalls.filter((url) =>
-      url.includes("Acon")
-    );
-    expect(remedyFetches.length).toBeGreaterThan(0);
-  });
-
-  // 4. Previously fetched data is cached (no duplicate fetches)
+  // 5. Previously fetched data is cached (no duplicate fetches)
   it("caches fetched data and does not re-fetch", async () => {
     const { result } = renderHook(() => useLazyData());
 
     await waitFor(() => {
-      expect(result.current.indexLoaded).toBe(true);
+      expect(result.current.loading).toBe(false);
     });
 
     // First fetch
     await act(async () => {
-      await result.current.fetchBodySystem("Abdomen", "pain");
+      await result.current.fetchSymptomData("Abdomen, pain");
     });
 
     const firstFetchCount = fetchCalls.filter((url) =>
@@ -198,7 +211,7 @@ describe("Lazy loading", () => {
 
     // Second fetch — should use cache
     await act(async () => {
-      await result.current.fetchBodySystem("Abdomen", "pain");
+      await result.current.fetchSymptomData("Abdomen, pain");
     });
 
     const secondFetchCount = fetchCalls.filter((url) =>
@@ -209,58 +222,58 @@ describe("Lazy loading", () => {
     expect(secondFetchCount).toBe(firstFetchCount);
   });
 
-  // 5. App works correctly with data arriving incrementally
+  // 6. App works correctly with data arriving incrementally
   it("provides symptom data incrementally as body systems are loaded", async () => {
     const { result } = renderHook(() => useLazyData());
 
     await waitFor(() => {
-      expect(result.current.indexLoaded).toBe(true);
+      expect(result.current.loading).toBe(false);
     });
 
     // Initially no symptom detail data loaded
-    expect(result.current.getSymptomData("Abdomen, pain")).toBeUndefined();
+    expect(result.current.symptomData["Abdomen, pain"]).toBeUndefined();
 
     // Load abdomen data
     await act(async () => {
-      await result.current.fetchBodySystem("Abdomen", "pain");
+      await result.current.fetchSymptomData("Abdomen, pain");
     });
 
     // Now abdomen symptoms should be available
-    const abdomenData = result.current.getSymptomData("Abdomen, pain");
+    const abdomenData = result.current.symptomData["Abdomen, pain"];
     expect(abdomenData).toBeDefined();
     expect(abdomenData?.remedies).toBeDefined();
     expect(abdomenData?.remedies["Acon."]).toBe(3);
 
     // Head data still not available
-    expect(result.current.getSymptomData("Head, pain")).toBeUndefined();
+    expect(result.current.symptomData["Head, pain"]).toBeUndefined();
 
     // Load head data
     await act(async () => {
-      await result.current.fetchBodySystem("Head", "pain");
+      await result.current.fetchSymptomData("Head, pain");
     });
 
     // Now both are available
-    expect(result.current.getSymptomData("Head, pain")).toBeDefined();
-    expect(result.current.getSymptomData("Abdomen, pain")).toBeDefined();
+    expect(result.current.symptomData["Head, pain"]).toBeDefined();
+    expect(result.current.symptomData["Abdomen, pain"]).toBeDefined();
   });
 
-  // 6. Repertorization results identical with lazy-loaded vs monolithic data
+  // 7. Repertorization results identical with lazy-loaded vs monolithic data
   it("produces correct repertorization with lazy-loaded data", async () => {
     const { result } = renderHook(() => useLazyData());
 
     await waitFor(() => {
-      expect(result.current.indexLoaded).toBe(true);
+      expect(result.current.loading).toBe(false);
     });
 
     // Load needed body systems
     await act(async () => {
-      await result.current.fetchBodySystem("Abdomen", "pain");
-      await result.current.fetchBodySystem("Head", "pain");
+      await result.current.fetchSymptomData("Abdomen, pain");
+      await result.current.fetchSymptomData("Head, pain");
     });
 
     // Get symptom data for repertorization
-    const abdomenPain = result.current.getSymptomData("Abdomen, pain");
-    const headPain = result.current.getSymptomData("Head, pain");
+    const abdomenPain = result.current.symptomData["Abdomen, pain"];
+    const headPain = result.current.symptomData["Head, pain"];
 
     expect(abdomenPain).toBeDefined();
     expect(headPain).toBeDefined();
@@ -270,5 +283,34 @@ describe("Lazy loading", () => {
     expect(abdomenPain!.remedies["Nux-v."]).toBe(2);
     expect(headPain!.remedies["Bell."]).toBe(3);
     expect(headPain!.remedies["Bry."]).toBe(2);
+  });
+
+  // 8. fetchMultipleSymptomData deduplicates by file
+  it("deduplicates fetches when loading multiple symptoms from same file", async () => {
+    const { result } = renderHook(() => useLazyData());
+
+    await waitFor(() => {
+      expect(result.current.loading).toBe(false);
+    });
+
+    fetchCalls = [];
+
+    // Both "Abdomen, pain" and "Abdomen, pain, burning" are in the same file
+    await act(async () => {
+      await result.current.fetchMultipleSymptomData([
+        "Abdomen, pain",
+        "Abdomen, pain, burning",
+      ]);
+    });
+
+    const abdomenFetches = fetchCalls.filter((url) =>
+      url.toLowerCase().includes("abdomen")
+    );
+    // Should only fetch once since both are in Abdomen/pain.json
+    expect(abdomenFetches.length).toBe(1);
+
+    // Both symptoms should be available
+    expect(result.current.symptomData["Abdomen, pain"]).toBeDefined();
+    expect(result.current.symptomData["Abdomen, pain, burning"]).toBeDefined();
   });
 });

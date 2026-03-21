@@ -1,5 +1,5 @@
 #!/bin/bash
-# Copy data files from ../data to public/data
+# Copy split data files from ../data to public/data for lazy loading.
 # Run this before `npm run dev` or `npm run build`
 
 set -e
@@ -11,14 +11,30 @@ PUBLIC_DATA="$WEB_DIR/public/data"
 
 mkdir -p "$PUBLIC_DATA"
 
+echo "Copying split symptom data..."
+# Copy symptom_pairs.json (needed for client-side index decoding)
+cp "$DATA_DIR/symptom_pairs.json" "$PUBLIC_DATA/"
+
+# Copy split symptom directories (body systems with subcategory files + index)
+rm -rf "$PUBLIC_DATA/symptoms"
+cp -r "$DATA_DIR/symptoms" "$PUBLIC_DATA/symptoms"
+
+echo "Copying split remedy data..."
+# Copy split remedy directories (letter dirs + index)
+rm -rf "$PUBLIC_DATA/remedies"
+cp -r "$DATA_DIR/remedies" "$PUBLIC_DATA/remedies"
+
+# Copy default symptoms if it exists
+if [ -f "$PUBLIC_DATA/default-symptoms.json" ]; then
+  echo "default-symptoms.json already present."
+elif [ -f "$DATA_DIR/default-symptoms.json" ]; then
+  cp "$DATA_DIR/default-symptoms.json" "$PUBLIC_DATA/"
+fi
+
+# Copy Kent materia medica data
 KENT_DATA="$DATA_DIR/kent/materia_medica"
 PUBLIC_KENT="$PUBLIC_DATA/kent"
 
-echo "Copying data files..."
-cp "$DATA_DIR/symptoms.json" "$PUBLIC_DATA/"
-cp "$DATA_DIR/remedies.json" "$PUBLIC_DATA/"
-
-# Copy Kent materia medica data
 if [ -d "$KENT_DATA" ]; then
   mkdir -p "$PUBLIC_KENT/remedy_markdown"
   cp "$KENT_DATA/profiles.json" "$PUBLIC_KENT/"
@@ -27,5 +43,10 @@ if [ -d "$KENT_DATA" ]; then
   echo "Kent materia medica data copied."
 fi
 
-echo "Done! Data files copied to public/data/"
-ls -lh "$PUBLIC_DATA"
+echo "Done! Split data files copied to public/data/"
+echo "Symptom body systems:"
+ls "$PUBLIC_DATA/symptoms/" | head -10
+echo "..."
+echo "Remedy letter dirs:"
+ls "$PUBLIC_DATA/remedies/" | head -10
+echo "..."

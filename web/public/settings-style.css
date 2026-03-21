@@ -1,22 +1,22 @@
 @font-face {
-  font-family: 'Host Grotesk';
-  src: url('fonts/HostGrotesk-VariableFont_wght.ttf') format('truetype');
-  font-weight: 100 900;
+  font-family: 'Carlito';
+  src: url('_next/static/media/Carlito-Regular.woff2') format('woff2');
+  font-weight: 400;
   font-style: normal;
   font-display: swap;
 }
 @font-face {
-  font-family: 'Host Grotesk';
-  src: url('fonts/HostGrotesk-Italic-VariableFont_wght.ttf') format('truetype');
-  font-weight: 100 900;
-  font-style: italic;
+  font-family: 'Carlito';
+  src: url('_next/static/media/Carlito-Bold.woff2') format('woff2');
+  font-weight: 700;
+  font-style: normal;
   font-display: swap;
 }
 
 * { box-sizing: border-box; margin: 0; padding: 0; }
 
 body {
-  font-family: 'Host Grotesk', sans-serif;
+  font-family: 'Carlito', system-ui, sans-serif;
   background: linear-gradient(135deg, #065774 0%, #042B58 100%);
   min-height: 100vh;
   padding: 20px;

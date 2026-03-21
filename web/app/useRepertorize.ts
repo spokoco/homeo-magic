@@ -2,55 +2,26 @@
 
 import { useState, useEffect, useMemo, useCallback } from "react";
 import type { SymptomsData, RemediesData, RepertoResult } from "./types";
+import { useLazyData } from "./useLazyData";
+import { buildSearchIndex, search } from "./search";
 
 export interface LoadProgress {
-  phase: "idle" | "remedies" | "symptoms" | "done" | "error";
+  phase: "idle" | "index" | "done" | "error";
   message: string;
   percent: number;
 }
 
-async function fetchWithProgress(
-  url: string,
-  onProgress: (received: number, total: number) => void
-): Promise<unknown> {
-  const response = await fetch(url);
-  if (!response.ok) throw new Error(`HTTP ${response.status}`);
-
-  const contentLength = response.headers.get("content-length");
-  const total = contentLength ? parseInt(contentLength, 10) : 0;
-
-  const reader = response.body!.getReader();
-  const chunks: Uint8Array[] = [];
-  let received = 0;
-
-  for (;;) {
-    const { done, value } = await reader.read();
-    if (done) break;
-    chunks.push(value);
-    received += value.length;
-    onProgress(received, total);
-  }
-
-  const allChunks = new Uint8Array(received);
-  let position = 0;
-  for (const chunk of chunks) {
-    allChunks.set(chunk, position);
-    position += chunk.length;
-  }
-
-  const text = new TextDecoder().decode(allChunks);
-  return JSON.parse(text);
-}
-
-function formatBytes(bytes: number): string {
-  if (bytes < 1024) return bytes + " B";
-  if (bytes < 1024 * 1024) return (bytes / 1024).toFixed(1) + " KB";
-  return (bytes / (1024 * 1024)).toFixed(1) + " MB";
-}
-
 export function useRepertorize() {
-  const [symptoms, setSymptoms] = useState<SymptomsData | null>(null);
-  const [remedies, setRemedies] = useState<RemediesData | null>(null);
+  const {
+    loading: indexLoading,
+    error: indexError,
+    symptomNames,
+    remedies,
+    symptomData,
+    fetchSymptomData,
+    fetchMultipleSymptomData,
+  } = useLazyData();
+
   const [selectedSymptoms, setSelectedSymptoms] = useState<string[]>([]);
   const [hiddenSymptoms, setHiddenSymptoms] = useState<Set<string>>(new Set());
   const [minScore, setMinScore] = useState(0);
@@ -84,13 +55,20 @@ export function useRepertorize() {
       })
       .catch(() => {}); // No defaults file, that's fine
   }, []);
-  const [loading, setLoading] = useState(true);
-  const [error, setError] = useState<string | null>(null);
-  const [loadProgress, setLoadProgress] = useState<LoadProgress>({
-    phase: "idle",
-    message: "Loading repertory data...",
-    percent: 0,
-  });
+
+  // When index finishes loading, fetch body-system data for any restored symptoms
+  useEffect(() => {
+    if (indexLoading || selectedSymptoms.length === 0) return;
+    fetchMultipleSymptomData(selectedSymptoms);
+  }, [indexLoading, selectedSymptoms.length > 0]); // eslint-disable-line react-hooks/exhaustive-deps
+
+  const loading = indexLoading;
+  const error = indexError;
+  const loadProgress: LoadProgress = indexLoading
+    ? { phase: "index", message: "Loading index...", percent: 0 }
+    : indexError
+      ? { phase: "error", message: indexError, percent: 0 }
+      : { phase: "done", message: "Ready", percent: 100 };
 
   // Persist state to sessionStorage so it survives navigation to settings
   useEffect(() => {
@@ -104,89 +82,35 @@ export function useRepertorize() {
     );
   }, [selectedSymptoms, hiddenSymptoms, minScore]);
 
-  // Load data on mount
-  useEffect(() => {
-    async function loadData() {
-      try {
-        setLoadProgress({
-          phase: "remedies",
-          message: "Loading remedies...",
-          percent: 0,
-        });
-        const remediesData = (await fetchWithProgress(
-          "data/remedies.json",
-          (received, total) => {
-            setLoadProgress({
-              phase: "remedies",
-              message: `Remedies: ${formatBytes(received)}${total ? " / " + formatBytes(total) : ""}`,
-              percent: total ? Math.round((received / total) * 100) : 0,
-            });
-          }
-        )) as RemediesData;
-        setRemedies(remediesData);
-
-        const startTime = Date.now();
-        setLoadProgress({
-          phase: "symptoms",
-          message: "Loading symptoms (large file)...",
-          percent: 0,
-        });
-        const symptomsData = (await fetchWithProgress(
-          "data/symptoms.json",
-          (received, total) => {
-            const pct = total ? Math.round((received / total) * 100) : 0;
-            setLoadProgress({
-              phase: "symptoms",
-              message: `Symptoms: ${formatBytes(received)}${total ? " / " + formatBytes(total) : ""} ${pct}%`,
-              percent: pct,
-            });
-          }
-        )) as SymptomsData;
-        const elapsed = ((Date.now() - startTime) / 1000).toFixed(1);
-        setSymptoms(symptomsData);
-
-        setLoadProgress({
-          phase: "done",
-          message: `Loaded in ${elapsed}s`,
-          percent: 100,
-        });
-        setLoading(false);
-      } catch (err) {
-        const msg = err instanceof Error ? err.message : "Failed to load data";
-        setError(msg);
-        setLoadProgress({ phase: "error", message: msg, percent: 0 });
-        setLoading(false);
-      }
-    }
-
-    loadData();
-  }, []);
+  // Build fuzzy search index from symptom names
+  const searchIndex = useMemo(() => {
+    if (symptomNames.length === 0) return null;
+    return buildSearchIndex(symptomNames);
+  }, [symptomNames]);
 
   const searchSymptoms = useCallback(
     (query: string, limit: number = 50): string[] => {
-      if (!symptoms || !query.trim()) return [];
-      const q = query.toLowerCase();
-      const matches: string[] = [];
-      for (const symptom of Object.keys(symptoms)) {
-        if (
-          symptom.toLowerCase().includes(q) &&
-          !selectedSymptoms.includes(symptom)
-        ) {
-          matches.push(symptom);
-          if (matches.length >= limit) break;
-        }
-      }
-      return matches;
+      if (!searchIndex || !query.trim()) return [];
+      const results = search(searchIndex, query, limit + selectedSymptoms.length);
+      return results
+        .map((r) => r.name)
+        .filter((name) => !selectedSymptoms.includes(name))
+        .slice(0, limit);
     },
-    [symptoms, selectedSymptoms]
+    [searchIndex, selectedSymptoms]
   );
 
-  const addSymptom = useCallback((symptom: string) => {
-    setSelectedSymptoms((prev) => {
-      if (prev.includes(symptom)) return prev;
-      return [...prev, symptom];
-    });
-  }, []);
+  const addSymptom = useCallback(
+    (symptom: string) => {
+      setSelectedSymptoms((prev) => {
+        if (prev.includes(symptom)) return prev;
+        return [...prev, symptom];
+      });
+      // Trigger lazy fetch of body-system data for this symptom
+      fetchSymptomData(symptom);
+    },
+    [fetchSymptomData]
+  );
 
   const removeSymptom = useCallback((symptom: string) => {
     setSelectedSymptoms((prev) => prev.filter((s) => s !== symptom));
@@ -229,6 +153,10 @@ export function useRepertorize() {
     setHiddenSymptoms(new Set());
   }, []);
 
+  // Use symptomData (lazy-loaded cache) as the symptoms object
+  const symptoms: SymptomsData | null =
+    Object.keys(symptomData).length > 0 ? symptomData : null;
+
   // Compute results: all remedies across visible symptoms, scored and normalized
   const results = useMemo((): {
     items: RepertoResult[];
@@ -236,7 +164,7 @@ export function useRepertorize() {
     maxScore: number;
     totalCount: number;
   } => {
-    if (!symptoms || !remedies || selectedSymptoms.length === 0) {
+    if (!remedies || selectedSymptoms.length === 0) {
       return { items: [], gradeMap: {}, maxScore: 0, totalCount: 0 };
     }
 
@@ -251,7 +179,7 @@ export function useRepertorize() {
     const gradeMap: { [abbrev: string]: { [symptom: string]: number } } = {};
 
     for (const sym of visibleSymptoms) {
-      const symData = symptoms[sym];
+      const symData = symptomData[sym];
       if (!symData) continue;
       for (const [abbrev, grade] of Object.entries(symData.remedies)) {
         if (!scores[abbrev]) {
@@ -285,7 +213,7 @@ export function useRepertorize() {
       maxScore,
       totalCount: allNormalized.length,
     };
-  }, [symptoms, remedies, selectedSymptoms, hiddenSymptoms]);
+  }, [symptomData, remedies, selectedSymptoms, hiddenSymptoms]);
 
   return {
     loading,
@@ -305,7 +233,7 @@ export function useRepertorize() {
     showSymptom,
     clearSymptoms,
     reorderSymptoms,
-    symptomCount: symptoms ? Object.keys(symptoms).length : 0,
+    symptomCount: symptomNames.length,
     remedyCount: remedies ? Object.keys(remedies).length : 0,
   };
 }

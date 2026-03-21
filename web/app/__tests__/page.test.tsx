@@ -23,24 +23,26 @@ const sampleRemedies: RemediesData = {
   "Nux-v.": "Nux Vomica",
 };
 
-// ---------- mock fetch with streaming response ----------
-function createMockStreamResponse(data: unknown) {
-  const text = JSON.stringify(data);
-  const encoder = new TextEncoder();
-  const encoded = encoder.encode(text);
-  const stream = new ReadableStream({
-    start(controller) {
-      controller.enqueue(encoded);
-      controller.close();
-    },
-  });
-  return {
-    ok: true,
-    headers: new Headers({ "content-length": String(encoded.length) }),
-    body: stream,
-  };
-}
+// Lazy loading index data
+const samplePairs = ["Mind, anxiety", "Head, pain", "Stomach, nausea"];
+const sampleEncoded = [
+  "0",            // "Mind, anxiety"
+  "1:forehead",   // "Head, pain, forehead"
+  "2",            // "Stomach, nausea"
+];
 
+// Split symptom files
+const mindAnxietyFile: SymptomsData = {
+  "Mind, anxiety": sampleSymptoms["Mind, anxiety"],
+};
+const headPainFile: SymptomsData = {
+  "Head, pain, forehead": sampleSymptoms["Head, pain, forehead"],
+};
+const stomachNauseaFile: SymptomsData = {
+  "Stomach, nausea": sampleSymptoms["Stomach, nausea"],
+};
+
+// ---------- mock fetch ----------
 const mockFetch = vi.fn();
 global.fetch = mockFetch;
 
@@ -53,11 +55,41 @@ vi.mock("../MateriaPanel", () => ({
 
 function setupFetchMock() {
   mockFetch.mockImplementation((url: string) => {
-    if (url.includes("remedies.json")) {
-      return Promise.resolve(createMockStreamResponse(sampleRemedies));
+    if (url.includes("symptom_pairs.json")) {
+      return Promise.resolve({
+        ok: true,
+        json: () => Promise.resolve(samplePairs),
+      });
     }
-    if (url.includes("symptoms.json")) {
-      return Promise.resolve(createMockStreamResponse(sampleSymptoms));
+    if (url.includes("symptoms/index.json")) {
+      return Promise.resolve({
+        ok: true,
+        json: () => Promise.resolve(sampleEncoded),
+      });
+    }
+    if (url.includes("remedies/index.json")) {
+      return Promise.resolve({
+        ok: true,
+        json: () => Promise.resolve(sampleRemedies),
+      });
+    }
+    if (url.includes("symptoms/Mind/anxiety.json")) {
+      return Promise.resolve({
+        ok: true,
+        json: () => Promise.resolve(mindAnxietyFile),
+      });
+    }
+    if (url.includes("symptoms/Head/pain.json")) {
+      return Promise.resolve({
+        ok: true,
+        json: () => Promise.resolve(headPainFile),
+      });
+    }
+    if (url.includes("symptoms/Stomach/nausea.json")) {
+      return Promise.resolve({
+        ok: true,
+        json: () => Promise.resolve(stomachNauseaFile),
+      });
     }
     if (url.includes("default-symptoms.json")) {
       return Promise.resolve({ ok: false });
@@ -138,13 +170,8 @@ describe("Home page", () => {
 
   describe("REGRESSION: hydration safety - useColorScale (bug #1)", () => {
     it("does NOT read localStorage during initial render", () => {
-      // useColorScale defers localStorage.getItem to useEffect
-      // This means on the server, the default chroma scale is used
       setupFetchMock();
-      // If localStorage were read in useState, it would cause a hydration mismatch
-      // because server has no localStorage. The fix defers to useEffect.
       render(<Home />);
-      // The component should render without errors (no hydration mismatch)
       expect(screen.getByText("Homeo-Magic")).toBeInTheDocument();
     });
 
@@ -155,7 +182,6 @@ describe("Home page", () => {
       });
       setupFetchMock();
       render(<Home />);
-      // After effect runs, localStorage should have been read
       await waitFor(() => {
         expect(localStorageMock.getItem).toHaveBeenCalledWith(
           "homeo-magic-color-scale"
@@ -166,7 +192,6 @@ describe("Home page", () => {
 
   describe("REGRESSION: hover state for action icons (bug #2)", () => {
     it("shows action icons on row hover via React state (not CSS)", async () => {
-      // Pre-set selected symptoms via sessionStorage
       mockSessionStorage["homeo-magic-state"] = JSON.stringify({
         selectedSymptoms: ["Mind, anxiety", "Head, pain, forehead"],
         hiddenSymptoms: [],
@@ -175,29 +200,29 @@ describe("Home page", () => {
       setupFetchMock();
       render(<Home />);
 
+      // Wait for lazy-loaded symptom data to arrive and results to render
       await waitFor(() =>
         expect(screen.getByText("Mind, anxiety")).toBeInTheDocument()
       );
+      // Wait for results table (scores computed after lazy fetch)
+      await waitFor(() =>
+        expect(screen.getByText(/Remedies Found/)).toBeInTheDocument()
+      );
 
-      // Find the symptom row
       const symText = screen.getByText("Mind, anxiety");
       const row = symText.closest("tr");
       expect(row).toBeTruthy();
 
-      // Before hover: action buttons should have opacity 0 (via inline style)
       const trashButtons = row!.querySelectorAll('button[title="Remove symptom"]');
       expect(trashButtons.length).toBe(1);
       expect(trashButtons[0]).toHaveStyle({ opacity: "0" });
 
-      // Hover the row
       fireEvent.mouseEnter(row!);
 
-      // After hover: action buttons should become visible (opacity 1)
       await waitFor(() => {
         expect(trashButtons[0]).toHaveStyle({ opacity: "1" });
       });
 
-      // Mouse leave: should hide again
       fireEvent.mouseLeave(row!);
       await waitFor(() => {
         expect(trashButtons[0]).toHaveStyle({ opacity: "0" });
@@ -216,8 +241,10 @@ describe("Home page", () => {
       await waitFor(() =>
         expect(screen.getByText("Mind, anxiety")).toBeInTheDocument()
       );
+      await waitFor(() =>
+        expect(screen.getByText(/Remedies Found/)).toBeInTheDocument()
+      );
 
-      // The drag handle uses inline style opacity, not Tailwind hover classes
       const dragHandle = screen.getByTitle("Drag to reorder");
       expect(dragHandle).toHaveStyle({ opacity: "0" });
 
@@ -239,6 +266,9 @@ describe("Home page", () => {
 
       await waitFor(() =>
         expect(screen.getByText("Mind, anxiety")).toBeInTheDocument()
+      );
+      await waitFor(() =>
+        expect(screen.getByText(/Remedies Found/)).toBeInTheDocument()
       );
 
       const eyeButton = screen.getByTitle("Hide symptom");
@@ -266,13 +296,10 @@ describe("Home page", () => {
         expect(screen.getByText(/Remedies Found/)).toBeInTheDocument()
       );
 
-      // Find a remedy column header and hover it
       const remedyHeaders = screen.getAllByText("Acon.");
-      // The first one is in the thead
       const headerTh = remedyHeaders[0].closest("th");
       expect(headerTh).toBeTruthy();
 
-      // Mock getBoundingClientRect for the header
       headerTh!.getBoundingClientRect = () => ({
         left: 100,
         top: 200,
@@ -287,19 +314,16 @@ describe("Home page", () => {
 
       fireEvent.mouseEnter(headerTh!);
 
-      // The tooltip should appear with fixed positioning
       await waitFor(() => {
         const tooltip = document.querySelector(".fixed.z-50");
         expect(tooltip).toBeTruthy();
-        // It should use transform translate for centering
         expect(tooltip).toHaveStyle({
           transform: "translate(-50%, -100%)",
         });
       });
 
-      // The tooltip should show the full remedy name (also shown in detail panel)
       const matches = screen.getAllByText("Aconitum Napellus");
-      expect(matches.length).toBeGreaterThanOrEqual(2); // detail panel + tooltip
+      expect(matches.length).toBeGreaterThanOrEqual(2);
     });
   });
 
@@ -330,7 +354,6 @@ describe("Home page", () => {
       const input = screen.getByPlaceholderText(/Type to search/);
       fireEvent.change(input, { target: { value: "m" } });
 
-      // No dropdown should appear
       expect(screen.queryByText("Mind, anxiety")).not.toBeInTheDocument();
     });
 
@@ -376,7 +399,6 @@ describe("Home page", () => {
         expect(screen.getByText("Mind, anxiety")).toBeInTheDocument()
       );
 
-      // Hover to make the button visible, then click
       const row = screen.getByText("Mind, anxiety").closest("tr");
       fireEvent.mouseEnter(row!);
 
@@ -404,11 +426,9 @@ describe("Home page", () => {
       const row = screen.getByText("Mind, anxiety").closest("tr");
       fireEvent.mouseEnter(row!);
 
-      // There are multiple hide buttons (one per row), get the one in this row
       const eyeButton = row!.querySelector('button[title="Hide symptom"]')!;
       fireEvent.click(eyeButton);
 
-      // Row should become semi-transparent (opacity: 0.4)
       await waitFor(() => {
         expect(row).toHaveStyle({ opacity: "0.4" });
       });
