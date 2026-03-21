@@ -532,4 +532,186 @@ describe("useRepertorize", () => {
       expect(result.current.minScore).toBe(50);
     });
   });
+
+  describe("REGRESSION: persistence + lazy loading integration", () => {
+    it("restoring symptoms from sessionStorage loads their body-system data", async () => {
+      mockSessionStorage["homeo-magic-state"] = JSON.stringify({
+        selectedSymptoms: ["Mind, anxiety", "Head, pain, forehead"],
+        hiddenSymptoms: [],
+        minScore: 0,
+      });
+      setupFetchMock();
+
+      const { result } = renderHook(() => useRepertorize());
+      await waitFor(() => expect(result.current.loading).toBe(false));
+
+      // Restored symptoms should have their body-system data fetched
+      await waitFor(() => {
+        expect(result.current.results.items.length).toBeGreaterThan(0);
+      });
+
+      // Verify data for both restored symptoms is present in results
+      const abbrevs = result.current.results.items.map((i) => i.abbrev);
+      // Mind, anxiety has Acon., Ars., Bell. — Head, pain has Bell., Bry., Acon.
+      expect(abbrevs).toContain("Acon.");
+      expect(abbrevs).toContain("Bell.");
+      expect(abbrevs).toContain("Bry.");
+      expect(abbrevs).toContain("Ars.");
+    });
+
+    it("adding a symptom after restore fetches its body-system data", async () => {
+      mockSessionStorage["homeo-magic-state"] = JSON.stringify({
+        selectedSymptoms: ["Mind, anxiety"],
+        hiddenSymptoms: [],
+        minScore: 0,
+      });
+      setupFetchMock();
+
+      const { result } = renderHook(() => useRepertorize());
+      await waitFor(() => expect(result.current.loading).toBe(false));
+
+      // Wait for restored symptom data to load
+      await waitFor(() => {
+        expect(result.current.results.items.length).toBeGreaterThan(0);
+      });
+
+      // Now add a new symptom from a different body system
+      act(() => result.current.addSymptom("Stomach, nausea"));
+
+      // The new symptom's data should also be fetched and appear in results
+      await waitFor(() => {
+        const abbrevs = result.current.results.items.map((i) => i.abbrev);
+        expect(abbrevs).toContain("Nux-v."); // Only in Stomach, nausea
+      });
+    });
+
+    it("removing a restored symptom removes it from state AND sessionStorage", async () => {
+      mockSessionStorage["homeo-magic-state"] = JSON.stringify({
+        selectedSymptoms: ["Mind, anxiety", "Head, pain, forehead"],
+        hiddenSymptoms: [],
+        minScore: 0,
+      });
+      setupFetchMock();
+
+      const { result } = renderHook(() => useRepertorize());
+      await waitFor(() => expect(result.current.loading).toBe(false));
+
+      // Wait for restore to complete
+      await waitFor(() => {
+        expect(result.current.selectedSymptoms).toEqual([
+          "Mind, anxiety",
+          "Head, pain, forehead",
+        ]);
+      });
+
+      // Remove a restored symptom
+      act(() => result.current.removeSymptom("Mind, anxiety"));
+
+      expect(result.current.selectedSymptoms).toEqual(["Head, pain, forehead"]);
+      expect(result.current.selectedSymptoms).not.toContain("Mind, anxiety");
+
+      // sessionStorage should reflect the removal
+      const lastSetCall =
+        sessionStorageMock.setItem.mock.calls[
+          sessionStorageMock.setItem.mock.calls.length - 1
+        ];
+      const persisted = JSON.parse(lastSetCall[1]);
+      expect(persisted.selectedSymptoms).toEqual(["Head, pain, forehead"]);
+      expect(persisted.selectedSymptoms).not.toContain("Mind, anxiety");
+    });
+
+    it("clearing all symptoms works after restore", async () => {
+      mockSessionStorage["homeo-magic-state"] = JSON.stringify({
+        selectedSymptoms: ["Mind, anxiety", "Head, pain, forehead"],
+        hiddenSymptoms: ["Head, pain, forehead"],
+        minScore: 10,
+      });
+      setupFetchMock();
+
+      const { result } = renderHook(() => useRepertorize());
+      await waitFor(() => expect(result.current.loading).toBe(false));
+
+      // Wait for restore to complete
+      await waitFor(() => {
+        expect(result.current.selectedSymptoms.length).toBe(2);
+      });
+
+      // Clear all
+      act(() => result.current.clearSymptoms());
+
+      expect(result.current.selectedSymptoms).toEqual([]);
+      expect(result.current.hiddenSymptoms.size).toBe(0);
+
+      // sessionStorage should reflect the clear
+      const lastSetCall =
+        sessionStorageMock.setItem.mock.calls[
+          sessionStorageMock.setItem.mock.calls.length - 1
+        ];
+      const persisted = JSON.parse(lastSetCall[1]);
+      expect(persisted.selectedSymptoms).toEqual([]);
+      expect(persisted.hiddenSymptoms).toEqual([]);
+    });
+
+    it("adding a symptom from a different body system than restored ones produces correct combined results", async () => {
+      mockSessionStorage["homeo-magic-state"] = JSON.stringify({
+        selectedSymptoms: ["Mind, anxiety"],
+        hiddenSymptoms: [],
+        minScore: 0,
+      });
+      setupFetchMock();
+
+      const { result } = renderHook(() => useRepertorize());
+      await waitFor(() => expect(result.current.loading).toBe(false));
+
+      // Wait for restored data
+      await waitFor(() => {
+        expect(result.current.results.items.length).toBe(3); // Acon, Ars, Bell
+      });
+
+      // Add symptom from different body system
+      act(() => result.current.addSymptom("Head, pain, forehead"));
+
+      // Should now have combined results from Mind + Head
+      await waitFor(() => {
+        expect(result.current.results.items.length).toBe(4); // Acon, Ars, Bell, Bry
+      });
+
+      // Acon. appears in both: Mind,anxiety=3 + Head,pain=1 = 4
+      // Bell. appears in both: Mind,anxiety=1 + Head,pain=3 = 4
+      const acon = result.current.results.items.find((i) => i.abbrev === "Acon.");
+      const bell = result.current.results.items.find((i) => i.abbrev === "Bell.");
+      expect(acon!.rawScore).toBe(4);
+      expect(bell!.rawScore).toBe(4);
+    });
+
+    it("persist effect does not clobber sessionStorage before restore completes", async () => {
+      const savedState = {
+        selectedSymptoms: ["Mind, anxiety", "Head, pain, forehead"],
+        hiddenSymptoms: ["Head, pain, forehead"],
+        minScore: 25,
+      };
+      mockSessionStorage["homeo-magic-state"] = JSON.stringify(savedState);
+      setupFetchMock();
+
+      // Record call count before render so we only inspect calls from this test
+      const callsBefore = sessionStorageMock.setItem.mock.calls.length;
+
+      renderHook(() => useRepertorize());
+
+      // After initial render + effects, sessionStorage should never have been
+      // written with empty selectedSymptoms (the persist effect should not
+      // overwrite saved state before restore has had a chance to load it)
+      const newCalls = sessionStorageMock.setItem.mock.calls
+        .slice(callsBefore)
+        .filter((c: unknown[]) => c[0] === "homeo-magic-state");
+      for (const call of newCalls) {
+        const written = JSON.parse(call[1] as string);
+        // The persist effect should never write an empty symptoms array when
+        // we had saved state — that would clobber the restore
+        if (written.selectedSymptoms.length === 0) {
+          expect(written.selectedSymptoms).not.toEqual([]);
+        }
+      }
+    });
+  });
 });

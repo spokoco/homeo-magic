@@ -1,6 +1,6 @@
 "use client";
 
-import { useState, useEffect, useMemo, useCallback } from "react";
+import { useState, useEffect, useMemo, useCallback, useRef } from "react";
 import type { SymptomsData, RemediesData, RepertoResult } from "./types";
 import { useLazyData } from "./useLazyData";
 import { buildSearchIndex, search } from "./search";
@@ -25,6 +25,7 @@ export function useRepertorize() {
   const [selectedSymptoms, setSelectedSymptoms] = useState<string[]>([]);
   const [hiddenSymptoms, setHiddenSymptoms] = useState<Set<string>>(new Set());
   const [minScore, setMinScore] = useState(0);
+  const hydratedRef = useRef(false);
 
   // Restore persisted state after hydration, or load defaults on first visit
   useEffect(() => {
@@ -56,11 +57,11 @@ export function useRepertorize() {
       .catch(() => {}); // No defaults file, that's fine
   }, []);
 
-  // When index finishes loading, fetch body-system data for any restored symptoms
+  // When index finishes loading, fetch body-system data for any selected symptoms
   useEffect(() => {
     if (indexLoading || selectedSymptoms.length === 0) return;
     fetchMultipleSymptomData(selectedSymptoms);
-  }, [indexLoading, selectedSymptoms.length > 0]); // eslint-disable-line react-hooks/exhaustive-deps
+  }, [indexLoading, selectedSymptoms, fetchMultipleSymptomData]);
 
   const loading = indexLoading;
   const error = indexError;
@@ -70,8 +71,14 @@ export function useRepertorize() {
       ? { phase: "error", message: indexError, percent: 0 }
       : { phase: "done", message: "Ready", percent: 100 };
 
-  // Persist state to sessionStorage so it survives navigation to settings
+  // Persist state to sessionStorage so it survives navigation to settings.
+  // Skip the initial render to avoid clobbering saved state with empty defaults
+  // before the restore effect's state updates have been applied.
   useEffect(() => {
+    if (!hydratedRef.current) {
+      hydratedRef.current = true;
+      return;
+    }
     sessionStorage.setItem(
       "homeo-magic-state",
       JSON.stringify({
