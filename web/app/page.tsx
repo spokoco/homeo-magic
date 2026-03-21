@@ -3,6 +3,7 @@
 import { useState, useRef, useEffect, useCallback, useMemo } from "react";
 import { useRepertorize } from "./useRepertorize";
 import chroma from "chroma-js";
+import { MateriaPanel } from "./MateriaPanel";
 
 // Color scale for score heat-mapping
 const defaultScale = () => chroma.scale(["#fef3c7", "#fca5a5"]).mode("lab");
@@ -465,6 +466,7 @@ export default function Home() {
           name={detailPanel.name}
           symptoms={symptoms}
           remedies={remedies}
+          selectedSymptoms={selectedSymptoms}
           onClose={() => setDetailPanel(null)}
           onShowRemedyDetail={(name) =>
             setDetailPanel({ type: "remedy", name })
@@ -513,6 +515,7 @@ function DetailPanel({
   name,
   symptoms,
   remedies,
+  selectedSymptoms,
   onClose,
   onShowRemedyDetail,
 }: {
@@ -520,6 +523,7 @@ function DetailPanel({
   name: string;
   symptoms: Record<string, { remedies: Record<string, number> }> | null;
   remedies: Record<string, string> | null;
+  selectedSymptoms: string[];
   onClose: () => void;
   onShowRemedyDetail: (name: string) => void;
 }) {
@@ -545,9 +549,13 @@ function DetailPanel({
             <div className="text-2xl font-bold text-[#065774] mb-2">
               {remedies?.[name] || name}
             </div>
-            <div className="text-sm text-[#6b7280]">
+            <div className="text-sm text-[#6b7280] mb-4">
               Abbreviation: {name}
             </div>
+            <MateriaPanel
+              remedyAbbrev={name}
+              selectedSymptoms={selectedSymptoms}
+            />
           </>
         ) : (
           <>

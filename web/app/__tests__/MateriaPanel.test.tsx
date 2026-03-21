@@ -1,6 +1,6 @@
 import { describe, it, expect, vi, beforeEach } from "vitest";
 import { render, screen, waitFor } from "@testing-library/react";
-import { MateriaPanel } from "../MateriaPanel";
+import { MateriaPanel, resetMateriaCache } from "../MateriaPanel";
 import type { ProfilesData, SymptomIndexData } from "../types";
 
 // Mock fetch globally
@@ -70,6 +70,7 @@ function mockFetchResponses(
 describe("MateriaPanel", () => {
   beforeEach(() => {
     mockFetch.mockReset();
+    resetMateriaCache();
   });
 
   it("renders loading state initially", () => {
