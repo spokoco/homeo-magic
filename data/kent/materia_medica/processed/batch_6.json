@@ -4,14 +4,13 @@
     "abbreviations": [
       "Kreos."
     ],
-    "total_symptoms_in_repertory": 3174,
     "file": "kreosotum.md",
     "profile": {
       "personality": "Extremely irritable and impossible to satisfy; wants everything but is pleased by nothing. The Kreosotum type is restless and demanding, constantly seeking something new only to reject it immediately upon receiving it.",
       "mental_state": "A state of chronic dissatisfaction and mental restlessness where nothing suits the patient. The mind is agitated by every emotion, with even minor emotional stimuli such as pathetic music producing overwhelming physical responses including pulsations felt to the extremities and acrid tearfulness.",
       "emotional_pattern": "Profoundly reactive and easily overwhelmed by emotion, with every exciting circumstance attended by tearfulness and whole-body throbbing. There is a deep-seated peevishness and querulous discontent, manifesting as throwing away what was just demanded and crying out irritably at discomfort."
     },
-    "symptom_passages": {
+    "rubric_passages": {
       "Back": "No specific passage found.",
       "Back, pain": "No specific passage found.",
       "Bladder": "A marked feature of the Kreosote constitution is that when the desire to urinate comes, he must hurry or the urine will escape. The urine is passed during sleep. Bloody urine; clots in the urine; acrid and excoriating urine; weakness of the bladder; inability to hold the urine.",
@@ -42,21 +41,21 @@
       "Abdomen": "great distension and trouble with the bowels; abdomen distended from flatus.",
       "Back, dorsal region, back": "No specific passage found.",
       "Heart & Circulation": "The circulation is so poor, so feeble in the parts all about the margin of the lips and the corners of the mouth, and corners of the eyes, and eyelids, and upon the genitals, and there is so much venous engorgement that crusts form and ulcerate and bleed and pile up, and this continues until a phagedenic spot comes."
-    }
+    },
+    "total_rubrics_in_repertory": 3174
   },
   {
     "remedy": "Lac Caninum",
     "abbreviations": [
       "Lac-c."
     ],
-    "total_symptoms_in_repertory": 1919,
     "file": "lac_caninum.md",
     "profile": {
       "personality": "A highly sensitive, imaginative individual prone to nervous complaints and hysterical states. Restless and irresolute, she starts things but wants to abandon them immediately, with a wandering, unfocused quality to both thought and action.",
       "mental_state": "The mind is tormented by harassing thoughts and vivid, often horrible imaginings\u2014snakes, spiders, distorted faces\u2014that she fears will materialize before her eyes. She cannot collect her thoughts, feels that nothing she says is true, and doubts the reality of her own identity and surroundings, existing on the borderland of insanity while outwardly functioning normally.",
       "emotional_pattern": "Chronically sad with a dark outlook, irritable, ugly-tempered, and hateful, yet deeply fearful\u2014every symptom convinces her a horrible disease has taken hold. She cannot bear to be alone and suffers from an overwhelming sense of unreality and self-doubt, feeling as though she is floating detached from the physical world."
     },
-    "symptom_passages": {
+    "rubric_passages": {
       "Back": "No specific passage found.",
       "Back, pain": "No specific passage found.",
       "Bladder": "Constant urging to urinate. Irritable bladder.",
@@ -87,7 +86,8 @@
       "Head, pain": "Headache above the eyes from riding in the cold wind, ameliorated in a warm room. Both the frontal and occipital headaches are aggravated by turning the eyeballs upwards and using the eyes for fine work. Pains in the head during the day, first on one side then on the other, either side being first affected.",
       "Mind, sadness, mental depression": "Chronic sadness, everything so dark; irritable, ugly, hateful.",
       "Throat": "In the throat there is a felt-like exudation, ashy gray or silvery shiny deposit. The pain in the throat pushes toward the left ear. Pains take alternate sides. The throat is ameliorated by cold or warm drinks, and aggravated by empty swallowing."
-    }
+    },
+    "total_rubrics_in_repertory": 1919
   },
   {
     "remedy": "Lac Vaccinum Defloratum",
@@ -95,14 +95,13 @@
       "Lac-d.",
       "Lac-v."
     ],
-    "total_symptoms_in_repertory": 548,
     "file": "lac_vaccinum_defloratum.md",
     "profile": {
       "personality": "A deeply chilly, exhausted individual who appears careworn and in decline, unable to endure exertion of any kind. They are listless, averse to mental work, and prefer complete rest in dark, quiet surroundings, withdrawing from social contact and conversation.",
       "mental_state": "Marked by loss of memory, mental vacillation, and an inability to concentrate or sustain intellectual effort. There is a fixed conviction of impending death, with claustrophobic anxiety and vertigo triggered by simple movements such as turning in bed or raising the hands.",
       "emotional_pattern": "Profound sadness pervades, with active desire for death and contemplation of the easiest means of self-destruction. There is a strong aversion to seeing or talking to people, weeping with palpitation, and morbid imaginings that all loved ones will die, driving fantasies of complete withdrawal from the world."
     },
-    "symptom_passages": {
+    "rubric_passages": {
       "Generalities": "The chronic milk subject is very cold and bloodless and cannot get warm even in a warm room and by warm clothing; she is so chilly and so sensitive to cold that she feels the air blowing on her in the room, as if she were fanned, even where there is no possible draft and others feel the room to be very warm.",
       "Head": "In sickly, pale, careworn women, when the headache is over the eyes and through the frontal region and the pain is violent; is better from, pressure and tight binding up, is better lying down in a dark room; is better from cold applications; is better from perfect rest; is worse from least motion, worse from light, noise, and conversation; when the headache comes on from drinking milk and is attended with copious, pale urine; with nausea and vomiting of food, mucus and bile.",
       "Rectum": "Chronic constipation where rectum seems paralyzed and injections and cathartics have failed; the stool is large, hard and difficult; after prolonged straining the stool recedes.",
@@ -133,7 +132,8 @@
       "Appetite, aversion, milk": "Let all observers faithfully and minutely study all patients who have an aversion to milk; all who have diarrhoea, nausea, vomiting, sick headaches, eructations, foul stomach after drinking milk.",
       "Generalities, food, milk": "People who drink milk habitually become anemic and catarrhal; fatty degeneration of muscles, of heart and liver. Malassimilation, is the most marked feature of milk poison.",
       "Head, pain, forehead, pulsating": "With all the frontal headaches there is strong pulsation in temples."
-    }
+    },
+    "total_rubrics_in_repertory": 548
   },
   {
     "remedy": "Lachesis",
@@ -141,14 +141,13 @@
       "Lach.",
       "Vip-l-f."
     ],
-    "total_symptoms_in_repertory": 7359,
     "file": "lachesis.md",
     "profile": {
       "personality": "Intensely self-conscious with strong egotism, envy, and suspicion dominating the character. Extremely loquacious, jumping rapidly between subjects with half-finished sentences, conveying a restless and driven quality. Prone to jealousy without cause and a deep-seated need for control, often appearing intoxicated or maudlin in manner.",
       "mental_state": "Marked confusion progressing toward insanity, with impulsive thoughts, religious melancholy, and delusions of persecution or guilt. The mind is tired yet ceaselessly active, with extraordinary sensitivity to all sensory input and a tendency to hear voices or commands compelling confession, theft, or violence. All mental symptoms worsen after sleep, in warm weather, and in spring, with a characteristic muttering delirium that can deepen into coma.",
       "emotional_pattern": "Deep melancholy and despair predominate, especially connected to grief, disappointed love, or shattered hopes, often with suicidal ideation settling into complete apathy. Jealousy and suspicion pervade all relationships, imagining conspiracies among friends, family, and loved ones. There is a strong link between emotional disturbance and cardiac symptoms \u2014 the slightest emotion produces cold extremities, weak heart, and suffocation."
     },
-    "symptom_passages": {
+    "rubric_passages": {
       "Back": "pain in the base of the brain or in the back of the head, and soreness of the muscles of the back of the neck, which is often relieved by lying on the back and aggravated by lying on either side.",
       "Back, coldness": "No specific passage found.",
       "Back, pain": "A surging sensation, which came up the back of the neck and head and then over the head.",
@@ -179,21 +178,21 @@
       "Respiration, difficult": "choking when going into sleep, the peculiar kind of saliva and aggravation of the throat symptoms from warm drinks. The sleep has been disturbed by attacks of suffocation.",
       "Skin": "The oversensitiveness to touch is probably extensively in the skin, because of the fact that hard pressure often gives relief. The touch of the clothing becomes very painful, while hard pressure may be agreeable.",
       "Sleep": "The symptoms of Lachesis are worse on entering sleep. He may have felt nothing of his symptoms when awake, but when sleep comes on they are aroused, and they gradually increase as the sleep is prolonged, so that a very long sleep will aggravate all the state and condition of a Lachesis patient, and when awakening from sleep he looks back on that sleep with sorrow."
-    }
+    },
+    "total_rubrics_in_repertory": 7359
   },
   {
     "remedy": "Laurocerasus",
     "abbreviations": [
       "Laur."
     ],
-    "total_symptoms_in_repertory": 2964,
     "file": "laurocerasus.md",
     "profile": {
       "personality": "A profoundly weak, depleted constitutional type characterized by complete lack of vital reactivity and feeble life force. These individuals appear lifeless, motionless, and expressionless, as if the animating spark has nearly extinguished. They are the patient who fails to convalesce, who does not respond to remedies, whose body seems to have given up its fight.",
       "mental_state": "Marked by stupefaction, weakness of mind, and a dull, heavy consciousness that borders on torpor. The mind is clouded with stupefying headaches and dim vision, as though perceiving the world through a veil. There is a fundamental inability to rally mental forces, with periods of profound sleep and near-unconsciousness reflecting the brain's inadequate blood supply.",
       "emotional_pattern": "Deep apprehensiveness pervades the emotional life, with complaints arising after profound sorrow or fright. Emotional excitement triggers physical spasms and chorea, revealing an extreme vulnerability to emotional shock. The emotional state mirrors the physical one \u2014 collapsed, unreactive, and marked by a quiet, helpless fear rather than active anxiety."
     },
-    "symptom_passages": {
+    "rubric_passages": {
       "Back": "Pain in sacrum during menses.",
       "Bladder": "The whole urinary apparatus is in a paralytic state. Suppression of urine or retention, or urine passed in a very feeble stream. Involuntary urination.",
       "Chest": "Difficult breathing. Suffocation, oppression of chest, gasping in heart complaints, ameliorated by lying down. Clutching at the heart and palpitation. It has cured mitral regurgitation many times,",
@@ -224,21 +223,21 @@
       "Generalities, eating": "Emptiness in stomach after eating (Dig.) as if he were still hungry. Headache is sometimes ameliorated by eating.",
       "Mind, dullness": "Weakness of body and mind. Fainting. Motionless. Apprehensiveness.",
       "Sleep, dreams": "No specific passage found."
-    }
+    },
+    "total_rubrics_in_repertory": 2964
   },
   {
     "remedy": "Ledum Palustre",
     "abbreviations": [
       "Led."
     ],
-    "total_symptoms_in_repertory": 3083,
     "file": "ledum_palustre.md",
     "profile": {
       "personality": "The Ledum patient is robust, plethoric, and full-blooded with a strong constitution, yet prone to loss of ambition and indolence. They may become sedentary, unwilling to work, and dependent on others, particularly when affected by chronic conditions or alcohol abuse.",
       "mental_state": "The mental state is characterized by a dulled, besotted quality with diminished drive and self-neglect, resembling the torpor of an old drunkard. There is a general mental heaviness and sluggishness that accompanies the constitutional coldness and venous congestion characteristic of the remedy.",
       "emotional_pattern": "Emotionally, the Ledum patient tends toward irritability and abusiveness, particularly when intoxicated, becoming extremely difficult and harsh toward family members. There is an underlying pattern of resignation and withdrawal, sitting passively while suffering intensely, enduring agony rather than seeking active solutions."
     },
-    "symptom_passages": {
+    "rubric_passages": {
       "Back": "No specific passage found.",
       "Back, pain": "No specific passage found.",
       "Chest": "No specific passage found.",
@@ -269,21 +268,21 @@
       "Extremities, swelling": "Ledum has a bloated condition of the hands, face, and feet; bloated and purple from the knees down in certain dropsical conditions. With this purple, mottled, bloated condition from the knees to the feet the swelling as big as the skin will allow.",
       "Eye": "Hemorrhages sometimes occur in the chamber of the eye.",
       "Eye, pain": "No specific passage found."
-    }
+    },
+    "total_rubrics_in_repertory": 3083
   },
   {
     "remedy": "Lycopodium",
     "abbreviations": [
       "Lyc."
     ],
-    "total_symptoms_in_repertory": 9664,
     "file": "lycopodium.md",
     "profile": {
       "personality": "An intellectually capable but constitutionally feeble individual who appears prematurely aged, withered, and exhausted. Despite underlying competence, they present as timid, indecisive, and averse to undertaking anything new, with a chronic fatigue that pervades both body and mind.",
       "mental_state": "Marked by mental fatigue, forgetfulness, and a profound lack of self-confidence despite proven ability \u2014 the lawyer who dreads court yet performs well once there. There is increasing difficulty with concentration, a tendency toward brooding melancholy that can deepen into religious insanity or suicidal aversion to life, and confusion upon waking with disorientation.",
       "emotional_pattern": "A deeply sensitive and contradictory emotional nature: dreads solitude yet avoids company, wanting someone nearby but not wanting interaction. Weeps easily at the slightest kindness or joy, is hypersensitive to noise and disturbance, and wakes with profound morning sadness and gloom that gradually lifts with activity. Irritability, suspiciousness, and misanthropy coexist with emotional fragility."
     },
-    "symptom_passages": {
+    "rubric_passages": {
       "Abdomen, rumbling": "In the stomach and intestines there is a great commotion, noisy rumbling, rolling of flatus as though fermentation were going on.",
       "Back": "No specific passage found.",
       "Back, pain": "No specific passage found.",
@@ -314,43 +313,44 @@
       "Rectum, pain": "It has troublesome hemorrhoids, but they are nondescript. Any kind of hemorrhoids may be cured by Lyc. if the flatulence, the stomach symptoms, the mental symptoms, and the general symptoms of Lyc. are present.",
       "Respiration": "The dyspnoea is worse from walking fast, after exertion and from going up a hill. Throbbing, burning and tickling in the chest. Dry, teasing cough.",
       "Respiration, difficult": "Dyspnoea and asthmatic breathing in catarrh of the chest. The colds settle in the nose, but nearly always go into the chest, with much whistling and wheezing, and great dyspnoea."
-    }
+    },
+    "total_rubrics_in_repertory": 9664
   },
   {
     "remedy": "Magnesia Carbonica",
     "abbreviations": [],
-    "total_symptoms_in_repertory": 0,
     "file": "magnesia_carbonica.md",
     "profile": {
       "personality": "A worn-down, depleted individual who appears sickly and sallow, unable to thrive despite effort. They are restless when in pain and must keep moving, yet fundamentally exhausted with flabby musculature and a sense of slow internal decline.",
       "mental_state": "The mental symptoms are incompletely proven, but the overall picture is one of sluggishness and weariness\u2014always tired in the morning as if sleep brought no restoration. There is a one-sided, latent quality to their suffering where symptoms remain hidden and do not fully come out, making the case difficult to read.",
       "emotional_pattern": "There is a deep-seated vulnerability and sensitivity to environmental changes, with every shift in weather or approach of menses bringing fresh suffering. The patient endures a quiet, chronic distress\u2014not dramatic but persistent\u2014marked by an inability to rally, a sense of not having enough vitality, and a chilly disposition that craves warmth and covering."
     },
-    "symptom_passages": {}
+    "rubric_passages": {},
+    "total_rubrics_in_repertory": 0
   },
   {
     "remedy": "Magnesia Muriatica",
     "abbreviations": [],
-    "total_symptoms_in_repertory": 0,
     "file": "magnesia_muriatica.md",
     "profile": {
       "personality": "A nervous, excitable constitution prone to hysteria, particularly common in women. The patient is extremely restless and fidgety, unable to keep still, and if forced into stillness becomes overwhelmed with anxiety. There is a deep sensitivity to environment, especially aggravated by the sea, salt, and closed rooms, yet ameliorated by fresh open air.",
       "mental_state": "The mind is driven by compulsive repetition \u2014 any thought that enters tends to repeat itself, and while reading the patient feels compelled to read faster and faster as if someone is reading after her. The patient is worked up to the highest pitch mentally, as if they would fly to pieces. Sleep is unrefreshing and the mind cannot find rest, with anxiety intensifying at night upon closing the eyes.",
       "emotional_pattern": "Anxiety is the dominant emotional feature, pervading the entire economy and worsening at night in bed, especially on closing the eyes. This anxiety is inseparable from a physical restlessness that compels movement \u2014 the patient must throw off covers, take deep breaths, or do something. There is a hysterical undercurrent with episodes of fainting, bearing-down sensations, and spasmodic complaints, reflecting a deep emotional instability that manifests throughout the body."
     },
-    "symptom_passages": {}
+    "rubric_passages": {},
+    "total_rubrics_in_repertory": 0
   },
   {
     "remedy": "Magnesia Phosphorica",
     "abbreviations": [],
-    "total_symptoms_in_repertory": 0,
     "file": "magnesia_phosphorica.md",
     "profile": {
       "personality": "A highly sensitive, nerve-dominated constitution prone to exhaustion from prolonged exertion, particularly of fine motor skills and repetitive tasks. The individual is physically reactive to environmental conditions, especially cold, and seeks warmth and firm pressure as comfort. They tend toward spasmodic, intense physical responses rather than gradual or moderate ones.",
       "mental_state": "The mental profile is relatively undeveloped in provings, but clinically the patient may develop sudden brain congestion or mental disturbance when physical discharges (such as diarrhea) are suppressed. There is a tendency toward frantic agitation during paroxysms of pain, with the mind dominated by the intensity of physical suffering rather than independent psychological pathology.",
       "emotional_pattern": "The emotional state is largely driven by the nervous system's hypersensitivity \u2014 the patient becomes frantic, restless, and compelled to groan or cry out from the violence of their pains. There is extreme post-convulsive sensitivity to all stimuli including touch, noise, and excitement. The emotional pattern is one of reactive distress rather than deep melancholy, with relief and calm restored by warmth, pressure, and stillness."
     },
-    "symptom_passages": {}
+    "rubric_passages": {},
+    "total_rubrics_in_repertory": 0
   },
   {
     "remedy": "Manganum",
@@ -368,14 +368,13 @@
       "Mang-p.",
       "Mang-sil."
     ],
-    "total_symptoms_in_repertory": 3172,
     "file": "manganum.md",
     "profile": {
       "personality": "A weary, broken-down individual who is deeply passive and seeks refuge in stillness. They are irritable over small things, low-spirited, and tend toward a bedridden existence not from laziness but from a fundamental exhaustion of vital force.",
       "mental_state": "Marked inability to think clearly or concentrate, with business difficulties arising from poor mental function. The mind becomes more agitated with any attempt at mental occupation or physical activity, yet all anxiety and mental distress vanish completely upon lying down \u2014 a rare and defining characteristic.",
       "emotional_pattern": "Dominated by great apprehensiveness and a pervasive sense that something awful is about to happen, driving restless floor-pacing that only worsens the anxiety. Deeply sad, weeping, and silent, finding no consolation except in lying down, which brings immediate and complete relief \u2014 a stark contrast to the anguished restlessness of the upright state."
     },
-    "symptom_passages": {
+    "rubric_passages": {
       "Back": "No specific passage found.",
       "Chest": "Ulceration and bleeding in the lungs. The hemorrhage is watery, like bloody saliva or bloody mucus. The patient grows nervous, tremulous and has palpitation.",
       "Generalities": "A strong feature is the great soreness of the periosteum, and especially of the shin bone. Tendency to ulceration and eruptions, and around these there is thickening and infiltration. Chronic eruptions; inveterate like psoriasis.",
@@ -406,21 +405,21 @@
       "Face, expression": "No medicine will give you a sicklier face.",
       "Head, pain, forehead": "No specific passage found.",
       "Larynx and trachea, voice": "Hoarseness and loss of voice in a chronic state. It is suitable in recurrent cases coming with every spell of damp weather until finally tuberculosis starts."
-    }
+    },
+    "total_rubrics_in_repertory": 3172
   },
   {
     "remedy": "Medorrhinum",
     "abbreviations": [
       "Med."
     ],
-    "total_symptoms_in_repertory": 1659,
     "file": "medorrhinum.md",
     "profile": {
       "personality": "A restless, hurried individual who feels perpetually behind, moving through life with an anxious urgency that leaves them breathless and faint. They are intensely sensitive \u2014 physically to touch, cold, and pain, and socially to the presence and energy of others, recoiling from contact with anyone not 'en rapport.' There is a general decline in vitality giving them a pale, waxy, prematurely aged appearance despite inner agitation.",
       "mental_state": "The mind is foggy and unreliable \u2014 forgetful of facts, names, and figures, making errors in writing and spelling, losing the thread of thought mid-sentence. There is a pervasive sense of unreality, as if everything around them is strange and disconnected, accompanied by paranoid ideation: hearing whispers, seeing faces peering from behind furniture, feeling a presence behind them. A wild, desperate feeling borders on incipient insanity, with confusion so profound they struggle to articulate their own symptoms.",
       "emotional_pattern": "Emotionally volatile and rapidly changeable \u2014 sad one moment, mirthful the next \u2014 with an undercurrent of deep dread and foreboding, including presentiments of death and anxiety about spiritual salvation. They weep easily when speaking, wake in fright as though something terrible has occurred, and fear the dark and being alone at night. An evening exhilaration temporarily lifts the mood but cannot mask the pervasive despair and growing sense of losing control."
     },
-    "symptom_passages": {
+    "rubric_passages": {
       "Bladder": "Inflammation of bladder, prostate gland or kidneys. Inactivity of the bladder and feeble stream of urine.",
       "Bladder, urination, frequent": "Frequent urination at night.",
       "Chest": "Great heat, even burning in chest. Many pains in chest. Rheumatic, sharp pains through chest on exposure to damp cold air. Intense pain in chest on coughing. Sensation of coldness in chest and mammae. Stitching pain in chest. The chest is sore to touch, and aggravated by the motion of breathing.",
@@ -451,7 +450,8 @@
       "Eye, lid": "Blepharitis with much swelling. Lids stuck together in the morning. Margins red and excoriated. Ptosis. Smarting of lids. Eyelashes fall out.",
       "Genitalia female, ovaries": "Chronic pain in ovarian region. Sterility. Enlarged ovaries.",
       "Mind, memory": "Forgetful of facts, figures and names; of what he has read. Makes mistakes in writing, of spelling, and words."
-    }
+    },
+    "total_rubrics_in_repertory": 1659
   },
   {
     "remedy": "Mercurius",
@@ -479,14 +479,13 @@
       "Merc-ns.",
       "Merc-pn."
     ],
-    "total_symptoms_in_repertory": 9226,
     "file": "mercurius.md",
     "profile": {
       "personality": "A hurried, restless, impulsive disposition marked by extreme changeability and sensitivity, much like the mercury thermometer itself. The Mercurius patient is reactive to every environmental shift, never comfortable in any condition, constantly oscillating between extremes of heat and cold, covering and uncovering.",
       "mental_state": "The mind is sluggish and forgetful, tending toward imbecility and softening of the brain, especially in cold, cloudy, or damp weather. The patient cannot grasp questions readily, must look and think before answering, and feels as though losing reason. There is a foolishness and delirium in acute states, with the mind alternating between dull torpor and violent impulsive flashes.",
       "emotional_pattern": "Dominated by deep impulsive urges \u2014 desires to kill those who contradict, sudden violent anger, and impulses toward suicide \u2014 which the patient desperately tries to suppress, fearing loss of self-control. Great anxiety and sadness pervade, especially at night and during menses, with a persistent restless feeling that some evil is impending. The patient conceals these dark impulses, suffering silently under the weight of drives they dare not reveal."
     },
-    "symptom_passages": {
+    "rubric_passages": {
       "Abdomen, hard": "No specific passage found.",
       "Back": "No specific passage found.",
       "Back, pain": "No specific passage found.",
@@ -517,21 +516,21 @@
       "Respiration": "Most Merc cases begin in the nose and travel down the throat, creating rawness and scraping of the larynx, and rawness and soreness in the chest; laryngitis, tracheitis and bronchitis. Loss of voice, complete aphonia.",
       "Respiration, difficult": "The colds finally settle in the bronchial tubes; the chest feels as if it would burst and the cough is worse lying on the right side.",
       "Skin": "There are many skin symptoms; scurfy eruptions, vesicular eruptions, eruptions discharging pus. Vesicles burn and smart, with excoriating discharges, especially on the head. Much itching of the skin, violent, in all parts of the body, as from fleas, especially when warm in bed at night."
-    }
+    },
+    "total_rubrics_in_repertory": 9226
   },
   {
     "remedy": "Mercurius Corrosivus",
     "abbreviations": [
       "Merc-c."
     ],
-    "total_symptoms_in_repertory": 2014,
     "file": "mercurius_corrosivus.md",
     "profile": {
       "personality": "The Mercurius Corrosivus type is intensely reactive, violent in expression, and driven by urgency. They are more active and excitable than the typical Mercurius constitution, taking hold of situations with fierce rapidity. There is a restless, consuming quality to their nature \u2014 nothing proceeds slowly or sluggishly.",
       "mental_state": "The mental state is dominated by great anxiety and an inability to find rest or relief, as if constantly driven by an internal urgency. There is an insatiable quality to their needs and desires, mirroring the intense thirst that characterizes the physical picture. The mind reflects the same violent, rapidly spreading destructiveness seen in the body \u2014 thoughts and distress escalate quickly.",
       "emotional_pattern": "The core emotional pattern is one of intense, burning agitation that cannot be contained or soothed. There is a deep-seated anxiety bordering on desperation, particularly around survival and physical integrity. Emotions spread and intensify rapidly, much like the remedy's characteristic rapidly spreading ulcerations \u2014 nothing smolders quietly but instead flares into consuming distress."
     },
-    "symptom_passages": {
+    "rubric_passages": {
       "Back": "No specific passage found.",
       "Back, pain": "No specific passage found.",
       "Bladder": "great tenesmus of rectum and bladder; urging to urination and stool is constant",
@@ -562,21 +561,21 @@
       "Generalities, pressure": "No specific passage found.",
       "Generalities, weakness": "if this patient is not relieved he will not live",
       "Appetite": "No specific passage found."
-    }
+    },
+    "total_rubrics_in_repertory": 2014
   },
   {
     "remedy": "Mercurius Cyanatus",
     "abbreviations": [
       "Merc-cy."
     ],
-    "total_symptoms_in_repertory": 229,
     "file": "mercurius_cyanatus.md",
     "profile": {
       "personality": "A deeply deteriorated constitutional type marked by rapid systemic decline and malignant tendencies. The Mercurius Cyanatus patient shares the restless, hurried, and dissatisfied Mercurius base but in a more extreme, destructive expression.",
       "mental_state": "Mental state reflects the severity of the pathology: profound prostration with dullness and confusion characteristic of advanced septic states. The mind mirrors the phagedenic spread seen physically, with rapidly deteriorating cognitive function and an inability to rally mental resources.",
       "emotional_pattern": "Emotionally overwhelmed and sinking, with the characteristic Mercurius distrust and anxiety intensified by the rapidity and malignancy of their condition. There is a deep-seated vulnerability and sense of being overtaken, consistent with the spreading, destructive nature of the remedy picture."
     },
-    "symptom_passages": {
+    "rubric_passages": {
       "Generalities": "No specific passage found.",
       "Generalities, weakness, enervation": "No specific passage found.",
       "Stomach": "No specific passage found.",
@@ -607,7 +606,8 @@
       "Larynx and trachea, croup": "No specific passage found.",
       "Larynx and trachea, croup, membranous": "No specific passage found.",
       "Mouth, aphthae": "No specific passage found."
-    }
+    },
+    "total_rubrics_in_repertory": 229
   },
   {
     "remedy": "Mercurius Iodatus Flavus",
@@ -615,14 +615,13 @@
       "Merc-i-f.",
       "Flav."
     ],
-    "total_symptoms_in_repertory": 1161,
     "file": "mercurius_iodatus_flavus.md",
     "profile": {
       "personality": "A restless, mercury-type individual who cannot tolerate confinement and feels distinctly worse in warm rooms and during periods of inactivity. They are ameliorated by open air and movement, suggesting a constitution that requires constant circulation and environmental freshness to maintain equilibrium.",
       "mental_state": "The mental state reflects the characteristic mercurial restlessness with a marked right-sided predominance in nervous complaints, particularly manifesting as neuritis in writers \u2014 suggesting a constitution prone to nervous exhaustion from sustained fine-motor intellectual work. There is an underlying syphilitic miasmatic tendency indicating deep-seated tissue degeneration and induration at the mental-physical interface.",
       "emotional_pattern": "Emotional distress is aggravated by confinement, rest, and warmth \u2014 conditions that force the patient inward \u2014 while relief comes from open air and walking, pointing to a constitution that manages emotional tension through outward movement and environmental change. The right-sided tropism suggests a pattern where emotional suppression manifests somatically through throat and nerve complaints on the active, expressive side of the body."
     },
-    "symptom_passages": {
+    "rubric_passages": {
       "Generalities": "The patient that needs this remedy for constitutional troubles will be worse during rest and from a warm room and better in the open air.",
       "Mouth": "There are sore throats that especially call for the proto-iodide.",
       "Skin": "No specific passage found.",
@@ -653,7 +652,8 @@
       "Mind": "No specific passage found.",
       "Rectum": "No specific passage found.",
       "Rectum, constipation": "No specific passage found."
-    }
+    },
+    "total_rubrics_in_repertory": 1161
   },
   {
     "remedy": "Mercurius Sulphuricus",
@@ -661,14 +661,13 @@
       "Merc-s.",
       "Sulph."
     ],
-    "total_symptoms_in_repertory": 12153,
     "file": "mercurius_sulphuricus.md",
     "profile": {
       "personality": "A constitutionally weakened individual prone to chronic, progressive fluid accumulation states. The Mercurius Sulphuricus type tends toward sluggish vitality with a disposition marked by the gradual decline characteristic of the mercurial temperament.",
       "mental_state": "Mental faculties are dulled by the oppressive physical burden of fluid congestion and respiratory distress. The mind is weighed down, with difficulty concentrating due to the constant awareness of labored breathing and chest discomfort.",
       "emotional_pattern": "Emotionally characterized by the anxiety and restlessness common to the Mercurius base, compounded by the distress of suffocative sensations. There is a deep-seated weariness and resignation found in chronic, long-standing illness with a sense of being overwhelmed by persistent physical suffering."
     },
-    "symptom_passages": {
+    "rubric_passages": {
       "Abdomen, hard": "No specific passage found.",
       "Abdomen, rumbling": "No specific passage found.",
       "Abdomen, weakness, sensation of": "No specific passage found.",
@@ -699,6 +698,7 @@
       "Appetite, desires, meat": "No specific passage found.",
       "Appetite, desires, raw, food": "No specific passage found.",
       "Stomach, distension": "No specific passage found."
-    }
+    },
+    "total_rubrics_in_repertory": 12153
   }
 ]

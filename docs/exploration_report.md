@@ -58,9 +58,9 @@ Opening:
 
 ## Keyword Matching Results
 
-We tested keyword matching using symptom paths from our repertory database (symptoms.json). For each remedy, we extracted keywords from the top-weighted symptoms and searched the lecture text.
+We tested keyword matching using rubric paths from our repertory database (symptoms.json). For each remedy, we extracted keywords from the top-weighted rubrics and searched the lecture text.
 
-| Remedy | Repertory symptoms (grade 2+) | Keywords tested | Keywords matched | Match rate |
+| Remedy | Repertory rubrics (grade 2+) | Keywords tested | Keywords matched | Match rate |
 |---|---|---|---|---|
 | Nux Vomica | 4,718 | 15 | 11 | 73% |
 | Sulphur | 6,063 | 15 | 12 | 80% |
@@ -95,7 +95,7 @@ The converter produces clean, readable Markdown:
 
 Simple keyword matching achieves 47-80% coverage. The LLM pass (planned in the pipeline) should:
 - Bridge vocabulary gaps (colloquial Kent -> systematic repertory)
-- Identify symptom descriptions that use synonyms or paraphrases
+- Identify rubric descriptions that use synonyms or paraphrases
 - Extract modalities (worse/better from) that Kent expresses in prose form
 
 ### 2. Keyword pre-filter should use expanded synonyms

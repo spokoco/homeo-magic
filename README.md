@@ -1,16 +1,16 @@
 # Homeo-Magic
 
-A structured database and lookup tool for homeopathic repertorization — finding remedies by symptom intersection.
+A structured database and lookup tool for homeopathic repertorization — finding remedies by rubric intersection.
 
 ## How Repertorization Works
 
 The clinical workflow:
 
 1. **Patient presents** with multiple symptoms
-2. **Look up each symptom** in a repertory (like Kent's)
-3. **Each symptom returns** a list of remedies (with grades)
-4. **Find the intersection** — remedies that appear for ALL symptoms
-5. **Rank by total score** — sum of grades across symptoms
+2. **Look up each rubric** in a repertory (like Kent's)
+3. **Each rubric returns** a list of remedies (with grades)
+4. **Find the intersection** — remedies that appear for ALL rubrics
+5. **Rank by total score** — sum of grades across rubrics
 
 ### Example
 
@@ -21,14 +21,14 @@ Patient symptoms:
   3. "worse from cold"
 
 Lookup results:
-  Symptom 1: [Nux-v(3), Bry(2), Sulph(1), Nat-m(2), Calc(1)]
-  Symptom 2: [Nux-v(3), Bry(1), Sulph(2), Sep(2), Lyc(1)]
-  Symptom 3: [Nux-v(2), Bry(2), Sulph(3), Ars(3), Hep(2)]
+  Rubric 1: [Nux-v(3), Bry(2), Sulph(1), Nat-m(2), Calc(1)]
+  Rubric 2: [Nux-v(3), Bry(1), Sulph(2), Sep(2), Lyc(1)]
+  Rubric 3: [Nux-v(2), Bry(2), Sulph(3), Ars(3), Hep(2)]
 
 Step 1 — Find intersection (remedies appearing in ALL lists):
   Nux-v, Bry, Sulph
 
-Step 2 — Sum grades across symptoms:
+Step 2 — Sum grades across rubrics:
   Nux-v:  3 + 3 + 2 = 8  ← highest
   Sulph:  1 + 2 + 3 = 6
   Bry:    2 + 1 + 2 = 5  ← lowest
@@ -43,13 +43,13 @@ Step 3 — Rank by total score:
 
 ### Grading System
 
-The grade (1-3) indicates how strongly a remedy is associated with that symptom:
+The grade (1-3) indicates how strongly a remedy is associated with that rubric:
 
 - **Grade 3** (bold in original texts): Primary/strongly indicated
 - **Grade 2** (italic): Secondary indication  
 - **Grade 1** (plain): Minor/occasional indication
 
-A remedy scoring grade 3 across multiple symptoms is a much stronger match than one scoring grade 1 everywhere.
+A remedy scoring grade 3 across multiple rubrics is a much stronger match than one scoring grade 1 everywhere.
 
 ---
 
@@ -57,7 +57,7 @@ A remedy scoring grade 3 across multiple symptoms is a much stronger match than 
 
 ```json
 {
-  "symptoms": {
+  "rubrics": {
     "head/pain/morning": {
       "remedies": {
         "Nux-v": 3,
@@ -78,8 +78,8 @@ A remedy scoring grade 3 across multiple symptoms is a much stronger match than 
 
 | File | Purpose |
 |------|---------|
-| `symptoms.json` | Main index: symptom path → remedies + grades |
-| `search_index.json` | Keyword search for finding symptoms |
+| `symptoms.json` | Main index: rubric path → remedies + grades |
+| `search_index.json` | Keyword search for finding rubrics |
 | `hierarchy.json` | Browsable tree structure |
 | `remedies.json` | Remedy abbreviations → full names |
 
@@ -93,24 +93,24 @@ A remedy scoring grade 3 across multiple symptoms is a much stronger match than 
 ├─────────────────────────────────────────────────┤
 │  1. SCRAPER                                      │
 │     - Fetch Kent's Repertory (chapter by chapter)│
-│     - Parse symptom hierarchy (Head > Pain > AM) │
+│     - Parse rubric hierarchy (Head > Pain > AM)  │
 │     - Extract remedies + grades                  │
 │     - Output: symptoms.json                      │
 ├─────────────────────────────────────────────────┤
 │  2. INDEX                                        │
-│     - symptoms.json: symptom → remedies + grades │
+│     - symptoms.json: rubric → remedies + grades  │
 │     - search_index.json: keyword search          │
 │     - hierarchy.json: browsable tree             │
 ├─────────────────────────────────────────────────┤
 │  3. LOOKUP ENGINE                                │
-│     - Input: list of symptoms                    │
+│     - Input: list of rubrics                     │
 │     - Find intersection: remedies in ALL lists   │
-│     - Score each: sum of grades across symptoms  │
+│     - Score each: sum of grades across rubrics   │
 │     - Output: remedies ranked by total score     │
 ├─────────────────────────────────────────────────┤
 │  4. WEB UI                                       │
 │     - Next.js + Vite + React + Tailwind CSS      │
-│     - Symptom autocomplete input                 │
+│     - Rubric autocomplete input                  │
 │     - Multi-select with ranked results           │
 └─────────────────────────────────────────────────┘
 ```
@@ -141,7 +141,7 @@ James Tyler Kent's *Repertory of the Homeopathic Materia Medica* (1897) — the 
 ```
 homeo-magic/
 ├── data/
-│   ├── symptoms.json       # Main symptom → remedy index
+│   ├── symptoms.json       # Main rubric → remedy index
 │   ├── search_index.json   # Keyword search
 │   ├── hierarchy.json      # Browsable tree
 │   └── remedies.json       # Abbreviation mappings
@@ -166,12 +166,12 @@ homeo-magic/
 ### Phase 1: Data Acquisition
 - [ ] Investigate OOREP's data format (may have downloadable JSON)
 - [ ] If not, build Kent scraper for cleanest available source
-- [ ] Parse symptom hierarchy + remedy grades
+- [ ] Parse rubric hierarchy + remedy grades
 - [ ] Output raw symptoms.json
 
 ### Phase 2: Index & Search
 - [ ] Build keyword search index
-- [ ] Implement fuzzy matching for symptom lookup
+- [ ] Implement fuzzy matching for rubric lookup
 - [ ] Build intersection algorithm with grade-based scoring
 
 ### Phase 3: Web UI
@@ -180,13 +180,13 @@ homeo-magic/
 
 **UI Behavior:**
 
-1. **Symptom Input** — Single text field with autocomplete
+1. **Rubric Input** — Single text field with autocomplete
 2. **Autocomplete Priority:**
-   - First: symptoms already selected in this session (for quick re-entry)
-   - Then: matching symptoms from the repertory database
-3. **Selection** — Click to add symptom to list, shows as tag/chip
-4. **Results** — Live-updating ranked remedy list as symptoms are added/removed
-5. **Remedy Display** — Show total score, breakdown per symptom
+   - First: rubrics already selected in this session (for quick re-entry)
+   - Then: matching rubrics from the repertory database
+3. **Selection** — Click to add rubric to list, shows as tag/chip
+4. **Results** — Live-updating ranked remedy list as rubrics are added/removed
+5. **Remedy Display** — Show total score, breakdown per rubric
 
 **Deployment:** GitHub Pages or Vercel (static export)
 
@@ -195,7 +195,7 @@ homeo-magic/
 ┌─────────────────────────────────────────────────┐
 │  🔮 Homeo-Magic                                  │
 ├─────────────────────────────────────────────────┤
-│  Enter symptoms:                                 │
+│  Enter rubrics:                                  │
 │  ┌─────────────────────────────────────────┐    │
 │  │ headache morning ▼                      │    │
 │  └─────────────────────────────────────────┘    │

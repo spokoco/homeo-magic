@@ -1,7 +1,7 @@
 #!/usr/bin/env python3
 """
 Tests for processed materia medica output (batch processing results).
-Validates profiles, symptom passages, and data integrity.
+Validates profiles, rubric passages, and data integrity.
 Run with: python3 -m pytest test-materia-processed.py -v
 """
 
@@ -131,26 +131,26 @@ class TestProfiles:
 
 # --- Symptom Passage Tests ---
 
-class TestSymptomPassages:
-    """Test symptom-passage cross-references."""
+class TestRubricPassages:
+    """Test rubric-passage cross-references."""
 
-    def test_all_have_symptom_passages(self, all_results):
+    def test_all_have_rubric_passages(self, all_results):
         for r in all_results:
-            assert "symptom_passages" in r, f"{r['remedy']} missing symptom_passages"
-            assert isinstance(r["symptom_passages"], dict)
+            assert "rubric_passages" in r, f"{r['remedy']} missing rubric_passages"
+            assert isinstance(r["rubric_passages"], dict)
 
     def test_passages_are_strings(self, all_results):
         for r in all_results:
-            for symptom, passage in r.get("symptom_passages", {}).items():
-                assert isinstance(symptom, str), f"{r['remedy']}: symptom key not string"
-                assert isinstance(passage, str), f"{r['remedy']}: passage not string for {symptom}"
+            for rubric, passage in r.get("rubric_passages", {}).items():
+                assert isinstance(rubric, str), f"{r['remedy']}: rubric key not string"
+                assert isinstance(passage, str), f"{r['remedy']}: passage not string for {rubric}"
 
     def test_passages_have_content(self, all_results):
         """Each passage should be more than just a few words."""
         short_count = 0
         total = 0
         for r in all_results:
-            for symptom, passage in r.get("symptom_passages", {}).items():
+            for rubric, passage in r.get("rubric_passages", {}).items():
                 total += 1
                 if len(passage) < 10:
                     short_count += 1
@@ -163,15 +163,15 @@ class TestSymptomPassages:
         for name in ["Nux Vomica", "Sulphur", "Pulsatilla"]:
             remedy = next((r for r in all_results if name in r["remedy"]), None)
             if remedy:
-                count = len(remedy["symptom_passages"])
+                count = len(remedy["rubric_passages"])
                 assert count >= 10, f"{name} only has {count} passages, expected 10+"
 
-    def test_symptom_paths_match_repertory_format(self, all_results):
-        """Symptom keys should look like repertory paths (comma-separated)."""
+    def test_rubric_paths_match_repertory_format(self, all_results):
+        """Rubric keys should look like repertory paths (comma-separated)."""
         sample = all_results[0]
-        for symptom in list(sample.get("symptom_passages", {}).keys())[:5]:
-            assert "," in symptom or len(symptom.split()) <= 3, \
-                f"Symptom key doesn't look like a repertory path: {symptom}"
+        for rubric in list(sample.get("rubric_passages", {}).keys())[:5]:
+            assert "," in rubric or len(rubric.split()) <= 3, \
+                f"Rubric key doesn't look like a repertory path: {rubric}"
 
 
 # --- Cross-Reference Integrity Tests ---
@@ -190,13 +190,13 @@ class TestCrossReferenceIntegrity:
         assert len(missing) / max(len(all_results), 1) < 0.15, \
             f"Too many unmatched abbreviations: {missing[:10]}"
 
-    def test_total_symptom_count_reasonable(self, all_results):
-        """Total symptoms referenced should be substantial."""
-        total_symptoms = sum(
-            r.get("total_symptoms_in_repertory", 0) for r in all_results
+    def test_total_rubric_count_reasonable(self, all_results):
+        """Total rubrics referenced should be substantial."""
+        total_rubrics = sum(
+            r.get("total_rubrics_in_repertory", 0) for r in all_results
         )
-        assert total_symptoms > 10000, \
-            f"Total symptom references seem low: {total_symptoms}"
+        assert total_rubrics > 10000, \
+            f"Total rubric references seem low: {total_rubrics}"
 
 
 # --- Merge Readiness Tests ---
@@ -213,11 +213,11 @@ class TestMergeReadiness:
                 profiles[key] = r.get("profile", {})
         assert len(profiles) > 100, f"Only {len(profiles)} profiles assemblable"
 
-    def test_symptom_index_assemblable(self, all_results):
-        """Should be able to build a symptom_index.json from the data."""
+    def test_rubric_index_assemblable(self, all_results):
+        """Should be able to build a rubric_index.json from the data."""
         index = {}
         for r in all_results:
-            if r.get("abbreviations") and r.get("symptom_passages"):
+            if r.get("abbreviations") and r.get("rubric_passages"):
                 key = r["abbreviations"][0]
-                index[key] = r["symptom_passages"]
+                index[key] = r["rubric_passages"]
         assert len(index) > 100, f"Only {len(index)} index entries assemblable"

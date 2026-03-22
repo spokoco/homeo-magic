@@ -4,14 +4,13 @@
     "abbreviations": [
       "Graph."
     ],
-    "total_symptoms_in_repertory": 5836,
     "file": "graphites.md",
     "profile": {
       "personality": "A sluggish, irresolute individual who tends toward obesity and physical stagnation, with a deep sensitivity to environmental conditions\u2014easily chilled yet equally distressed by warmth. They are averse to mental exertion and prefer open air, displaying a general heaviness and paralytic weakness that pervades both body and mind.",
       "mental_state": "Marked mental dullness and slowness of thought, worst in the morning, with an inability to concentrate on close mental work and a dread of intellectual effort. Memory is paradoxically split\u2014vivid recall of distant youth but forgetfulness of recent events\u2014accompanied by profound irresolution, an inability to make decisions, and restless mental activity in the evening that prevents sleep until midnight.",
       "emotional_pattern": "Extreme melancholic depression dominated by thoughts of death and salvation, intensely aggravated by music, with constant mood fluctuations between morning despair and evening excitability. Fretful, impatient, and irritable over trifles, prone to deep anxiety reaching desperation, with grief and vexation triggering recurrence of all mental suffering."
     },
-    "symptom_passages": {
+    "rubric_passages": {
       "Abdomen, hard": "It is a most useful remedy in hard, swollen, sore liver with weight and distress in the liver",
       "Abdomen, hard, liver": "It is a most useful remedy in hard, swollen, sore liver with weight and distress in the liver; stitches in both hypochondria, burning in left hypochondrium when lying on it; sensitive to clothing in the liver region.",
       "Back": "The spine is very sensitive to the jar of the bed; pain in lumbar region as if \"spine were broken\"; pain in sacrum with numbness down the limbs; pain in sacrum and coccyx while urinating; itching and moisture over the coccyx.",
@@ -42,21 +41,21 @@
       "Skin": "Itching of the skin all over the body, with or without eruptions itching worse at night in the warm bed; itching and burning with eruptions; the skin is very hot at night; excoriation of the skin in the bends of joints. Every injury festers. Fissures on ends of fingers, on nipples, labial commissures at anus and vulva, between the toes.",
       "Sleep": "Dreams vivid; anxious, horrible, vexatious. Sleepless before midnight; sleepiness during the day. Nightly pains in sleep. Frequent waking. Unrefreshed in the morning.",
       "Sleep, restless": "Extreme activity of mind in the evening and first half of the night, which, prevents sleep until midnight; Sleepless before midnight; Frequent waking. Unrefreshed in the morning."
-    }
+    },
+    "total_rubrics_in_repertory": 5836
   },
   {
     "remedy": "Gratiola",
     "abbreviations": [
       "Grat."
     ],
-    "total_symptoms_in_repertory": 1874,
     "file": "gratiola.md",
     "profile": {
       "personality": "A weak-willed, hypochondriacal individual prone to nervous prostration and mental exhaustion, often associated with coffee or alcohol abuse. They are capricious and irritable, with a marked aversion to work and a tendency toward pride-related complaints.",
       "mental_state": "Characterized by lack of willpower, mental depression, and fear of the future. There is significant cerebral congestion with vertigo triggered by multiple stimuli, and the mind is weakened alongside the body in a state of nervous exhaustion.",
       "emotional_pattern": "Deeply irritable and emotionally unstable, oscillating between melancholic depression and states of excessive excitability, particularly sexual over-excitement in women. The core emotional theme is a loss of self-governance\u2014the will cannot restrain either despair or desire."
     },
-    "symptom_passages": {
+    "rubric_passages": {
       "Back": "After stool, burning in rectum; tenesmus; pain in coccyx creeping chills; pain in abdomen.",
       "Back, pain": "leucorrhea with pains in sacrum.",
       "Genitalia female": "It is a most useful remedy in the female when there is marked irritability of the sexual organs, if the sexual desire is great excited; it is one of our best remedies for nymphomania.",
@@ -87,33 +86,33 @@
       "Stool, yellow, greenish": "Diarrhoea, with copious gushing, yellow or yellowish-green, frothy, watery stools.",
       "Vertigo, eating, after": "Vertigo during and after eating.",
       "Vertigo, eating": "Vertigo during and after eating."
-    }
+    },
+    "total_rubrics_in_repertory": 1874
   },
   {
     "remedy": "Guaiacum",
     "abbreviations": [],
-    "total_symptoms_in_repertory": 0,
     "file": "guaiacum.md",
     "profile": {
       "personality": "A constitutionally weakened individual prone to deep-seated rheumatic and gouty conditions, with progressive physical deterioration. They are fundamentally rigid and contracted in nature, both physically (shortened tendons, stiff joints) and temperamentally (obstinate, indolent), reflecting a system that has become fixed and resistant to change.",
       "mental_state": "Absent-minded particularly in the morning, with forgetfulness and a progressive weakness of mind accompanying the bodily decline. There is a mental sluggishness and indolence that mirrors the physical exhaustion, suggesting a mind that has become as stiff and unresponsive as the contracted limbs.",
       "emotional_pattern": "Low-spirited and fretful, with an underlying obstinacy that resists both comfort and correction. The emotional state is one of irritable resignation \u2014 a person worn down by chronic suffering who becomes peevish and contrary, yet lacks the vitality to express stronger emotions."
     },
-    "symptom_passages": {}
+    "rubric_passages": {},
+    "total_rubrics_in_repertory": 0
   },
   {
     "remedy": "Helleborus Niger",
     "abbreviations": [
       "Hell."
     ],
-    "total_symptoms_in_repertory": 2687,
     "file": "helleborus_niger.md",
     "profile": {
       "personality": "A profoundly passive, withdrawn individual who appears semi-idiotic or dazed, sitting in silence and staring blankly into space. They are indifferent to external impressions \u2014 unmoved by heat, cold, touch, or social interaction \u2014 and seem unable to project ideas or exert willpower over their own body. Fixed ideas take root and cannot be dislodged by reasoning or argument.",
       "mental_state": "The mind is benumbed and stupefied, with severely diminished concentration, memory, and the power of thought; the patient cannot rivet attention, cannot think clearly, and answers questions only after long delay or not at all. There is a characteristic loss of the mind's control over the body \u2014 muscles will not obey the will, creating a paralytic sluggishness rather than active delirium. When roused with effort, the patient stares with a dazed expression and may speak of seeing spirits or devils, but these hallucinations are shaped by prior learning rather than original ideation.",
       "emotional_pattern": "The core emotional state is deep apathy masquerading as melancholy \u2014 the patient appears sad and woeful but is largely incapable of active feeling or lamentation. Consolation aggravates the condition, yet there is no fear of death as in Aconite, nor the restless anguish of Aurum; instead there is a quiet, stubborn conviction of having sinned or committed an unpardonable wrong. A quasi-hysterical religious guilt may dominate, with fixed ideas about having sinned away one's day of grace, held with calm certainty rather than emotional torment."
     },
-    "symptom_passages": {
+    "rubric_passages": {
       "Abdomen, rumbling": "No specific passage found.",
       "Back": "These muscles keep shortening, as the disease progresses, just as they do in cerebro-spinal meningitis; until the head is drawn back as far as it can go.",
       "Bladder": "The urine is retained or suppressed; sometimes it dribbles away passes unconsciously. Urine passed in a feeble stream; bloody urine.",
@@ -144,7 +143,8 @@
       "Genitalia female, uterus": "No specific passage found.",
       "Abdomen": "In the early part of the proving there are diarrhoea and dysentery; with copious white gelatinous stool; stool consisting solely of pale tenacious mucus.",
       "Heart & Circulation": "No specific passage found."
-    }
+    },
+    "total_rubrics_in_repertory": 2687
   },
   {
     "remedy": "Hepar Sulphur",
@@ -152,14 +152,13 @@
       "Hep.",
       "Sulph."
     ],
-    "total_symptoms_in_repertory": 13876,
     "file": "hepar_sulphur.md",
     "profile": {
       "personality": "The Hepar Sulphur constitutional type is an oversensitive, irritable individual who is described as 'delicate' and hypersensitive to all impressions \u2014 pain, cold, touch, and surroundings. They are quarrelsome, hard to get along with, and nothing pleases them; they desire constant change of persons, things, and surroundings, yet each new change again displeases and irritates them.",
       "mental_state": "The mind is characterized by extreme irritability and violent, destructive impulses that can overwhelm the patient \u2014 sudden urges to stab a friend, a barber's impulse to cut a patron's throat, or a mother's impulse to throw her child into the fire. These impulses are without rational cause and may increase to the point of insanity, manifesting as mania, particularly pyromania. The patient is impulsive, abusive, and intensely angry at every little disturbance.",
       "emotional_pattern": "The core emotional pattern is one of hypersensitivity escalating into rage and destructive impulses. The patient faints from even slight pain, demonstrating an inability to tolerate suffering, while emotionally they cannot tolerate people or circumstances around them. There is a deep restless dissatisfaction \u2014 an endless cycle of seeking change and being displeased by what is found \u2014 combined with a hair-trigger temper that transforms minor annoyances into intense anger."
     },
-    "symptom_passages": {
+    "rubric_passages": {
       "Abdomen, rumbling": "No specific passage found.",
       "Abdomen, weakness, sensation of": "No specific passage found.",
       "Back": "No specific passage found.",
@@ -190,21 +189,21 @@
       "Stomach": "The cough is attended with choking and gagging, even to vomiting.",
       "Appetite, increased (hunger in general)": "No specific passage found.",
       "Appetite, aversion, acids, to": "No specific passage found."
-    }
+    },
+    "total_rubrics_in_repertory": 13876
   },
   {
     "remedy": "Hydrastis Canadensis",
     "abbreviations": [
       "Hydr."
     ],
-    "total_symptoms_in_repertory": 1483,
     "file": "hydrastis_canadensis.md",
     "profile": {
       "personality": "A depleted, worn-down individual who has suffered prolonged physical illness, presenting as weak, emaciated, and cachetic. They are slow in all processes \u2014 digestion, recovery, and vitality \u2014 with a general torpidity that pervades their entire constitution.",
       "mental_state": "Remarkably absent of strong mental symptoms, which is itself a distinguishing characteristic; the mind remains relatively intact while the body deteriorates. The only notable mental feature is a general discouragement and despondency arising from long-continued physical suffering and weakness, rather than any primary mental pathology.",
       "emotional_pattern": "Dominated by a deep weariness and resignation born of chronic illness, with a paradoxical combination of hunger and loathing \u2014 craving relief yet repelled by what might provide it. There is a quiet, uncomplaining endurance rather than acute emotional distress, with fainting and sinking sensations reflecting an emotional emptiness that mirrors the characteristic physical 'goneness' in the stomach."
     },
-    "symptom_passages": {
+    "rubric_passages": {
       "Abdomen, rumbling": "No specific passage found.",
       "Generalities": "Hydrastis is a slow, deep acting remedy, required in many trophic disturbances. where there is emaciation, catarrhal conditions and ulceration, even malignant ulceration. Defective assimilation.",
       "Genitalia female": "Thick, yellow, viscid leucorrhoea, sometimes white, sometimes offensive. Excoriation of vagina. Soreness in vagina during coition. Bleeding after coition. Uterine haemorrhage. Menses copious. Relaxed, dragging feeling in pelvis. Intense itching of vulva. Epithelioma of mamma.",
@@ -235,21 +234,21 @@
       "Stomach, emptiness, weak feeling, faintness, goneness, hungry feeling": "Empty, faint feeling in stomach with loathing of food and obstinate constipation with no desire for stool, is a combination that must generally have Hydrastis. The empty, sinking feeling is not ameliorated after eating.",
       "Nose, discharge": "Coryza with discharge, scanty in room and profuse in open air. Bloody, purulent discharge from nose. Thick, white, or yellow mucous discharge.",
       "Stomach, emptiness": "Empty, faint feeling in stomach with loathing of food and obstinate constipation with no desire for stool, is a combination that must generally have Hydrastis. The empty, sinking feeling is not ameliorated after eating."
-    }
+    },
+    "total_rubrics_in_repertory": 1483
   },
   {
     "remedy": "Hyoscyamus",
     "abbreviations": [
       "Hyos."
     ],
-    "total_symptoms_in_repertory": 3438,
     "file": "hyoscyamus.md",
     "profile": {
       "personality": "A deeply suspicious and restless individual prone to busy, prattling behavior and preoccupation with trivial or bizarre mental occupations. The Hyoscyamus type is characteristically passive rather than violent, tending toward muttering soliloquies, talking to imaginary persons, and carrying on habitual routines even in disordered states.",
       "mental_state": "The mind alternates between delirium with vivid hallucinations and stuporous states from which the patient can barely be roused. There is a constant stream of illusions, imaginary conversations with absent or dead persons, and suspicion that others are plotting against them. The mental activity is busy yet purposeless, with the patient fixating obsessively on trivial details such as arranging patterns or picking at objects.",
       "emotional_pattern": "Suspicion and fear dominate the emotional landscape, particularly fear of being poisoned, betrayed, or abandoned, arising from a deep sense that friends and family have turned against them. There is a pronounced tendency toward jealousy, lascivious excitement, and shameless exposure without awareness of impropriety. Religious despair may emerge, with the conviction of having committed unforgivable sins, alongside vulnerability to insanity triggered by disappointed love or emotional betrayal."
     },
-    "symptom_passages": {
+    "rubric_passages": {
       "Back": "No specific passage found.",
       "Bladder": "Paralysis of the bladder after labor, so that the urine remains in the bladder, with no desire to urinate.",
       "Chest": "Spasms of the muscles of the chest.",
@@ -280,7 +279,8 @@
       "Clinical, paralysis": "Hyoscyamus has various crampings; cramps in the fingers and toes and of the muscles here and there, temporary paralysis, etc.",
       "Generalities, weakness": "Complete prostration, so that the patient slides down in bed, until the jaw drops.",
       "Head, congestion": "Children, either in convulsions, or between convulsions, in congestion, also grind the teeth in the night, and in this comatose state."
-    }
+    },
+    "total_rubrics_in_repertory": 3438
   },
   {
     "remedy": "Hypericum",
@@ -288,14 +288,13 @@
       "Hyper.",
       "Hyper-aet."
     ],
-    "total_symptoms_in_repertory": 1426,
     "file": "hypericum.md",
     "profile": {
       "personality": "Hypericum represents a highly sensitive, nerve-oriented constitution prone to feeling injuries and insults deeply, particularly in areas rich in sensory nerves. These individuals are reactive to trauma, with effects that extend far beyond the original site of injury, radiating outward along nerve pathways. They tend to linger in their suffering, with complaints that persist long after the initial cause has resolved.",
       "mental_state": "The mental state is characterized by heightened nervous sensitivity and a tendency toward hysterical and anxious states, especially following physical trauma or injury to the spine and coccyx. There is a vulnerability to shock and concussion effects that cloud mental clarity, with symptoms shooting and darting unpredictably through the mind as pain does through the body.",
       "emotional_pattern": "Emotionally, the Hypericum type exhibits a pattern of deep distress disproportionate to the apparent severity of the injury, with suffering that ascends and intensifies over time rather than resolving. There is a nervous, restless quality driven by sharp, shooting sensations that prevent calm or stillness. Long-standing emotional irritability and hysteria may develop from unresolved physical trauma, particularly spinal injuries sustained during labor or accidents."
     },
-    "symptom_passages": {
+    "rubric_passages": {
       "Back": "Injuries of the spine give us another class of troubles requiring Hypericum.",
       "Back, pain": "Stitching, shooting pains in the back in various directions; they shoot down the limbs.",
       "Extremities": "pains shooting up the spine and down the extremities, shooting pains over the body and often convulsive movements.",
@@ -326,21 +325,21 @@
       "Clinical, wounds, splinters, from": "a carpenter may stick his finger with a brass tack and he does not think much of it, but the next night shooting pains extend up the arm with much violence.",
       "Genitalia female, pain, after-pains": "Many a woman sustains an injury of the coccyx during labor, and however, slight, soreness remains for years afterwards, and she is always in trouble, always hysterical and nervous, from this injury of the coccyx.",
       "Back, pain, sore": "close examination reveals nothing more than soreness upon pressure. Such injuries, if taken early, can be cured by Hypericum. It feels lacerated, and sore, and aches and never passes over until the results of the injury right in the spot have been removed."
-    }
+    },
+    "total_rubrics_in_repertory": 1426
   },
   {
     "remedy": "Ignatia",
     "abbreviations": [
       "Ign."
     ],
-    "total_symptoms_in_repertory": 4475,
     "file": "ignatia.md",
     "profile": {
       "personality": "A sensitive, delicate, refined, and highly educated individual\u2014typically women and children\u2014with fine-fibred nervous constitutions who become overwrought from excessive mental, emotional, or artistic exertion. These are not natural hysterics but intelligent, well-meaning people whose nervous systems have been pushed beyond capacity by grief, disappointment, or intense application to study, music, and social demands.",
       "mental_state": "The mind is in a constant hurry, confused, and unable to concentrate or classify thoughts that were once well-organized; memory fails, scholastic methods vanish, and vivid fancies resembling delirium arise without fever. There is a peculiar contrariness where reactions are the opposite of what would be expected\u2014the unexpected and unaccountable dominate both physical symptoms and mental responses.",
       "emotional_pattern": "The core emotional pattern revolves around grief, unrequited or misplaced affection, and emotional shock that tears the person to pieces despite their best efforts at self-control. They are tearful, apprehensive, prone to sobbing in solitude, and oscillate between taciturn brooding and loquacious excitement, with a persistent dread of trifles and a haunting sense of having neglected some duty."
     },
-    "symptom_passages": {
+    "rubric_passages": {
       "Abdomen, weakness, sensation of": "With all these mental states she has a feeling of emptiness in the stomach and abdomen. Emptiness and trembling.",
       "Back": "Melancholy after disappointed love, with spinal symptoms.",
       "Bladder": "No specific passage found.",
@@ -371,19 +370,20 @@
       "Stomach, thirst": "Thirst when you would not expect it. Thirst during chill, but none during the fever, if she has a feverish state.",
       "Abdomen, pain": "With all these mental states she has a feeling of emptiness in the stomach and abdomen. Emptiness and trembling.",
       "Bladder, urination": "No specific passage found."
-    }
+    },
+    "total_rubrics_in_repertory": 4475
   },
   {
     "remedy": "Iodum (Iodine)",
     "abbreviations": [],
-    "total_symptoms_in_repertory": 0,
     "file": "iodum_iodine.md",
     "profile": {
       "personality": "A restless, driven individual who cannot remain still and must stay perpetually busy to ward off overwhelming anxiety and violent impulses. Despite mental and physical exhaustion, they compulsively continue working, moving, and eating, as idleness brings unbearable distress. They are warm-blooded, intolerant of heat, and prefer cool environments.",
       "mental_state": "The mind is in a state of progressive weakness with marked forgetfulness\u2014losing track of thoughts, leaving behind purchases, forgetting what they were about to say or do. There is a constant threat of mental breakdown, with the intellect deteriorating from overwork yet the patient feeling unable to stop, believing that rest would lead to madness. Impulses to violence arise without cause or provocation, representing a form of impulsive insanity that can coexist with otherwise normal functioning.",
       "emotional_pattern": "Dominated by a deep, pervasive anxiety felt simultaneously in mind and body, accompanied by a characteristic internal thrill that only motion can relieve. Melancholy and fearfulness intensify during hunger and stillness, while eating and movement provide temporary emotional relief. Sudden, causeless impulses toward destruction\u2014self-harm, murder, tearing things apart\u2014arise unbidden during quiet moments, creating a terrifying inner life that the patient manages through ceaseless activity."
     },
-    "symptom_passages": {}
+    "rubric_passages": {},
+    "total_rubrics_in_repertory": 0
   },
   {
     "remedy": "Ipecac",
@@ -391,14 +391,13 @@
       "Ip.",
       "Euph-ip."
     ],
-    "total_symptoms_in_repertory": 2572,
     "file": "ipecac.md",
     "profile": {
       "personality": "A restless, irritable constitution prone to sudden, violent acute episodes that center around the digestive system. The patient is sensitive to environmental changes, particularly damp weather and cold, and tends toward hemorrhagic tendencies with an overall reactive, easily overwhelmed physical state.",
       "mental_state": "Marked by acute distress and an inability to concentrate beyond immediate physical suffering; every pain and discomfort seems to funnel into an overwhelming sense of nausea that dominates the mental landscape. There is a restless tossing and turning akin to Arsenicum or Rhus, with prostration that comes in spells rather than continuously, and moments of near-fainting that bring sudden fear.",
       "emotional_pattern": "Dominated by an anxious, gasping quality \u2014 a disproportionate sense of sinking and faintness from relatively small provocations, as though vitality drains away with each symptom. The patient experiences overwhelming dread with each gush of blood or wave of nausea, accompanied by a pallor and syncope that suggest deep emotional vulnerability to physical distress."
     },
-    "symptom_passages": {
+    "rubric_passages": {
       "Abdomen, weakness, sensation of": "No specific passage found.",
       "Back": "The febrile conditions commence with pain in the back between the shoulders, extending down the back, as if it would break, with or without rigors, much fever, vomiting of bile and seldom any thirst.",
       "Back, pain": "continuous gagging, sharp pain in the stomach, pain in the back, below the shoulder blades, as if it would break, vomiting of bile, continuous nausea and great prostration.",
@@ -429,21 +428,21 @@
       "Generalities, weakness": "All her power seems to go with a little gush of blood. Ipecac. will cure and end the menstrual flow normally.",
       "Appetite": "Ipecac. cures inveterate cases of gastritis when even a drop of water will not stay down; everything put in the stomach is vomited, continuous gagging.",
       "Appetite, aversion": "No specific passage found."
-    }
+    },
+    "total_rubrics_in_repertory": 2572
   },
   {
     "remedy": "Kalium Bichromicum",
     "abbreviations": [
       "Kali-bi."
     ],
-    "total_symptoms_in_repertory": 4434,
     "file": "kalium_bichromicum.md",
     "profile": {
       "personality": "A chilly, sluggish constitutional type who craves routine and warmth, tending toward sedentary habits with a love of beer despite its ill effects. The patient is physically restless yet mentally dull, with few strongly developed mental characteristics noted in provings, suggesting a constitution more dominated by physical suffering than intellectual or social engagement.",
       "mental_state": "Mental symptoms are notably underdeveloped, indicating a torpid, clouded mentality lacking sharpness or animation. There is a general dullness and weariness of mind that accompanies the profound physical prostration, with dimness of vision often heralding mental fog and headache. The periodicity of symptoms suggests a rigid, clock-like mental rhythm resistant to adaptation.",
       "emotional_pattern": "The emotional life is characterized by a deep weariness and resignation, with moods that shift and wander much like the physical pains migrate from joint to joint. There is an underlying irritability from chronic discomfort and sensitivity to cold, damp conditions, coupled with a passive, uncomplaining endurance. The alternation between catarrhal and rheumatic states mirrors an emotional pattern of suppressed distress that manifests somatically rather than being expressed directly."
     },
-    "symptom_passages": {
+    "rubric_passages": {
       "Back": "In all parts of the body there is chilliness, in the back, especially in the back of the neck. Stabbing pains in the neck and in the dorsal region. Sharp pains in the region of the kidneys. Dull ache in the back. Many of the symptoms in the back are of a rheumatic character and wander from place to place. The rheumatic pains are worse stooping, and, like other pains, worse from motion.",
       "Back, pain": "Stabbing pains in the neck and in the dorsal region. Sharp pains in the region of the kidneys. Dull ache in the back. Many of the symptoms in the back are of a rheumatic character and wander from place to place. The rheumatic pains are worse stooping, and, like other pains, worse from motion.",
       "Chest": "Quite a characteristic pain in the chest is the pain from the sternum to the back, associated with catarrhal conditions and with cough. Cough is caused from tickling in the larynx and at the bifurcation; dry, frequent, hard cough; great soreness in the chest when coughing and breathing deep.",
@@ -474,21 +473,21 @@
       "Back, dorsal region": "Stabbing pains in the neck and in the dorsal region.",
       "Chest, pain": "Quite a characteristic pain in the chest is the pain from the sternum to the back, associated with catarrhal conditions and with cough. Cough with stitching pain in the chest.",
       "Ear": "There are yellow, viscid discharges from the ears, with stitching pains and pulsating in the ears. Chronic suppuration of the middle, ear with perforated tympanum; eczematous eruptions on the ears, itching of the whole external ear."
-    }
+    },
+    "total_rubrics_in_repertory": 4434
   },
   {
     "remedy": "Kalium Carbonicum",
     "abbreviations": [
       "Kali-c."
     ],
-    "total_symptoms_in_repertory": 6974,
     "file": "kalium_carbonicum.md",
     "profile": {
       "personality": "The Kali carbonicum patient is whimsical, irascible, and irritable to the highest degree, quarreling with family over trivial matters. They are oversensitive to everything in their environment \u2014 temperature, drafts, atmospheric changes, and the lightest unexpected touch \u2014 yet hard to study because they withhold symptoms and present in vague, contradictory ways.",
       "mental_state": "The mind is dominated by fear and restless imagination: fear of the future, fear of death, fear of ghosts, and catastrophic 'what if' thinking that intensifies when alone, especially upon waking between 2 and 5 AM. There is a persistent inability to find peace, with sleeplessness driven by horrible dreams and an anxious vigilance \u2014 checking for drafts, anticipating disaster, unable to settle.",
       "emotional_pattern": "Anxiety is experienced somatically, felt as a physical sensation in the pit of the stomach rather than as a purely mental state \u2014 a slammed door or unexpected touch sends a shock to the epigastrium. The patient never wants to be alone yet is difficult company, combining deep dependency and fearfulness with extreme irritability and quarrelsomeness toward those closest to them."
     },
-    "symptom_passages": {
+    "rubric_passages": {
       "Abdomen, hard": "No specific passage found.",
       "Back": "At times you will go into the confinement room when the woman has pains in the back below the waist line. The pains in the uterus are very weak, they are not sufficiently expulsive to make progress in the labor, the kind of pain that makes the woman utter the cry, \"My back, my back!\" The pains extend down the buttocks and legs. Pain in the back as if the back would break.",
       "Back, pain": "\"The back aches so badly while she is walking that she feels as if she could lie down on the street,\" etc.. The pain seems to take the force and vigor all out of the patient.",
@@ -519,21 +518,21 @@
       "Stomach": "After eating he feels as if he would burst, so bloated is he. Great flatulence; belches wind upwards and passes flatus downwards; offensive flatus.",
       "Stomach, distension": "After eating he feels as if he would burst, so bloated is he. Great flatulence; belches wind upwards and passes flatus downwards; offensive flatus.",
       "Stomach, eructations": "The belching up is also attended with fluid eructations, sour fluids that set the teeth on edge; they excoriate, or cause smarting in the pharynx or mouth."
-    }
+    },
+    "total_rubrics_in_repertory": 6974
   },
   {
     "remedy": "Kalium Iodatum",
     "abbreviations": [
       "Kali-i."
     ],
-    "total_symptoms_in_repertory": 2539,
     "file": "kalium_iodatum.md",
     "profile": {
       "personality": "A restless, hot-blooded individual who cannot tolerate warmth or confinement and must be constantly in motion. They are harsh, irritable, and cruel in temperament, particularly toward family members, yet alternate unpredictably with episodes of sadness and weeping.",
       "mental_state": "Mental and nervous exhaustion paradoxically occurs during rest, while sustained physical activity and open air restore clarity and energy. In warm, enclosed spaces the mind becomes foggy, weak, and apathetic, with a profound inability to motivate oneself to act.",
       "emotional_pattern": "The core emotional pattern is an alternation between harsh irritability with abusive cruelty and sudden collapses into tearful sadness. There is a pervasive anxiety and nervous restlessness that drives constant movement, with emotional refinement progressively eroded as the constitutional state deepens."
     },
-    "symptom_passages": {
+    "rubric_passages": {
       "Back": "No specific passage found.",
       "Bladder": "No specific passage found.",
       "Chest": "Cough from constant irritation in the larynx. Dry, hacking cough, hoarse cough with copious greenish expectoration. Catarrhal phthisis with thick, copious, greenish expectoration. Pleuritic effusion. Fluttering of the heart. Palpitation on slight exertion or when walking. Rapid pulse.",
@@ -564,21 +563,21 @@
       "Chest, lungs": "Catarrhal phthisis with thick, copious, greenish expectoration. Pleuritic effusion.",
       "Generalities, bones": "It affects the glandular structures and the periosteum after the manner of syphilis.",
       "Generalities, bones, pain": "the bones of the nose are very sensitive to touch and become necrosed. I would notice, after a day or two, chemosis coming into the eyes and the patient beginning to ache in his bones all over, while the rheumatism of the joints would disappear."
-    }
+    },
+    "total_rubrics_in_repertory": 2539
   },
   {
     "remedy": "Kalium Phosphoricum",
     "abbreviations": [
       "Kali-p."
     ],
-    "total_symptoms_in_repertory": 2219,
     "file": "kalium_phosphoricum.md",
     "profile": {
       "personality": "The oversensitive, nervous, and delicate individual who has been worn down by prolonged mental work, deep sorrow, and sexual excesses. They are fundamentally exhausted people who have depleted their vital reserves through intellectual overexertion, emotional suffering, or dissipation, leaving them physically anemic and mentally prostrated.",
       "mental_state": "Marked by profound mental exhaustion with weak memory, inability to recall words, and confusion worse in morning and evening. The mind is dull and prostrated, with difficulty articulating thoughts, incoherent speech, and a tendency toward brain-fag from overwork. There is a deep-seated fear of crowds, death, disease, evil, and solitude, with a nervous excitability that is easily triggered by bad news or fright.",
       "emotional_pattern": "Dominated by deep sadness, irritability, and perverted affections \u2014 the patient may become cruel to loved ones, develop antipathy toward their spouse, or sink into melancholic states with brooding, indifference, and loathing of life. They oscillate between passionate outbursts where they can hardly articulate and states of complete emotional withdrawal, weeping, and hopelessness, often believing they have sinned beyond redemption. Homesickness, prolonged grief, and nervous hysteria are characteristic, with complaints arising directly from vexation, bad news, and sorrow."
     },
-    "symptom_passages": {
+    "rubric_passages": {
       "Back": "The back feels cold. Eruptions on the back, pimples. Weight in lumbar region. The nape and back lame.",
       "Back, pain": "Pain in the back during rest, ameliorated by motion, respiration aggravates, during menses. Pains in occiput and loins morning on waking, ameliorated lying on back, passing off after rising. Intense pain along spine.",
       "Chest": "This remedy has been favorably mentioned in angina pectoris. Anxiety in the chest in the morning. Catarrh of the chest. Spasmodic constriction. Constriction of the heart.",
@@ -609,7 +608,8 @@
       "Extremities, pain": "Rheumatic and gouty pains in limbs and joints, ameliorated by motion and warmth. Pain in back and limbs, ameliorated by motion. Pain in shoulders and arms, in arms when raising them. Sciatica, ameliorated by gentle motion.",
       "Genitalia male": "Erections very troublesome in the morning and during the night without sexual desire; violent in the morning. Impotency. Frequent seminal emissions with erections. Inflammation of glans penis. Sexual passion obliterated.",
       "Genitalia male, seminal emissions (nightly)": "Frequent seminal emissions with erections."
-    }
+    },
+    "total_rubrics_in_repertory": 2219
   },
   {
     "remedy": "Kalium Sulphuricum",
@@ -618,14 +618,13 @@
       "Kali-s-chr.",
       "Kali-s."
     ],
-    "total_symptoms_in_repertory": 12308,
     "file": "kalium_sulphuricum.md",
     "profile": {
       "personality": "An irritable, obstinate individual who is easily angered and impatient. They are restless and always in a hurry as if excited, yet averse to work, business, and company. There is a changeable, hysterical quality with alternating moods and a deep sluggishness underlying the agitation.",
       "mental_state": "Concentration is difficult with a dull, confused mind that worsens in warm rooms and improves in open air. The person is forgetful, misplaces words when writing, and cannot make up their mind. Mental exertion aggravates all complaints, and there is a persistent sense of thinking about something far away.",
       "emotional_pattern": "Marked anxiety appears in the evening and at night, with fears of death, falling, and people, and being easily startled and frightened by trifles. The disposition is deeply discouraged, discontented, and low-spirited, alternating with periods of excitability and impetuous impatience. Oversensitivity to noise and a tendency toward weeping complete a picture of emotional instability with shifting states."
     },
-    "symptom_passages": {
+    "rubric_passages": {
       "Abdomen, hard": "No specific passage found.",
       "Abdomen, rumbling": "Rumbling before stool.",
       "Abdomen, weakness, sensation of": "Sensation of emptiness in lower abdomen after stool ameliorated by displacing flatus.",
@@ -656,21 +655,21 @@
       "Mind, restlessness, night": "Anxiety in evening in bed, during the night and on waking. Fear at night of death, of falling, and of people.",
       "Mouth": "Aphthae in mouth. Dryness of mouth and bleeding gums. Mucus in mouth and on the tongue. Sore burning tongue. Salivation. Taste insipid, putrid, sour, sweetish, wanting. Coated yellow slimy tongue, mostly at the base.",
       "Mouth, dryness": "Dryness of mouth and bleeding gums."
-    }
+    },
+    "total_rubrics_in_repertory": 12308
   },
   {
     "remedy": "Kalmia Latifolia",
     "abbreviations": [
       "Kalm."
     ],
-    "total_symptoms_in_repertory": 1497,
     "file": "kalmia_latifolia.md",
     "profile": {
       "personality": "A stoic, slow-moving individual who dreads exertion and shuns activity, finding clarity only in complete stillness. They are weary, exhausted, and profoundly sensitive to any disturbance \u2014 physical, environmental, or emotional \u2014 preferring to lie quietly on their back where their mind works with surprising lucidity.",
       "mental_state": "Mental faculties and memory are perfect when recumbent and still, but the slightest motion brings vertigo, confusion, and incapacity for thought. There is a deep vulnerability to overstimulation \u2014 sunlight, movement, even turning the hand \u2014 that collapses cognitive function, and persistent motion leads progressively to nausea and vomiting.",
       "emotional_pattern": "An anxious, apprehensive disposition dominated by the sense that something vital is threatened from within \u2014 particularly the heart. There is a quality of sudden, violent suffering borne with a strange passivity, alternating between intense distress and abrupt relief, as captured in the characteristic exclamation 'There, now it is gone!' followed by dread of the pain's inevitable return."
     },
-    "symptom_passages": {
+    "rubric_passages": {
       "Chest": "Shooting pains through the heart, pains in the chest, intermittent pulse, pulse skipping a beat now and then.",
       "Heart & Circulation, palpitation": "Palpitation very marked when lying on the left side, > when lying on the back, sometimes > when sitting erect, < when bending forward.",
       "Extremities": "Weariness of all the limbs; shuns all exertion.",
@@ -701,6 +700,7 @@
       "Heart & Circulation, hypertrophy of heart": "The condition has increased until organic disease has come, even hypertrophy of the heart and valves.",
       "Heart & Circulation, pain, heart": "Shooting pains through the heart, pains in the chest, intermittent pulse, pulse skipping a beat now and then.",
       "Heart & Circulation, pain, heart, extending, to left hand": "the wandering pains go downwards, down the arms, down the back and down the legs; from the shoulder to the fingers, and from the hips to the toes."
-    }
+    },
+    "total_rubrics_in_repertory": 1497
   }
 ]

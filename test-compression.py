@@ -17,7 +17,7 @@ KENT_DIR = os.path.join(DATA_DIR, "kent", "materia_medica")
 WEB_FONTS_DIR = os.path.join(os.path.dirname(__file__), "web", "app", "fonts")
 WEB_CSS = os.path.join(os.path.dirname(__file__), "web", "app", "globals.css")
 
-EXPECTED_SYMPTOM_COUNT = 74_481
+EXPECTED_RUBRIC_COUNT = 74_481
 EXPECTED_REMEDY_COUNT = 2_432
 EXPECTED_BODY_SYSTEMS = 41
 
@@ -31,7 +31,7 @@ def load_json(path):
         return json.load(f)
 
 
-def load_original_symptoms():
+def load_original_rubrics():
     return load_json(SYMPTOMS_ORIGINAL)
 
 
@@ -40,20 +40,20 @@ def load_original_remedies():
 
 
 # ============================================================
-# A1. Symptom Splitting
+# A1. Rubric Splitting
 # ============================================================
 
-class TestSymptomSplitting:
+class TestRubricSplitting:
     """Tests that symptoms.json is correctly split into body-system directories."""
 
-    SPLIT_DIR = os.path.join(DATA_DIR, "symptoms")
+    SPLIT_DIR = os.path.join(DATA_DIR, "rubrics")
 
     def test_splitting_script_exists(self):
         """A splitting script exists and is executable."""
         candidates = [
-            os.path.join(os.path.dirname(__file__), "scripts", "split_symptoms.py"),
-            os.path.join(os.path.dirname(__file__), "scraper", "split_symptoms.py"),
-            os.path.join(os.path.dirname(__file__), "split_symptoms.py"),
+            os.path.join(os.path.dirname(__file__), "scripts", "split_rubrics.py"),
+            os.path.join(os.path.dirname(__file__), "scraper", "split_rubrics.py"),
+            os.path.join(os.path.dirname(__file__), "split_rubrics.py"),
         ]
         found = [c for c in candidates if os.path.isfile(c)]
         assert len(found) > 0, (
@@ -63,9 +63,9 @@ class TestSymptomSplitting:
     def test_splitting_script_runs_without_error(self):
         """The splitting script runs without raising an error."""
         candidates = [
-            os.path.join(os.path.dirname(__file__), "scripts", "split_symptoms.py"),
-            os.path.join(os.path.dirname(__file__), "scraper", "split_symptoms.py"),
-            os.path.join(os.path.dirname(__file__), "split_symptoms.py"),
+            os.path.join(os.path.dirname(__file__), "scripts", "split_rubrics.py"),
+            os.path.join(os.path.dirname(__file__), "scraper", "split_rubrics.py"),
+            os.path.join(os.path.dirname(__file__), "split_rubrics.py"),
         ]
         script = next((c for c in candidates if os.path.isfile(c)), None)
         assert script is not None, "No splitting script found"
@@ -80,7 +80,7 @@ class TestSymptomSplitting:
         )
 
     def test_split_directory_exists(self):
-        """data/symptoms/ directory exists after splitting."""
+        """data/rubrics/ directory exists after splitting."""
         assert os.path.isdir(self.SPLIT_DIR), (
             f"Expected directory {self.SPLIT_DIR} to exist"
         )
@@ -111,11 +111,11 @@ class TestSymptomSplitting:
             except (json.JSONDecodeError, Exception) as e:
                 pytest.fail(f"Invalid JSON in {path}: {e}")
 
-    def test_every_symptom_appears_exactly_once(self):
-        """Every symptom from the original file appears in exactly one split file."""
+    def test_every_rubric_appears_exactly_once(self):
+        """Every rubric from the original file appears in exactly one split file."""
         if not os.path.isdir(self.SPLIT_DIR):
             pytest.skip("Split directory does not exist yet")
-        original = load_original_symptoms()
+        original = load_original_rubrics()
         original_names = set(original.keys())
 
         split_names = set()
@@ -132,15 +132,15 @@ class TestSymptomSplitting:
                 split_names.add(name)
 
         assert len(duplicates) == 0, (
-            f"Found {len(duplicates)} duplicate symptoms: {duplicates[:5]}..."
+            f"Found {len(duplicates)} duplicate rubrics: {duplicates[:5]}..."
         )
         missing = original_names - split_names
         extra = split_names - original_names
-        assert missing == set(), f"Missing symptoms: {list(missing)[:5]}..."
-        assert extra == set(), f"Extra symptoms: {list(extra)[:5]}..."
+        assert missing == set(), f"Missing rubrics: {list(missing)[:5]}..."
+        assert extra == set(), f"Extra rubrics: {list(extra)[:5]}..."
 
     def test_total_count_equals_74481(self):
-        """Total symptom count across all split files equals 74,481."""
+        """Total rubric count across all split files equals 74,481."""
         if not os.path.isdir(self.SPLIT_DIR):
             pytest.skip("Split directory does not exist yet")
         total = 0
@@ -149,15 +149,15 @@ class TestSymptomSplitting:
         for path in json_files:
             data = load_json(path)
             total += len(data)
-        assert total == EXPECTED_SYMPTOM_COUNT, (
-            f"Expected {EXPECTED_SYMPTOM_COUNT} symptoms, got {total}"
+        assert total == EXPECTED_RUBRIC_COUNT, (
+            f"Expected {EXPECTED_RUBRIC_COUNT} rubrics, got {total}"
         )
 
     def test_remedy_references_and_grades_preserved(self):
         """All remedy references and grades are preserved exactly in split files."""
         if not os.path.isdir(self.SPLIT_DIR):
             pytest.skip("Split directory does not exist yet")
-        original = load_original_symptoms()
+        original = load_original_rubrics()
 
         # Build lookup from split files
         split_data = {}
@@ -167,10 +167,10 @@ class TestSymptomSplitting:
             data = load_json(path)
             split_data.update(data)
 
-        # Spot check a sample of symptoms
+        # Spot check a sample of rubrics
         sample_keys = list(original.keys())[:100] + list(original.keys())[-100:]
         for key in sample_keys:
-            assert key in split_data, f"Symptom '{key}' missing from split data"
+            assert key in split_data, f"Rubric '{key}' missing from split data"
             orig_remedies = original[key]["remedies"]
             split_remedies = split_data[key]["remedies"]
             assert orig_remedies == split_remedies, (
@@ -180,16 +180,16 @@ class TestSymptomSplitting:
 
 
 # ============================================================
-# A2. Symptom Index
+# A2. Rubric Index
 # ============================================================
 
-class TestSymptomIndex:
-    """Tests for the lightweight symptom index file."""
+class TestRubricIndex:
+    """Tests for the lightweight rubric index file."""
 
-    INDEX_PATH = os.path.join(DATA_DIR, "symptoms", "index.json")
+    INDEX_PATH = os.path.join(DATA_DIR, "rubrics", "index.json")
 
     def test_index_exists(self):
-        """data/symptoms/index.json exists."""
+        """data/rubrics/index.json exists."""
         assert os.path.isfile(self.INDEX_PATH), (
             f"Expected {self.INDEX_PATH} to exist"
         )
@@ -200,8 +200,8 @@ class TestSymptomIndex:
             pytest.skip("Index file does not exist yet")
         load_json(self.INDEX_PATH)
 
-    def test_index_contains_all_symptom_names(self):
-        """Index contains all 74,481 symptom names."""
+    def test_index_contains_all_rubric_names(self):
+        """Index contains all 74,481 rubric names."""
         if not os.path.isfile(self.INDEX_PATH):
             pytest.skip("Index file does not exist yet")
         index = load_json(self.INDEX_PATH)
@@ -211,8 +211,8 @@ class TestSymptomIndex:
             names = list(index.keys())
         else:
             pytest.fail(f"Unexpected index type: {type(index)}")
-        assert len(names) == EXPECTED_SYMPTOM_COUNT, (
-            f"Expected {EXPECTED_SYMPTOM_COUNT} entries, got {len(names)}"
+        assert len(names) == EXPECTED_RUBRIC_COUNT, (
+            f"Expected {EXPECTED_RUBRIC_COUNT} entries, got {len(names)}"
         )
 
     def test_index_contains_no_remedy_data(self):
@@ -353,14 +353,14 @@ class TestKentDataSplitting:
         files = glob.glob(os.path.join(profiles_dir, "*.json"))
         assert len(files) > 0, "No split profile files found"
 
-    def test_symptom_index_split_per_remedy(self):
-        """symptom_index is split into individual remedy files."""
-        si_dir = os.path.join(self.KENT_SPLIT_DIR, "symptom_index")
+    def test_rubric_index_split_per_remedy(self):
+        """rubric_index is split into individual remedy files."""
+        si_dir = os.path.join(self.KENT_SPLIT_DIR, "rubric_index")
         assert os.path.isdir(si_dir), (
             f"Expected {si_dir} to exist"
         )
         files = glob.glob(os.path.join(si_dir, "*.json"))
-        assert len(files) > 0, "No split symptom_index files found"
+        assert len(files) > 0, "No split rubric_index files found"
 
     def test_passage_index_data_preserved(self):
         """All passage_index data is preserved after splitting."""
@@ -398,20 +398,20 @@ class TestKentDataSplitting:
             "Remedy keys mismatch between original and split profiles"
         )
 
-    def test_symptom_index_data_preserved(self):
-        """All symptom_index data is preserved after splitting."""
-        si_dir = os.path.join(self.KENT_SPLIT_DIR, "symptom_index")
+    def test_rubric_index_data_preserved(self):
+        """All rubric_index data is preserved after splitting."""
+        si_dir = os.path.join(self.KENT_SPLIT_DIR, "rubric_index")
         if not os.path.isdir(si_dir):
-            pytest.skip("Split symptom_index directory does not exist yet")
+            pytest.skip("Split rubric_index directory does not exist yet")
 
-        original = load_json(os.path.join(KENT_DIR, "symptom_index.json"))
+        original = load_json(os.path.join(KENT_DIR, "rubric_index.json"))
         split_data = {}
         for f in glob.glob(os.path.join(si_dir, "*.json")):
             data = load_json(f)
             split_data.update(data)
 
         assert set(original.keys()) == set(split_data.keys()), (
-            "Remedy keys mismatch between original and split symptom_index"
+            "Remedy keys mismatch between original and split rubric_index"
         )
 
 

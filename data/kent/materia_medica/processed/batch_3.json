@@ -4,14 +4,13 @@
     "abbreviations": [
       "Canth."
     ],
-    "total_symptoms_in_repertory": 3646,
     "file": "cantharis.md",
     "profile": {
       "personality": "An intensely reactive and volatile constitution prone to sudden, violent states. The Cantharis personality is characterized by extreme restlessness, constant movement, and a tendency toward explosive outbursts that can escalate rapidly from agitation to full rage. There is a fundamental quality of excess and intensity in all expressions, with the individual being easily overwhelmed by sensory stimuli.",
       "mental_state": "The mind is overtaken by intrusive, uncontrollable thoughts that run riot as if driven by an outside force, leading to confusion, delirium, and sudden loss of consciousness. There is a marked tendency toward frenzy triggered by bright or dazzling objects, touch, or attempts to drink water. Cognitive function deteriorates rapidly from strange ideas and confusion into full stupor or violent delirium.",
       "emotional_pattern": "The core emotional pattern is one of extreme agitation oscillating between terror, rage, and frenzied sexual excitement, all arising with alarming speed. Fear and restlessness escalate into insolence, blasphemy, and uncharacteristic lewdness\u2014even in normally modest individuals\u2014driven by intense internal inflammation rather than character. The emotional state is fundamentally one of unbearable urgency and torment, where the person is desperate for relief that never comes."
     },
-    "symptom_passages": {
+    "rubric_passages": {
       "Back": "Violent lancinating pains through the kidneys and back. Pains in the loins and abdomen.",
       "Back, pain": "Violent lancinating pains through the kidneys and back. Pains in the loins and abdomen.",
       "Bladder": "The bladder and genitals are inflamed and the excitement and congestion of the parts often arouse the sexual instinct, so that there are sexual thoughts and sexual frenzy.",
@@ -42,7 +41,8 @@
       "Clinical": "It is rare that one suffering from gonorrhea has this violent inflammation, with burning and tenesmus of the bladder and rectum, but in such a case this remedy is indicated. The intensity and rapidity are the features of this remedy.",
       "Back, dorsal region, back, left, right": "No specific passage found.",
       "Genitalia female, uterus": "Inflammation of the ovaries and uterus. When there have been no expulsive pains present to expel the afterbirth, with the symptoms running all through this remedy, after it has been given, normal contractions of the uterus have come on with expulsion of the membranes."
-    }
+    },
+    "total_rubrics_in_repertory": 3646
   },
   {
     "remedy": "Capsicum",
@@ -51,14 +51,13 @@
       "Sol-ps.",
       "Caps-f."
     ],
-    "total_symptoms_in_repertory": 2507,
     "file": "capsicum.md",
     "profile": {
       "personality": "A sluggish, lazy constitution with poor endurance despite a plump, round appearance of false vitality. Obstinate to the extreme, opposing even things they want if suggested by others, with a clumsy and awkward demeanor. They crave stimulants and pungent things, reflecting a deep need for external support to maintain their depleted vital force.",
       "mental_state": "The mind is dominated by persistent, tormenting thoughts of suicide that are unwanted and resisted, yet cannot be put aside \u2014 these are intrusive impulses rather than desires. There is oversensitivity to all impressions with disturbed and overacute senses, and a general mental sluggishness that makes studying or sustained intellectual work difficult. The patient shows poor reaction and a do-nothing state where the mind, like the body, lacks the vitality to rally.",
       "emotional_pattern": "Homesickness is the central emotional theme, accompanied by sleeplessness, fearfulness, and red cheeks \u2014 a deep longing for comfort and familiar surroundings. They are perpetually suspicious, always looking for slights and offenses, oversensitive to any perceived insult. After emotional experiences the face flushes red yet remains cold, reflecting the core Capsicum paradox of surface excitation masking inner depletion and chilliness."
     },
-    "symptom_passages": {
+    "rubric_passages": {
       "Back": "No specific passage found.",
       "Back, coldness": "Coldness of the affected part. Coldness in patches. Coldness of the whole body.",
       "Back, coldness, dorsal region": "Coldness of the affected part. Coldness in patches.",
@@ -89,21 +88,21 @@
       "Generalities, side": "No specific passage found.",
       "Appetite": "He desires something warm, something stimulating, craves pungent things. This is seen in whisky drinkers; they crave pepper, and the pepper, on the other hand, turns round and craves whisky. These diffusable stimulants crave some stimulating thing, crave support. Dipsomania.",
       "Appetite, desires": "He desires something warm, something stimulating, craves pungent things. This is seen in whisky drinkers; they crave pepper, and the pepper, on the other hand, turns round and craves whisky. These diffusable stimulants crave some stimulating thing, crave support."
-    }
+    },
+    "total_rubrics_in_repertory": 2507
   },
   {
     "remedy": "Carbo Animalis",
     "abbreviations": [
       "Carb-an."
     ],
-    "total_symptoms_in_repertory": 4062,
     "file": "carbo_animalis.md",
     "profile": {
       "personality": "A sluggish, broken-down constitution marked by profound weakness and poor vitality. The Carbo Animalis individual is someone whose entire system has slowed down, lacking reactive force and energy, plodding along for years with gradually worsening chronic conditions.",
       "mental_state": "The mental state is characterized by a sense of internal turmoil and anxiety, with rushing sensations of heat as though the body were full of steam, and an awful earthquake-like disturbance through the chest and head. There is a fundamental lack of mental and physical vigor, with prostration and want of energy dominating the picture.",
       "emotional_pattern": "Deep anxiety accompanies palpitation and circulatory disturbance, with a pervasive sense of sinking and emptiness. The emotional landscape is one of passive suffering rather than acute distress\u2014a quiet, slow deterioration mirroring the sluggish inflammatory processes of the body, punctuated by horrible dreams and disturbed sleep from surging blood to the head."
     },
-    "symptom_passages": {
+    "rubric_passages": {
       "Abdomen, weakness, sensation of": "Whenever this patient puts the child to the breast she has a sensation of emptiness in the stomach, sinking in the pit of the stomach, and she must take the child away.",
       "Back": "No specific passage found.",
       "Back, pain": "No specific passage found.",
@@ -134,21 +133,21 @@
       "Back, dorsal region, back, left, right": "No specific passage found.",
       "Genitalia female, uterus": "Chronic induration, with enlargement of the uterus, which gradually grows from year to year. Induration of the cervix and the whole uterus. Ulceration of the uterus, going gradually toward the malignant state.",
       "Head, vertex": "No specific passage found."
-    }
+    },
+    "total_rubrics_in_repertory": 4062
   },
   {
     "remedy": "Carbo Vegetabilis",
     "abbreviations": [
       "Carb-v."
     ],
-    "total_symptoms_in_repertory": 6130,
     "file": "carbo_vegetabilis.md",
     "profile": {
       "personality": "A sluggish, indolent individual who is slow in all functions and averse to both mental and physical exertion. They are the type who has lived on rich, heavy foods and wine, creating a state of torpidity and premature aging. Every little effort brings on a feeling of faintness and collapse, and they simply want to lie down and doze.",
       "mental_state": "Mental operations are slow, stupid, and sluggish, with an inability to think clearly or meditate due to cerebral congestion and venous turgescence. The mind is in confusion, benumbed, and cannot be whipped into activity or rouse a desire to do anything. There is marked anxiety on closing the eyes and on waking, with horrible visions, fear of ghosts, and fear of the dark.",
       "emotional_pattern": "Profound indifference is the hallmark \u2014 affections are practically blotted out, so that the patient cannot feel whether they love their family or hate their enemies, and neither pleasant nor horrible things produce any emotional response. Beneath this apathy lies deep anxiety, especially at night, with a dread of darkness and a sense of impending doom centered in the chest. They want to be left alone, are easily frightened, and sleep is filled with such terror that they dread going to sleep at all."
     },
-    "symptom_passages": {
+    "rubric_passages": {
       "Abdomen, hard": "A striking abdominal symptom of Carbo veg. is that the flatus collects here and there in the intestine as if it were in a lump incarcerated flatus; a constriction of the intestine will hold it in one place so that it feels like a lump or tumor, that finally disappears.",
       "Abdomen, rumbling": "Extremely putrid flatus escapes making the patient very offensive.",
       "Abdomen, spleen": "No specific passage found.",
@@ -179,7 +178,8 @@
       "Sleep, sleepiness": "A peculiar sluggish, death-like sleep, with visions. The Carbo veg. patient wakens in anxiety and covered with cold sweat. Exhaustion. Unrefreshed after sleep.",
       "Stomach": "He has burning in the stomach, distension of the stomach, constant eructations, flatulence, passing offensive flatus.",
       "Appetite, increased (hunger in general)": "No specific passage found."
-    }
+    },
+    "total_rubrics_in_repertory": 6130
   },
   {
     "remedy": "Carboneum Sulphuratum",
@@ -188,14 +188,13 @@
       "Carbn.",
       "Carbn-s."
     ],
-    "total_symptoms_in_repertory": 12577,
     "file": "carboneum_sulphuratum.md",
     "profile": {
       "personality": "A deeply irritable and capricious individual who alternates between exhilaration bordering on drunkenness and profound indolence and mental sluggishness. They are averse to company and being spoken to, preferring to sit in silence, yet can become talkative and hilarious before lapsing into moroseness and confusion.",
       "mental_state": "Marked by progressive mental deterioration with absent-mindedness, difficulty concentrating, and a dullness of mind especially in the morning. Memory is weak with misplacement of words when writing and inability to find the right word, accompanied by confusion as if intoxicated and eventual stupefaction and imbecility.",
       "emotional_pattern": "Dominated by deep anxiety about the future and fear of death, insanity, misfortune, and people, with a pronounced fear of walking in the dark. The emotional state is highly unstable, constantly changing between sadness, rage, weeping alternating with laughing, and religious preoccupation, often culminating in despair, discouragement, and violent or maniacal outbursts."
     },
-    "symptom_passages": {
+    "rubric_passages": {
       "Abdomen, hard": "Hardness of the abdomen; of the liver.",
       "Abdomen, rumbling": "Rumbling in abdomen; before stool.",
       "Abdomen, weakness, sensation of": "Weak feeling after stool.",
@@ -226,21 +225,21 @@
       "Mind, restlessness, night": "Very restless during the night; worse before midnight.",
       "Mouth": "Anesthesia of mouth and tongue. Aphthae of month and tongue. Bleeding of month and gums. The tongue feels cold. The tongue is cracked.",
       "Mouth, dryness": "dryness of mouth and tongue in the morning with unquenchable thirst."
-    }
+    },
+    "total_rubrics_in_repertory": 12577
   },
   {
     "remedy": "Carduus Marianus",
     "abbreviations": [
       "Card-m."
     ],
-    "total_symptoms_in_repertory": 673,
     "file": "carduus_marianus.md",
     "profile": {
       "personality": "The Carduus Marianus constitutional type is a sedentary, chilly individual prone to hepatic and bilious complaints, highly sensitive to cold and aggravated by motion. They tend toward periodic crises \u2014 cyclical sick headaches, bilious attacks, and congestive episodes \u2014 suggesting a constitution that accumulates toxicity and purges in waves.",
       "mental_state": "The mental state is characterized by dullness and congestion rather than acute anxiety, with the heaviness and fullness in the head reflecting a general mental torpor tied to portal and hepatic congestion. There is little intellectual excitability described; the mind is weighed down in parallel with the physical sluggishness of the liver and digestive system.",
       "emotional_pattern": "The core emotional triad is sadness, irritability, and weeping \u2014 a despondent, easily vexed temperament that breaks into tears. This mirrors the underlying hepatic congestion: the emotional life is burdened and stagnant, prone to periodic overflow, much as the physical body accumulates bile and discharges it in violent episodes."
     },
-    "symptom_passages": {
+    "rubric_passages": {
       "Back": "Pain in the back under the right scapula (much like Chel. and Aesc.). Drawing pains in the back. Sensitive spine.",
       "Back, pain": "Pain in the back under the right scapula (much like Chel. and Aesc.). Drawing pains in the back. Sensitive spine.",
       "Chest": "Pains in the chest with liver pains. Stitching pains. Drawing pains, aggravated by motion.",
@@ -271,7 +270,8 @@
       "Back, pain, drawing": "Drawing pains in the back.",
       "Chest, pain, stitching": "Stitching pains.",
       "Chest, pain, stitching, sides": "No specific passage found."
-    }
+    },
+    "total_rubrics_in_repertory": 673
   },
   {
     "remedy": "Causticum",
@@ -281,14 +281,13 @@
       "Kali-caust.",
       "Nat-caust."
     ],
-    "total_symptoms_in_repertory": 7169,
     "file": "causticum.md",
     "profile": {
       "personality": "A slowly declining, broken-down constitution marked by progressive weakness, fatigue, and paralytic heaviness. The Causticum type is deeply sensitive to their environment\u2014unable to tolerate extremes of heat or cold\u2014and carries a fundamental rigidity in both body and temperament, with a tendency toward contracture and stiffening at every level.",
       "mental_state": "The mind is clouded by exhaustion and confusion, progressing from an inability to think clearly into a state of passive mental deterioration and imbecility. There is a constant foreboding that something terrible is about to happen\u2014an anticipatory anxiety that dominates all thought\u2014coupled with hopelessness and an inability to carry on ordinary business or reasoning.",
       "emotional_pattern": "The core emotional state is one of melancholy, hopelessness, and timorous anxiety, rooted in prolonged grief, sorrow, and vexation. The patient is overwhelmed by fearful fancies\u2014fear of death, fear for family, dread of impending catastrophe\u2014and grows increasingly excitable and hysterical, losing emotional balance so that the more they dwell on their troubles, the worse everything becomes."
     },
-    "symptom_passages": {
+    "rubric_passages": {
       "Abdomen, rumbling": "No specific passage found.",
       "Bladder": "This remedy has two kinds of paralysis of the bladder, one affecting the muscles of expulsion and the urine is retained, and the other center ing upon the sphincter vesicae, and then the urine is passed involuntarily.",
       "Bladder, urination, frequent": "No specific passage found.",
@@ -319,21 +318,21 @@
       "Abdomen, pain": "Pinching colic.",
       "Bladder, urination": "He urinates so easily that he is not sensible of the stream and scarcely believes, in the dark, that he is urinating, until he makes sure by sense of touch.",
       "Generalities, faintness": "No specific passage found."
-    }
+    },
+    "total_rubrics_in_repertory": 7169
   },
   {
     "remedy": "Chamomilla",
     "abbreviations": [
       "Cham."
     ],
-    "total_symptoms_in_repertory": 4713,
     "file": "chamomilla.md",
     "profile": {
       "personality": "Extremely sensitive constitutional type, hypersensitive to all impressions \u2014 pain, surroundings, and people. Naturally belongs to the nervous, overwrought temperament, particularly in women and children, where even slight stimuli produce disproportionate suffering and reaction.",
       "mental_state": "Marked irritability inseparable from the heightened sensitivity, with an inability to control temper when aroused \u2014 the mind is driven to frenzy by pain. Alternates between snappish quarrelsomeness and silent, melancholic introspection, sitting and looking within when pains are absent. Capricious and restless, constantly wanting something new yet refusing everything offered.",
       "emotional_pattern": "Easily affected by mortification, chagrin, and anger, which act as exciting causes for physical symptoms including convulsions, colic, and neuralgia. Loss of generosity and consideration for others' feelings when suffering \u2014 will scold, quarrel, and drive people away regardless of social propriety. The core pattern is an oversensitiveness to pain coupled with violent emotional reactivity, producing a state where the patient is never satisfied, never at peace, and cannot be consoled."
     },
-    "symptom_passages": {
+    "rubric_passages": {
       "Back": "Labor pains that are felt too much in the back. Contractions that are most painful, cutting, tearing, bringing out screams.",
       "Bladder": "Colic while urinating;",
       "Chest": "There are many suffocative attacks and difficulties of breathing, inflammation of the larynx, that you can read up easily.",
@@ -364,7 +363,8 @@
       "Generalities, pain": "Neuralgic pains all over the body with numbness. Twitching, darting, tingling pains. The pains are mostly ameliorated by heat, with the exception of the teeth and jaws.",
       "Head, congestion": "Congestion to the head. Violent neuralgia of the face, teeth, ear sides of the head.",
       "Mind, quiet": "Aversion to talk, and snappish. The patient is constantly sitting and looking within herself when pains are absent."
-    }
+    },
+    "total_rubrics_in_repertory": 4713
   },
   {
     "remedy": "Chelidonium",
@@ -372,14 +372,13 @@
       "Chel.",
       "Chel-g."
     ],
-    "total_symptoms_in_repertory": 4732,
     "file": "chelidonium.md",
     "profile": {
       "personality": "A sluggish, bilious constitution marked by mental and physical heaviness, with strong aversion to exertion and conversation. The patient is indolent, weary, and disinclined to work, preferring to remain still and undisturbed.",
       "mental_state": "The mind is slow, foggy, and unable to concentrate, with confusion, dizziness, and an inability to think or meditate clearly. There is a marked distaste for mental exertion, and the sensorium is frequently disturbed with vertigo progressing to nausea.",
       "emotional_pattern": "Deep sadness and melancholy predominate, with a brooding quality as if some crime has been committed or a dreadful event is imminent. Persistent anxiety allows no rest day or night, accompanied by weeping despondency and a foreboding sense that death is near."
     },
-    "symptom_passages": {
+    "rubric_passages": {
       "Back": "No specific passage found.",
       "Back, pain": "Hard pains felt through the back.",
       "Back, pain, dorsal region": "Pains from the region of the liver, shooting towards the back and shoulders.",
@@ -410,21 +409,21 @@
       "Vertigo": "Things go round in a circle. Dizziness comes, and it does not let up until nausea, and sometimes vomiting, follows. So much turning in the head that he vomits.",
       "Abdomen, pain": "Spasmodic pain in the region of the liver. Pressing pain in the region of the liver. The right hypochondrium is tense and painful to pressure.",
       "Generalities, pain": "All of the pains are extremely aggravated from motion. The pains are ameliorated by heat."
-    }
+    },
+    "total_rubrics_in_repertory": 4732
   },
   {
     "remedy": "Chininum Arsenicosum",
     "abbreviations": [
       "Chin-ar."
     ],
-    "total_symptoms_in_repertory": 1404,
     "file": "chininum_arsenicosum.md",
     "profile": {
       "personality": "A deeply weakened, cold, and withdrawn constitutional type who is hypersensitive to environmental stimuli and easily exhausted by any physical or mental exertion. They are conscientious to the point of being overly scrupulous about trifles, yet simultaneously indifferent to pleasures and averse to work or social engagement.",
       "mental_state": "The mind is characterized by dullness, confusion (especially on waking), and forgetfulness, alternating with periods of mental excitability and an overwhelming flood of ideas at night that prevents rest. There is a marked tendency toward suspicion, hypercriticism of close friends, and an oversensitivity that leads them to search for insults where none are intended.",
       "emotional_pattern": "Profound sadness and despondency dominate, deepening into despair, loathing of life, and even suicidal ideation, with emotional states strongly tied to periodic febrile cycles (worse during chill and fever). Anxiety is pervasive\u2014worst in the evening and on waking\u2014manifesting as fearfulness, restlessness that drives them out of bed, and a sentimental yet irritable disposition that oscillates between silent withdrawal and angry refusal to communicate."
     },
-    "symptom_passages": {
+    "rubric_passages": {
       "Chest": "Anxiety in chest, region of heart. Constriction. Hemorrhage of lungs. Oppression of chest. Pain in the chest, during cough. Pains in the sides of the chest. Rawness in the chest. Stitching in the chest on coughing, Stitching in the heart. Palpitation of the heart, anxious, aggravated on slight exertion, leaning back against chair; violent. Sensation as if heart ceased to beat. Full pulse. Weakness in chest. Weakness of respiratory muscles.",
       "Chill": "CHILL, morning, forenoon, noon, AFTERNOON evening, night, midnight; open air; walking in the open air; anticipating; in bed. Drinking aggravates chill. Quotidian chill; quotidian or tertian. Hard, shaking chill. Chill like cold waves with gooseflesh all over body. Warm room ameliorates. External warmth ameliorates.",
       "Generalities": "Periodicity is most marked. Pulsation all over the body. Pulse fast, feeble and irregular. Relaxed and flabby (Calc.). Sensitive to pain. Many symptoms come during sleep. Standing increases many symptoms. Sensitive to touch. Trembling. Walking in the open air aggravates. Weakness from walking. Complaints come on in windy, stormy weather.",
@@ -455,21 +454,21 @@
       "Expectoration, mucous": "Expectoration bloody, copious; difficult; mucus, offensive, purulent; tastes bitter, flat, salty. Expectoration is viscid, white.",
       "Fever, night": "Feverish all the time, but more so at night. Dry heat at night.",
       "Generalities, periodicity": "Periodicity is most marked."
-    }
+    },
+    "total_rubrics_in_repertory": 1404
   },
   {
     "remedy": "Cicuta Virosa",
     "abbreviations": [
       "Cic."
     ],
-    "total_symptoms_in_repertory": 2312,
     "file": "cicuta_virosa.md",
     "profile": {
       "personality": "A deeply sensitive and withdrawn individual who shuns society and prefers solitude, with a tendency toward suspicion and overestimation of self. Between acute episodes, the temperament is mild, gentle, placid, and yielding, yet underneath lies a profound pessimism and darkness.",
       "mental_state": "Marked by confusion of identity and disorientation\u2014confuses present with past, imagines being a child, and finds familiar people and places strangely unrecognizable. Mental torpor with complete memory blanks, loss of ideas, and an inability to distinguish between appropriate and inappropriate things, leading to strange desires and childish behavior.",
       "emotional_pattern": "Dominated by sadness, anxiety, and a dark foreboding about the future, with a deep sensitivity to sad stories and frightening stimuli. Fear is pervasive\u2014fear of company, fear of strange surroundings, and fright intense enough to trigger physical crises\u2014alternating with periods of gentle placidity and occasional outbursts of agitated wailing or childlike exuberance."
     },
-    "symptom_passages": {
+    "rubric_passages": {
       "Back": "Spasmodic symptoms of the back. Opisthotonos.",
       "Back, pain": "the head is drawn back opisthotonos all the limbs are convulsed and rigid.",
       "Chest": "Cold sensation in the chest. Spasms of the chest.",
@@ -500,7 +499,8 @@
       "Mind, sadness": "The Cicuta patient, out of the convulsion, is full of sadness, anxiety, and darkness, borrows trouble from the future, is affected by sad stories, is pessimistic.",
       "Abdomen, distension": "No specific passage found.",
       "Chest, trembling": "Spasms of the chest."
-    }
+    },
+    "total_rubrics_in_repertory": 2312
   },
   {
     "remedy": "Cina",
@@ -556,14 +556,13 @@
       "Vero-o.",
       "Vince."
     ],
-    "total_symptoms_in_repertory": 17782,
     "file": "cina.md",
     "profile": {
       "personality": "Extremely sensitive and irritable, both mentally and physically, with a marked touchiness that pervades the entire constitution. The Cina type is restless, easily disturbed by any external stimulus including being looked at or touched, yet paradoxically craves motion and being carried. There is a fundamental dissatisfaction \u2014 wanting something but not knowing what \u2014 combined with an inability to tolerate any form of interference or disturbance.",
       "mental_state": "The mind is hyperesthetic and easily overwhelmed, with disturbances of perception including hallucinations of smell, sight, and taste, and a tendency for dreams to persist into waking consciousness. Mental upset directly disorders digestion and physical function, reflecting a strong brain-gut axis where emotional shocks such as fright, punishment, or scolding immediately produce somatic symptoms. There is a pervasive restlessness with inability to settle, and convulsive reactions to stimuli that would be minor for others.",
       "emotional_pattern": "The core emotional pattern is one of anxious irritability with whining, complaining, and screaming \u2014 particularly upon waking or when disturbed. There is a deep-seated fearfulness with night terrors, fright on waking, and trembling with anxiety, alongside a contradictory need for comfort and contact despite being aggravated by touch. The emotional state is capricious and inconsolable, resembling Chamomilla but with more anxiety and sensory overwhelm than pure anger."
     },
-    "symptom_passages": {
+    "rubric_passages": {
       "Abdomen, hard, liver": "No specific passage found.",
       "Extremities, coldness": "There is coldness of the, extremities and also some itching of the skin, but the head symptoms are predominant.",
       "Extremities, coldness, hands": "No specific passage found.",
@@ -594,33 +593,33 @@
       "Clinical, cyanosis": "Blue ring or gray streak around the mouth.",
       "Mind, fear": "Screams and trembles, with much anxiety on waking; whines and complains.",
       "Mind, stupefaction": "No specific passage found."
-    }
+    },
+    "total_rubrics_in_repertory": 17782
   },
   {
     "remedy": "Cinchona (China)",
     "abbreviations": [],
-    "total_symptoms_in_repertory": 0,
     "file": "cinchona_china.md",
     "profile": {
       "personality": "A deeply sensitive, weakened individual who has become debilitated through prolonged illness, loss of vital fluids, or malarial influence. They are nervous, irritable, and hypersensitive to all external stimuli\u2014touch, cold air, noise, odors\u2014yet paradoxically apathetic and indifferent about daily life, sitting passively through meals and dreading any form of work.",
       "mental_state": "The mind is weakened with poor memory, inability to concentrate, and misplacement of words. At night the mind races uncontrollably\u2014building air castles, making grandiose plans, and theorizing\u2014only to recognize these as foolish in the clear light of morning. There is a fundamental inability to control or direct mental effort, though this falls short of true insanity.",
       "emotional_pattern": "Fearful and anxious at night, particularly of animals and creeping things, with a low-spirited, silent, and despairing disposition that can extend to suicidal ideation tempered by a lack of courage to act. They are emotionally flat and indifferent during the day yet tormented by nocturnal restlessness, reflecting a constitution caught between nervous over-excitability and profound exhaustion."
     },
-    "symptom_passages": {}
+    "rubric_passages": {},
+    "total_rubrics_in_repertory": 0
   },
   {
     "remedy": "Cinnabaris",
     "abbreviations": [
       "Cinnb."
     ],
-    "total_symptoms_in_repertory": 1528,
     "file": "cinnabaris.md",
     "profile": {
       "personality": "A withdrawn, solitary individual who prefers to be alone and avoids mental exertion. The mind is restless and overactive, crowded with racing thoughts, yet there is a marked forgetfulness and aversion to intellectual work.",
       "mental_state": "The mind is overwhelmed by a flood of thoughts that prevent sleep, creating a paradox of mental overactivity combined with an inability to focus or follow through on intentions. There is significant forgetfulness, particularly regarding planned actions, and a deep reluctance to engage in any sustained mental effort.",
       "emotional_pattern": "The core emotional pattern is one of withdrawal and irritability, with a strong desire for solitude that suggests an underlying sensitivity to stimulation. There is a restless discontent marked by aversion to engagement with others or with work, reflecting the deeper sycotic and syphilitic miasmatic tendencies of deterioration and avoidance."
     },
-    "symptom_passages": {
+    "rubric_passages": {
       "Extremities": "Pain in the limbs at night. Sensitive to sudden changes in the weather. Lame, bruised and stiff in all the limbs. Pains worse from motion. Syphilitic nodes on tibia.",
       "Generalities": "The symptoms are worse at night from warmth of the bed, and when perspiring, like Mercurius. Worse from both heat and cold,",
       "Head": "The pains in the head are violent; worse after eating; better by heat and pressure. Fullness in the whole head. Constriction. Pain in the cold forehead, which is ameliorated by heat. Tearing in the forehead before the menstrual flow. Pain in the forehead and vertex in the morning, worse lying on the left side and back, ameliorated lying on the right side, and it passes off after rising.",
@@ -651,21 +650,21 @@
       "Genitalia male, itching, penis, prepuce": "Swelling of prepuce with much itching.",
       "Genitalia male, redness": "No specific passage found.",
       "Genitalia male, prepuce": "Swelling of prepuce with much itching. Warts on the prepuce and fraenum, bleeding when touched. Chancres on the prepuce of gangrenous odor."
-    }
+    },
+    "total_rubrics_in_repertory": 1528
   },
   {
     "remedy": "Cistus Canadensis",
     "abbreviations": [
       "Cist."
     ],
-    "total_symptoms_in_repertory": 822,
     "file": "cistus_canadensis.md",
     "profile": {
       "personality": "A chilly, scrofulous constitution prone to exhaustion and prostration, craving warmth and stimulating foods. The patient is excitable but easily depleted by mental or physical exertion, resembling a milder Calcarea type who is flabby, sickly, and pallid.",
       "mental_state": "Mental exertion aggravates all complaints, producing a sensation as if paralyzed after sustained effort. The mind is easily overwhelmed, with headaches and increased suffering from any intellectual demand, and fasting further impairs cognitive function.",
       "emotional_pattern": "There is a deep sensitivity and excitability, with suffering intensified by mental excitement. The patient is restless from constant itching and discomfort, driving them to scratch until raw, reflecting an underlying irritability born of chronic, unrelenting physical distress."
     },
-    "symptom_passages": {
+    "rubric_passages": {
       "Generalities": "This remedy is an antipsoric, a deep-acting remedy. It runs very close to Calcarea, but is milder in its action. It has the same exhaustion from exertion, dyspnoea, sweating and coldness that we find in Calcarea.",
       "Clinical": "The glands inflame, become swollen and suppurate. It causes cries and cures old ulcers. It has a scrofulous constitution. It is useful in chronic diarrhea, with enlarged glands, even in those who are flabby, sickly and pallid and who cannot go upstairs without losing, their breath.",
       "Ear": "Shooting, stitching, tearing pains in inflamed parts. Red discharges from the ear date back to eruptive diseases.",
@@ -696,21 +695,21 @@
       "Chest": "The chest fills up with mucus and he feels relieved after expectoration, but after he empties the chest it feels raw. Left mamma inflamed, suppurating, with a feeling of fullness in the chest.",
       "Extremities": "Tetter on the hands; blisters oozing after scratching. Diseases of the nails. Hard, thickened places on the hands of workmen, with deep cracks.",
       "Extremities, coldness": "It has the same exhaustion from exertion, dyspnoea, sweating and coldness that we find in Calcarea."
-    }
+    },
+    "total_rubrics_in_repertory": 822
   },
   {
     "remedy": "Clematis Erecta",
     "abbreviations": [
       "Clem."
     ],
-    "total_symptoms_in_repertory": 2563,
     "file": "clematis_erecta.md",
     "profile": {
       "personality": "A deeply sensitive and conflicted individual who craves solitude yet fears being alone, creating a fundamental tension in their social existence. They are low-spirited and weighed down by an atmosphere of dread, as though surrounded by frightful and distressing impressions that others cannot perceive.",
       "mental_state": "The mind is dominated by a pervasive sense of dread and worry, with the atmosphere itself seeming full of frightful things. There is a characteristic indecisiveness about human contact \u2014 fearing solitude while simultaneously dreading the burden of company. This mental state is particularly associated with suppression, emerging when natural discharges or expressions have been driven inward.",
       "emotional_pattern": "The core emotional experience is one of low-spiritedness and oppressive anxiety, rooted in an irreconcilable conflict between the need for others and the desire to avoid them. There is a quality of being tormented by invisible forces, as though the surrounding world is charged with distressing presences. The emotional life reflects the sycotic miasm \u2014 a deep melancholy arising from suppression and concealment."
     },
-    "symptom_passages": {
+    "rubric_passages": {
       "Bladder": "Constant urging to urinate, most painful tenesmus. Flow stopping and starting. The urethra is painful to pressure. Micturition is remarkably slow, only a feeble stream because of the smallness of the urethra.",
       "Chest": "Scirrhus of the breast with induration and ulceration. Scirrhus of the left mamma with stitches in the shoulder;",
       "Generalities": "It has pain on lying down and preparatory to going to sleep. An electric shock; twitching, jerking, as if a faradic battery had been turned on. It has also a general febrile condition, but nothing very striking.",
@@ -741,21 +740,21 @@
       "Teeth": "Stitching and drawing pains in the teeth; worse at night; better for a short time from holding cold water in the mouth; better from drawing in cold air; worse from the warmth of the bed. The toothache is tolerable during the day, but as soon as he lies down in bed and assumes a horizontal position it increases to an intolerable degree.",
       "Clinical, inflammation": "Inflammation of the testes is common, and this is one of the medicines suitable. It is the nature of this remedy to infiltrate and inflame tissues, and, hence it is useful in those cases of gonorrhoea where they have been slow in passing away.",
       "Heart & Circulation, pulse": "No specific passage found."
-    }
+    },
+    "total_rubrics_in_repertory": 2563
   },
   {
     "remedy": "Cocculus Indicus",
     "abbreviations": [
       "Cocc."
     ],
-    "total_symptoms_in_repertory": 4172,
     "file": "cocculus_indicus.md",
     "profile": {
       "personality": "A slow, exhausted, paralytic type who is behind time in all actions and responses. The Cocculus individual is one who has worn themselves out through devoted caretaking\u2014nursing sick loved ones with deep anxiety, prolonged vigilance, and sacrifice of sleep. They are tremulous, awkward, and hypersensitive to all external stimuli including noise, motion, and jarring.",
       "mental_state": "The mind approaches a blank, imbecile-like state where comprehension is profoundly slowed, words cannot be found, and recently read material is immediately forgotten. Ideas become fixed and immovable in the mind, giving an appearance of stupor, yet the patient may retain full internal awareness despite being unable to respond outwardly. Time perception is severely distorted, with long periods seeming to pass in moments.",
       "emotional_pattern": "The core emotional pattern arises from prolonged grief, vexation, and anxiety on behalf of loved ones, producing a state of nervous prostration that deepens into fearfulness and dread. There is a pervasive sense that something awful is about to happen, coupled with a fear of death. The patient is extremely irritable and cannot bear the least noise or contradiction, yet underneath is a profound emotional exhaustion from having given too much of themselves in caregiving."
     },
-    "symptom_passages": {
+    "rubric_passages": {
       "Back": "Weak in the back.",
       "Back, pain": "The Cocculus headaches and backaches, pains and distress are present.",
       "Chest": "The heart is weak, pulse feeble.",
@@ -786,6 +785,7 @@
       "Generalities, pain": "With all this slowing down of the thoughts and activities the patient remains extremely sensitive to suffering, sensitive to pain.",
       "Clinical, paralysis": "I remember a case of paralysis of the lower extremities that was prescribed for by a very careful homeopathic physician many years ago. He studied the case carefully and gave Cocculus c.m. It was not many days before the child began to move the legs, and the condition was perfectly cleared up.",
       "Generalities, weakness": "He cannot endure any muscular exertion, because he is weak; he is tired. First comes this slowness, then a sort of visible paralytic condition, and then complete paralysis."
-    }
+    },
+    "total_rubrics_in_repertory": 4172
   }
 ]
