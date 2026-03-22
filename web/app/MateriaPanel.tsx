@@ -230,6 +230,8 @@ export function MateriaPanel({
                   {passage ? (
                     <a
                       href={buildRemedyUrl(profile.file, selectedSymptoms, passage)}
+                      target="_blank"
+                      rel="noopener noreferrer"
                       className="block text-[13px] text-[#374151] leading-relaxed hover:bg-[#fefce8] rounded p-1 -m-1 transition-colors no-underline cursor-pointer"
                       style={{ fontFamily: "Georgia, 'Times New Roman', serif" }}
                     >
