@@ -4,14 +4,13 @@
     "abbreviations": [
       "Coc-c."
     ],
-    "total_symptoms_in_repertory": 2238,
     "file": "coccus_cacti.md",
     "profile": {
       "personality": "A sensitive, chilly individual prone to chronic catarrhal conditions that worsen in cold weather. Despite being cold-natured constitutionally, once ill their complaints paradoxically improve in cool air and worsen from warmth, reflecting an inner contradictory nature.",
       "mental_state": "Mental symptoms are sparse but center on depression and cognitive sluggishness, with headaches worse from mental exertion. There is a characteristic waking state with basilar or frontal headache, and mental faculties are dulled under a pervasive sense of gloom described as a cloud hanging over everything.",
       "emotional_pattern": "The core emotional state is deep sadness and apprehensiveness, with anxiety most pronounced between 2 and 4 A.M. This melancholic disposition may unpredictably alternate with periods of loquacity and liveliness, resembling the oscillating emotional pattern seen in Lachesis."
     },
-    "symptom_passages": {
+    "rubric_passages": {
       "Bladder": "Urging to urinate, but inability to pass urine until a large clot of blood has been passed.",
       "Generalities": "The patient is cold, and his complaints come on in cold weather. He is sensitive to cold, easily takes cold. But you must distinguish between the patient himself and his complaints, because they are entirely opposite to each other. When he once becomes sick from exposure to cold, he is always worse in a warm room and better in the cold air.",
       "Genitalia female": "Uterine hemorrhage is a strong feature of this remedy. Copious, frequent, prolonged menstrual flow. Large, hard, black clots fill the uterus, are expelled by labor-like pains, and form again. Inflammation of uterus and vagina, with copious, thick, white, jelly-like, ropy mucus. Soreness of the vulva; cannot bear the pressure of the clothing.",
@@ -42,7 +41,8 @@
       "Cough, irritation in air passages, from, larynx in, from": "If the patient gets warm in bed or the room gets warm he commences to clutch the larynx and cough.",
       "Cough, night": "They are apt to be worse at night when he becomes warm in bed. If he can lie in a cool room without much covering he will go longer without coughing.",
       "Cough, paroxysmal": "It is a spasmodic cough, forcing the patient into the most violent efforts. The face becomes purple. Finally he retches and vomits long strings of tough, ropy mucus filling the mouth and throat and causing him to choke."
-    }
+    },
+    "total_rubrics_in_repertory": 2238
   },
   {
     "remedy": "Coffea",
@@ -50,14 +50,13 @@
       "Coff.",
       "Coff-t."
     ],
-    "total_symptoms_in_repertory": 2205,
     "file": "coffea.md",
     "profile": {
       "personality": "An extremely sensitive, high-strung individual with heightened perception across all senses\u2014hearing, sight, touch, and smell. Quick to think and act, overflowing with ideas, mentally sharp and capable of rapid comprehension and debate. Often a habitual coffee or stimulant user who pushes through ordeals with nervous energy, then collapses into exhaustion.",
       "mental_state": "The mind is hyperactive and flooded with thoughts, making sleep impossible; plans, memories, poetry from childhood, and fanciful visions pour in unbidden. There is increased mental capacity and easy comprehension followed by a reactive state of stupor and sleepiness. Hearing is so acute that distant clocks, barking dogs, and even imaginary sounds are perceived, and all noise intensifies suffering.",
       "emotional_pattern": "Emotions are the primary trigger for illness\u2014especially joy, pleasant surprises, and excited anticipation, which produce nervous breakdown, sleeplessness, and neuralgia. There is pitiful weeping from pain or the slightest neglect, with hurt feelings, hysteria, and a tendency to faint from sudden emotions. Fear of death accompanies acute episodes, and the patient demands absolute stillness and quiet from everyone around them."
     },
-    "symptom_passages": {
+    "rubric_passages": {
       "Chest": "Strong, quick palpitation of the heart with extreme nervousness, sleeplessness and cerebral erethism caused by unexpected news of great good fortune.",
       "Chill": "He is extremely sensitive to cold, sensitive to the wind and cold weather. Complaints come on in the cold weather, from the cold air.",
       "Extremities": "Coffea has a painful sensitiveness of the skin beyond comprehension. I remember one particular case. A woman had her lower limb out of bed and it was as red as fire down one side.",
@@ -88,21 +87,21 @@
       "Throat": "No specific passage found.",
       "Generalities, heat": "Hot head; inflamed condition of the gums. The head is hot, the face is flushed.",
       "Abdomen, distension": "No specific passage found."
-    }
+    },
+    "total_rubrics_in_repertory": 2205
   },
   {
     "remedy": "Colchicum",
     "abbreviations": [
       "Colch."
     ],
-    "total_symptoms_in_repertory": 3348,
     "file": "colchicum.md",
     "profile": {
       "personality": "The Colchicum personality is profoundly exhausted, depleted, and averse to all forms of exertion. They are chilly, sensitive individuals who dread movement and disturbance, preferring to lie still and be left alone. There is a deep irritability born of weakness, with an almost paralytic resignation to their suffering.",
       "mental_state": "Mental confusion and disordered comprehension dominate \u2014 they cannot understand what they read and struggle to process information clearly. There is delirium in advanced states, with depression of mind and a heightened sensitivity to pain that seems to register as much in the mind as in the body. The mental faculties sink in proportion to the physical prostration.",
       "emotional_pattern": "The core emotional pattern is one of intense, almost visceral aversion \u2014 particularly a hatred of food odors that becomes so consuming it takes possession of the entire person. This perverted sensitivity extends to a general irritability and hypersensitivity to all sensory impressions, with deep anxiety accompanying the progressive weakness. There is a quality of sinking despair, as though life itself is flowing out of them with every exertion."
     },
-    "symptom_passages": {
+    "rubric_passages": {
       "Back": "No specific passage found.",
       "Back, pain": "No specific passage found.",
       "Chest": "Stinging, tearing pains in the muscles of the chest.",
@@ -133,21 +132,21 @@
       "Appetite, aversion": "Aversion to food; loathing the sight and smell, more the smell of it.",
       "Clinical": "Rheumatic troubles that have been going on for some time, will end in cardiac troubles. When cardiac troubles with valvular defects are present, almost the first thing the busy doctor thinks of is a history of rheumatism.",
       "Heart & Circulation, heart": "Heart's action muffled, indistinct, very weak."
-    }
+    },
+    "total_rubrics_in_repertory": 3348
   },
   {
     "remedy": "Colocynthis",
     "abbreviations": [
       "Coloc."
     ],
-    "total_symptoms_in_repertory": 3816,
     "file": "colocynthis.md",
     "profile": {
       "personality": "A person worn down by prolonged vexations and annoyances, haughty and easily offended or chagrined. Not a strong, vigorous type who suddenly falls ill, but rather one whose constitution has been weakened by chronic irritations, nervous exhaustion, and often habits of overeating.",
       "mental_state": "Irritable and disinclined to talk, answer questions, or see friends \u2014 wants to be left alone. Increasingly anxious as suffering intensifies, screaming with pain and pacing restlessly despite profound weakness. The mental state resembles someone who has labored for years under business failures or domestic betrayals, producing nervous exhaustion.",
       "emotional_pattern": "The core emotional trigger is anger with indignation \u2014 a sense of being wronged or affronted that directly precipitates physical symptoms. Even minor provocations cause disproportionate upset in a person already sensitized by accumulated grievances. The emotional landscape alternates between suppressed fury, restless desperation, and a deep desire for solitary withdrawal."
     },
-    "symptom_passages": {
+    "rubric_passages": {
       "Abdomen, hard": "The pains in the lower part of the abdomen are relieved by drawing up the limbs and pressing with the fists.",
       "Abdomen, pain, gnawing": "No specific passage found.",
       "Back": "Anger will be followed by violent neuralgia in the head, eyes, down the spine and in the intestines.",
@@ -178,21 +177,21 @@
       "Generalities, pressure": "All pains are better from pressure, but this is in the beginning. After the pain has been going for several days with increasing severity, the part becomes very sensitive and pressure cannot be endured.",
       "Generalities, side": "They are generally on the left side; while those of Belladonna are on the right, and are caused by cold.",
       "Mind, restlessness": "In spite of extreme restlessness there is great weakness with the pains."
-    }
+    },
+    "total_rubrics_in_repertory": 3816
   },
   {
     "remedy": "Conium Maculatum",
     "abbreviations": [
       "Con."
     ],
-    "total_symptoms_in_repertory": 5680,
     "file": "conium_maculatum.md",
     "profile": {
       "personality": "A slow, passive, indifferent constitution that progressively withdraws from engagement with life and other people. The Conium type is hypochondriacal, morose, and averse to company, yet paradoxically irritable when others attempt to reason with them or offer comfort. They are fundamentally broken-down individuals whose vital force is in steady decline, manifesting as both physical and mental exhaustion.",
       "mental_state": "The mind is characterized by progressive deterioration\u2014inability to concentrate, failing memory, and a gradual drift toward imbecility rather than acute insanity. Mental effort is unbearable; the patient cannot rivet attention, cannot meditate, and sits lost in thought with confused feelings. There is a slow-forming weakness of mind that the family barely notices until the accumulation of strange behaviors and lapses becomes undeniable.",
       "emotional_pattern": "Deep sadness and gloom predominate, with the patient sitting and moping in corners without apparent reason, recurring in periodic waves (notably on a fourteen-day cycle). Every form of excitement\u2014emotional, social, or from stimulants\u2014brings on distress, weakness, and deeper depression. Grief and suppressed desires (particularly sexual deprivation in widows and widowers) are core triggers, producing a state of trembling, weeping helplessness and a pervasive sense that the future holds only sickness, sorrow, and decline."
     },
-    "symptom_passages": {
+    "rubric_passages": {
       "Back": "In the back, weakness is a most striking thing, with some dorsal pains, Lancinating pains are spoken of.",
       "Back, pain": "After injuries, especially in the lumbar region, pains and filling up of the veins of the lower limbs.",
       "Bladder": "The bladder is weak, can expel only a part of the urine. Or sometimes there is a paralytic condition and no expulsive power.",
@@ -223,21 +222,21 @@
       "Stomach, eructations": "Fullness in throat with suppressed eructations.",
       "Stomach, pain": "Hardness of the abdomen, great sensitiveness of the abdomen. Pinching pains, stitching pains, colicky, cutting pains, cramping pains.",
       "Vertigo": "Vertigo when turning the head, like turning in a circle, when rising from a seat; worse when lying down, as though the bed were turning in a circle; when turning in bed or when looking around."
-    }
+    },
+    "total_rubrics_in_repertory": 5680
   },
   {
     "remedy": "Crotalus Horridus",
     "abbreviations": [
       "Crot-h."
     ],
-    "total_symptoms_in_repertory": 2150,
     "file": "crotalus_horridus.md",
     "profile": {
       "personality": "A deeply prostrated, besotted individual who appears intoxicated and sluggish, with slow passive movements and a tendency toward mental confusion. They are highly sensitive to their surroundings, easily irritated by the slightest annoyance, and may crave intoxicating drinks with an inability to resist the craving.",
       "mental_state": "The mind is clouded with a low, passive delirium characterized by mumbling, stumbling over words, and clumsy loquacity rather than wild excitement. Cognitive function is markedly impaired \u2014 they cannot add figures, make mistakes in writing, transpose letters and sentences, and are unable to manage their own affairs. Suspicion of friends develops alongside an inability to reason on a rational basis.",
       "emotional_pattern": "A pervasive melancholy dominates, with thoughts dwelling continually on death, accompanied by timidity and deep-seated fear. They are excessively sensitive, easily moved to tears by reading, yet paradoxically cross and infuriated by the least annoyance. An underlying anxious pallor with cold sweat alternates with periods of irritability and emotional volatility."
     },
-    "symptom_passages": {
+    "rubric_passages": {
       "Back": "Carbuncles that come upon the neck and upon the back begin with a pustule, and then several come and they are surrounded by little pustules and papules and there is pitting upon pressure.",
       "Bladder": "No specific passage found.",
       "Chest": "No specific passage found.",
@@ -268,21 +267,21 @@
       "Mouth, protruded, tongue": "Trembling, quivering and swollen tongue. Trembling of the tongue when it is put out.",
       "Stomach, nausea": "Cannot lie on the right side or back without instantly producing black, bilious vomiting. This is a wonderfully bilious remedy, sick headaches, vomiting of bile in great quantities.",
       "Stomach, vomiting": "Cannot lie on the right side or back without instantly producing black, bilious vomiting. The various low forms of disease calling for Crotalus often, begin with vomiting great quantities of bile, sometimes bile mixed with blood. Stomach irritable, unable to retain anything, constantly throws up blood."
-    }
+    },
+    "total_rubrics_in_repertory": 2150
   },
   {
     "remedy": "Croton Tiglium",
     "abbreviations": [
       "Croto-t."
     ],
-    "total_symptoms_in_repertory": 1940,
     "file": "croton_tiglium.md",
     "profile": {
       "personality": "A restless, sensitive constitution that requires an outlet or 'vent' for internal disturbance. The Croton Tiglium type exhibits an alternating pattern\u2014suppression inward when external expression clears, and eruption outward when internal symptoms abate\u2014suggesting a personality caught between containment and explosive release.",
       "mental_state": "Mental clarity is disrupted by physical intensity: vanishing of sight, vertigo, and overwhelming nausea cloud cognition during acute states. The mind is dominated by the body's violent, sudden discharges and the relentless pull of internal tension, as expressed by the characteristic sensation of being drawn inward 'as with a string.'",
       "emotional_pattern": "Emotional suffering is intense, prolonged, and endured stoically\u2014tears come only when pain becomes unbearable, as seen in the nursing mother who paced the floor for several nights before seeking help. There is a deep sensitivity to disturbance, where the slightest provocation (a mouthful of milk, a breath of air) triggers an overwhelming, explosive response, reflecting an emotional threshold that is low yet whose expression is sudden and forceful."
     },
-    "symptom_passages": {
+    "rubric_passages": {
       "Chest": "After confinement the mother may go on a little while with all things following normally, but all at once she commences to have pains in one or the other mammary gland, and the drawing as with a string comes up again. It feels to her as if a string were attached behind the nipple pulling backward, a sharp, drawing, stinging pain that will in some instances keep her walking the floor night and day.",
       "Generalities": "When one has been overdosed, as is done in a too prolonged proving, or by the crude drug, or when the prover has been markedly sensitive, we get an alternation of states, the internal alternating with the external. After the eruption is out the internal manifestations are not present, as is seen in the rheumatic state, the cough and the bowel symptoms.",
       "Head": "Troublesome eczema of the scalp in infants, either purely vesicular or intermingled more or less with pustules. The vesicles dry up and then desquamate, and now there is a red, raw, inflamed surface, sensitive to touch.",
@@ -313,21 +312,21 @@
       "Abdomen, gurgling": "there is much gurgling in the bowel, and when the physician puts his hand upon it the patient will say he feels the gurgling, as if he were full of water, and it probably is so, for the expulsion of the stool would not occur in one strong gush were it not for the fact that the colon and rectum were full of fluid.",
       "Abdomen, pain, extending": "Clinically it has been described as if the pain followed the intestines all the way down to the anus.",
       "Abdomen, pain, umbilicus": "pressure about the umbilicus causes a pain in the rectum and urging to stool"
-    }
+    },
+    "total_rubrics_in_repertory": 1940
   },
   {
     "remedy": "Cuprum Metallicum",
     "abbreviations": [
       "Cupr."
     ],
-    "total_symptoms_in_repertory": 3285,
     "file": "cuprum_metallicum.md",
     "profile": {
       "personality": "An intensely volatile, impulsive personality driven by an urgent need for action and control. These individuals are willful, accustomed to having their own way, and react with explosive violence\u2014physical or emotional\u2014when crossed or constrained. There is a fundamental tension between powerful inner forces and the attempt to contain them, manifesting as restlessness, nervous trembling, and a constant sense of being wound up.",
       "mental_state": "The mind operates under extreme nervous tension with a tendency toward sudden, violent shifts\u2014from coherent thought to wild delirium, from calm to maniacal fury, with startling abruptness. There is incoherent speech, loss of memory, and a characteristic pattern of mental suppression where blocking one outlet (a discharge, an emotion, a natural function) drives pathology violently to the brain. Impulsiveness dominates, with a compulsive feeling of needing to act, to fly, to do something dreadful.",
       "emotional_pattern": "Emotions are spasmodic and convulsive rather than steady\u2014alternating between spiteful violence, shrieking, weeping, and states of apparent emotional death or ecstasy. There is deep fear and anguish, particularly a terror of suffocation and imminent death, combined with hysterical reactivity to any form of suppression or constraint. The core pattern is one of emotions that cannot be smoothly expressed but instead build to explosive, uncontrollable release."
     },
-    "symptom_passages": {
+    "rubric_passages": {
       "Back": "In the lower part of the chest, in the region of the xiphoid appendix, there is a spasmodic condition that is very troublesome. It seems to be at times a constriction so severe that he thinks he will die, and at others a feeling as if he were transfixed with a knife from the xiphoid appendix to the back.",
       "Back, pain": "a feeling as if he were transfixed with a knife from the xiphoid appendix to the back.",
       "Bladder": "No urine in the bladder.",
@@ -358,21 +357,21 @@
       "Head, congestion": "Violent congestion in the head, violent pains in the head. Congestion of the brain, Meningitis. Instead of convulsions it may take the form of congestion of the brain with violent delirium.",
       "Mind, restlessness": "Compelled to do something; restless and tossing about a constant uneasiness; nervous trembling; always tired.",
       "Appetite": "Great thirst for cold drinks. Desire for warm food and drinks. Eats hastily. Indigestion from milk."
-    }
+    },
+    "total_rubrics_in_repertory": 3285
   },
   {
     "remedy": "Cyclamen",
     "abbreviations": [
       "Cycl."
     ],
-    "total_symptoms_in_repertory": 2597,
     "file": "cyclamen.md",
     "profile": {
       "personality": "A solitary, introspective individual who seeks warmth and seclusion, preferring to remain in a warm room alone with their thoughts. They are obstinate and censorious, yet fundamentally sensitive and easily overwhelmed, with a marked dullness of mind that prevents sustained mental effort.",
       "mental_state": "Characterized by striking alternations: great flow of ideas alternates with weak memory, and dullness of mind prevents mental labor. The person becomes absorbed in thought, answers incoherently, and experiences confusion of mind, often ruminating about the future while seeking solitude.",
       "emotional_pattern": "Joyous feelings alternate suddenly with irritability, and serene humor shifts abruptly into seriousness or peevishness. Grief and fear maintain a continuous mental agitation; she feels sadness as if she had wronged somebody, believes herself alone in the world and persecuted by everyone, and meditates tearfully upon imaginary grievances."
     },
-    "symptom_passages": {
+    "rubric_passages": {
       "Chill": "Chill not ameliorated by warm clothing. Chilliness during menses. Chill forenoon or evening. Chill predominates in the evening. Heat of face follows chill. Chill and heat alternate.",
       "Extremities": "Tearing, drawing pains in the limbs. Hyperesthesia of the skin. Flabby muscles. Tearing, drawing in the upper limbs. Sensation of weakness of the hands, as if she must let fall what she holds in her hands. Writer's cramp. Drawing pains in flexors of the leg. Burning sore pain in heels. Toes feel dead after walking. Weakness in the limbs.",
       "Extremities, coldness": "Toes feel dead after walking.",
@@ -403,21 +402,21 @@
       "Mind, sadness": "Sadness, as if she had wronged somebody (Aur.). Tearful and meditates upon her grief, which is only imaginary. Thinks she is alone in the world and persecuted by every one (China).",
       "Generalities, bones": "No specific passage found.",
       "Generalities, bones, pain": "No specific passage found."
-    }
+    },
+    "total_rubrics_in_repertory": 2597
   },
   {
     "remedy": "Drosera Rotundifolia",
     "abbreviations": [
       "Dros."
     ],
-    "total_symptoms_in_repertory": 2220,
     "file": "drosera_rotundifolia.md",
     "profile": {
       "personality": "The Drosera constitution is a restless, anxious, and suspicious individual who dreads being alone yet distrusts even close friends. They are prone to feelings of persecution and haunted by nocturnal fears, particularly of ghosts, reflecting a deeply insecure and vigilant temperament.",
       "mental_state": "The mind is marked by confusion, persistent suspicion, and a fixed sense of being persecuted. Sleeplessness and nocturnal anxiety dominate, with dread intensifying after midnight, producing a state of exhausted yet agitated wakefulness.",
       "emotional_pattern": "Fear is the central emotional theme\u2014fear of the dark, of solitude, and of betrayal by trusted companions. There is a deep-seated vulnerability expressed through clinging dependence combined with paranoid withdrawal, creating an isolating cycle of needing others yet being unable to trust them."
     },
-    "symptom_passages": {
+    "rubric_passages": {
       "Back": "In these chest complaints, pains between the shoulders, pains in the back as if bruised from coughing.",
       "Chest": "Severe attacks of stitching in the chest when sneezing or coughing. He must press on the chest with the hand for relief. Makes an effort to hold chest with the hand when coughing, the cough is so violent. Compression of the chest, burning sensation in the chest, stitching pains in the chest.",
       "Chill": "Chill and chilliness and one-sided chill. Chill and fever with whooping cough. Chill and fever with inflammation of the larynx.",
@@ -448,21 +447,21 @@
       "Head, pain": "Lancinating pains in various parts of the body, especially in the head, and must support the head with the hands. Pressive, congestive headaches.",
       "Generalities, lying": "These attacks of suffocation come on with the cough or come upon lying down. Whooping cough coming in paroxysms of two or three hours, but violently worse after lying down at night and toward 3 o'clock in the morning.",
       "Generalities, pain, cutting": "No specific passage found."
-    }
+    },
+    "total_rubrics_in_repertory": 2220
   },
   {
     "remedy": "Dulcamara",
     "abbreviations": [
       "Dulc."
     ],
-    "total_symptoms_in_repertory": 3318,
     "file": "dulcamara.md",
     "profile": {
       "personality": "The Dulcamara type is highly sensitive to environmental changes, particularly shifts from warm to cold and dry to damp conditions. They are restless and physically reactive individuals who thrive in stable, warm climates but become chronically ill when exposed to fluctuating temperatures. They tend toward a sickly, pallid, sallow constitution that deteriorates progressively with each exposure to adverse weather.",
       "mental_state": "The key mental characteristic is a sluggish, dazed confusion that arises when chilled \u2014 the patient cannot remember, forgets what they were about to say, and loses the word that would naturally express their idea. There is a marked cognitive fog with suppressed perspiration, producing a state of mental torpor and impaired concentration. The mind becomes as congested and blocked as the catarrhal discharges that characterize the physical state.",
       "emotional_pattern": "The Dulcamara patient carries an apprehensive vigilance about their own vulnerability, anticipating illness with each weather change \u2014 as Kent captures in the patient's words: 'I know I am fixed; I am now chilled.' There is a resigned weariness from chronic relapsing illness, a patient who has learned through repeated experience that every cold spell will rouse their symptoms anew. They are not dramatically emotional but rather stoically long-suffering, their distress expressed more through physical reactivity than overt emotional display."
     },
-    "symptom_passages": {
+    "rubric_passages": {
       "Back": "Rheumatic lameness and stiffness in the back from taking cold better by motion. Drawing pain in the lumber region extending to the lower limbs during rest. Stiff neck from every exposure to cold.",
       "Back, pain": "Rheumatic lameness and stiffness in the back from taking cold better by motion. Drawing pain in the lumber region extending to the lower limbs during rest.",
       "Bladder": "In bladder catarrh, where there is a copious discharge of mucus, or muco-pus in the urine; when the urine stands, a thick, purulent sediment, yellowish-white, and a constant urging to urinate; every time he takes a little cold, the urine becomes bloody, the frequency of urination is increased, the urine becomes irritating, the catarrh of the bladder rouses up like a flame, all the symptoms are worse in cold, damp weather, and from getting chilled; better from becoming warm.",
@@ -493,21 +492,21 @@
       "Heart & Circulation": "It suits these colds that have this sluggish circulation of the brain, with trembling and chilliness, coldness as if in the bones.",
       "Back, dorsal region": "No specific passage found.",
       "Chest, pain": "Mammae engorged, hard, sore and painful. Mammary glands swollen, inactive, painless, itching, in consequence of a cold which seems to have settled in them."
-    }
+    },
+    "total_rubrics_in_repertory": 3318
   },
   {
     "remedy": "Euphrasia",
     "abbreviations": [
       "Euphr."
     ],
-    "total_symptoms_in_repertory": 1667,
     "file": "euphrasia.md",
     "profile": {
       "personality": "Euphrasia presents a chilly, sensitive constitution prone to acute catarrhal states, particularly affecting the eyes and upper respiratory tract. The patient is reactive to environmental stimuli \u2014 wind, cold air, and open air provoke symptoms \u2014 suggesting a delicate, easily overwhelmed temperament that seeks shelter and warmth.",
       "mental_state": "The mental picture is not strongly developed in Kent's lecture, indicating Euphrasia acts primarily on the physical plane of acute illness rather than deep constitutional mental states. The head symptoms suggest a mind clouded and burdened by catarrhal congestion, with a bruised, bursting quality to the headache and dazzling sensitivity to light that impairs clear thinking.",
       "emotional_pattern": "The emotional pattern reflects irritability and restlessness driven by intense physical discomfort \u2014 constant burning, itching, and smarting in the eyes compel rubbing and winking, suggesting a state of agitated distress. There is an overall sensitivity and vulnerability characteristic of acute suffering, with the patient unable to find comfort in the open air and struggling to get warm, pointing to a withdrawn, self-protective emotional posture during illness."
     },
-    "symptom_passages": {
+    "rubric_passages": {
       "Bladder": "No specific passage found.",
       "Bladder, urination, frequent": "No specific passage found.",
       "Chest": "Abundant secretion in the larynx causing loose cough with rattling in the chest.",
@@ -538,21 +537,21 @@
       "Eye, inflammation, conjunctiva": "It is suitable in the most violent acute conjunctivitis. Amblyopia with inflammation of conjunctiva and lids.",
       "Fever": "The fever occurs mostly during the day with red face and cold hands. The heat descends the body.",
       "Nose": "Sneezing and fluent coryza. The discharge is bland and this occurs with acrid lachrymation. The nasal mucous membrane is swollen. Profuse, bland, fluent, coryza."
-    }
+    },
+    "total_rubrics_in_repertory": 1667
   },
   {
     "remedy": "Ferrum Metallicum",
     "abbreviations": [
       "Ferr."
     ],
-    "total_symptoms_in_repertory": 4071,
     "file": "ferrum_metallicum.md",
     "profile": {
       "personality": "A weak, anemic individual who appears deceptively healthy due to facial flushing, yet is fundamentally flabby, relaxed, and incapable of endurance. They are oversensitive and excitable, craving gentle movement but collapsing under any real exertion or sudden effort.",
       "mental_state": "The mind is confused, weary, and depressed, with the highest degree of despondency and difficulty concentrating. Mental effort such as writing brings on congestive headaches, and any hurry or sudden stimulus causes blackness before the eyes and dizziness.",
       "emotional_pattern": "Tearful, irritable, and anxious from the slightest cause, with extreme nervous sensitivity where even minor noises like crackling paper provoke agitation. They suffer deeply from lack of sympathy, as their flushed appearance belies their genuine inner weakness and distress."
     },
-    "symptom_passages": {
+    "rubric_passages": {
       "Back": "No specific passage found.",
       "Back, pain": "No specific passage found.",
       "Bladder": "The bladder is also relaxed. Its sphincter is weak, and there is no regularity of its muscular action. Hence, we have involuntary urination from sudden motion, from walking, or from coughing.",
@@ -583,7 +582,8 @@
       "Bladder, urination": "Hence, we have involuntary urination from sudden motion, from walking, or from coughing. In little children the urine dribbles all day just as long as the child plays the urine dribbles and keeps the clothing wet, but this better while keeping perfectly quiet.",
       "Generalities, pain": "A strange thing running through all the constitutional conditions of Ferrum is that the pains and sufferings come on during rest. The patient is ameliorated by moving gently about, but any exertion tires and causes faintness. Any rapid motion aggravates the complaints.",
       "Generalities, weakness": "All the muscular fibers become tired from any exertion. Rapid exercise, or, any unusual exertion is impossible. Any rapid exertion or motion brings on weakness, dyspnea, sinking and fainting. Weakness and prostration; weakness even from talking."
-    }
+    },
+    "total_rubrics_in_repertory": 4071
   },
   {
     "remedy": "Ferrum Phosphoricum",
@@ -591,14 +591,13 @@
       "Ferr-p.",
       "Ferr-p-h."
     ],
-    "total_symptoms_in_repertory": 1494,
     "file": "ferrum_phosphoricum.md",
     "profile": {
       "personality": "A restless yet exhausted individual who craves solitude and is averse to company, work, and mental effort. They alternate between unusual mental clarity with abundant ideas and complete indifference to pleasure and exciting events. Despite great lassitude compelling them to lie down, they are ameliorated by gentle, slow motion.",
       "mental_state": "Marked difficulty concentrating and reflecting on ordinary questions, with confusion of mind especially in the morning and evening, ameliorated by washing the face in cold water. The mind alternates between states of unusual clearness and abundant ideas, and periods of stupefaction, forgetfulness, and complete aversion to thinking or mental work. There is a strong tendency toward dissatisfaction with possessions and surroundings, with obstinacy and moroseness.",
       "emotional_pattern": "Prone to intense anger even to the point of violence, producing weakness, headache, trembling, and sweat. Deep anxiety pervades, especially at night, as if having done a great wrong to someone, with fears of death, crowds, misfortune, and apoplexy. Mood alternates unpredictably between cheerful, talkative hilarity and profound evening sadness, with underlying hypochondriacal worry and hysterical sensitivity to noise."
     },
-    "symptom_passages": {
+    "rubric_passages": {
       "Chest": "Anxiety in chest and region of the heart. Catarrh of the chest. Congestion of the chest. Constriction of chest and heart. Sensation of fullness. Haemorrhage of lungs. Heat.",
       "Extremities": "Cold extremities. Cold hands and feet. Cold feet evening in bed. Cold feet during headache. Contraction of fingers, result of rheumatism. Cramps in thighs, legs, calve, feet.",
       "Extremities, coldness": "Cold extremities. Cold hands and feet. Cold feet evening in bed. Cold feet during headache.",
@@ -629,21 +628,21 @@
       "Chest, inflammation": "Inflammation of bronchial tubes, lungs and pleura; oppression of chest.",
       "Clinical, inflammation": "Fever at any time with inflammation of organs, joints, or mucus membranes.",
       "Heart & Circulation, pulse": "Strong, full, frequent pulse. Strong pulsation over body, and in head."
-    }
+    },
+    "total_rubrics_in_repertory": 1494
   },
   {
     "remedy": "Fluoricum Acidum",
     "abbreviations": [
       "Fl-ac."
     ],
-    "total_symptoms_in_repertory": 2581,
     "file": "fluoricum_acidum.md",
     "profile": {
       "personality": "A deeply debilitated, restless individual who craves constant stimulation and novelty, moving from one indulgence to the next. Hot-blooded and aggravated by warmth, they are driven by insatiable appetites\u2014for food, for sensation, for change\u2014yet find only fleeting satisfaction. They tend toward overwork or excess until mental and physical exhaustion sets in.",
       "mental_state": "Mental exhaustion and depression from prolonged overwork or dissipation, with a brain fatigued to the point of dullness and silence. May fall into profound reticence, sitting quietly and answering nothing, or into a state of low-mindedness where higher faculties of judgment and self-control have deteriorated. The mind is slow, insidious in its decline, mirroring the remedy's deep and gradual action.",
       "emotional_pattern": "Marked indifference toward loved ones\u2014an alienation from spouse, children, and closest friends, with aversion to home life and domestic responsibilities. Restless dissatisfaction drives them away from what should bring comfort, while overwhelming sexual erethism and uncontrollable desire may dominate the emotional landscape. There is a deep melancholy and sadness underlying the apparent indifference, reflecting a fundamental loss of orderly affection and human connection."
     },
-    "symptom_passages": {
+    "rubric_passages": {
       "Back": "It is suitable after Sil. in the spinal affections that are attended with paralysis, trembling and numbness in the soles of the feet. It will often stop the progress of structural nervous diseases and prevent the, case from getting worse.",
       "Bladder": "suffers if the call to urinate cannot be immediately attended to, hence, as in the text, \"headaches > by micturition.\"",
       "Chest": "No specific passage found.",
@@ -674,21 +673,21 @@
       "Genitalia male": "He is kept awake nights by erections. This state of desire forces itself upon him, not only when he is with the opposite sex, but at all times. At times, in the beginning of a gonorrhea, this condition of priapism and intense uncontrollable sexual desire, with swelling of the foreskin is overcome by Fluoric acid.",
       "Vision": "No specific passage found.",
       "Mouth, tongue": "No specific passage found."
-    }
+    },
+    "total_rubrics_in_repertory": 2581
   },
   {
     "remedy": "Gelsemium",
     "abbreviations": [
       "Gels."
     ],
-    "total_symptoms_in_repertory": 3024,
     "file": "gelsemium.md",
     "profile": {
       "personality": "A slow, heavy, sluggish constitution with profound muscular weakness and a paralytic quality pervading the entire system. The Gelsemium type is drowsy, dull, and desires to be left alone, lying still not from aversion to motion as in Bryonia, but from sheer inability to move due to overwhelming heaviness and fatigue.",
       "mental_state": "The mind is dazed, stupid, and forgetful, with an inability to think in an orderly way; the patient talks incoherently as if delirious. There is a characteristic mental fog where one lies awake thinking yet thinks of nothing in particular, the mind refusing to function with any coordination. Confusion of vision and sensation accompany the mental dullness, with numbness and loss of awareness spreading through the body.",
       "emotional_pattern": "Anticipatory anxiety and fright dominate the emotional picture, with physical symptoms triggered by fear, embarrassment, shock, and sudden surprises \u2014 producing involuntary discharges, palpitation, faintness, and exhaustion. There is a hysterical, nervous element with states of high excitement alternating with profound prostration and trembling. The patient becomes overwhelmed by upcoming events or social encounters, unable to resist opposing circumstances, collapsing into weakness."
     },
-    "symptom_passages": {
+    "rubric_passages": {
       "Back": "There are also paralytic weakness of the extremities and of the hands. With paralytic states there is aching along the spine and in the muscles of the back; drawing, cramping in the muscles of the back and aching under the left shoulder blade.",
       "Back, coldness": "Great coldness running up the back from the lower part of the spine to the back of the head. Shuddering, as if ice were rubbed up the back.",
       "Back, pain": "With paralytic states there is aching along the spine and in the muscles of the back; drawing, cramping in the muscles of the back and aching under the left shoulder blade.",
@@ -719,21 +718,21 @@
       "Stomach, thirst": "The patient in general is thirstless, and it is the exception that there is much thirst.",
       "Vertigo": "The patient feels dazed and talks as if he were delirious; incoherent, stupid, forgetful.",
       "Back, coldness, extending": "Great coldness running up the back from the lower part of the spine to the back of the head."
-    }
+    },
+    "total_rubrics_in_repertory": 3024
   },
   {
     "remedy": "Glonoinum",
     "abbreviations": [
       "Glon."
     ],
-    "total_symptoms_in_repertory": 2250,
     "file": "glonoinum.md",
     "profile": {
       "personality": "The Glonoinum type is a plethoric individual who is highly sensitive to heat, light, and environmental stimulation. They are easily overwhelmed by exertion and tend toward a sedentary disposition, sitting perfectly still for long periods to avoid aggravating their condition.",
       "mental_state": "Marked by confusion and disorientation, particularly during episodes of cerebral congestion \u2014 they may lose their way near home and fail to recognize familiar faces. Mental application is difficult or impossible during acute states, with trembling that prevents writing or fine work, progressing in chronic cases toward softening of the brain.",
       "emotional_pattern": "The dominant emotional tone is one of frantic distress driven by intense physical suffering, sometimes violent enough to provoke desperate acts like attempting to jump from windows. Between episodes they are apprehensive and avoidant, organizing their life around preventing the next surge of congestion, carrying umbrellas and avoiding warmth, wine, and stimulants."
     },
-    "symptom_passages": {
+    "rubric_passages": {
       "Back": "Some months after being violently jarred by being thrown from a carriage, a sensitiveness of the upper part of the back and neck came on.",
       "Chest": "a feeling as if all the blood in the body must be rushing around the heart, with a sense of heat or a boiling sensation in the region of the heart, or in the left side of the chest.",
       "Heart & Circulation, palpitation": "With this congestion of the head there is commonly vomiting, palpitation of the heart, pain in the stomach, great difficulty in breathing and finally loss of consciousness.",
@@ -764,6 +763,7 @@
       "Eye, injected": "The pupils are dilated and the eyes red.",
       "Eye, redness": "The pupils are dilated and the eyes red.",
       "Clinical, convulsions": "Convulsions come on, convulsions throughout all the limbs, the neck and whole body drawn back, opisthotonos."
-    }
+    },
+    "total_rubrics_in_repertory": 2250
   }
 ]

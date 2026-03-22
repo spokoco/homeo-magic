@@ -1,6 +1,6 @@
 #!/usr/bin/env python3
 """
-Parse OOREP SQL dump and extract symptom → remedy mappings.
+Parse OOREP SQL dump and extract rubric → remedy mappings.
 Outputs JSON files for our lookup engine.
 """
 
@@ -63,8 +63,8 @@ def main():
     print("Parsing rubric-remedy links...")
     link_rows = parse_copy_block(sql_content, "rubricremedy")
     
-    # Build symptom → remedies index
-    symptoms = defaultdict(lambda: {"remedies": {}, "chapter_id": None})
+    # Build rubric → remedies index
+    rubrics_idx = defaultdict(lambda: {"remedies": {}, "chapter_id": None})
     
     for row in link_rows:
         rep_abbrev, rubric_id, remedy_id, weight, chapter_id = row
@@ -72,19 +72,19 @@ def main():
             rubric = rubrics[rubric_id]
             fullpath = rubric["fullpath"]
             
-            if fullpath not in symptoms:
-                symptoms[fullpath]["chapter_id"] = rubric["chapter_id"]
-            
+            if fullpath not in rubrics_idx:
+                rubrics_idx[fullpath]["chapter_id"] = rubric["chapter_id"]
+
             if remedy_id in remedies:
                 remedy_abbrev = remedies[remedy_id]["abbrev"]
-                symptoms[fullpath]["remedies"][remedy_abbrev] = int(weight)
+                rubrics_idx[fullpath]["remedies"][remedy_abbrev] = int(weight)
     
-    print(f"  Built {len(symptoms)} symptom entries")
-    
+    print(f"  Built {len(rubrics_idx)} rubric entries")
+
     # Sample output
-    print("\n=== Sample symptoms ===")
-    for i, (symptom, data) in enumerate(list(symptoms.items())[:10]):
-        print(f"  {symptom}")
+    print("\n=== Sample rubrics ===")
+    for i, (rubric, data) in enumerate(list(rubrics_idx.items())[:10]):
+        print(f"  {rubric}")
         top_remedies = sorted(data["remedies"].items(), key=lambda x: -x[1])[:5]
         print(f"    → {top_remedies}")
     
@@ -97,15 +97,15 @@ def main():
         json.dump(remedies_out, f, indent=2)
     print(f"  Wrote remedies.json ({len(remedies_out)} entries)")
     
-    # Symptoms index
-    symptoms_out = dict(symptoms)
+    # Rubrics index
+    rubrics_out = dict(rubrics_idx)
     with open(output_dir / "symptoms.json", "w") as f:
-        json.dump(symptoms_out, f, indent=2)
-    print(f"  Wrote symptoms.json ({len(symptoms_out)} entries)")
+        json.dump(rubrics_out, f, indent=2)
+    print(f"  Wrote symptoms.json ({len(rubrics_out)} entries)")
     
     # Stats
-    total_links = sum(len(s["remedies"]) for s in symptoms.values())
-    print(f"\nTotal symptom-remedy links: {total_links}")
+    total_links = sum(len(s["remedies"]) for s in rubrics_idx.values())
+    print(f"\nTotal rubric-remedy links: {total_links}")
 
 if __name__ == "__main__":
     main()

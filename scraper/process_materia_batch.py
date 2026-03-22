@@ -2,8 +2,8 @@
 """
 Process a batch of Kent's Materia Medica remedy chapters.
 For each remedy:
-1. Keyword pre-filter: match passages against symptom database
-2. Generate symptom cross-reference index
+1. Keyword pre-filter: match passages against rubric database
+2. Generate rubric cross-reference index
 3. Generate constitutional/personality profile
 
 Usage: python3 process_materia_batch.py <batch_num> <total_batches>
@@ -22,7 +22,7 @@ MM_DIR = DATA_DIR / "kent" / "materia_medica"
 MD_DIR = MM_DIR / "remedy_markdown"
 OUTPUT_DIR = MM_DIR / "processed"
 
-def load_symptoms():
+def load_rubrics():
     with open(DATA_DIR / "symptoms.json") as f:
         return json.load(f)
 
@@ -42,14 +42,14 @@ def extract_remedy_name(filepath):
         return first_line[2:]
     return filepath.stem.replace("_", " ").title()
 
-def find_matching_symptoms(remedy_abbrevs, symptoms_db):
-    """Find all symptoms that list any of this remedy's abbreviations."""
+def find_matching_rubrics(remedy_abbrevs, rubrics_db):
+    """Find all rubrics that list any of this remedy's abbreviations."""
     matching = {}
-    for symptom_path, data in symptoms_db.items():
+    for rubric_path, data in rubrics_db.items():
         for abbrev in remedy_abbrevs:
             if abbrev in data.get("remedies", {}):
                 grade = data["remedies"][abbrev]
-                matching[symptom_path] = grade
+                matching[rubric_path] = grade
                 break
     return matching
 
@@ -93,19 +93,19 @@ Output ONLY valid JSON, no commentary."""
     except (ValueError, json.JSONDecodeError) as e:
         return {"personality": "Profile generation failed", "mental_state": "", "emotional_pattern": "", "error": str(e)}
 
-def call_llm_symptom_match(remedy_name, remedy_text, symptom_list):
-    """Call Claude to match symptoms to passages."""
-    symptoms_str = "\n".join(f"- {s}" for s in symptom_list[:30])  # Limit to top 30
-    
+def call_llm_rubric_match(remedy_name, remedy_text, rubric_list):
+    """Call Claude to match rubrics to passages."""
+    rubrics_str = "\n".join(f"- {s}" for s in rubric_list[:30])  # Limit to top 30
+
     prompt = f"""You are a homeopathic materia medica analyst. Read this Kent lecture on {remedy_name}.
 
-For each symptom below, find the most relevant passage from Kent's text. Quote Kent directly.
+For each rubric below, find the most relevant passage from Kent's text. Quote Kent directly.
 If no relevant passage exists, output "No specific passage found."
 
-Symptoms:
-{symptoms_str}
+Rubrics:
+{rubrics_str}
 
-Output as JSON: a dictionary mapping each symptom string to Kent's quote (string).
+Output as JSON: a dictionary mapping each rubric string to Kent's quote (string).
 Output ONLY valid JSON, no commentary."""
 
     result = subprocess.run(
@@ -122,43 +122,43 @@ Output ONLY valid JSON, no commentary."""
         end = output.rindex("}") + 1
         return json.loads(output[start:end])
     except (ValueError, json.JSONDecodeError) as e:
-        return {s: f"Matching failed: {e}" for s in symptom_list[:30]}
+        return {s: f"Matching failed: {e}" for s in rubric_list[:30]}
 
-def process_remedy(filepath, symptoms_db, remedies_db, batch_num):
+def process_remedy(filepath, rubrics_db, remedies_db, batch_num):
     """Process a single remedy chapter."""
     remedy_name = extract_remedy_name(filepath)
     remedy_text = filepath.read_text()
-    
+
     # Find abbreviations
     abbrevs = get_remedy_abbreviations(remedy_name, remedies_db)
-    
-    # Find symptoms that reference this remedy
+
+    # Find rubrics that reference this remedy
     if abbrevs:
-        matching_symptoms = find_matching_symptoms(abbrevs, symptoms_db)
+        matching_rubrics = find_matching_rubrics(abbrevs, rubrics_db)
         # Sort by grade descending, take top 30
-        top_symptoms = sorted(matching_symptoms.items(), key=lambda x: -x[1])[:30]
-        symptom_names = [s[0] for s in top_symptoms]
+        top_rubrics = sorted(matching_rubrics.items(), key=lambda x: -x[1])[:30]
+        rubric_names = [s[0] for s in top_rubrics]
     else:
-        matching_symptoms = {}
-        symptom_names = []
-    
+        matching_rubrics = {}
+        rubric_names = []
+
     result = {
         "remedy": remedy_name,
         "abbreviations": abbrevs,
-        "total_symptoms_in_repertory": len(matching_symptoms),
+        "total_rubrics_in_repertory": len(matching_rubrics),
         "file": filepath.name,
     }
-    
+
     # LLM: Generate profile
     print(f"  [{batch_num}] Generating profile for {remedy_name}...")
     result["profile"] = call_llm_profile(remedy_name, remedy_text)
-    
-    # LLM: Match symptoms to passages
-    if symptom_names:
-        print(f"  [{batch_num}] Matching {len(symptom_names)} symptoms for {remedy_name}...")
-        result["symptom_passages"] = call_llm_symptom_match(remedy_name, remedy_text, symptom_names)
+
+    # LLM: Match rubrics to passages
+    if rubric_names:
+        print(f"  [{batch_num}] Matching {len(rubric_names)} rubrics for {remedy_name}...")
+        result["rubric_passages"] = call_llm_rubric_match(remedy_name, remedy_text, rubric_names)
     else:
-        result["symptom_passages"] = {}
+        result["rubric_passages"] = {}
     
     return result
 
@@ -171,7 +171,7 @@ def main():
     total_batches = int(sys.argv[2])
     
     # Load data
-    symptoms_db = load_symptoms()
+    rubrics_db = load_rubrics()
     remedies_db = load_remedies()
     remedy_files = get_remedy_files()
     
@@ -198,7 +198,7 @@ def main():
         print(f"\n[{batch_num+1}] ({i+1}/{len(batch_files)}) Processing: {remedy_name}")
         
         try:
-            result = process_remedy(filepath, symptoms_db, remedies_db, batch_num+1)
+            result = process_remedy(filepath, rubrics_db, remedies_db, batch_num+1)
             results.append(result)
             
             # Save incrementally
@@ -206,7 +206,7 @@ def main():
             with open(output_file, "w") as f:
                 json.dump(results, f, indent=2)
             
-            print(f"  [{batch_num+1}] Done: {remedy_name} ({len(result.get('symptom_passages', {}))} passages)")
+            print(f"  [{batch_num+1}] Done: {remedy_name} ({len(result.get('rubric_passages', {}))} passages)")
             
         except Exception as e:
             print(f"  [{batch_num+1}] ERROR on {remedy_name}: {e}")

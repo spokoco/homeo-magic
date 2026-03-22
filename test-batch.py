@@ -17,10 +17,10 @@ from unittest.mock import patch, MagicMock
 from scraper.extract_passages_batch import get_md_files as get_passages_md_files
 from scraper.process_materia_batch import (
     extract_remedy_name,
-    find_matching_symptoms,
+    find_matching_rubrics,
     get_remedy_abbreviations,
     get_remedy_files,
-    load_symptoms,
+    load_rubrics,
     load_remedies,
 )
 from scraper.format_markdown_batch import get_md_files as get_format_md_files
@@ -132,38 +132,38 @@ class TestGetRemedyAbbreviations:
         assert len(abbrevs) > 0 or True  # May not match depending on DB format
 
 
-# --- Symptom Matching Tests ---
+# --- Rubric Matching Tests ---
 
-class TestFindMatchingSymptoms:
-    """Test finding symptoms that reference a remedy."""
+class TestFindMatchingRubrics:
+    """Test finding rubrics that reference a remedy."""
 
     @pytest.fixture(scope="class")
-    def symptoms_db(self):
+    def rubrics_db(self):
         with open(DATA_DIR / "symptoms.json") as f:
             return json.load(f)
 
-    def test_nux_vomica_has_many_symptoms(self, symptoms_db):
-        matching = find_matching_symptoms(["Nux-v."], symptoms_db)
-        assert len(matching) > 100, f"Nux-v. only matched {len(matching)} symptoms"
+    def test_nux_vomica_has_many_rubrics(self, rubrics_db):
+        matching = find_matching_rubrics(["Nux-v."], rubrics_db)
+        assert len(matching) > 100, f"Nux-v. only matched {len(matching)} rubrics"
 
-    def test_returns_grades(self, symptoms_db):
-        matching = find_matching_symptoms(["Nux-v."], symptoms_db)
-        for symptom, grade in matching.items():
-            assert grade in (1, 2, 3), f"Invalid grade {grade} for {symptom}"
+    def test_returns_grades(self, rubrics_db):
+        matching = find_matching_rubrics(["Nux-v."], rubrics_db)
+        for rubric, grade in matching.items():
+            assert grade in (1, 2, 3), f"Invalid grade {grade} for {rubric}"
 
-    def test_multiple_abbreviations(self, symptoms_db):
-        """Should find symptoms for any of the provided abbreviations."""
-        single = find_matching_symptoms(["Sulph."], symptoms_db)
+    def test_multiple_abbreviations(self, rubrics_db):
+        """Should find rubrics for any of the provided abbreviations."""
+        single = find_matching_rubrics(["Sulph."], rubrics_db)
         # Adding a synonym should find at least as many
-        multi = find_matching_symptoms(["Sulph.", "Sul."], symptoms_db)
+        multi = find_matching_rubrics(["Sulph.", "Sul."], rubrics_db)
         assert len(multi) >= len(single)
 
-    def test_unknown_abbreviation(self, symptoms_db):
-        matching = find_matching_symptoms(["NONEXIST."], symptoms_db)
+    def test_unknown_abbreviation(self, rubrics_db):
+        matching = find_matching_rubrics(["NONEXIST."], rubrics_db)
         assert len(matching) == 0
 
-    def test_empty_abbreviations(self, symptoms_db):
-        matching = find_matching_symptoms([], symptoms_db)
+    def test_empty_abbreviations(self, rubrics_db):
+        matching = find_matching_rubrics([], rubrics_db)
         assert len(matching) == 0
 
 
@@ -253,6 +253,6 @@ class TestProcessedBatchOutput:
         for r in all_results:
             assert "profile" in r, f"{r['remedy']} missing profile"
 
-    def test_all_have_symptom_passages(self, all_results):
+    def test_all_have_rubric_passages(self, all_results):
         for r in all_results:
-            assert "symptom_passages" in r, f"{r['remedy']} missing symptom_passages"
+            assert "rubric_passages" in r, f"{r['remedy']} missing rubric_passages"

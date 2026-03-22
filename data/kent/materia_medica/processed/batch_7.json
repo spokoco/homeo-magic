@@ -4,14 +4,13 @@
     "abbreviations": [
       "Mez."
     ],
-    "total_symptoms_in_repertory": 4644,
     "file": "mezereum.md",
     "profile": {
       "personality": "A restless, nervous individual who is compelled to constantly move and change positions. They are indifferent to everybody and everything, yet cannot bear to be alone, while simultaneously being averse to talking. They tend to externalize their suffering \u2014 when skin symptoms are present they are in fairly good health, but when these are suppressed they become a mental and physical wreck.",
       "mental_state": "Thought is difficult, memory is weak, and the mind is absent and unfocused. When eruptions are suppressed, strange mental symptoms emerge including melancholy that fixates on religious or financial matters, shaping itself around the patient's business concerns. In advanced states, the patient deteriorates into insanity with deep sadness and cognitive decline.",
       "emotional_pattern": "Dominated by a deep-seated apprehensiveness felt physically in the pit of the stomach \u2014 every shock, bad news, or unexpected event triggers a faint, gone, frightened sensation in the solar plexus. They are irritable yet melancholic, swinging between agitated restlessness and profound indifference. There is a pervasive undercurrent of anxiety and vulnerability, as if something dreadful is always about to happen."
     },
-    "symptom_passages": {
+    "rubric_passages": {
       "Back": "Neuralgias, sciatica, pain in the spine, in the brachial plexus and down the arms; neuralgia of the face; all following suppressed eruptions.",
       "Chill": "After the eruptions have given place to internal manifestations, the patient is chilly, sensitive to the changes of the weather, worse in stormy weather; worse after a bath, because he takes cold and his internal complaints are aggravated.",
       "Extremities": "Inflammatory rheumatism, worse from the warmth of the bed and at night; worse from touch; pains run down the bones; bursting sensation in the bones. They feel enlarged; tearing pains in the periosteum, necrosis, caries, fistulous openings discharging briny particles and large ulcers surrounded by pustules.",
@@ -42,21 +41,21 @@
       "Heart & Circulation": "No specific passage found.",
       "Back, dorsal region": "Neuralgias, sciatica, pain in the spine, in the brachial plexus and down the arms; neuralgia of the face; all following suppressed eruptions.",
       "Ear": "Ear troubles from suppressed eruptions; thickening of the mucous membranes of the ears; degeneration of the drum of the ear; deafness, otorrhoea."
-    }
+    },
+    "total_rubrics_in_repertory": 4644
   },
   {
     "remedy": "Millefolium",
     "abbreviations": [
       "Mill."
     ],
-    "total_symptoms_in_repertory": 658,
     "file": "millefolium.md",
     "profile": {
       "personality": "The Millefolium constitution is characterized by a passive, yielding temperament with a tendency toward physical vulnerability and fragility of the vascular system. These individuals are prone to exhaustion and depletion, living in a state of constitutional weakness where even slight exertion can provoke serious consequences.",
       "mental_state": "The mental picture is dominated by congestion and fullness, with rushes of blood to the head producing dull, heavy headaches and foggy thinking. There is a sensitivity to sudden stimuli, as seen in the startling reaction to noise, suggesting an underlying nervous irritability beneath the passive exterior.",
       "emotional_pattern": "Emotionally, the Millefolium patient tends toward a state of quiet vulnerability and apprehension, particularly around physical integrity and the body's inability to contain or repair itself. There is an undercurrent of helplessness tied to the body's failure to maintain boundaries, reflected in the easy bleeding, suppressed discharges, and general atony that pervades the remedy picture."
     },
-    "symptom_passages": {
+    "rubric_passages": {
       "Chest": "Oppression of the chest; palpitation; surging of blood from chest to head. Hemorrhage from lungs, Congestion of lungs following bleeding of lungs. Bleeding from lungs from suppressed menses.",
       "Generalities": "Haemorrhage from any part, from wounds, from ulcers. Atony of the blood vessels. The blood is generally bright red. When a general haemorrhagic condition prevails.",
       "Genitalia female": "Profuse menses, protracted, with cramps in uterus and abdomen. Uterine haemorrhage after slight exertion from abortion, or during labor; continuous, bright red blood.",
@@ -87,7 +86,8 @@
       "Stomach, pain, burning": "Burning in stomach, aggravated bending forward. Burning in stomach and abdomen extending to chest.",
       "Abdomen, pain": "Profuse menses, protracted, with cramps in uterus and abdomen.",
       "Head, congestion": "Violent congestion after haemorrhage. Hyperaemia of the brain and red face. Epistaxis, with congestion to head and chest."
-    }
+    },
+    "total_rubrics_in_repertory": 658
   },
   {
     "remedy": "Moschus",
@@ -95,14 +95,13 @@
       "Mosch.",
       "Abel."
     ],
-    "total_symptoms_in_repertory": 1873,
     "file": "moschus.md",
     "profile": {
       "personality": "A self-willed, obstinate, and selfish constitutional type, typically developed through a lifetime of indulgence where every whim was gratified from infancy. These individuals are crafty and cunning manipulators who produce elaborate displays of symptoms to overwhelm those around them into submission.",
       "mental_state": "The mind is dominated by hysterical perversion, producing erratic and unpredictable neuropathic phenomena that defy conventional clinical assessment. There is a fundamental unreliability in self-reporting, as the patient has traded upon sensations and imagination for so long that truthful statements become impossible. Constant hurry, dropping things, foolish gestures, and a dread of death with incessant talk of dying characterize the mental picture.",
       "emotional_pattern": "Violent fits of anger with rage and scolding escalate until the face turns blue and the patient faints, alternating with states of anguish, apprehension, trembling, and palpitation. Peevishness and quarrelsomeness dominate interpersonal relations, with a deep-seated fear of death including fear of lying down lest she die. The emotional life is fundamentally performative and manipulative, with symptoms intensifying in both quantity and intensity until all desires are attained."
     },
-    "symptom_passages": {
+    "rubric_passages": {
       "Chill": "Sensitive to cold, and complaints come on from becoming cold.",
       "Extremities": "Aching in limbs. Restlessness in legs, and tibia cold. One hand hot and pale, the other cold and red.",
       "Generalities": "Cold skin, trembling, fainting and palpitation.",
@@ -133,7 +132,8 @@
       "Generalities, stiffness": "No specific passage found.",
       "Cough": "No specific passage found.",
       "Fever": "Heat in evening in bed, on right side only; wants to uncover."
-    }
+    },
+    "total_rubrics_in_repertory": 1873
   },
   {
     "remedy": "Muriaticum Acidum",
@@ -141,14 +141,13 @@
       "Mur-ac.",
       "Nit-m-ac."
     ],
-    "total_symptoms_in_repertory": 3386,
     "file": "muriaticum_acidum.md",
     "profile": {
       "personality": "A deeply prostrated individual whose mental faculties remain surprisingly intact even as the body fails catastrophically. They are irritable and withdrawn, refusing engagement not from inability to think but because interaction agitates them. There is a stoic, uncomplaining quality masking profound physical collapse.",
       "mental_state": "The mind holds out longer than the body, distinguishing this type from those who lose mental clarity first. The patient is aware and cognitively present but unwilling to exert effort in communication, becoming fretful when pressed to speak. Eventually consciousness fades as the paralytic weakness overtakes all systems.",
       "emotional_pattern": "Irritability and desire to be left undisturbed are the dominant emotional features, driven by a sense that any demand is an unbearable imposition on their depleted resources. There is restlessness but far less than the anxious agitation seen in other prostrated types. The emotional tone is one of quiet, resentful exhaustion rather than fear or despair."
     },
-    "symptom_passages": {
+    "rubric_passages": {
       "Back": "Pressing pain in back. Pressing, drawing, tired feeling in small of back. Burning in spine.",
       "Back, pain": "Pressing pain in back. Pressing, drawing, tired feeling in small of back. Burning in spine.",
       "Bladder": "Must wait a long time for urine to start; must press so that anus protrudes. This is in keeping with the general paralytic muscular weakness in the body. Involuntary flow of urine and stool in low fevers.",
@@ -179,69 +178,69 @@
       "Heart & Circulation": "Pulse slow and weak, intermits every third beat.",
       "Bladder, urination, retarded, press, must, a long time before he can begin": "Must wait a long time for urine to start; must press so that anus protrudes. This is in keeping with the general paralytic muscular weakness in the body.",
       "Face": "The lower jaw hangs down in typhoid fever. Margin of lips dry, sore and cracked. Burning lips."
-    }
+    },
+    "total_rubrics_in_repertory": 3386
   },
   {
     "remedy": "Natrum Arsenicosum",
     "abbreviations": [],
-    "total_symptoms_in_repertory": 0,
     "file": "natrum_arsenicosum.md",
     "profile": {
       "personality": "A restless, irritable individual who desires to be left alone, preferring to lie down undisturbed yet finding no true comfort in any position. They are conscientious about trifles, easily angered by contradiction, and oscillate between loquacious hyperactivity and complete aversion to mental work or social engagement.",
       "mental_state": "Marked difficulty with concentration and mental exertion, especially indoors, with notable improvement in open air. The mind alternates between dullness, forgetfulness, and periods of excessive mental activity with racing ideas, alongside a growing sense of imbecility and prostration of mind.",
       "emotional_pattern": "Deep-seated anxiety that intensifies in the evening and at night in bed, accompanied by multiple fears \u2014 of crowds, of impending disease, of evil, and of people. A pervasive sadness and discontent underlies the temperament, punctuated by episodes of quarrelsomeness and impatience, with an overarching loathing of life and indifference to joy."
     },
-    "symptom_passages": {}
+    "rubric_passages": {},
+    "total_rubrics_in_repertory": 0
   },
   {
     "remedy": "Natrum Carbonicum",
     "abbreviations": [],
-    "total_symptoms_in_repertory": 0,
     "file": "natrum_carbonicum.md",
     "profile": {
       "personality": "A deeply sensitive, nervous, and exhausted individual who is chilly, stoop-shouldered, and physically weak. They are profoundly affected by their environment\u2014unable to tolerate extremes of heat or cold, drafts, weather changes, or even minor sensory stimuli like the rustling of paper or the slam of a door.",
       "mental_state": "Marked mental fatigue and brain fag; loses the ability to concentrate, forgets what was just read, and cannot hold a thought from the beginning to the end of a sentence. Confusion of mind follows any mental exertion, rendering sustained intellectual work impossible, with progressive deterioration of memory and cognitive function.",
       "emotional_pattern": "Estranged from family, friends, and society, feeling a deep division between themselves and others, with aversion to both relatives and strangers. Music provokes intense melancholy, weeping, and even suicidal tendencies; the overall emotional state is one of anxious trepidation, irritability, and a fragile nervousness that can escalate into religious insanity."
     },
-    "symptom_passages": {}
+    "rubric_passages": {},
+    "total_rubrics_in_repertory": 0
   },
   {
     "remedy": "Natrum Muriaticum",
     "abbreviations": [],
-    "total_symptoms_in_repertory": 0,
     "file": "natrum_muriaticum.md",
     "profile": {
       "personality": "A deeply sensitive, emotionally intense individual who is easily disturbed by external stimuli such as noise, music, and excitement. The Natrum Muriaticum type presents as nervous, irritable, and hysterical, with a greasy, waxy, pale appearance and tendency toward emaciation, particularly from the upper body downward.",
       "mental_state": "Marked mental prostration with extreme forgetfulness, inability to concentrate or meditate, and loss of the thread of thought while reading or listening. The mind is in a state of nervous fret and irritation, with heightened sensitivity to all impressions, feeling everything amplified, and a tendency toward hysterical alternation between spasmodic laughter and deep sadness.",
       "emotional_pattern": "The core emotional pattern is one of deep, inconsolable grief and joylessness, with a paradoxical relationship to sympathy \u2014 appearing to seek consolation yet becoming angry when it is offered. There is a tendency to dwell on past unpleasant events, to grieve over nothing, and to form unrequited or unwise emotional attachments that cannot be controlled. Weeping alternates with inappropriate laughter, and the melancholy is resistant to cheering circumstances."
     },
-    "symptom_passages": {}
+    "rubric_passages": {},
+    "total_rubrics_in_repertory": 0
   },
   {
     "remedy": "Natrum Phosphoricum",
     "abbreviations": [],
-    "total_symptoms_in_repertory": 0,
     "file": "natrum_phosphoricum.md",
     "profile": {
       "personality": "A mentally and physically exhausted individual, worn down by intellectual overwork and sexual excesses, who becomes increasingly withdrawn, silent, and indifferent to surroundings and family. They are impatient, irritable over trifles, and hypersensitive to external stimuli such as music, noise, and thunderstorms.",
       "mental_state": "The mind is progressively dulled, with difficulty concentrating, forgetfulness, and a sluggishness that approaches imbecility under prolonged strain. Confusion worsens in the morning, after eating, and from any mental exertion, accompanied by wandering thoughts and an alternation between abundant ideas and complete mental vacancy. Delusions of seeing dead people, hearing footsteps, and fears of impending disease reveal a mind losing its grip on reality.",
       "emotional_pattern": "Deep-seated anxiety pervades, especially at night, on waking, and about the future and health, coupled with a pervasive sadness triggered by music, emissions, and evening hours. They oscillate between restless agitation and a profound indifference that extends even to loved ones, growing increasingly timid, bashful, suspicious, and prone to easy weeping as their emotional resilience collapses."
     },
-    "symptom_passages": {}
+    "rubric_passages": {},
+    "total_rubrics_in_repertory": 0
   },
   {
     "remedy": "Natrum Sulphuricum",
     "abbreviations": [
       "Sulph."
     ],
-    "total_symptoms_in_repertory": 12105,
     "file": "natrum_sulphuricum.md",
     "profile": {
       "personality": "A deeply sensitive, irritable individual of bilious constitution who is averse to company and dislikes speaking or being spoken to. They are oversensitive both mentally and physically, easily startled, suspicious, and intensely fastidious, with a strong need for open air and movement to feel better.",
       "mental_state": "The mind is dull yet excitable, with poor concentration worsened by mental exertion. Forgetfulness, indifference, and indolence predominate, along with fear of crowds, evil, and people. Mental symptoms frequently arise from head injuries, and there is a marked tendency toward vertigo and confusion that disrupts engagement with work and responsibilities.",
       "emotional_pattern": "Profound morning sadness and anxiety that characteristically lift after breakfast, with intense suicidal impulses requiring constant self-restraint. Music deepens their melancholy, and there is a pervasive loathing of life coupled with deep restlessness and apprehension about the future, though episodes of cheerfulness can appear unexpectedly, particularly after stool."
     },
-    "symptom_passages": {
+    "rubric_passages": {
       "Abdomen, hard": "No specific passage found.",
       "Abdomen, rumbling": "Fullness, rumbling, motions, gurgling with or without diarrhea.",
       "Abdomen, weakness, sensation of": "Emptiness relieved by passing flatus and by eructations.",
@@ -272,21 +271,21 @@
       "Mind, restlessness, night": "Restlessness of the limbs at night in bed.",
       "Mouth": "The mouth is always slimy. Much mucus forms in the mouth and throat. Blisters on the tongue and roof of the mouth. Numbness in the mouth. Salivation.",
       "Mouth, dryness": "No specific passage found."
-    }
+    },
+    "total_rubrics_in_repertory": 12105
   },
   {
     "remedy": "Nitricum Acidum",
     "abbreviations": [
       "Nit-ac."
     ],
-    "total_symptoms_in_repertory": 6303,
     "file": "nitricum_acidum.md",
     "profile": {
       "personality": "A deeply broken-down individual, worn by prolonged physical suffering, who presents as irritable, obstinate, and hypersensitive to all stimuli including noise, cold, and even medicines. They are chilly, emaciated, and anxious-looking with an expression of deep suffering etched into their features.",
       "mental_state": "Mental prostration with vanishing thoughts upon any effort to reflect; inability to comprehend what is said. The mind is exhausted yet paradoxically restless\u2014weary of life but terrified of death, with constant anxiety about declining health and an inability to be consoled or comforted about misfortune.",
       "emotional_pattern": "Dominated by hopeless despair alternating with irritable anger\u2014they rage over their own mistakes, tremble with anger, and refuse consolation, yet are easily startled and moved to weeping. A pervasive indifference and joylessness pervades their existence, worsening before menses and in the evening, with a peculiar amelioration of the entire mental state while riding in a carriage."
     },
-    "symptom_passages": {
+    "rubric_passages": {
       "Back": "Swelling of glands of neck and axilla. Stiff neck. Stitching pains in back and chest. Burning spots in spine. Pain in back, nights, compelling him to lie on the abdomen. Sharp pains in back and limb in tabes dorsalis. Sharp pains in back on coughing.",
       "Back, pain": "Pain in back, nights, compelling him to lie on the abdomen. Sharp pains in back and limb in tabes dorsalis. Sharp pains in back on coughing.",
       "Back, pain, dorsal region": "Stitching pains in back and chest. Burning spots in spine.",
@@ -317,21 +316,21 @@
       "Stomach": "The stomach is disordered by milk. Food sours, and causes sour eructations and vomiting. Fats disagree. Nausea after eating, ameliorated by moving about or riding in a carriage. Vomiting bitter and sour, contents of stomach. Ulceration of stomach. Pain in cardiac, opening of stomach on swallowing. Sticking pain in stomach. Catarrh of stomach. Weight after eating. Sensation of rawness in stomach after eating.",
       "Appetite, aversion, meat": "Longing for fats, pungent things, herring, chalk, lime, earth; and aversion to bread and meat.",
       "Stomach, thirst": "Generally thirstless. The thirstlessness during all stages has often called attention to it."
-    }
+    },
+    "total_rubrics_in_repertory": 6303
   },
   {
     "remedy": "Nux Moschata",
     "abbreviations": [
       "Nux-m."
     ],
-    "total_symptoms_in_repertory": 3146,
     "file": "nux_moschata.md",
     "profile": {
       "personality": "A dazed, automatic individual who goes through daily routines as if in a dream state, performing duties mechanically without full conscious awareness. Predominantly seen in nervous, hysterical women who are lean and have lost flesh, with extreme sensitivity to environmental conditions such as wind, cold, and dampness.",
       "mental_state": "Profound loss of memory and dreamlike consciousness are the keynotes; she speaks intelligently in the moment but retains nothing of the past and forgets what she has been doing if interrupted. There is a tendency toward clairvoyance and prophetic speech, combined with an overwhelming, irresistible sleepiness that makes her fall asleep on all occasions. When aroused she looks dazed and confused, answering questions slowly or irrelevantly.",
       "emotional_pattern": "Deeply susceptible to emotional shock \u2014 blighted affections, loss of a friend, or fright can trigger the characteristic dazed and dissociated state. She is prone to hysteria, faintness, and momentary paralysis of a functional nature, reflecting a nervous system that withdraws into numbness and disconnection rather than expressing distress outwardly."
     },
-    "symptom_passages": {
+    "rubric_passages": {
       "Back": "The whole back is sensitive to pressure, the vertebrae are sensitive.",
       "Back, pain": "The whole back is sensitive to pressure, the vertebrae are sensitive.",
       "Bladder": "No specific passage found.",
@@ -362,7 +361,8 @@
       "Generalities, faintness": "Faintness and even fainting when standing long, such as occurs in a nervous woman standing to have a dress fitted.",
       "Generalities, pain": "No specific passage found.",
       "Appetite": "No specific passage found."
-    }
+    },
+    "total_rubrics_in_repertory": 3146
   },
   {
     "remedy": "Nux Vomica",
@@ -370,14 +370,13 @@
       "Nux-v.",
       "Mica."
     ],
-    "total_symptoms_in_repertory": 8508,
     "file": "nux_vomica.md",
     "profile": {
       "personality": "The Nux Vomica type is an driven, overworked business person who pushes themselves to exhaustion through stimulants, late nights, and relentless attention to detail. They are lean, withered, prematurely aged, and perpetually dissatisfied with their surroundings, food, and the people around them.",
       "mental_state": "The mind is fatigued from constant mental overwork\u2014a whirl of business details that crowd in day and night, preventing sleep and causing brain fag. They wake at 3 A.M. unable to stop thinking, yet cannot concentrate properly; memory must be artificially stimulated and confusion sets in. This mental exhaustion progresses toward the verge of insanity, with hypochondriasis, despair, and an inability to bear reading or conversation.",
       "emotional_pattern": "The core emotional state is an uncontrollable, spasmodic irritability born of weakness rather than strength\u2014they quarrel, scold, reproach, and insult, then shortly afterward howl and weep aloud. They cannot be contradicted or opposed without flying into a destructive rage, yet underneath lies deep melancholy, sadness, and a feeling of being driven to pieces. Violent impulses toward destruction of others alternate with jealousy, sexual excess, and eventual despair that can progress to suicidal ideation."
     },
-    "symptom_passages": {
+    "rubric_passages": {
       "Abdomen, hard": "No specific passage found.",
       "Abdomen, rumbling": "No specific passage found.",
       "Abdomen, weakness, sensation of": "Pressure and sense of weakness in, the left inguinal ring - hence cures hernia in babies",
@@ -408,7 +407,8 @@
       "Rectum, constipation": "In constipation the more he strains the harder it is to pass a stool.",
       "Rectum, pain": "Hemorrhoids, portal congestion, cutting pains to rectum causing urging to stool.",
       "Rectum, pain, burning": "Pains shoot from the rectum up; burning."
-    }
+    },
+    "total_rubrics_in_repertory": 8508
   },
   {
     "remedy": "Opium",
@@ -416,14 +416,13 @@
       "Helio.",
       "Op."
     ],
-    "total_symptoms_in_repertory": 3355,
     "file": "opium.md",
     "profile": {
       "personality": "The Opium constitutional type is characterized by profound torpor, inactivity, and a striking indifference to their surroundings. They want to be left alone, insist they are well even when gravely ill, and exist in a state of detachment from reality with perversion of all senses. In their alternate state, they can be excitable, loquacious, and hypersensitive to the slightest noise, light, or odor.",
       "mental_state": "The mind is dominated by sluggishness, confusion, and stupor, with an inability to realize or judge their actual condition. There is marked self-deception about their state of health, a besotted quality to their consciousness, and when aroused from stupor they startle with expressions of awful fear or anxiety. Constitutional liars with no conscience, they experience visions of frightful images, black forms, devils, and ghosts.",
       "emotional_pattern": "The core emotional duality swings between a state of blissful well-being, happiness, and false confidence, and an overwhelming state of fear, anxiety, and dread. Fear is the central emotional driver \u2014 fright produces lasting effects where the object of fear remains perpetually before the eyes, triggering convulsions, diarrhea, or suppressed menses. They are also deeply affected by sudden joy, anger, and shame, with emotional shocks producing profound physical consequences."
     },
-    "symptom_passages": {
+    "rubric_passages": {
       "Back": "Opisthotonos; head drawn back, cerebro-spinal meningitis.",
       "Bladder": "The bladder is in a similar state. There is no ability to use the abdominal muscles; he cannot strain to urinate retention of accelerator muscles are in a state of paresis.",
       "Chest": "No specific passage found.",
@@ -454,21 +453,21 @@
       "Vertigo": "No specific passage found.",
       "Abdomen, pain": "No specific passage found.",
       "Bladder, urination": "The bladder is in a similar state. There is no ability to use the abdominal muscles; he cannot strain to urinate retention of accelerator muscles are in a state of paresis."
-    }
+    },
+    "total_rubrics_in_repertory": 3355
   },
   {
     "remedy": "Oxalicum Acidum",
     "abbreviations": [
       "Ox-ac."
     ],
-    "total_symptoms_in_repertory": 1795,
     "file": "oxalicum_acidum.md",
     "profile": {
       "personality": "A deeply sensitive, nervous individual prone to physical and mental exhaustion, particularly affecting the heart and nervous system. They are introverted with an aversion to conversation, oscillating between states of exhilaration and profound dejection. Their suffering is markedly amplified by mental focus \u2014 symptoms worsen when thinking about them \u2014 suggesting a constitution where mind and body are unusually intertwined.",
       "mental_state": "The mind alternates between excitement and loss of memory, with episodes of maniacal conduct giving way to mental dullness and an empty-headed sensation. Concentration worsens their condition, as pains and symptoms intensify when attended to mentally. There is a tendency toward mental fog, vanishing of sight, and dizziness from cerebral congestion.",
       "emotional_pattern": "The core emotional pattern is one of anxious vulnerability \u2014 frightening dreams, waking in cold sweat with palpitation, and a pervasive sense of physical fragility that feeds emotional withdrawal. They swing between nervous excitability and flat dejection, avoiding social engagement. An undercurrent of fear runs through the constitution, tied to cardiac distress and the overwhelming nature of their paroxysmal pains."
     },
-    "symptom_passages": {
+    "rubric_passages": {
       "Chest": "Sharp, shooting pains in left lung, heart and left hypochondrium. With inability to breathe during perfect rest; soreness in chest; pain in middle of chest through to the back.",
       "Extremities": "Numbness in shoulders to finger tips; sharp lancinating pains in arms; right wrist feels sprained; pain in right metacarpus and fleshy part of right thumb with heat and numbness; hands almost helpless; hands cold as if dead; fingers and nails blue in heart complaints; pains in the points of flexed fingers.",
       "Mind": "At times there is great excitement and exhilaration again there is loss of memory and dejection; maniacal conduct; aversion to conversation.",
@@ -499,7 +498,8 @@
       "Extremities, coldness": "The legs are stiff, numb and weak; lower limbs cold, blue and paralyzed.",
       "Extremities, coldness, hands": "hands cold as if dead; fingers and nails blue in heart complaints",
       "Extremities, paralysis": "paralysis of the limbs are symptoms showing how violently this remedy takes hold of the body, affecting the heart, spinal cord and brain."
-    }
+    },
+    "total_rubrics_in_repertory": 1795
   },
   {
     "remedy": "Petroleum",
@@ -507,14 +507,13 @@
       "Petr.",
       "Petr-ra."
     ],
-    "total_symptoms_in_repertory": 4464,
     "file": "petroleum.md",
     "profile": {
       "personality": "A confused, disoriented individual who easily loses their way, both literally and figuratively. They tend to be lean and emaciated, highly sensitive to environmental changes (weather, motion, cold), and prone to restless irritability driven by intense physical discomfort that compels scratching or eating despite the pain it causes.",
       "mental_state": "Marked by profound confusion and dazedness, particularly upon waking or in semi-conscious states, with an inability to orient themselves\u2014they lose their way in familiar streets. Strange delusions of duality pervade their thinking: imagining their limbs are double, that another person shares their bed, or that they are two people at once. These impressions persist in twilight states and can only be reasoned away upon full wakefulness, returning again when consciousness fades.",
       "emotional_pattern": "An underlying anxiety and annoyance driven by persistent, inescapable sensory disturbances\u2014relentless itching, burning, and gnawing hunger that cannot be satisfied without pain. They experience a restless, driven quality where discomfort compels action (scratching until bleeding, eating despite stomach pain), coupled with a sensitivity that makes them reactive to their surroundings, weather changes, and the touch of clothing on inflamed skin."
     },
-    "symptom_passages": {
+    "rubric_passages": {
       "Abdomen, hard": "No specific passage found.",
       "Abdomen, weakness, sensation of": "No specific passage found.",
       "Back": "Stiffness in the back. Pain in the back on rising from a seat.",
@@ -545,7 +544,8 @@
       "Appetite, ravenous": "There is an all-gone, hungry feeling after stool, which drives him to eat. With the diarrhea there is constant hunger, yet he cannot eat without pain.",
       "Appetite, aversion": "No specific passage found.",
       "Clinical": "Very sensitive to change of weather, like Phos. and Rhod.; aggravated before a thunder storm. Often sensitive to air and cold. Lean, emaciated subjects; threatening consumption. Eruptions disappear of themselves or are suppressed. Hands and feet burn; wants the palms and soles out of bed."
-    }
+    },
+    "total_rubrics_in_repertory": 4464
   },
   {
     "remedy": "Phosphoricum Acidum",
@@ -554,14 +554,13 @@
       "Amp.",
       "Atp."
     ],
-    "total_symptoms_in_repertory": 5229,
     "file": "phosphoricum_acidum.md",
     "profile": {
       "personality": "A deeply exhausted, apathetic individual who withdraws from social interaction and prefers to be left alone in quiet. Despite appearing physically vigorous in early stages, they are mentally depleted from prolonged grief, overwork, study, or emotional loss. They are indifferent to their surroundings and slow to respond, giving an impression of someone whose inner vitality has been silently consumed.",
       "mental_state": "Profound mental enfeeblement is the hallmark: inability to think clearly, connect ideas, recall familiar names, or sustain concentration for reading or arithmetic. The mind gives out first while the body remains temporarily strong, progressing from brain-fag and confusion to near-stupor. Answers come slowly or not at all, and the patient cannot frame thoughts into words.",
       "emotional_pattern": "Dominated by grief, sorrow, and homesickness \u2014 ailments arise from prolonged mourning, disappointed love, or unrequited affection. The emotional response is one of quiet pining and resigned indifference rather than dramatic outbursts. Drowsiness, apathy, and a desire to be undisturbed replace active emotional engagement, as if the capacity to feel has been worn away by sustained loss."
     },
-    "symptom_passages": {
+    "rubric_passages": {
       "Abdomen, rumbling": "Singing sensation in the abdomen after a normal stool.",
       "Back": "Sore spots in the spine; lame back. Backache.",
       "Back, pain": "Sore spots in the spine; lame back. Backache.",
@@ -592,7 +591,8 @@
       "Bladder, urination": "In most of the complaints of Phosphoric acid a marked feature is milky urine. Sometimes it is milky when passed; milky flakes in the urine. At times the male urethra seems to clog up and examination will show these little milk-like-flakes. The urine becomes milky on standing, like flour, chalk or phosphate deposits stirred up in it.",
       "Generalities, pain": "Pains and aches all over the body, ameliorated from motion and worse from cold. The pains seem deep-seated, often along the nerves, but especially along the long bones, as if the bones were scraped; as if a rough instrument were dragged over the bones. The pains are commonly worse at night.",
       "Generalities, pain, burning": "corns with stinging and burning, and parts become black"
-    }
+    },
+    "total_rubrics_in_repertory": 5229
   },
   {
     "remedy": "Phosphorus",
@@ -602,14 +602,13 @@
       "Phos-m.",
       "Cal-ren-p."
     ],
-    "total_symptoms_in_repertory": 10150,
     "file": "phosphorus.md",
     "profile": {
       "personality": "The Phosphorus constitution is a delicate, slender, rapidly emaciating individual who is vehement and irascible, with an internal state of turmoil. They are highly sensitive to all external impressions\u2014odors, noises, touch\u2014and prone to great excitability that can reach ecstasy or even clairvoyance. They crave company, are worse when alone or in the dark, and desire cold drinks and refreshing things.",
       "mental_state": "The mind oscillates between overactivity with wild thoughts, violent imaginations, and inability to sustain mental effort, and extreme passivity with loss of memory, sluggish thinking, and stupor. There is great prostration of mind after even slight mental exertion, with reflecting bringing on headaches and difficult breathing. The mental state can progress from anxiety and fearfulness through hypochondriasis to the borderland of insanity, imbecility, and idiocy.",
       "emotional_pattern": "Fear is the dominant emotional theme\u2014fear at twilight, fear when alone, fear of death, fear during thunderstorms, fear of apoplexy\u2014with anxiety seeming to originate from the pit of the stomach. There is a marked oscillation between emotional extremes: from weeping, sadness, and deep indifference to loved ones and surroundings, to violent loquacious delirium and maniacal fury. Gloomy forebodings and apprehensiveness pervade, alternating with periods of complete apathy where everything looks dark and the patient is weary of life."
     },
-    "symptom_passages": {
+    "rubric_passages": {
       "Abdomen, hard": "The liver furnishes us many symptoms of Phosphorus. Congestion of the liver, fullness, pain, hardness, fatty degeneration of the liver, hyperemia of the liver. Phosphorus is one of the most useful liver remedies; hard, large liver.",
       "Abdomen, hard, liver": "The liver furnishes us many symptoms of Phosphorus. Congestion of the liver, fullness, pain, hardness, fatty degeneration of the liver, hyperemia of the liver. Phosphorus is one of the most useful liver remedies; hard, large liver.",
       "Abdomen, rumbling": "Very sensitive abdomen, painful to touch, rolling and rumbling.",
@@ -640,6 +639,7 @@
       "Rectum, constipation": "It also cures inveterate constipation. The stool is hard, long, and slender, described in the books as like that of a dog. Alternating diarrhea and constipation in old people.",
       "Rectum, pain": "After stool painful cramps in the rectum; burning in the anus; violent tenesmus; sinking feeling in the abdomen; obliged to lie down; exhaustion and fainting.",
       "Rectum, pain, burning": "Burning in the rectum during stool. After stool painful cramps in the rectum; burning in the anus."
-    }
+    },
+    "total_rubrics_in_repertory": 10150
   }
 ]

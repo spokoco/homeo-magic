@@ -32,7 +32,7 @@ data/
         nux_vomica.md
         sulphur.md
         ...
-      symptom_index.json     # remedy+symptom -> passages
+      rubric_index.json      # remedy+rubric -> passages
       profiles.json          # personality/constitutional profiles
 ```
 
@@ -47,7 +47,7 @@ Report: examples, source material structure in docs/
 1. Download & parse book text
 2. Split into remedy chapters
 3. Convert to clean Markdown
-4. Keyword pre-filter: find candidate symptom matches
+4. Keyword pre-filter: find candidate rubric matches
 5. LLM pass: analyze context, confirm matches, extract passages
 6. LLM pass: generate constitutional/personality profiles
 7. Output JSON index files

@@ -106,7 +106,7 @@ class TestOorepDataIntegrity:
     """Tests that verify the output data files from OOREP parsing."""
 
     @pytest.fixture(scope="class")
-    def symptoms(self):
+    def rubrics(self):
         path = DATA_DIR / "symptoms.json"
         if not path.exists():
             pytest.skip("symptoms.json not found")
@@ -121,31 +121,31 @@ class TestOorepDataIntegrity:
         with open(path) as f:
             return json.load(f)
 
-    def test_symptoms_file_exists(self):
+    def test_rubrics_file_exists(self):
         assert (DATA_DIR / "symptoms.json").exists()
 
     def test_remedies_file_exists(self):
         assert (DATA_DIR / "remedies.json").exists()
 
-    def test_symptoms_count(self, symptoms):
-        count = len(symptoms)
-        assert count == 74481, f"Expected 74,481 symptoms, got {count}"
+    def test_rubrics_count(self, rubrics):
+        count = len(rubrics)
+        assert count == 74481, f"Expected 74,481 rubrics, got {count}"
 
     def test_remedies_count(self, remedies):
         count = len(remedies)
         assert count == 2432, f"Expected 2,432 remedies, got {count}"
 
-    def test_symptom_structure(self, symptoms):
-        sample = symptoms.get("Head, pain, morning")
-        assert sample is not None, "Expected symptom 'Head, pain, morning'"
+    def test_rubric_structure(self, rubrics):
+        sample = rubrics.get("Head, pain, morning")
+        assert sample is not None, "Expected rubric 'Head, pain, morning'"
         assert "remedies" in sample
         assert isinstance(sample["remedies"], dict)
 
-    def test_symptom_grades_valid(self, symptoms):
+    def test_rubric_grades_valid(self, rubrics):
         """All remedy grades should be 1, 2, or 3."""
-        for symptom_path, data in list(symptoms.items())[:500]:
+        for rubric_path, data in list(rubrics.items())[:500]:
             for abbrev, grade in data.get("remedies", {}).items():
-                assert grade in (1, 2, 3), f"Invalid grade {grade} for {abbrev} in {symptom_path}"
+                assert grade in (1, 2, 3), f"Invalid grade {grade} for {abbrev} in {rubric_path}"
 
     def test_common_remedies_present(self, remedies):
         for abbrev in ["Nux-v.", "Sulph.", "Puls.", "Ars.", "Lyc."]:
@@ -155,11 +155,11 @@ class TestOorepDataIntegrity:
         for abbrev, name in remedies.items():
             assert isinstance(name, str) and len(name) > 0, f"Bad name for {abbrev}"
 
-    def test_symptoms_have_at_least_one_remedy(self, symptoms):
-        empty = [s for s, d in list(symptoms.items())[:1000] if len(d.get("remedies", {})) == 0]
-        assert len(empty) == 0, f"Symptoms with no remedies: {empty[:5]}"
+    def test_rubrics_have_at_least_one_remedy(self, rubrics):
+        empty = [s for s, d in list(rubrics.items())[:1000] if len(d.get("remedies", {})) == 0]
+        assert len(empty) == 0, f"Rubrics with no remedies: {empty[:5]}"
 
-    def test_nux_vomica_in_irritability(self, symptoms):
+    def test_nux_vomica_in_irritability(self, rubrics):
         """Nux Vomica should appear under Mind, irritability."""
-        irritability = symptoms.get("Mind, irritability", {})
+        irritability = rubrics.get("Mind, irritability", {})
         assert "Nux-v." in irritability.get("remedies", {}), "Nux-v. should be in irritability"

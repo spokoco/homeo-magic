@@ -4,14 +4,13 @@
     "abbreviations": [
       "Benz-ac."
     ],
-    "total_symptoms_in_repertory": 1015,
     "file": "benzoicum_acidum.md",
     "profile": {
       "personality": "A restless, fluctuating constitution prone to fixation on unpleasant things and marked by erratic, changeable states. The person is sensitive to environmental shifts, particularly cold and weather changes, and their overall wellbeing swings in cycles tied to internal metabolic rhythms.",
       "mental_state": "Inclined to dwell on unpleasant subjects, especially during prolonged periods of wakefulness at night; the sight of deformity or suffering produces an exaggerated shuddering response. Mental clarity and distress alternate in sync with physical symptoms, with foggy, dull aching states giving way to periods of stuporous, unrefreshing sleep.",
       "emotional_pattern": "A prevailing sadness underlies the temperament, punctuated by anxiety that intensifies during perspiration. In children the disposition is cross and irritable, while in adults there is a deep restlessness and inability to find comfort, with no emotional relief even from sleep or sweating."
     },
-    "symptom_passages": {
+    "rubric_passages": {
       "Bladder": "\"Too frequent desire to evacuate bladder.\"",
       "Extremities": "The extremities are full of rheumatic affections. \"Lassitude in lower limbs.\" \"Swelling of knee.\" All gouty affections belong to this remedy. \"Gouty concretions.\" \"Nodes on joints.\"",
       "Generalities": "\"Extreme weakness; sweat and comatose condition.\" Note that comatose condition with sweat; the Benzoic acid patient sweats without relief. Copious, exhaustive sweat and profound sleep, but there is no relief.",
@@ -42,7 +41,8 @@
       "Kidneys, inflammation": "\"Nephritic colic.\" \"Sore pain in the back; burning in the kidney.\"",
       "Stool, white": "The white stool, like soap-suds, is so strong a symptom that the remedy does not fail to cure even when the gouty constitution is not present. So we get the idea that the stools are white and that the first passages are like soap-suds, but later the soap appearance subsides and leaves a white stool.",
       "Urethra": "No specific passage found."
-    }
+    },
+    "total_rubrics_in_repertory": 1015
   },
   {
     "remedy": "Berberis",
@@ -50,14 +50,13 @@
       "Berb.",
       "Berb-aq."
     ],
-    "total_symptoms_in_repertory": 3465,
     "file": "berberis.md",
     "profile": {
       "personality": "Prematurely aged, worn-out individuals who appear older than their years \u2014 pallid, sickly, and feeble. They are physically and mentally exhausted, unable to sustain effort, and their constitution has broken down into a state of chronic debility.",
       "mental_state": "The mind is weak with defective recollection and poor memory, unable to sustain mental effort. There is a tendency toward terrifying apparitions and imaginary forms seen in twilight, along with a general prostration of mental faculties and apathy.",
       "emotional_pattern": "A pervasive melancholy and apathy dominates, with the person feeling like a drudge in all affairs of life. Domestic responsibilities fret and tire them excessively, and they alternate between states of restless irritability from constant wandering pains and profound emotional flatness or indifference."
     },
-    "symptom_passages": {
+    "rubric_passages": {
       "Back": "There is such a soreness in the lumbar region, in the region of the kidneys, that he can bear no pressure. He cannot step down from a carriage to the pavement without letting himself down very carefully. A jar is a great shock to him, and sometimes the soreness is so great that he almost faints. Soreness in the back; in the muscles of the back, and in the region of the kidneys; and this associated with all sorts of disturbances in the urine, with excessive deposits.",
       "Back, pain": "Burning and soreness in the region of the kidneys. Burning stitches, single or several in succession, in regions of loins and kidneys. Much pain, soreness and tenderness in back, in the region of the kidneys. Sensitiveness in the region of the kidneys so great that any jarring motion, riding in a wagon, jumping from it, was intolerable.",
       "Bladder": "Violent, cutting, tensive pain, deeply seated in left side of bladder, at last becoming a sticking, obliquely in female urethra, as if in its orifice, lasting a few minutes. Burning pain in the bladder; burning pain in the kidney. The bladder becomes very irritable. Catarrhal conditions of the bladder. Smarting, burning, stitching pains. Great urging, with pain in the neck of the bladder, with burning, scanty urine.",
@@ -88,21 +87,21 @@
       "Extremities, swelling": "The joints sometimes swell. Enlargement of the joints. But the swelling is not so common as the pains without swelling.",
       "Face, discoloration, pale": "The patient has a sickly look; face pale, earthy complexion, with sunken cheeks and hollow, blue-encircled eyes. A low state of the economy is present; anaemic condition; feeble constitution; pallid and sickly.",
       "Generalities, numbness, externally": "A pain in the heel as if it were ulcerating, and then the pain shoots off in every direction. Numbness. Lameness."
-    }
+    },
+    "total_rubrics_in_repertory": 3465
   },
   {
     "remedy": "Borax",
     "abbreviations": [
       "Bor."
     ],
-    "total_symptoms_in_repertory": 2961,
     "file": "borax.md",
     "profile": {
       "personality": "An intensely sensitive, nervous, and excitable individual who is oversensitive to all surroundings including noise, music, and unexpected stimuli. They startle easily and are fidgety, restless, and anxious about trifles, with a tendency to shift from one task to another without settling.",
       "mental_state": "The mind is dominated by an indescribable inner anxiety aggravated by any downward or rocking motion, producing confusion, vertigo, and a loss of orientation. Mental exertion brings on nausea and exhaustion, forcing the person to repeatedly stop work and rest, and sustained thinking becomes intolerable.",
       "emotional_pattern": "Deep-seated apprehension and fright characterize the emotional life, with anxiety building progressively until it peaks (often around 11 AM to 1 PM) and then suddenly clearing into lucid calm. There is emotional indifference toward intimate life and sexuality, combined with hysterical manifestations and an irritable, fretful disposition that is relieved only by the discharge of bodily functions."
     },
-    "symptom_passages": {
+    "rubric_passages": {
       "Back": "No specific passage found.",
       "Bladder": "crying before urination, because the bladder is involved.",
       "Bladder, urination, frequent": "Frequent urination preceded by cries.",
@@ -133,35 +132,35 @@
       "Ear": "During menses; throbbing in head and rushing in ears.",
       "Face": "The face of the infant is pale, and clay-colored. Children have small vesicles around the mouth, and on the forehead.",
       "Head, heat": "It has many congestive headaches, pressive headaches and much beat in the head."
-    }
+    },
+    "total_rubrics_in_repertory": 2961
   },
   {
     "remedy": "Bromium",
     "abbreviations": [
       "Brom-i."
     ],
-    "total_symptoms_in_repertory": 0,
     "file": "bromium.md",
     "profile": {
       "personality": "A weary, indifferent individual who has lost interest in work, reading, and household duties. They are easily overheated and physically plethoric, yet paradoxically sensitive to cold drafts once illness sets in.",
       "mental_state": "Marked aversion to every kind of work with an inability to engage in mental effort or take interest in daily responsibilities. Great nervous excitement accompanies physical complaints, with restlessness and a sense of suffocation that dominates the mental sphere.",
       "emotional_pattern": "Prevailing low spirits with deep sadness, discouragement, and great depression. Anxiety accompanies most complaints, creating a pervasive sense of dread, while the patient becomes progressively more indifferent and withdrawn as vitality declines."
     },
-    "symptom_passages": {}
+    "rubric_passages": {},
+    "total_rubrics_in_repertory": 0
   },
   {
     "remedy": "Bryonia Alba",
     "abbreviations": [
       "Bry."
     ],
-    "total_symptoms_in_repertory": 6996,
     "file": "bryonia_alba.md",
     "profile": {
       "personality": "A sluggish, venous, plethoric constitution who is deeply averse to any form of motion or disturbance. The Bryonia type is irritable and wants to be left completely alone, preferring to lie still in a dark, cool room without being spoken to or compelled to think.",
       "mental_state": "The mind is dull, confused, and stupefied, with a besotted quality as if intoxicated, progressing from morning sluggishness to deeper states of unconsciousness. There is great difficulty thinking or concentrating, with aggravation from any mental exertion, and when aroused from stupor the patient is confused, sees images, and believes they are away from home wanting to be taken back.",
       "emotional_pattern": "Extreme irritability is the dominant emotional trait, with every disturbance\u2014being spoken to, questioned, or contradicted\u2014provoking anger and worsening the condition. There is deep anxiety pervading the whole body that compels restlessness despite motion making everything worse, accompanied by fear of death, great despondency, and a changeable desiring of things that are then refused when offered."
     },
-    "symptom_passages": {
+    "rubric_passages": {
       "Back": "Whenever he strains himself in lifting, or any unusual motion, there is pain in the kidneys, a rousing up of congesting and long-lasting pain. It is a gouty constitution with kidney troubles, so that after overheating or overexertion he gets pain in the back.",
       "Back, pain": "Whenever he strains himself in lifting, or any unusual motion, there is pain in the kidneys, a rousing up of congesting and long-lasting pain. It is a gouty constitution with kidney troubles, so that after overheating or overexertion he gets pain in the back.",
       "Bladder": "Pressure to urinate and involuntary discharge of urine.",
@@ -192,7 +191,8 @@
       "Stomach": "All sorts of pains are felt in the stomach and bowels, but most particularly stitching and burning pains; feels as if the stomach would burst, as if the abdomen would burst. Peritoneal exudations. Awful soreness. Sensitiveness of the pit of the stomach, and sensitiveness over the whole abdomen.",
       "Appetite, increased (hunger in general)": "No specific passage found.",
       "Stomach, eructations": "The Bryonia patient is subject to hiccough, to belching, to nausea and vomiting, so that disordered stomach is the general term. Bitter eructations, bitter nauseous taste."
-    }
+    },
+    "total_rubrics_in_repertory": 6996
   },
   {
     "remedy": "Bufo",
@@ -200,14 +200,13 @@
       "Bufo",
       "Bufo-s."
     ],
-    "total_symptoms_in_repertory": 1993,
     "file": "bufo.md",
     "profile": {
       "personality": "A child-like, simple, and feeble-minded individual who has failed to develop intellectually despite physical maturity. They appear prematurely aged or senile, passive and placid in demeanor, lacking self-governance and prone to abandoning themselves to base impulses and vices.",
       "mental_state": "Marked by progressive intellectual deterioration trending toward imbecility, with profound confusion of mind, weak memory, and loss of comprehension of surroundings. The patient may act automatically without awareness, experience states of apathy and partial coma, or alternate between passive stupidity and sudden manic excitement with incoherent speech.",
       "emotional_pattern": "Easily laughs or cries with extreme sensitivity and nervousness, tittering foolishly at things that are not laughable. Oscillates between profound anxiety with hand-wringing despair over imagined future catastrophes and a state of passive, placid indifference. Longs for solitude yet dreads being alone, and becomes intensely angry when misunderstood."
     },
-    "symptom_passages": {
+    "rubric_passages": {
       "Bladder": "Urine passes involuntarily.",
       "Chest": "Burning like fire in lungs. Burning extending up into the larynx; gangrene of the lungs. Sensation of coldness in chest.",
       "Extremities": "Arms became stiffened before an attack. Numbness of left arm. Blister in hand, which recurred annually. Panaritium. A great many troubles occur in the extremities, paralytic affections, etc.",
@@ -238,21 +237,21 @@
       "Face, expression": "He drops the jaw and looks stupid as if he had forgotten everything.",
       "Clinical, convulsions, consciousness": "Sometimes complete epileptic spasms with bleeding at the mouth, unconsciousness, falling down. Besides such grave state, it has milder states that may be called dizziness or vertigo.",
       "Mouth, biting": "Biting the tongue."
-    }
+    },
+    "total_rubrics_in_repertory": 1993
   },
   {
     "remedy": "Cactus Grandiflorus",
     "abbreviations": [
       "Cact."
     ],
-    "total_symptoms_in_repertory": 1680,
     "file": "cactus_grandiflorus.md",
     "profile": {
       "personality": "A taciturn, withdrawn individual who is unwilling to speak or answer questions. They tend toward sadness and weeping, becoming increasingly silent and uncommunicative as their suffering deepens. Despite intense inner turmoil, they internalize rather than express, except when pain forces involuntary screaming.",
       "mental_state": "The mind is dominated by a conviction that their disease is incurable and that death is imminent, driven by the sheer intensity of their physical suffering. Cerebral congestion produces sluggishness and stupor rather than anxiety or restlessness, and mental exertion generates oppressive heat in the head. There is a feeling of going mad from the relentless pressure and constriction.",
       "emotional_pattern": "The core emotional experience is fear of death arising not from anxious imagination but from the overwhelming reality of their pain \u2014 they genuinely believe such suffering must end fatally. Deep sadness and an irresistible inclination to weep pervade the emotional landscape, accompanied by a sense of hopelessness. Sleep is disturbed by vivid, exciting dreams of falling, and they startle awake in fright."
     },
-    "symptom_passages": {
+    "rubric_passages": {
       "Back": "Great pressure at heart, going round under left axilla to back.",
       "Back, coldness": "No specific passage found.",
       "Chest": "Constrictions of the chest. Oppression as if a great load was on his chest, crushing the life out of him, so great is the constriction, and the congestion.",
@@ -283,21 +282,21 @@
       "Head, heat": "Heat in the head from mental exertion is a strong symptom of Cactus. This symptom is found in persons who are trying to break off from coffee and Cactus is often the remedy.",
       "Head, pain": "A pressing in the top of the head as if the top of the head would be forced in; but this is ameliorated by pressing hard upon the pain. Right-sided headaches. Pulsating headaches. Heavy, pulsating pain in the head. Tensive pain in the head, tensive pain in the vertex.",
       "Sleep, sleeplessness": "No specific passage found."
-    }
+    },
+    "total_rubrics_in_repertory": 1680
   },
   {
     "remedy": "Cadmium Sulphuricum",
     "abbreviations": [
       "Sulph."
     ],
-    "total_symptoms_in_repertory": 12105,
     "file": "cadmium_sulphuricum.md",
     "profile": {
       "personality": "A profoundly exhausted and withdrawn individual who desires complete stillness and quiet. They are averse to all work, both mental and physical, preferring to be left entirely alone rather than engaging with the world around them.",
       "mental_state": "The mind is characterized by deep indolence and a dread of any exertion, with marked anxiety similar to Arsenicum but without the restlessness. There is a sluggishness and slowness of mental function, as seen in low, deep-seated febrile states where cognitive capacity diminishes progressively.",
       "emotional_pattern": "The core emotional state is one of resigned despair \u2014 'Don't speak to me; don't bother me; let me die in peace.' There is intense anxiety coupled with a paradoxical desire for absolute quiet and immobility, representing a person who has surrendered to their suffering rather than fighting against it."
     },
-    "symptom_passages": {
+    "rubric_passages": {
       "Abdomen, hard": "No specific passage found.",
       "Abdomen, rumbling": "No specific passage found.",
       "Abdomen, weakness, sensation of": "Nauseated all the way down to the abdomen like Ipec., Ant. t., and Asarum, extensive nausea.",
@@ -328,21 +327,21 @@
       "Mind, restlessness, night": "No specific passage found.",
       "Mouth": "Disturbances of the taste. It is suitable to low forms of continued fever; it has sordes, dark tongue, bleeding tongue and dry mouth, as in typhus, typhoid and yellow fever. Sluggish tongue; difficulty in moving it.",
       "Mouth, dryness": "dry mouth, as in typhus, typhoid and yellow fever."
-    }
+    },
+    "total_rubrics_in_repertory": 12105
   },
   {
     "remedy": "Caladium",
     "abbreviations": [
       "Calad."
     ],
-    "total_symptoms_in_repertory": 1678,
     "file": "caladium.md",
     "profile": {
       "personality": "A neurasthenic, highly excitable individual who alternates between foolish boldness and extreme fearfulness. Deeply absent-minded and forgetful, often unable to distinguish whether events actually occurred, requiring physical verification of reality. Prostrated mentally and physically, often from sexual excesses or tobacco use.",
       "mental_state": "The mind is profoundly weak and scattered; the more effort applied to concentration, the further thoughts slip away, making intellectual work impossible. Memory is vague and unreliable, bordering on imbecility, with a dazed, stupefied quality resembling low typhoid delirium. Forgetfulness pervades daily life, with tasks and obligations simply escaping the mind as if it were 'worn through in places.'",
       "emotional_pattern": "Dominated by nervous anxiety and exaggerated startle responses\u2014terrified by slamming doors, rustling newspapers, and imagined diseases\u2014yet paradoxically capable of reckless indifference to real danger. Tormented by intense lascivious desires coupled with complete inability to fulfill them, producing a cycle of craving, frustration, and apprehension. Sleepless nights are filled with anxious groaning, vivid dreams remembered better than waking life, and restless dread of the future."
     },
-    "symptom_passages": {
+    "rubric_passages": {
       "Chill": "No specific passage found.",
       "Extremities": "No specific passage found.",
       "Extremities, coldness": "No specific passage found.",
@@ -373,21 +372,21 @@
       "Heart & Circulation, pulse, hard": "No specific passage found.",
       "Genitalia male, sexual passion, increased": "Such men stand on the street corner and feast upon the forms of passing girls, and their semen dribbles away.",
       "Genitalia male, swelling": "No specific passage found."
-    }
+    },
+    "total_rubrics_in_repertory": 1678
   },
   {
     "remedy": "Calcarea Arsenicosa",
     "abbreviations": [
       "Calc-ar."
     ],
-    "total_symptoms_in_repertory": 465,
     "file": "calcarea_arsenicosa.md",
     "profile": {
       "personality": "A deeply anxious, restless individual who is physically and mentally weak, sensitive to cold, and averse to open air. They desire company yet are inclined to criticize others, and are obstinate, easily offended, and irritable.",
       "mental_state": "Marked confusion of mind especially on waking, with inability to concentrate and weakness of memory. Prone to delusions, seeing dead people, phantoms, and visions of fire, especially at night and on closing the eyes. Irresolution and mental exhaustion characterize their thinking, with mental exertion temporarily relieving head pain but worsening it afterward.",
       "emotional_pattern": "Dominated by deep anxiety and apprehensiveness, particularly about the future, salvation, and death, worse at night. Extreme sadness, despair of recovery, loathing and weariness of life coexist with fear of solitude and insanity. Restless tossing in bed at night, easily startled, timid, and prone to weeping, with complaints arising from anger and vexation."
     },
-    "symptom_passages": {
+    "rubric_passages": {
       "Bladder": "No specific passage found.",
       "Bladder, urination, frequent": "No specific passage found.",
       "Extremities": "Oedema of the hands and feet. Weakness of lower limbs.",
@@ -418,21 +417,21 @@
       "Generalities, heat, vital, lack of": "The patient is sensitive to cold-a lack of vital heat.",
       "Generalities, heat, vital": "The patient is sensitive to cold-a lack of vital heat.",
       "Vertigo, walking, sensation of gliding in the air, as if feet did not touch the ground, while": "Sense of lightness of the body as if floating in the air."
-    }
+    },
+    "total_rubrics_in_repertory": 465
   },
   {
     "remedy": "Calcarea Carbonica",
     "abbreviations": [
       "Calc."
     ],
-    "total_symptoms_in_repertory": 9031,
     "file": "calcarea_carbonica.md",
     "profile": {
       "personality": "A fatigued, mentally exhausted individual who becomes overwhelmed by prolonged effort of any kind. Once industrious and capable, the Calcarea type gradually withdraws from work and responsibility, appearing lazy but actually depleted. They are chilly, flabby, and sensitive to their environment, easily disturbed by cold, exertion, and emotional excitement.",
       "mental_state": "The mind is weak and unable to sustain prolonged thought; the patient dwells obsessively on trivial matters and cannot put them aside, forming conclusions from emotion rather than intelligence. There is a profound fear of going insane, with the conviction that others are observing their mental deterioration. On closing the eyes, horrible visions and spectral images appear, and the patient may talk to themselves, carry on imaginary conversations, or sit idly performing small repetitive actions like breaking sticks or bending pins.",
       "emotional_pattern": "Dominated by anxiety, fear, and hopelessness \u2014 fear of death, of misfortune, of losing reason, and of being alone. The patient is easily frightened, startled by every noise, and prone to melancholy and weariness of life. Emotional excitement of any kind \u2014 grief, worry, vexation, or fright \u2014 produces prolonged prostration, palpitation, and vertigo, with complaints lasting days or weeks after the emotional disturbance."
     },
-    "symptom_passages": {
+    "rubric_passages": {
       "Abdomen, hard": "The lymphatic glands in the abdomen become hard, inflamed and sore, like great nodules, like hickory nuts; tubercular.",
       "Back": "There are spine symptoms; plenty of them. Weak; all degrees of weakness. The Calcarea patient is so weak in the back that he slides down in the chair while sitting; cannot sit right in his chair.",
       "Back, pain": "The Calcarea patient is so weak in the back that he slides down in the chair while sitting; cannot sit right in his chair. Rests on the back of his head. The back of his chair and the back of his head come in contact. A weak spine, a sensitive spine, and the glands of the neck are swollen.",
@@ -463,21 +462,21 @@
       "Rectum, pain, burning": "Distended veins, burning in these varicose veins. Burning and smarting. Bleeding and oozing.",
       "Respiration": "Much rattling of mucus; rattling breathing; coarse rattling; that is, much mucus in the trachea, in the larynx, in the bronchial tubes, in the chest. Great dyspnoea.",
       "Respiration, difficult": "The dyspnoea comes on from going up stairs, from walking against the wind. Anything that has any exertion in it will bring on the dyspnoea. We find this in asthma, weak heart, weak chest and in threatening phthisis."
-    }
+    },
+    "total_rubrics_in_repertory": 9031
   },
   {
     "remedy": "Calcarea Fluorica",
     "abbreviations": [
       "Calc-f."
     ],
-    "total_symptoms_in_repertory": 447,
     "file": "calcarea_fluorica.md",
     "profile": {
       "personality": "A chilly, weather-sensitive individual who is aggravated by cold, drafts, and damp conditions, and who craves warmth and motion. The Calcarea Fluorica type tends toward a stoic constitution marked by slow, insidious development of hard, indurated conditions in the body, reflecting a rigidity that pervades the physical and mental plane.",
       "mental_state": "The mental state is characterized by a heaviness and lack of refreshment, with unrefreshing sleep and vivid, disturbing dreams that may cause the patient to jump out of bed. There is a general dullness and difficulty with sustained mental exertion, paralleling the blurred vision that comes from straining the eyes.",
       "emotional_pattern": "The core emotional state is one of sadness and misery, a quiet, pervasive melancholy rather than acute distress. The patient tends to feel worse during periods of rest and inactivity, suggesting that stagnation deepens their emotional suffering, while purposeful movement and warmth bring relief."
     },
-    "symptom_passages": {
+    "rubric_passages": {
       "Back": "It cured a lumbago, worse during rest, and better from heat, after Rhus had failed. Pain in back, extending to the sacrum.",
       "Extremities": "A recurrent fibroid in the hallow of the knee was removed once by the knife, but returned, and grew to the size of a fist. The leg was drawn up to forty-five degrees, and the knee became immovable.",
       "Generalities": "The patient is sensitive to cold, to drafts, to changes in the weather, and to damp weather. The symptoms are ameliorated by heat and by warm applications. The symptoms are worse during rest.",
@@ -508,21 +507,21 @@
       "Extremities, arthritic nodosities": "This is a useful remedy in gout, with copious pale urine and diarrhea.",
       "Generalities, indurations": "I refer to its ability to cure indurated infiltrations of glands, cellular tissues and bony formations.",
       "Generalities, indurations, glands": "Indurated cervical glands."
-    }
+    },
+    "total_rubrics_in_repertory": 447
   },
   {
     "remedy": "Calcarea Phosphorica",
     "abbreviations": [
       "Calc-p."
     ],
-    "total_symptoms_in_repertory": 3044,
     "file": "calcarea_phosphorica.md",
     "profile": {
       "personality": "A weary, restless constitution that seeks solitude yet is discontent with present surroundings, wandering from place to place. The individual is mentally and physically sluggish, easily fatigued by any exertion, and deeply sensitive to cold weather and environmental changes. There is a fundamental weakness of structure and vitality, manifesting as a person who seems never fully developed or robust.",
       "mental_state": "The mind is tired and feeble, with poor memory and a marked inability to sustain mental effort; even thinking about complaints worsens them. There is a dread of intellectual work, as it brings on headaches and exhaustion \u2014 the classic schoolchild who always comes home with a headache. Fear readily triggers physical symptoms such as palpitation and trembling, and the mind may deteriorate toward imbecility in severe cases.",
       "emotional_pattern": "Extremely fretful and discontented, with a strong tendency to withdraw into solitude to brood over sorrows and avoid the effort of social interaction. Deeply affected by bad news, grief, unrequited love, and vexation \u2014 these emotional shocks can precipitate or worsen physical illness. There is a restless dissatisfaction that drives the person to seek change, yet no new place or circumstance brings relief."
     },
-    "symptom_passages": {
+    "rubric_passages": {
       "Back": "The back pains are worse in cold, stormy weather, attended with stiffness, and worse in the morning. The back is sensitive to draft. Pain in the back from lifting or straining. Curvature of spine. Tearing, shooting; tenderness and aching in the spine. Soreness in sacroiliac symphysis. Pain in lumbar region and sacrum at the menstrual period.",
       "Back, pain": "Pain in the back from lifting or straining. Curvature of spine. Tearing, shooting; tenderness and aching in the spine. Soreness in sacroiliac symphysis. Pain in lumbar region and sacrum at the menstrual period.",
       "Chest": "Stitching pains in the chest. Emaciation of the chest. Difficult expectoration. It is a very useful remedy in phthisis and blood spitting. Much sweat on the chest. Rattling in the chest with difficult expectoration, like Caust. Soreness of the chest to touch. Palpitation, with trembling of the limbs.",
@@ -553,7 +552,8 @@
       "Appetite, desires": "Craves salt bacon and smoked meats.",
       "Clinical": "It has cured polypi of nose, rectum and uterus. It has cured enlarged glands of the neck, groin and abdomen. Non-union of fractured bones, swollen condyles, are symptoms accepted by all text-books as strong symptoms of this remedy.",
       "Abdomen, liver": "After becoming chilled, pain in the liver, soreness, aggravated after eating and by motion; wants to keep quiet. Stitching pains in the liver from deep breathing or sudden motion. Pulsating in the liver."
-    }
+    },
+    "total_rubrics_in_repertory": 3044
   },
   {
     "remedy": "Calcarea Sulphurica",
@@ -561,14 +561,13 @@
       "Calc-s.",
       "Sulph."
     ],
-    "total_symptoms_in_repertory": 12426,
     "file": "calcarea_sulphurica.md",
     "profile": {
       "personality": "A sluggish, indolent constitution prone to irritability and obstinacy, with aversion to company and mental or physical exertion. The person is changeable in mood\u2014morose and sad in the morning, mirthful in the evening\u2014and tends toward timidity and bashfulness in conversation. They are easily offended, quarrelsome, and harbor hatred toward those who disagree with them.",
       "mental_state": "The mind is weak, forgetful, and slow, with marked confusion on waking and from mental exertion, ameliorated in open air. There is absent-mindedness, difficulty with speech (stumbling over words), and vanishing of thoughts while concentrating. The person sits brooding over imaginary misfortunes, with a tendency toward persistent tormenting thoughts and feeble-mindedness approaching imbecility.",
       "emotional_pattern": "Deep anxiety pervades\u2014about the future, health, salvation, and fear of death, insanity, and misfortune\u2014worst at night and in bed, relieved in open air. There is profound despondency with loathing of life, despair of recovery, and lamenting over feeling unappreciated. The emotional state swings between extremes: morning sadness giving way to evening hilarity, with underlying discontent, impatience, and restlessness throughout."
     },
-    "symptom_passages": {
+    "rubric_passages": {
       "Abdomen, hard": "No specific passage found.",
       "Abdomen, weakness, sensation of": "No specific passage found.",
       "Back": "Sensation of coldness in the back. This has been a valuable remedy in the treatment of curvature of the spine in the lumbar region, making it difficult for him to sit up.",
@@ -599,7 +598,8 @@
       "Vertigo": "Vertigo is a common feature with this patient. In the morning on getting up, or again in the evening; but this is ameliorated in the open air. Vertigo With nausea. Vertigo with a tendency to fall. Epileptic vertigo. Vertigo on moving the head quickly, on stooping and on walking fast.",
       "Back, coldness, extending": "Sensation of coldness in the back.",
       "Back, weakness": "Complaints from straining muscles and tendons, from overlifting, etc. Lame back from such causes."
-    }
+    },
+    "total_rubrics_in_repertory": 12426
   },
   {
     "remedy": "Camphor",
@@ -609,14 +609,13 @@
       "Camph-oil.",
       "Camph-br."
     ],
-    "total_symptoms_in_repertory": 2733,
     "file": "camphor.md",
     "profile": {
       "personality": "An extremely reactive and volatile constitution, swinging between violent excitement and total prostration. The Camphor patient is difficult to manage\u2014restless, demanding, never satisfied with conditions, constantly wanting changes in temperature and environment. They are deeply sensitive to cold yet paradoxically reject covering when chilled.",
       "mental_state": "The mind oscillates between frenzy and imbecility, with confusion, loss of memory, and states resembling stupor. There is delirium with rage and mania, an impulse to jump from bed or windows, and a progressive deterioration toward unconsciousness. The mental faculties collapse under shock, with the appearance of a slowly-acquired cognitive decline that has actually come on suddenly.",
       "emotional_pattern": "Dominated by intense anxiety and extreme fear\u2014fear of people, of darkness, of imaginary specters that fill the room and animate inanimate objects. There is a pervasive anguish, especially felt in the pit of the stomach, that drives the patient to despair and a conviction of imminent death. The emotional state is one of terrified helplessness alternating with violent, frenzied agitation."
     },
-    "symptom_passages": {
+    "rubric_passages": {
       "Bladder": "If an inflammation of the bladder comes on, there is intense pain and tenderness, and from the shock of the suffering the mind is in a state of frenzy. The same state arises in the bladder as in the rectum, and there is retention with horrible torture. The patient sits on the commode and strains to pass the urine, but there is a paralytic condition of the bladder.",
       "Chest": "Cholera stools; rice water discharges, with anxiety, restlessness, spasms of the muscles, cramps of the chest, prostration, increasing coldness and blueness; wants to be uncovered and he is going into collapse.",
       "Chill": "The general constitutional state of a Camphor patient is coldness and extreme sensitiveness to cold. In acute inflammatory conditions he is cold and wants the covers off.",
@@ -647,7 +646,8 @@
       "Stool": "After taking cold there is cutting, with involuntary discharge of dark brown faeces like coffee grounds. Cholera stools; rice water discharges.",
       "Generalities, heat": "Camph. has very little heat; it has the sensation of heat; but not a marked hot stage. during the heat and when the pains are on he wants to be covered up. The coldness is relieved by cold, he wants more cold.",
       "Extremities, coldness, foot": "No specific passage found."
-    }
+    },
+    "total_rubrics_in_repertory": 2733
   },
   {
     "remedy": "Cannabis Indica",
@@ -655,14 +655,13 @@
       "Cann-i.",
       "Canna"
     ],
-    "total_symptoms_in_repertory": 1601,
     "file": "cannabis_indica.md",
     "profile": {
       "personality": "A dreamy, otherworldly individual prone to ecstatic states, wild imagination, and loquacity. They oscillate between exaltation and profound weakness, often appearing detached from ordinary reality with a tendency toward theorizing and fantastical thinking.",
       "mental_state": "The mind is flooded with unfinished ideas, crowding thoughts, and vivid hallucinations, making rational concentration nearly impossible. There is marked confusion of time and space, a sense of dual existence, and rapid oscillation between lucidity and irrationality. Forgetfulness of words and inability to complete sentences are characteristic.",
       "emotional_pattern": "Emotions swing between spasmodic mirthfulness and deep anguish, with inappropriate laughter at serious matters alternating with moaning and weeping. Underlying fears of death, insanity, and darkness pervade the emotional landscape, though these are temporarily relieved by walking in open air."
     },
-    "symptom_passages": {
+    "rubric_passages": {
       "Back": "Pain in the back at the menstrual period. Pain across the dorsal region preventing walking erect.",
       "Back, pain": "Pain in the back at the menstrual period. Pain across the dorsal region preventing walking erect.",
       "Back, pain, dorsal region": "Pain across the dorsal region preventing walking erect.",
@@ -693,7 +692,8 @@
       "Heart & Circulation": "Palpitation during sleep. Pressing pain, in the heart with suffocation during the Whole night. Stitching pains in the heart. Pulse, slow or rapid and irregular; fluttering; a nervous pulse.",
       "Ear": "Hearing acute. Singing and buzzing in ears; pulsating.",
       "Face": "Face pale and sunken. Insane look. Stupid look. Sickly, expressionless look."
-    }
+    },
+    "total_rubrics_in_repertory": 1601
   },
   {
     "remedy": "Cannabis Sativa",
@@ -701,14 +701,13 @@
       "Cann-s.",
       "Canna"
     ],
-    "total_symptoms_in_repertory": 2128,
     "file": "cannabis_sativa.md",
     "profile": {
       "personality": "A dreamy, confused individual who struggles with a sense of unreality and dissociation from their own identity. They experience a split between despondency and liveliness depending on time of day, suggesting an unstable, shifting temperament. There is a marked tendency toward hysteria and anxiety centered in the body.",
       "mental_state": "Profound confusion of mind with inability to distinguish self from others\u2014when speaking, it feels as though someone else is talking. Makes frequent errors in writing, speaking, reading, and comprehension, as if perceiving the world through a distorting filter. Sounds seem distant and unreal, and there is a persistent sensation that things are strange, as though living in a dream.",
       "emotional_pattern": "Marked alternation between forenoon despondency and afternoon liveliness, indicating emotional instability tied to diurnal rhythms. A specific fear of going to bed suggests nighttime anxiety and dread of losing conscious control. Underlying hysteria manifests as a lump-in-throat sensation, with diffuse anxiety settling in the stomach rather than being mentally processed."
     },
-    "symptom_passages": {
+    "rubric_passages": {
       "Bladder": "Spasmodic closure of the neck of the bladder at the close of urination.",
       "Chest": "Catarrh of the chest. Bronchitis with wheezing. Asthma must have window open.",
       "Heart & Circulation, palpitation": "Palpitation.",
@@ -739,6 +738,7 @@
       "Expectoration, bloody, spitting of blood": "Cough, with blood spitting.",
       "Expectoration, bloody": "Cough, with blood spitting.",
       "Heart & Circulation, pulse, weak": "No specific passage found."
-    }
+    },
+    "total_rubrics_in_repertory": 2128
   }
 ]
