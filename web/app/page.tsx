@@ -171,15 +171,9 @@ export default function Home() {
         <h1 className="text-4xl font-bold" style={{ textShadow: "0 2px 10px rgba(0,0,0,0.2)" }}>
           Homeo-Magic
         </h1>
-        {loadProgress.phase === "symptoms" && loadProgress.percent > 0 && (
+        {loadProgress.phase === "index" && (
           <div className="inline-flex items-center gap-2">
-            <div className="w-[100px] h-2 bg-[#D3DCDE] rounded overflow-hidden">
-              <div
-                className="h-full bg-[#EF9B0C] transition-all"
-                style={{ width: `${loadProgress.percent}%` }}
-              />
-            </div>
-            <span className="text-sm">{loadProgress.percent}%</span>
+            <span className="text-sm loading-pulse">Loading...</span>
           </div>
         )}
         <div className="flex items-center gap-4 text-[0.95rem] opacity-90">
