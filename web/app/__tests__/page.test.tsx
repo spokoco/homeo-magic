@@ -1,10 +1,10 @@
 import { describe, it, expect, vi, beforeEach, afterEach } from "vitest";
 import { render, screen, fireEvent, waitFor } from "@testing-library/react";
 import Home from "../page";
-import type { SymptomsData, RemediesData } from "../types";
+import type { RubricsData, RemediesData } from "../types";
 
 // ---------- sample data ----------
-const sampleSymptoms: SymptomsData = {
+const sampleRubrics: RubricsData = {
   "Mind, anxiety": {
     remedies: { "Acon.": 3, "Ars.": 2 },
   },
@@ -31,15 +31,15 @@ const sampleEncoded = [
   "2",            // "Stomach, nausea"
 ];
 
-// Split symptom files
-const mindAnxietyFile: SymptomsData = {
-  "Mind, anxiety": sampleSymptoms["Mind, anxiety"],
+// Split rubric files
+const mindAnxietyFile: RubricsData = {
+  "Mind, anxiety": sampleRubrics["Mind, anxiety"],
 };
-const headPainFile: SymptomsData = {
-  "Head, pain, forehead": sampleSymptoms["Head, pain, forehead"],
+const headPainFile: RubricsData = {
+  "Head, pain, forehead": sampleRubrics["Head, pain, forehead"],
 };
-const stomachNauseaFile: SymptomsData = {
-  "Stomach, nausea": sampleSymptoms["Stomach, nausea"],
+const stomachNauseaFile: RubricsData = {
+  "Stomach, nausea": sampleRubrics["Stomach, nausea"],
 };
 
 // ---------- mock fetch ----------
@@ -91,7 +91,7 @@ function setupFetchMock() {
         json: () => Promise.resolve(stomachNauseaFile),
       });
     }
-    if (url.includes("default-symptoms.json")) {
+    if (url.includes("default-rubrics.json")) {
       return Promise.resolve({ ok: false });
     }
     return Promise.reject(new Error(`Unexpected fetch: ${url}`));
@@ -148,21 +148,21 @@ describe("Home page", () => {
       expect(screen.getByText("Homeo-Magic")).toBeInTheDocument();
     });
 
-    it("shows symptom/remedy counts after loading", async () => {
+    it("shows rubric/remedy counts after loading", async () => {
       setupFetchMock();
       render(<Home />);
       await waitFor(() => {
-        expect(screen.getByText(/3 symptoms/)).toBeInTheDocument();
+        expect(screen.getByText(/3 rubrics/)).toBeInTheDocument();
         expect(screen.getByText(/4 remedies/)).toBeInTheDocument();
       });
     });
 
-    it("shows empty state when no symptoms selected", async () => {
+    it("shows empty state when no rubrics selected", async () => {
       setupFetchMock();
       render(<Home />);
       await waitFor(() =>
         expect(
-          screen.getByText(/Search and select symptoms above/)
+          screen.getByText(/Search and select rubrics above/)
         ).toBeInTheDocument()
       );
     });
@@ -193,14 +193,14 @@ describe("Home page", () => {
   describe("REGRESSION: hover state for action icons (bug #2)", () => {
     it("shows action icons on row hover via React state (not CSS)", async () => {
       mockSessionStorage["homeo-magic-state"] = JSON.stringify({
-        selectedSymptoms: ["Mind, anxiety", "Head, pain, forehead"],
-        hiddenSymptoms: [],
+        selectedRubrics: ["Mind, anxiety", "Head, pain, forehead"],
+        hiddenRubrics: [],
         minScore: 0,
       });
       setupFetchMock();
       render(<Home />);
 
-      // Wait for lazy-loaded symptom data to arrive and results to render
+      // Wait for lazy-loaded rubric data to arrive and results to render
       await waitFor(() =>
         expect(screen.getByText("Mind, anxiety")).toBeInTheDocument()
       );
@@ -213,7 +213,7 @@ describe("Home page", () => {
       const row = symText.closest("tr");
       expect(row).toBeTruthy();
 
-      const trashButtons = row!.querySelectorAll('button[title="Remove symptom"]');
+      const trashButtons = row!.querySelectorAll('button[title="Remove rubric"]');
       expect(trashButtons.length).toBe(1);
       expect(trashButtons[0]).toHaveStyle({ opacity: "0" });
 
@@ -231,8 +231,8 @@ describe("Home page", () => {
 
     it("shows drag handle on hover via inline style, not CSS class", async () => {
       mockSessionStorage["homeo-magic-state"] = JSON.stringify({
-        selectedSymptoms: ["Mind, anxiety"],
-        hiddenSymptoms: [],
+        selectedRubrics: ["Mind, anxiety"],
+        hiddenRubrics: [],
         minScore: 0,
       });
       setupFetchMock();
@@ -257,8 +257,8 @@ describe("Home page", () => {
 
     it("shows eye icon on hover via inline style", async () => {
       mockSessionStorage["homeo-magic-state"] = JSON.stringify({
-        selectedSymptoms: ["Mind, anxiety"],
-        hiddenSymptoms: [],
+        selectedRubrics: ["Mind, anxiety"],
+        hiddenRubrics: [],
         minScore: 0,
       });
       setupFetchMock();
@@ -271,7 +271,7 @@ describe("Home page", () => {
         expect(screen.getByText(/Remedies Found/)).toBeInTheDocument()
       );
 
-      const eyeButton = screen.getByTitle("Hide symptom");
+      const eyeButton = screen.getByTitle("Hide rubric");
       expect(eyeButton).toHaveStyle({ opacity: "0" });
 
       const row = eyeButton.closest("tr");
@@ -285,8 +285,8 @@ describe("Home page", () => {
   describe("REGRESSION: tooltip fixed positioning (bug #3)", () => {
     it("renders remedy tooltip with fixed positioning to avoid clipping", async () => {
       mockSessionStorage["homeo-magic-state"] = JSON.stringify({
-        selectedSymptoms: ["Mind, anxiety"],
-        hiddenSymptoms: [],
+        selectedRubrics: ["Mind, anxiety"],
+        hiddenRubrics: [],
         minScore: 0,
       });
       setupFetchMock();
@@ -332,7 +332,7 @@ describe("Home page", () => {
       setupFetchMock();
       render(<Home />);
       await waitFor(() =>
-        expect(screen.getByText(/3 symptoms/)).toBeInTheDocument()
+        expect(screen.getByText(/3 rubrics/)).toBeInTheDocument()
       );
 
       const input = screen.getByPlaceholderText(/Type to search/);
@@ -348,7 +348,7 @@ describe("Home page", () => {
       setupFetchMock();
       render(<Home />);
       await waitFor(() =>
-        expect(screen.getByText(/3 symptoms/)).toBeInTheDocument()
+        expect(screen.getByText(/3 rubrics/)).toBeInTheDocument()
       );
 
       const input = screen.getByPlaceholderText(/Type to search/);
@@ -370,7 +370,7 @@ describe("Home page", () => {
       setupFetchMock();
       render(<Home />);
       await waitFor(() =>
-        expect(screen.getByText(/3 symptoms/)).toBeInTheDocument()
+        expect(screen.getByText(/3 rubrics/)).toBeInTheDocument()
       );
 
       const input = screen.getByPlaceholderText(/Type to search/);
@@ -385,11 +385,11 @@ describe("Home page", () => {
     });
   });
 
-  describe("symptom row interactions", () => {
-    it("removes a symptom when trash icon is clicked", async () => {
+  describe("rubric row interactions", () => {
+    it("removes a rubric when trash icon is clicked", async () => {
       mockSessionStorage["homeo-magic-state"] = JSON.stringify({
-        selectedSymptoms: ["Mind, anxiety", "Head, pain, forehead"],
-        hiddenSymptoms: [],
+        selectedRubrics: ["Mind, anxiety", "Head, pain, forehead"],
+        hiddenRubrics: [],
         minScore: 0,
       });
       setupFetchMock();
@@ -402,7 +402,7 @@ describe("Home page", () => {
       const row = screen.getByText("Mind, anxiety").closest("tr");
       fireEvent.mouseEnter(row!);
 
-      const trashButtons = row!.querySelectorAll('button[title="Remove symptom"]');
+      const trashButtons = row!.querySelectorAll('button[title="Remove rubric"]');
       fireEvent.click(trashButtons[0]);
 
       await waitFor(() => {
@@ -410,10 +410,10 @@ describe("Home page", () => {
       });
     });
 
-    it("hides a symptom when eye icon is clicked", async () => {
+    it("hides a rubric when eye icon is clicked", async () => {
       mockSessionStorage["homeo-magic-state"] = JSON.stringify({
-        selectedSymptoms: ["Mind, anxiety", "Head, pain, forehead"],
-        hiddenSymptoms: [],
+        selectedRubrics: ["Mind, anxiety", "Head, pain, forehead"],
+        hiddenRubrics: [],
         minScore: 0,
       });
       setupFetchMock();
@@ -426,7 +426,7 @@ describe("Home page", () => {
       const row = screen.getByText("Mind, anxiety").closest("tr");
       fireEvent.mouseEnter(row!);
 
-      const eyeButton = row!.querySelector('button[title="Hide symptom"]')!;
+      const eyeButton = row!.querySelector('button[title="Hide rubric"]')!;
       fireEvent.click(eyeButton);
 
       await waitFor(() => {
@@ -435,51 +435,51 @@ describe("Home page", () => {
     });
   });
 
-  describe("clear all symptoms", () => {
-    it("shows clear button with count when symptoms are selected", async () => {
+  describe("clear all rubrics", () => {
+    it("shows clear button with count when rubrics are selected", async () => {
       mockSessionStorage["homeo-magic-state"] = JSON.stringify({
-        selectedSymptoms: ["Mind, anxiety", "Head, pain, forehead"],
-        hiddenSymptoms: [],
+        selectedRubrics: ["Mind, anxiety", "Head, pain, forehead"],
+        hiddenRubrics: [],
         minScore: 0,
       });
       setupFetchMock();
       render(<Home />);
 
       await waitFor(() => {
-        const clearBtn = screen.getByTestId("clear-all-symptoms");
+        const clearBtn = screen.getByTestId("clear-all-rubrics");
         expect(clearBtn).toBeInTheDocument();
         expect(clearBtn).toHaveTextContent("Clear All (2)");
       });
     });
 
-    it("does not show clear button when no symptoms selected", async () => {
+    it("does not show clear button when no rubrics selected", async () => {
       setupFetchMock();
       render(<Home />);
 
       await waitFor(() => {
-        expect(screen.queryByTestId("clear-all-symptoms")).not.toBeInTheDocument();
+        expect(screen.queryByTestId("clear-all-rubrics")).not.toBeInTheDocument();
       });
     });
 
-    it("removes all symptoms and clears sessionStorage when clicked", async () => {
+    it("removes all rubrics and clears sessionStorage when clicked", async () => {
       mockSessionStorage["homeo-magic-state"] = JSON.stringify({
-        selectedSymptoms: ["Mind, anxiety", "Head, pain, forehead"],
-        hiddenSymptoms: [],
+        selectedRubrics: ["Mind, anxiety", "Head, pain, forehead"],
+        hiddenRubrics: [],
         minScore: 0,
       });
       setupFetchMock();
       render(<Home />);
 
       await waitFor(() =>
-        expect(screen.getByTestId("clear-all-symptoms")).toBeInTheDocument()
+        expect(screen.getByTestId("clear-all-rubrics")).toBeInTheDocument()
       );
 
-      fireEvent.click(screen.getByTestId("clear-all-symptoms"));
+      fireEvent.click(screen.getByTestId("clear-all-rubrics"));
 
       await waitFor(() => {
         expect(screen.queryByText("Mind, anxiety")).not.toBeInTheDocument();
         expect(screen.queryByText("Head, pain, forehead")).not.toBeInTheDocument();
-        expect(screen.queryByTestId("clear-all-symptoms")).not.toBeInTheDocument();
+        expect(screen.queryByTestId("clear-all-rubrics")).not.toBeInTheDocument();
       });
     });
   });
