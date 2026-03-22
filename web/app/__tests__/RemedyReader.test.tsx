@@ -312,7 +312,7 @@ describe("RemedyReader", () => {
       });
 
       // "Extremities, cold" won't match any passage
-      const badges = document.querySelectorAll("span.text-xs");
+      const badges = document.querySelectorAll("button.text-xs, span.text-xs");
       const unmatchedBadge = Array.from(badges).find(
         (b) =>
           b.textContent?.includes("Extremities") &&

@@ -560,17 +560,32 @@ export default function RemedyReader({ slug }: { slug: string }) {
               {symptoms.map((sym) => {
                 const hasMatch = !!matchedPassages[sym];
                 return (
-                  <span
+                  <button
                     key={sym}
-                    className={`text-xs px-2.5 py-1 rounded-full ${
+                    className={`text-xs px-2.5 py-1 rounded-full border-none ${
                       hasMatch
-                        ? "bg-[#EF9B0C]/20 text-[#92400e] font-medium"
-                        : "bg-gray-100 text-gray-400"
+                        ? "bg-[#EF9B0C]/20 text-[#92400e] font-medium cursor-pointer hover:bg-[#EF9B0C]/40 transition-colors"
+                        : "bg-gray-100 text-gray-400 cursor-default"
                     }`}
+                    onClick={() => {
+                      if (!hasMatch) return;
+                      // Find the highlight mark for this symptom's passage
+                      const marks = document.querySelectorAll("mark[data-highlight]");
+                      const passage = matchedPassages[sym]?.toLowerCase() || "";
+                      for (const mark of marks) {
+                        if (mark.textContent?.toLowerCase().includes(passage.slice(0, 40))) {
+                          mark.scrollIntoView({ behavior: "smooth", block: "center" });
+                          // Flash effect
+                          mark.classList.add("ring-4", "ring-[#EF9B0C]");
+                          setTimeout(() => mark.classList.remove("ring-4", "ring-[#EF9B0C]"), 2000);
+                          return;
+                        }
+                      }
+                    }}
                   >
                     {sym}
                     {hasMatch ? " \u2713" : ""}
-                  </span>
+                  </button>
                 );
               })}
             </div>
