@@ -187,7 +187,7 @@ describe("MateriaPanel", () => {
 
     await waitFor(() => {
       expect(
-        screen.getByText(/no materia medica data available/i)
+        screen.getByText(/no materia medica available/i)
       ).toBeInTheDocument();
     });
   });
@@ -200,7 +200,7 @@ describe("MateriaPanel", () => {
 
     await waitFor(() => {
       expect(
-        screen.getByText(/no materia medica data available/i)
+        screen.getByText(/no materia medica available/i)
       ).toBeInTheDocument();
     });
   });

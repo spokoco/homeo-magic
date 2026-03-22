@@ -94,6 +94,18 @@ function setupFetchMock() {
     if (url.includes("default-rubrics.json")) {
       return Promise.resolve({ ok: false });
     }
+    if (url.includes("profiles.json")) {
+      return Promise.resolve({
+        ok: true,
+        json: () => Promise.resolve({}),
+      });
+    }
+    if (url.includes("passage_index.json")) {
+      return Promise.resolve({
+        ok: true,
+        json: () => Promise.resolve({}),
+      });
+    }
     return Promise.reject(new Error(`Unexpected fetch: ${url}`));
   });
 }
@@ -206,7 +218,7 @@ describe("Home page", () => {
       );
       // Wait for results table (scores computed after lazy fetch)
       await waitFor(() =>
-        expect(screen.getByText(/Remedies Found/)).toBeInTheDocument()
+        expect(screen.getByText(/Showing.*remedies/)).toBeInTheDocument()
       );
 
       const symText = screen.getByText("Mind, anxiety");
@@ -242,7 +254,7 @@ describe("Home page", () => {
         expect(screen.getByText("Mind, anxiety")).toBeInTheDocument()
       );
       await waitFor(() =>
-        expect(screen.getByText(/Remedies Found/)).toBeInTheDocument()
+        expect(screen.getByText(/Showing.*remedies/)).toBeInTheDocument()
       );
 
       const dragHandle = screen.getByTitle("Drag to reorder");
@@ -268,7 +280,7 @@ describe("Home page", () => {
         expect(screen.getByText("Mind, anxiety")).toBeInTheDocument()
       );
       await waitFor(() =>
-        expect(screen.getByText(/Remedies Found/)).toBeInTheDocument()
+        expect(screen.getByText(/Showing.*remedies/)).toBeInTheDocument()
       );
 
       const eyeButton = screen.getByTitle("Hide rubric");
@@ -293,7 +305,7 @@ describe("Home page", () => {
       render(<Home />);
 
       await waitFor(() =>
-        expect(screen.getByText(/Remedies Found/)).toBeInTheDocument()
+        expect(screen.getByText(/Showing.*remedies/)).toBeInTheDocument()
       );
 
       const remedyHeaders = screen.getAllByText("Acon.");
@@ -475,6 +487,15 @@ describe("Home page", () => {
       );
 
       fireEvent.click(screen.getByTestId("clear-all-rubrics"));
+
+      // Confirmation dialog appears — click the confirm "Clear All" button
+      await waitFor(() =>
+        expect(screen.getByText(/Clear all rubrics\?/)).toBeInTheDocument()
+      );
+      const confirmBtn = screen.getAllByText("Clear All").find(
+        (el) => el.tagName === "BUTTON" && !el.closest("[data-testid='clear-all-rubrics']")
+      )!;
+      fireEvent.click(confirmBtn);
 
       await waitFor(() => {
         expect(screen.queryByText("Mind, anxiety")).not.toBeInTheDocument();
