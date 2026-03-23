@@ -49,6 +49,18 @@ function useColorScale() {
   return { getScoreColor };
 }
 
+function useIsMobile(breakpoint = 768) {
+  const [isMobile, setIsMobile] = useState(false);
+  useEffect(() => {
+    const mql = window.matchMedia(`(max-width: ${breakpoint - 1}px)`);
+    setIsMobile(mql.matches);
+    const handler = (e: MediaQueryListEvent) => setIsMobile(e.matches);
+    mql.addEventListener("change", handler);
+    return () => mql.removeEventListener("change", handler);
+  }, [breakpoint]);
+  return isMobile;
+}
+
 function getTextColor(bgHex: string): string {
   const [r, g, b] = chroma(bgHex).rgb();
   const lum = (0.299 * r + 0.587 * g + 0.114 * b) / 255;
@@ -78,8 +90,18 @@ export default function Home() {
     remedyCount,
   } = useRepertorize();
 
+  const isMobile = useIsMobile();
   const dragRef = useRef<{ index: number } | null>(null);
   const [rubricColWidth, setSymColWidth] = useState(420);
+
+  // On mobile, force rubric column to 50vw and reset on desktop
+  useEffect(() => {
+    if (isMobile) {
+      setSymColWidth(Math.round(window.innerWidth * 0.5));
+    } else {
+      setSymColWidth(420);
+    }
+  }, [isMobile]);
   const [hoveredRemedy, setHoveredRemedy] = useState<string | null>(null);
   const [selectedRemedy, setSelectedRemedy] = useState<string | null>(null);
   const [hoveredRubricRow, setHoveredSymRow] = useState<string | null>(null);
@@ -170,7 +192,7 @@ export default function Home() {
   return (
     <div className="max-w-[1400px] mx-auto">
       {/* Header */}
-      <header className="flex items-center justify-between mb-6 text-white">
+      <header className={`flex items-center justify-between mb-6 text-white ${isMobile ? "flex-wrap gap-2" : ""}`}>
         <h1 className="text-4xl font-bold" style={{ textShadow: "0 2px 10px rgba(0,0,0,0.2)" }}>
           Homeo-Magic
         </h1>
@@ -285,8 +307,8 @@ export default function Home() {
             </div>
 
             {/* Filter bar - Remedies Found + Min score */}
-            <div className="flex items-center py-3 bg-[#eef1f2] border-b border-[#D3DCDE]">
-              <div style={{ width: rubricColWidth, minWidth: 420, flexShrink: 0 }} />
+            <div className={`flex items-center py-3 bg-[#eef1f2] border-b border-[#D3DCDE] ${isMobile ? "flex-wrap gap-2 px-3" : ""}`}>
+              {!isMobile && <div style={{ width: rubricColWidth, minWidth: 420, flexShrink: 0 }} />}
               <div className="flex items-center gap-4 px-2">
                 <span className="font-medium text-[#065774] text-[16px] whitespace-nowrap">
                   Showing {displayed.length} of {results.totalCount}{" "}remedies
@@ -294,7 +316,7 @@ export default function Home() {
                     ` \u2022 ${filtered.length - displayed.length} more below`}
                 </span>
               </div>
-              <div className="flex items-center gap-3 ml-auto pr-5">
+              <div className={`flex items-center gap-3 ${isMobile ? "" : "ml-auto"} pr-5`}>
                 <label className="font-medium text-[#065774] text-[16px] whitespace-nowrap">
                   Min score:
                 </label>
@@ -337,7 +359,7 @@ export default function Home() {
                   <tr>
                     <th
                       className="text-right bg-[#e4e9eb] px-5 py-2.5 font-semibold text-[#065774] sticky top-0 left-0 z-20 border-b border-[#e4e9eb] relative text-[16px]"
-                      style={{ width: rubricColWidth, minWidth: 420, maxWidth: 800 }}
+                      style={{ width: rubricColWidth, minWidth: isMobile ? 100 : 420, maxWidth: 800 }}
                     >
                       Remedies
                       <span
@@ -539,8 +561,8 @@ export default function Home() {
 
       {/* Detail panel + Lecture panel side by side */}
       {detailPanel && (
-        <div className="flex gap-5 mt-5 items-stretch">
-          <div className="w-1/2 flex-shrink-0 flex">
+        <div className={`flex gap-5 mt-5 items-stretch ${isMobile ? "flex-col" : ""}`}>
+          <div className={`${isMobile ? "w-full" : "w-1/2"} flex-shrink-0 flex`}>
             <DetailPanel
               type={detailPanel.type}
               name={detailPanel.name}
@@ -556,7 +578,7 @@ export default function Home() {
             />
           </div>
           {detailPanel.type === "remedy" && (
-            <div className="w-1/2 flex-shrink-0 bg-white rounded-2xl shadow-[0_10px_40px_rgba(0,0,0,0.2)] overflow-hidden animate-slide-up">
+            <div className={`${isMobile ? "w-full" : "w-1/2"} flex-shrink-0 bg-white rounded-2xl shadow-[0_10px_40px_rgba(0,0,0,0.2)] overflow-hidden animate-slide-up`}>
               <div
                 className="px-5 py-3.5 text-white font-semibold"
                 style={{ background: "linear-gradient(135deg, #065774 0%, #042B58 100%)" }}
