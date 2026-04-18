@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<title>Colors — Brand Palette</title>
+<link rel="stylesheet" href="../colors_and_type.css">
+<style>
+  body { margin: 0; padding: 20px; background: var(--bg-page); }
+  .row { display: grid; grid-template-columns: repeat(4, 1fr); gap: 12px; }
+  .sw { border-radius: var(--r-md); overflow: hidden; border: 1px solid var(--border); }
+  .chip { height: 70px; display: block; }
+  .meta { padding: 8px 10px; background: var(--paper); }
+  .name { font: 700 13px/1.2 var(--font-sans); color: var(--fg-1); }
+  .hex { font: 400 11px/1.3 var(--font-mono); color: var(--fg-3); margin-top: 2px; letter-spacing: 0.03em; }
+  .eyebrow { font: 700 10px/1 var(--font-sans); letter-spacing: var(--tracking-caps); text-transform: uppercase; color: var(--fg-accent); margin-bottom: 10px; }
+</style>
+</head>
+<body>
+  <div class="eyebrow">Brand palette · 4 core</div>
+  <div class="row">
+    <div class="sw"><span class="chip" style="background:#151817"></span><div class="meta"><div class="name">Ink</div><div class="hex">#151817</div></div></div>
+    <div class="sw"><span class="chip" style="background:#A2B69E"></span><div class="meta"><div class="name">Sage</div><div class="hex">#A2B69E</div></div></div>
+    <div class="sw"><span class="chip" style="background:#29A99E"></span><div class="meta"><div class="name">Teal</div><div class="hex">#29A99E</div></div></div>
+    <div class="sw"><span class="chip" style="background:#FFFFFF"></span><div class="meta"><div class="name">Paper</div><div class="hex">#FFFFFF</div></div></div>
+  </div>
+</body>
+</html>

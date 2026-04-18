@@ -9,6 +9,12 @@ const PRESETS = {
     mode: 'lab',
     steps: 4,
   },
+  designSystem: {
+    name: 'Design system (Rosé-Terracotta)',
+    colors: ['#f1e4d6', '#c86a3f'],
+    mode: 'lab',
+    steps: 4,
+  },
   warm: {
     name: 'Warm',
     colors: ['#fde68a', '#f97316'],

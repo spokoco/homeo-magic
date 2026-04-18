@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<title>Matrix cell</title>
+<link rel="stylesheet" href="../colors_and_type.css">
+<style>
+  body { margin: 0; padding: 20px; background: var(--bg-page); }
+  .eyebrow { font: 700 10px/1 var(--font-sans); letter-spacing: var(--tracking-caps); text-transform: uppercase; color: var(--fg-accent); margin-bottom: 12px; }
+  table { border-collapse: collapse; font: 400 13px/1 var(--font-sans); }
+  th, td { border-bottom: 1px solid var(--border); padding: 8px 10px; text-align: center; }
+  th.r { text-align: right; background: var(--bg-sunken); color: var(--ink-70); font-weight:700; padding-right:14px; }
+  th.top { font: 700 14px/1 var(--font-sans); color: var(--ink); background: var(--bg-sunken); writing-mode: vertical-rl; transform: rotate(180deg); height: 80px; vertical-align: middle; }
+  .score { font: 700 14px/1 var(--font-sans); border-radius: var(--r-md); padding: 6px 8px; display:inline-block; min-width: 28px; }
+  .s-hi { background: var(--grade-3-bg); color: var(--grade-3-fg); }
+  .s-mid { background: var(--grade-2-bg); color: var(--grade-2-fg); }
+  .s-lo { background: var(--grade-1-bg); color: var(--grade-1-fg); }
+  .g { width: 28px; height: 28px; display:inline-flex; align-items:center; justify-content:center; font: 700 13px/1 var(--font-sans); border-radius: var(--r-md); }
+  .g1 { background: var(--grade-1-bg); color: var(--grade-1-fg); }
+  .g2 { background: var(--grade-2-bg); color: var(--grade-2-fg); }
+  .g3 { background: var(--grade-3-bg); color: var(--grade-3-fg); }
+</style>
+</head>
+<body>
+  <div class="eyebrow">Matrix · pivot cell</div>
+  <table>
+    <thead>
+      <tr><th class="r">Remedies</th><th class="top">Nux-v</th><th class="top">Sulph</th><th class="top">Bry</th></tr>
+    </thead>
+    <tbody>
+      <tr><td class="r" style="text-align:right;font-weight:700">Score</td><td><span class="score s-hi">8</span></td><td><span class="score s-mid">6</span></td><td><span class="score s-lo">5</span></td></tr>
+      <tr><td class="r" style="text-align:right">head, pain, morning</td><td><span class="g g3">3</span></td><td><span class="g g1">1</span></td><td><span class="g g2">2</span></td></tr>
+      <tr><td class="r" style="text-align:right">irritability</td><td><span class="g g3">3</span></td><td><span class="g g2">2</span></td><td><span class="g g1">1</span></td></tr>
+      <tr><td class="r" style="text-align:right">cold, agg.</td><td><span class="g g2">2</span></td><td><span class="g g3">3</span></td><td><span class="g g2">2</span></td></tr>
+    </tbody>
+  </table>
+</body>
+</html>

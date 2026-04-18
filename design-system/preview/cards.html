@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<title>Cards</title>
+<link rel="stylesheet" href="../colors_and_type.css">
+<style>
+  body { margin: 0; padding: 20px; background: var(--bg-page); }
+  .eyebrow { font: 700 10px/1 var(--font-sans); letter-spacing: var(--tracking-caps); text-transform: uppercase; color: var(--fg-accent); margin-bottom: 10px; }
+  .grid { display: grid; grid-template-columns: 1fr 1fr 1fr; gap: 12px; }
+  .card { padding: 14px; border-radius: var(--r-lg); }
+  .c-paper { background: var(--paper); border: 1px solid var(--border); box-shadow: var(--shadow-md); }
+  .c-sunken { background: var(--bg-sunken); }
+  .c-ink { background: var(--ink); color: var(--paper); }
+  h4 { font: 700 14px/1.2 var(--font-sans); margin: 0 0 6px; }
+  p { font: 400 12px/1.5 var(--font-sans); color: var(--fg-2); margin: 0; }
+  .c-ink p { color: #c9d4c4; }
+  .tag { font: 700 10px/1 var(--font-sans); letter-spacing:0.1em; text-transform:uppercase; color: var(--teal); margin-bottom:6px; display:block; }
+</style>
+</head>
+<body>
+  <div class="eyebrow">Card treatments</div>
+  <div class="grid">
+    <div class="card c-paper">
+      <span class="tag">Paper</span>
+      <h4>Nux vomica</h4>
+      <p>Primary indication for irritability with morning headache.</p>
+    </div>
+    <div class="card c-sunken">
+      <span class="tag">Sunken</span>
+      <h4>Constitutional profile</h4>
+      <p>Ancillary info, no shadow, flat ground.</p>
+    </div>
+    <div class="card c-ink">
+      <span class="tag">Ink</span>
+      <h4>Homeo-Magic</h4>
+      <p>Banner / footer treatment. Paper type on ink.</p>
+    </div>
+  </div>
+</body>
+</html>

@@ -1,0 +1,83 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<title>Homeo-Magic — Web UI kit</title>
+<link rel="stylesheet" href="../../colors_and_type.css">
+<style>
+  body { margin: 0; padding: 20px; background: var(--ink); min-height: 100vh; font-family: var(--font-sans); }
+  .app { max-width: 1400px; margin: 0 auto; }
+  .panel { background: var(--paper); border-radius: var(--r-lg); overflow: hidden; box-shadow: var(--shadow-lg); }
+  .split { display: grid; grid-template-columns: 1fr 1fr; gap: 16px; margin-top: 16px; }
+  @media (max-width: 900px) { .split { grid-template-columns: 1fr; } }
+</style>
+<script src="https://unpkg.com/react@18.3.1/umd/react.development.js" integrity="sha384-hD6/rw4ppMLGNu3tX5cjIb+uRZ7UkRJ6BPkLpg4hAu/6onKUg4lLsHAs9EBPT82L" crossorigin="anonymous"></script>
+<script src="https://unpkg.com/react-dom@18.3.1/umd/react-dom.development.js" integrity="sha384-u6aeetuaXnQ38mYT8rp6sbXaQe3NL9t+IBXmnYxwkUI2Hw4bsp2Wvmx4yRQF1uAm" crossorigin="anonymous"></script>
+<script src="https://unpkg.com/@babel/standalone@7.29.0/babel.min.js" integrity="sha384-m08KidiNqLdpJqLq95G/LEi8Qvjl/xUYll3QILypMoQ65QorJ9Lvtp2RXYGBFj1y" crossorigin="anonymous"></script>
+</head>
+<body>
+<div id="root"></div>
+<script type="text/babel" src="Components.jsx"></script>
+<script type="text/babel" src="Matrix.jsx"></script>
+<script type="text/babel">
+const { useState, useMemo } = React;
+
+function App() {
+  const [selected, setSelected] = useState([
+    "head, pain, morning, on waking",
+    "mind, irritability, morning",
+    "generalities, cold, agg.",
+  ]);
+  const [hidden, setHidden] = useState(new Set());
+  const [query, setQuery] = useState("");
+  const [selectedRemedy, setSelectedRemedy] = useState("Nux-v");
+  const [selectedRubric, setSelectedRubric] = useState(null);
+
+  const activeRubrics = useMemo(() => selected.filter(s => !hidden.has(s)), [selected, hidden]);
+  const results = useMemo(() => computeResults(activeRubrics), [activeRubrics]);
+
+  const suggestions = useMemo(() => {
+    if (query.trim().length < 2) return [];
+    const q = query.toLowerCase();
+    return Object.keys(MOCK_RUBRICS).filter(k => !selected.includes(k) && k.toLowerCase().includes(q)).slice(0, 8);
+  }, [query, selected]);
+
+  return (
+    <div className="app">
+      <div style={{padding:"4px 0 16px"}}><HeaderBar rubricCount={74812} remedyCount={2407} /></div>
+
+      <div className="panel">
+        <SearchPanel query={query} setQuery={setQuery} suggestions={suggestions}
+          onSelect={(s) => setSelected(prev => [...prev, s])}
+          selectedRubricsCount={selected.length} />
+
+        <AnalysisMatrix
+          selectedRubrics={selected}
+          hiddenRubrics={hidden}
+          results={results}
+          selectedRemedy={selectedRemedy}
+          selectedRubric={selectedRubric}
+          onHideToggle={(s) => setHidden(prev => { const n = new Set(prev); n.has(s) ? n.delete(s) : n.add(s); return n; })}
+          onRemove={(s) => setSelected(prev => prev.filter(x => x !== s))}
+          onSelectRemedy={(r) => { setSelectedRemedy(r); setSelectedRubric(null); }}
+          onSelectRubric={(s) => { setSelectedRubric(s); }}
+          onClearAll={() => { setSelected([]); setSelectedRemedy(null); setSelectedRubric(null); }}
+        />
+      </div>
+
+      {selectedRemedy && results.items.length > 0 && (
+        <div className="split">
+          <RemedyDetail abbrev={selectedRemedy} selectedRubrics={activeRubrics} results={results} />
+          <LecturePanel abbrev={selectedRemedy} />
+        </div>
+      )}
+
+      <FooterBar />
+    </div>
+  );
+}
+
+ReactDOM.createRoot(document.getElementById("root")).render(<App />);
+</script>
+</body>
+</html>

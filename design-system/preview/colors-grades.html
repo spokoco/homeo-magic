@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<title>Colors — Grade Scale</title>
+<link rel="stylesheet" href="../colors_and_type.css">
+<style>
+  body { margin: 0; padding: 20px; background: var(--bg-page); }
+  .eyebrow { font: 700 10px/1 var(--font-sans); letter-spacing: var(--tracking-caps); text-transform: uppercase; color: var(--fg-accent); margin-bottom: 14px; }
+  .wrap { display: grid; grid-template-columns: 1fr 1fr; gap: 24px; align-items: start; }
+  .cells { display: flex; gap: 12px; }
+  .cell { width: 56px; height: 56px; display: flex; align-items: center; justify-content: center; font: 700 20px/1 var(--font-sans); border-radius: var(--r-md); }
+  .g1 { background: var(--grade-1-bg); color: var(--grade-1-fg); }
+  .g2 { background: var(--grade-2-bg); color: var(--grade-2-fg); }
+  .g3 { background: var(--grade-3-bg); color: var(--grade-3-fg); }
+  .legend { font: 400 12px/1.6 var(--font-sans); color: var(--fg-2); }
+  .legend b { color: var(--fg-1); }
+  .lab { font: 700 10px/1.2 var(--font-sans); letter-spacing: 0.05em; text-transform: uppercase; color: var(--fg-3); margin-top:6px; text-align:center; }
+</style>
+</head>
+<body>
+  <div class="eyebrow">Grade heat scale · matrix cells</div>
+  <div class="wrap">
+    <div>
+      <div class="cells">
+        <div><div class="cell g1">1</div><div class="lab">grade 1</div></div>
+        <div><div class="cell g2">2</div><div class="lab">grade 2</div></div>
+        <div><div class="cell g3">3</div><div class="lab">grade 3</div></div>
+      </div>
+    </div>
+    <div class="legend">
+      <b>Grade 3</b> — primary indication (bold in Kent)<br>
+      <b>Grade 2</b> — secondary indication (italic)<br>
+      <b>Grade 1</b> — minor indication (plain)
+    </div>
+  </div>
+</body>
+</html>

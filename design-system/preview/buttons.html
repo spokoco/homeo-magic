@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<title>Buttons</title>
+<link rel="stylesheet" href="../colors_and_type.css">
+<style>
+  body { margin: 0; padding: 20px; background: var(--bg-page); }
+  .eyebrow { font: 700 10px/1 var(--font-sans); letter-spacing: var(--tracking-caps); text-transform: uppercase; color: var(--fg-accent); margin-bottom: 14px; }
+  .row { display: flex; gap: 10px; margin-bottom: 10px; align-items:center; flex-wrap:wrap; }
+  button { font: 700 14px/1 var(--font-sans); border: 0; border-radius: var(--r-md); padding: 10px 16px; cursor: pointer; transition: background var(--dur-med) var(--ease-out); }
+  .btn-primary { background: var(--ink); color: var(--paper); }
+  .btn-primary:hover { background: var(--ink-90); }
+  .btn-accent { background: var(--teal); color: #fff; }
+  .btn-accent:hover { background: var(--teal-deep); }
+  .btn-secondary { background: var(--bg-sunken); color: var(--ink); }
+  .btn-secondary:hover { background: var(--ink-15); }
+  .btn-ghost { background: transparent; color: var(--fg-accent); padding: 10px 6px; }
+  .btn-danger { background: #b6482d; color: #fff; }
+</style>
+</head>
+<body>
+  <div class="eyebrow">Buttons</div>
+  <div class="row">
+    <button class="btn-primary">Add rubric</button>
+    <button class="btn-accent">Save analysis</button>
+    <button class="btn-secondary">Reset</button>
+    <button class="btn-ghost">Color settings</button>
+    <button class="btn-danger">Clear all</button>
+  </div>
+  <div class="row">
+    <button class="btn-primary" style="padding:6px 10px;font-size:12px">Small</button>
+    <button class="btn-primary" disabled style="opacity:.45;cursor:not-allowed">Disabled</button>
+  </div>
+</body>
+</html>

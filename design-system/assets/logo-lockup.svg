@@ -1,0 +1,11 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 420 80" width="420" height="80">
+  
+  
+  <g transform="translate(8,8)">
+    <rect width="64" height="64" fill="#151817"></rect>
+    <circle cx="32" cy="32" r="23" fill="none" stroke="#A2B69E" stroke-width="1.5"></circle>
+    <circle cx="32" cy="32" r="14" fill="none" stroke="#A2B69E" stroke-width="1.5"></circle>
+    <circle cx="32" cy="32" r="6" fill="#29A99E"></circle>
+  </g>
+  <text x="86" y="55" class="wm">homeo<tspan fill="#29A99E">·</tspan>magic</text>
+</svg>
