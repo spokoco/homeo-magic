@@ -214,7 +214,7 @@ export default function Home() {
     <div className="hm-shell">
       <header className={`mb-6 flex items-start justify-between gap-4 ${isMobile ? "flex-col" : ""}`}>
         <div className="min-w-0">
-          <div className="hm-eyebrow mb-3">Repertorization matrix</div>
+          <div className="hm-eyebrow mb-3" style={{ color: "var(--fg-inverse)" }}>Repertorization matrix</div>
           <div className={`flex items-center gap-4 ${isMobile ? "flex-wrap" : ""}`}>
             <Image src="/logo-lockup.svg" alt="Homeo-Magic" width={220} height={44} className="h-11 w-auto max-w-full" priority />
             {loadProgress.phase === "index" && (
@@ -224,11 +224,11 @@ export default function Home() {
               </div>
             )}
           </div>
-          <p className="mt-4 max-w-3xl text-[15px] leading-6 text-[var(--fg-2)]">
+          <p className="mt-4 max-w-3xl text-[15px] leading-6 text-[var(--fg-inverse)]">
             Search and select rubrics to find matching remedies. The matrix stays central; the reading panels stay quiet.
           </p>
         </div>
-        <div className={`hm-soft-card flex items-center gap-4 px-4 py-3 text-[15px] ${isMobile ? "w-full flex-wrap" : ""}`}>
+        <div className={`hm-soft-card flex items-center gap-3 px-4 py-3 text-[15px] ${isMobile ? "w-full flex-wrap" : ""}`}>
           <span className="text-[var(--fg-2)]">
             {loading ? (
               <span className="loading-pulse">{loadProgress.message}</span>
@@ -241,6 +241,18 @@ export default function Home() {
               </>
             )}
           </span>
+          <a
+            href="design-system.html"
+            className="hm-action-button hm-action-button--secondary inline-flex items-center gap-2 px-3 py-2 text-[14px] font-semibold no-underline"
+          >
+            <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
+              <path d="M12 3v18" />
+              <path d="M3 12h18" />
+              <path d="M5.5 5.5l13 13" />
+              <path d="M18.5 5.5l-13 13" />
+            </svg>
+            Design Colors
+          </a>
           <a
             href="settings.html"
             className="hm-action-button hm-action-button--secondary inline-flex items-center gap-2 px-3 py-2 text-[14px] font-semibold no-underline"
@@ -255,8 +267,8 @@ export default function Home() {
       </header>
 
       <div className="hm-panel">
-        <div className="hm-panel-header">
-          <div className="hm-eyebrow mb-2 text-[var(--fg-muted-on-ink)]">Add rubrics</div>
+        <div className="hm-panel-header" style={{ background: "var(--shell-bg)" }}>
+          <div className="hm-eyebrow mb-2" style={{ color: "var(--fg-inverse)" }}>Add rubrics</div>
           <label htmlFor="search" className="block text-[16px] font-semibold text-[var(--fg-inverse)] mb-3">
             Type to search the repertory
           </label>
@@ -419,13 +431,6 @@ export default function Home() {
                               data-testid="clear-all-rubrics"
                             >
                               Clear All ({selectedRubrics.length})
-                              <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
-                                <path d="M3 6h18" />
-                                <path d="M8 6V4a2 2 0 0 1 2-2h4a2 2 0 0 1 2 2v2" />
-                                <path d="M19 6l-1 14a2 2 0 0 1-2 2H8a2 2 0 0 1-2-2L5 6" />
-                                <line x1="10" y1="11" x2="10" y2="17" />
-                                <line x1="14" y1="11" x2="14" y2="17" />
-                              </svg>
                             </button>
                           )}
                         </span>
@@ -509,7 +514,7 @@ export default function Home() {
                             </span>
                             <span className="flex-1" style={isHidden ? { textDecoration: "line-through", color: "var(--ink-30)" } : undefined}>{sym}</span>
                             <span className="text-[15px] text-[var(--ink-30)]">
-                              ({rubricRemedyCount})
+                              {rubricRemedyCount}
                             </span>
                             <button
                               onClick={(e) => {
@@ -593,7 +598,7 @@ export default function Home() {
           </div>
           {detailPanel.type === "remedy" && (
             <div className={`${isMobile ? "w-full" : "w-1/2"} hm-panel min-w-0 animate-slide-up`}>
-              <div className="hm-panel-header font-semibold">
+              <div className="hm-panel-header font-semibold" style={{ background: "var(--shell-bg)" }}>
                 Lecture
               </div>
               <LecturePanel
@@ -714,7 +719,7 @@ function DetailPanel({
 }) {
   return (
     <div className="hm-panel animate-slide-up w-full">
-      <div className="hm-panel-header font-semibold">
+      <div className="hm-panel-header font-semibold" style={{ background: "var(--shell-bg)" }}>
         <div className="flex items-center justify-between gap-3">
           <span>{type === "remedy" ? "Remedy" : "Rubric"}</span>
           <button

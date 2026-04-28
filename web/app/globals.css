@@ -5,17 +5,18 @@
   --grade-4-bg: #9f4f2d;
   --grade-4-fg: #ffffff;
   --dialog-backdrop: rgba(21, 24, 23, 0.4);
+  --shell-bg: #5f725b;
 }
 
 html,
 body {
   min-height: 100%;
-  background: var(--ink);
+  background: var(--shell-bg);
 }
 
 body {
   font-family: var(--font-sans);
-  background: var(--ink);
+  background: var(--shell-bg);
   color: var(--fg-1);
   min-height: 100vh;
   padding: 20px;
@@ -186,7 +187,7 @@ a {
 }
 
 .hm-panel-header {
-  background: var(--bg-dark);
+  background: var(--shell-bg);
   color: var(--fg-inverse);
   padding: 14px 20px;
 }
