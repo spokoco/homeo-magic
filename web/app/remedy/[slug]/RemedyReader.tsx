@@ -1,4 +1,5 @@
 "use client";
+import Image from "next/image";
 import { dataUrl, navUrl } from "../../dataUrl";
 
 import { useState, useEffect, useRef, useMemo } from "react";
@@ -88,7 +89,7 @@ export function findPassageRange(
   const passageLower = passage.toLowerCase();
 
   // Strategy 1: exact case-insensitive match
-  let idx = cleanedLower.indexOf(passageLower);
+  const idx = cleanedLower.indexOf(passageLower);
   if (idx !== -1) return { start: idx, end: idx + passage.length };
 
   // Strategy 2: normalized whitespace match
@@ -247,7 +248,7 @@ function renderMarkdown(
       elements.push(
         <h1
           key={pi}
-          className="text-3xl font-bold text-[#065774] mt-10 mb-4 font-serif"
+          className="mt-10 mb-4 font-serif text-3xl font-bold text-[var(--fg-accent)]"
         >
           {rendered}
         </h1>
@@ -256,7 +257,7 @@ function renderMarkdown(
       elements.push(
         <h2
           key={pi}
-          className="text-xl font-semibold text-[#065774] mt-8 mb-3 font-serif border-b border-[#D3DCDE] pb-2"
+          className="mt-8 mb-3 border-b border-[var(--border)] pb-2 font-serif text-xl font-semibold text-[var(--fg-accent)]"
         >
           {rendered}
         </h2>
@@ -265,7 +266,7 @@ function renderMarkdown(
       elements.push(
         <blockquote
           key={pi}
-          className="border-l-4 border-[#EF9B0C] pl-4 my-4 italic text-[#374151]"
+          className="my-4 border-l-4 border-[var(--teal)] pl-4 italic text-[var(--ink-70)]"
         >
           {rendered}
         </blockquote>
@@ -312,8 +313,8 @@ function highlightText(
         data-highlight={r.primary ? "primary" : "secondary"}
         className={
           r.primary
-            ? "bg-[#EF9B0C]/30 rounded px-0.5 ring-2 ring-[#EF9B0C]/50"
-            : "bg-yellow-100 rounded px-0.5"
+            ? "rounded px-0.5 ring-2 ring-[color:var(--teal-tint)] bg-[var(--teal-soft)]"
+            : "rounded px-0.5 bg-[var(--sage-soft)]"
         }
       >
         {text.slice(r.start, r.end)}
@@ -542,8 +543,8 @@ export default function RemedyReader({ slug }: { slug: string }) {
 
   if (loading) {
     return (
-      <div className="min-h-screen flex items-center justify-center">
-        <div className="text-white text-lg loading-pulse">
+      <div className="flex min-h-screen items-center justify-center">
+        <div className="text-lg text-[var(--fg-2)] loading-pulse">
           Loading remedy text...
         </div>
       </div>
@@ -552,13 +553,13 @@ export default function RemedyReader({ slug }: { slug: string }) {
 
   if (error) {
     return (
-      <div className="min-h-screen flex items-center justify-center">
-        <div className="bg-white rounded-2xl p-8 shadow-lg text-center">
-          <div className="text-4xl mb-4">&#x1F4D6;</div>
-          <p className="text-[#374151] text-lg">{error}</p>
+      <div className="flex min-h-screen items-center justify-center">
+        <div className="hm-panel p-8 text-center">
+          <Image src="/mark.svg" alt="" width={48} height={48} className="mx-auto mb-4 h-12 w-12" />
+          <p className="text-lg text-[var(--fg-1)]">{error}</p>
           <a
             href={navUrl("/")}
-            className="mt-4 inline-block text-[#065774] hover:underline"
+            className="mt-4 inline-block text-[var(--fg-accent)] hover:underline"
           >
             &larr; Back to Homeo-Magic
           </a>
@@ -573,25 +574,19 @@ export default function RemedyReader({ slug }: { slug: string }) {
     <div className="max-w-3xl mx-auto pb-16">
       {/* Page opens in new tab - user closes tab to return */}
 
-      <article className="bg-white rounded-2xl shadow-[0_10px_40px_rgba(0,0,0,0.2)] overflow-hidden">
-        <header
-          className="px-8 py-6 text-white"
-          style={{
-            background:
-              "linear-gradient(135deg, #065774 0%, #042B58 100%)",
-          }}
-        >
+      <article className="hm-panel overflow-hidden">
+        <header className="hm-panel-header px-8 py-6">
           <h1 className="text-3xl font-bold font-serif">
             {profile?.remedy}
           </h1>
-          <p className="mt-1 text-white/70 text-sm">
+          <p className="mt-1 text-sm text-[var(--fg-muted-on-ink)]">
             Kent&apos;s Lectures on Homeopathic Materia Medica
           </p>
         </header>
 
         {rubrics.length > 0 && matchCount > 0 && (
-          <div className="px-8 py-4 bg-[#fefce8] border-b border-[#fde68a]">
-            <div className="text-sm font-semibold text-[#92400e] mb-2">
+          <div className="border-b border-[var(--border)] bg-[var(--sage-soft)] px-8 py-4">
+            <div className="mb-2 text-sm font-semibold text-[var(--fg-1)]">
               {matchCount} matching passage{matchCount !== 1 ? "s" : ""}{" "}
               highlighted for your rubrics:
             </div>
@@ -601,10 +596,10 @@ export default function RemedyReader({ slug }: { slug: string }) {
                 return (
                   <button
                     key={sym}
-                    className={`text-xs px-2.5 py-1 rounded-full border-none ${
+                    className={`border text-xs px-2.5 py-1 rounded-full ${
                       hasMatch
-                        ? "bg-[#EF9B0C]/20 text-[#92400e] font-medium cursor-pointer hover:bg-[#EF9B0C]/40 transition-colors"
-                        : "bg-gray-100 text-gray-400 cursor-default"
+                        ? "cursor-pointer border-[var(--border-accent)] bg-[var(--teal-soft)] font-medium text-[var(--fg-1)] transition-colors hover:bg-[var(--teal-tint)]"
+                        : "cursor-default border-[var(--border)] bg-[var(--ink-04)] text-[var(--ink-50)]"
                     }`}
                     onClick={() => {
                       if (!hasMatch) return;
@@ -615,8 +610,8 @@ export default function RemedyReader({ slug }: { slug: string }) {
                         if (mark.textContent?.toLowerCase().includes(passage.slice(0, 40))) {
                           mark.scrollIntoView({ behavior: "smooth", block: "center" });
                           // Flash effect
-                          mark.classList.add("ring-4", "ring-[#EF9B0C]");
-                          setTimeout(() => mark.classList.remove("ring-4", "ring-[#EF9B0C]"), 2000);
+                          mark.classList.add("ring-4", "ring-[color:var(--teal)]");
+                          setTimeout(() => mark.classList.remove("ring-4", "ring-[color:var(--teal)]"), 2000);
                           return;
                         }
                       }
@@ -631,7 +626,7 @@ export default function RemedyReader({ slug }: { slug: string }) {
           </div>
         )}
 
-        <div className="px-8 py-6 text-[#1f2937] text-[16px] leading-[1.8] font-serif remedy-text">
+        <div className="remedy-text px-8 py-6 font-serif text-[16px] leading-[1.8] text-[var(--fg-1)]">
           {elements}
         </div>
       </article>

@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<title>Chips & Tags</title>
+<link rel="stylesheet" href="../colors_and_type.css">
+<style>
+  body { margin: 0; padding: 20px; background: var(--bg-page); }
+  .eyebrow { font: 700 10px/1 var(--font-sans); letter-spacing: var(--tracking-caps); text-transform: uppercase; color: var(--fg-accent); margin-bottom: 14px; }
+  .row { display: flex; gap: 8px; flex-wrap: wrap; margin-bottom: 12px; align-items:center; }
+  .chip { display:inline-flex; align-items:center; gap:6px; background: var(--bg-herb); color: var(--ink); padding: 6px 10px 6px 12px; border-radius: var(--r-pill); font: 700 13px/1 var(--font-sans); }
+  .chip.remedy { background: var(--ink); color: var(--paper); }
+  .chip.grade { background: var(--grade-3-bg); color: var(--grade-3-fg); padding: 4px 10px; }
+  .chip button { border:0; background: transparent; color: inherit; cursor: pointer; font: 700 14px/1 var(--font-sans); padding: 0 2px; opacity: 0.65; }
+  .chip button:hover { opacity: 1; }
+  .tag { display: inline-block; font: 700 10px/1 var(--font-sans); letter-spacing: 0.12em; text-transform: uppercase; padding: 4px 8px; border-radius: 2px; }
+  .tag.t-accent { background: var(--bg-signal); color: var(--teal-deep); }
+  .tag.t-ink { background: var(--ink); color: var(--paper); }
+  .tag.t-sage { background: var(--bg-herb); color: var(--ink-70); }
+</style>
+</head>
+<body>
+  <div class="eyebrow">Rubric & remedy chips</div>
+  <div class="row">
+    <span class="chip">head, pain, morning <button>×</button></span>
+    <span class="chip">irritability <button>×</button></span>
+    <span class="chip remedy">Nux-v · 8</span>
+    <span class="chip grade">Grade 3</span>
+  </div>
+  <div class="eyebrow" style="margin-top:18px">Tags / eyebrows</div>
+  <div class="row">
+    <span class="tag t-accent">Rubric</span>
+    <span class="tag t-ink">Polychrest</span>
+    <span class="tag t-sage">Materia medica</span>
+  </div>
+</body>
+</html>

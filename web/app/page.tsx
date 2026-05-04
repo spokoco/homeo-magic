@@ -1,5 +1,6 @@
 "use client";
 
+import Image from "next/image";
 import { useState, useRef, useEffect, useCallback, useMemo } from "react";
 import { useRepertorize } from "./useRepertorize";
 import chroma from "chroma-js";
@@ -134,15 +135,18 @@ export default function Home() {
   const [query, setQuery] = useState("");
   const [dropdownOpen, setDropdownOpen] = useState(false);
   const [highlightedIndex, setHighlightedIndex] = useState(-1);
-  const [detailPanel, setDetailPanel] = useState<{
-    type: "remedy" | "rubric";
-    name: string;
-  } | null>(null);
+  const [remedyDetail, setRemedyDetail] = useState<string | null>(null);
+  const [rubricDetail, setRubricDetail] = useState<string | null>(null);
+  const [isRubricPanelOpen, setIsRubricPanelOpen] = useState(true);
+  const [isRemedyPanelOpen, setIsRemedyPanelOpen] = useState(true);
+  const [isLecturePanelOpen, setIsLecturePanelOpen] = useState(true);
 
   // Auto-select top remedy when results first appear
   useEffect(() => {
-    if (results.items.length > 0 && !detailPanel) {
-      setDetailPanel({ type: "remedy", name: results.items[0].abbrev });
+    if (results.items.length > 0 && !remedyDetail) {
+      setRemedyDetail(results.items[0].abbrev);
+      setIsRemedyPanelOpen(true);
+      setIsLecturePanelOpen(true);
     }
   }, [results.items.length > 0]);
   const inputRef = useRef<HTMLInputElement>(null);
@@ -210,33 +214,63 @@ export default function Home() {
   const displayed = filtered.slice(0, 40);
 
   return (
-    <div className="max-w-[1400px] mx-auto">
-      {/* Header */}
-      <header className={`flex items-center justify-between mb-6 text-white ${isMobile ? "flex-wrap gap-2" : ""}`}>
-        <h1 className="text-4xl font-bold" style={{ textShadow: "0 2px 10px rgba(0,0,0,0.2)" }}>
-          Homeo-Magic
-        </h1>
-        {loadProgress.phase === "index" && (
-          <div className="inline-flex items-center gap-2">
-            <span className="text-sm loading-pulse">Loading...</span>
+    <div className="hm-shell">
+      <header className={`mb-6 flex items-start justify-between gap-4 ${isMobile ? "flex-col" : ""}`}>
+        <div className="min-w-0">
+          <div className="hm-eyebrow mb-3" style={{ color: "var(--fg-inverse)" }}>Repertorization matrix</div>
+          <div className={`flex items-center gap-4 ${isMobile ? "flex-wrap" : ""}`}>
+            <Image
+              src="/remedy-logo-01.svg"
+              alt="Remedy Rx"
+              width={72}
+              height={72}
+              className="h-[60px] w-[60px] flex-shrink-0"
+              priority
+            />
+            <div className="min-w-0">
+              <h1 className="text-[clamp(1.5rem,3.4vw,2.6rem)] font-semibold leading-none tracking-[-0.04em] text-[var(--fg-inverse)]">
+                Remedy Rx
+              </h1>
+            </div>
+            {loadProgress.phase === "index" && (
+              <div className="hm-tag inline-flex items-center gap-2 px-3 py-1.5 text-[13px] loading-pulse">
+                <span className="h-2 w-2 rounded-full bg-[var(--teal)]" />
+                Loading index
+              </div>
+            )}
           </div>
-        )}
-        <div className="flex items-center gap-4 text-[0.95rem] opacity-90">
-          <span>
+          <p className="mt-4 max-w-3xl text-[15px] leading-6 text-[var(--fg-inverse)]">
+            Search and select rubrics to find matching remedies.
+          </p>
+        </div>
+        <div className={`hm-soft-card flex items-center gap-3 px-4 py-3 text-[15px] ${isMobile ? "w-full flex-wrap" : ""}`}>
+          <span className="text-[var(--fg-2)]">
             {loading ? (
               <span className="loading-pulse">{loadProgress.message}</span>
             ) : error ? (
-              <span style={{ color: "#fca5a5" }}>Error: {error}</span>
+              <span className="text-[#a23b2a]">Error: {error}</span>
             ) : (
               <>
-                {rubricCount.toLocaleString()} rubrics &bull;{" "}
+                {rubricCount.toLocaleString()} rubrics &middot;{" "}
                 {remedyCount.toLocaleString()} remedies
               </>
             )}
           </span>
           <a
+            href="design-system.html"
+            className="hm-action-button hm-action-button--secondary inline-flex items-center gap-2 px-3 py-2 text-[14px] font-semibold no-underline"
+          >
+            <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
+              <path d="M12 3v18" />
+              <path d="M3 12h18" />
+              <path d="M5.5 5.5l13 13" />
+              <path d="M18.5 5.5l-13 13" />
+            </svg>
+            Design Colors
+          </a>
+          <a
             href="settings.html"
-            className="inline-flex items-center gap-1 text-[16px] text-white/85 hover:text-white no-underline transition-colors"
+            className="hm-action-button hm-action-button--secondary inline-flex items-center gap-2 px-3 py-2 text-[14px] font-semibold no-underline"
           >
             <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
               <circle cx="12" cy="12" r="3" />
@@ -247,17 +281,11 @@ export default function Home() {
         </div>
       </header>
 
-      {/* Results */}
-      <div className="bg-white rounded-[10px] shadow-[0_10px_40px_rgba(0,0,0,0.2)] overflow-hidden">
-        {/* Search - navy gradient banner */}
-        <div
-          className="px-5 py-4 text-white"
-          style={{
-            background: "linear-gradient(175deg, #065774 0%, #042B58 100%)",
-          }}
-        >
-          <label htmlFor="search" className="block font-semibold text-white text-[16px] mb-2">
-            Add Rubrics:
+      <div className="hm-panel">
+        <div className="hm-panel-header" style={{ background: "var(--panel-bg)" }}>
+          <div className="hm-eyebrow mb-2" style={{ color: "var(--fg-inverse)" }}>Add rubrics</div>
+          <label htmlFor="search" className="block text-[16px] font-semibold text-[var(--fg-inverse)] mb-3">
+            Type to search the repertory
           </label>
           <div className="relative">
             <input
@@ -269,14 +297,14 @@ export default function Home() {
               onKeyDown={handleKeyDown}
               onFocus={() => { if (suggestions.length > 0) setDropdownOpen(true); }}
               placeholder="Type to search (e.g., headache, anxiety, burning)..."
-              className="w-full px-[18px] py-[14px] text-base border-2 border-[#D3DCDE] rounded-[10px] outline-none transition-all font-inherit focus:border-[#EF9B0C] focus:shadow-[0_0_0_3px_rgba(239,155,12,0.2)] disabled:bg-[#eef1f2] disabled:cursor-not-allowed text-[#1f2937] bg-white"
+              className="hm-input px-[18px] py-[14px] text-base outline-none transition-all font-inherit disabled:cursor-not-allowed disabled:bg-[var(--bg-sunken)]"
               autoComplete="off"
               disabled={loading}
             />
             {showDropdown && suggestions.length > 0 && (
               <div
                 ref={dropdownRef}
-                className="absolute z-[100] top-full left-0 right-0 bg-white border-2 border-[#EF9B0C] rounded-[10px] mt-1 max-h-[300px] overflow-y-auto shadow-[0_10px_40px_rgba(0,0,0,0.15)]"
+                className="absolute z-[100] top-full left-0 right-0 mt-1 max-h-[300px] overflow-y-auto rounded-[14px] border border-[var(--border-accent)] bg-[var(--paper)] shadow-[var(--shadow-lg)]"
               >
                 {suggestions.map((rubric, idx) => (
                   <button
@@ -284,8 +312,8 @@ export default function Home() {
                     ref={idx === highlightedIndex ? (el) => el?.scrollIntoView({ block: "nearest" }) : undefined}
                     onClick={() => handleSelectSuggestion(rubric)}
                     onMouseEnter={() => setHighlightedIndex(idx)}
-                    className={`w-full text-left px-4 py-3 text-sm cursor-pointer border-b border-[#e4e9eb] last:border-b-0 transition-colors text-[#1f2937] ${
-                      idx === highlightedIndex ? "bg-[#eef1f2]" : "hover:bg-[#eef1f2]"
+                    className={`w-full cursor-pointer border-b border-[var(--border)] px-4 py-3 text-left text-sm text-[var(--fg-1)] transition-colors last:border-b-0 ${
+                      idx === highlightedIndex ? "bg-[var(--teal-soft)]" : "hover:bg-[var(--ink-04)]"
                     }`}
                   >
                     <HighlightMatch text={rubric} query={query} />
@@ -296,135 +324,131 @@ export default function Home() {
           </div>
         </div>
 
-        {selectedRubrics.length === 0 ? (
-          <div className="py-16 px-5 text-center text-[#6b7280]">
-            <div className="text-5xl mb-4">&#x1F50D;</div>
-            <p>Search and select rubrics to find matching remedies</p>
-          </div>
-        ) : results.items.length === 0 ? (
-          <div className="py-16 px-5 text-center text-[#6b7280]">
-            <p>No remedies found for these rubrics</p>
-          </div>
-        ) : (
-          <>
-            {/* Filter bar - Analysis label + Remedies Found + Min score */}
-            <div className={`flex items-center py-3 bg-[#eef1f2] border-b border-[#D3DCDE] ${isMobile ? "flex-wrap gap-2 px-3" : ""}`}>
-              {!isMobile && (
-                <div className="font-semibold text-[#065774] text-[16px] px-5 whitespace-nowrap" style={{ width: rubricColWidth, minWidth: 420, flexShrink: 0 }}>
-                  Analysis
-                </div>
-              )}
-              {isMobile && (
-                <div className="font-semibold text-[#065774] text-[16px] px-5 whitespace-nowrap">
-                  Analysis
-                </div>
-              )}
-              <div className="flex items-center gap-4 px-2">
-                <span className="font-medium text-[#065774] text-[16px] whitespace-nowrap">
-                  Showing {displayed.length} of {results.totalCount}{" "}remedies
-                  {filtered.length > displayed.length &&
-                    ` \u2022 ${filtered.length - displayed.length} more below`}
-                </span>
-              </div>
-              <div className={`flex items-center gap-3 ${isMobile ? "" : "ml-auto"} pr-5`}>
-                <label className="font-medium text-[#065774] text-[16px] whitespace-nowrap">
-                  Min score:
-                </label>
-                <input
-                  type="range"
-                  min="0"
-                  max="100"
-                  value={minScore}
-                  onChange={(e) => setMinScore(parseInt(e.target.value))}
-                  className="score-slider w-[120px]"
-                  style={{
-                    direction: "rtl",
-                    background: `linear-gradient(to right, ${getScoreColor(minScore / 100)} ${100 - minScore}%, #D3DCDE ${100 - minScore}%)`,
-                  }}
-                />
-                <span
-                  className="font-bold min-w-[35px] text-center text-sm px-2 py-0.5 rounded"
-                  style={{
-                    background: getScoreColor(minScore / 100),
-                    color: getTextColor(getScoreColor(minScore / 100)),
-                  }}
-                >
-                  {minScore}
-                </span>
-                <button
-                  onClick={() => setMinScore(0)}
-                  className="px-3 py-1.5 bg-[#D3DCDE] text-[#065774] border-none rounded-md text-xs font-medium cursor-pointer hover:bg-[#c5cdd0]"
-                >
-                  Reset
-                </button>
-              </div>
+        <div className="bg-[var(--bg-surface)]">
+          {selectedRubrics.length === 0 ? (
+            <div className="hm-empty-state px-6 py-16 text-center">
+              <Image src="/mark.svg" alt="" width={56} height={56} className="mx-auto mb-4 h-14 w-14 opacity-90" />
+              <p className="text-[16px] text-[var(--fg-2)]">Search and select rubrics above to find matching remedies</p>
             </div>
+          ) : results.items.length === 0 ? (
+            <div className="hm-empty-state px-6 py-16 text-center">
+              <p className="text-[16px] text-[var(--fg-2)]">No remedies found for these rubrics</p>
+            </div>
+          ) : (
+            <>
+              <div className={`flex items-center border-b border-[var(--border)] bg-[var(--bg-sunken)] py-3 ${isMobile ? "flex-wrap gap-2 px-3" : ""}`}>
+                {!isMobile && (
+                  <div className="px-5 text-[16px] font-semibold whitespace-nowrap text-[var(--fg-accent)]" style={{ width: rubricColWidth, minWidth: 420, flexShrink: 0 }}>
+                    Analysis
+                  </div>
+                )}
+                {isMobile && (
+                  <div className="px-5 text-[16px] font-semibold whitespace-nowrap text-[var(--fg-accent)]">
+                    Analysis
+                  </div>
+                )}
+                <div className="flex items-center gap-4 px-2">
+                  <span className="text-[16px] font-medium whitespace-nowrap text-[var(--fg-1)]">
+                    Showing {displayed.length} of {results.totalCount}{" "}remedies
+                    {filtered.length > displayed.length &&
+                      ` \u2022 ${filtered.length - displayed.length} more below`}
+                  </span>
+                </div>
+                <div className={`flex items-center gap-3 ${isMobile ? "" : "ml-auto"} pr-5`}>
+                  <label className="text-[16px] font-medium whitespace-nowrap text-[var(--fg-1)]">
+                    Min score:
+                  </label>
+                  <input
+                    type="range"
+                    min="0"
+                    max="100"
+                    value={minScore}
+                    onChange={(e) => setMinScore(parseInt(e.target.value))}
+                    className="score-slider w-[120px]"
+                    style={{
+                      direction: "rtl",
+                      background: `linear-gradient(to right, ${getScoreColor(minScore / 100)} ${100 - minScore}%, var(--border) ${100 - minScore}%)`,
+                    }}
+                  />
+                  <span
+                    className="rounded px-2 py-0.5 text-center text-sm font-bold"
+                    style={{
+                      minWidth: 35,
+                      background: getScoreColor(minScore / 100),
+                      color: getTextColor(getScoreColor(minScore / 100)),
+                    }}
+                  >
+                    {minScore}
+                  </span>
+                  <button
+                    onClick={() => setMinScore(0)}
+                    className="hm-action-button hm-action-button--secondary px-3 py-1.5 text-xs font-medium cursor-pointer"
+                  >
+                    Reset
+                  </button>
+                </div>
+              </div>
 
-            {/* Table */}
-            <div ref={tableWrapRef} className="overflow-x-auto max-h-[70vh] relative">
-              {/* Single full-height resize handle overlay */}
-              <div
-                className="absolute top-0 bottom-0 w-[6px] cursor-col-resize z-30 group hover:bg-[#EF9B0C] transition-colors"
-                style={{ left: rubricColWidth - 3, pointerEvents: "auto" }}
-                onMouseDown={startResize}
-              />
-              <table className="w-full border-collapse text-[13px]">
-                <thead>
-                  <tr>
-                    <th
-                      className="text-right bg-[#e4e9eb] px-5 py-2.5 font-semibold text-[#065774] sticky top-0 left-0 z-20 border-b border-[#e4e9eb] text-[16px]"
-                      style={{ width: rubricColWidth, minWidth: isMobile ? 100 : 420, maxWidth: 800 }}
-                    >
-                      Remedies
-                    </th>
-                    {displayed.map((r) => (
+              {/* Table */}
+              <div ref={tableWrapRef} className="overflow-x-auto max-h-[70vh] relative">
+                {/* Single full-height resize handle overlay */}
+                <div
+                  className="absolute top-0 bottom-0 z-30 w-[6px] cursor-col-resize transition-colors hover:bg-[var(--teal)]"
+                  style={{ left: rubricColWidth - 3, pointerEvents: "auto" }}
+                  onMouseDown={startResize}
+                />
+                <table className="w-full border-collapse text-[13px]">
+                  <thead>
+                    <tr>
                       <th
-                        key={r.abbrev}
-                        onClick={() => {
-                          setSelectedRemedy((prev) => prev === r.abbrev ? null : r.abbrev);
-                          setDetailPanel({ type: "remedy", name: r.abbrev });
-                        }
-                        }
-                        onMouseEnter={() => setHoveredRemedy(r.abbrev)}
-                        onMouseLeave={() => setHoveredRemedy(null)}
-                        className="px-1 pt-2.5 pb-[10px] font-semibold text-[#065774] sticky top-0 z-10 border-b border-[#e4e9eb] text-center cursor-pointer transition-colors"
-                        style={{
-                          writingMode: "vertical-rl",
-                          textOrientation: "mixed",
-                          transform: "rotate(180deg)",
-                          height: "100px",
-                          verticalAlign: "middle",
-                          fontSize: "16px",
-                          whiteSpace: "nowrap",
-                          background: (hoveredRemedy === r.abbrev || selectedRemedy === r.abbrev) ? "#dce6ea" : "#f3f6f7",
-                        }}
+                        className="sticky top-0 left-0 z-20 border-b border-[var(--border-strong)] bg-[var(--bg-herb)] px-5 py-2.5 text-right text-[16px] font-semibold text-[var(--fg-accent)]"
+                        style={{ width: rubricColWidth, minWidth: isMobile ? 100 : 420, maxWidth: 800 }}
                       >
-                        {r.abbrev}
+                        Remedies
                       </th>
-                    ))}
-                  </tr>
-                </thead>
-                <tbody>
+                      {displayed.map((r) => (
+                        <th
+                          key={r.abbrev}
+                          onClick={() => {
+                            setSelectedRemedy((prev) => prev === r.abbrev ? null : r.abbrev);
+                            setRemedyDetail(r.abbrev);
+                            setIsRemedyPanelOpen(true);
+                            setIsLecturePanelOpen(true);
+                          }
+                          }
+                          onMouseEnter={() => setHoveredRemedy(r.abbrev)}
+                          onMouseLeave={() => setHoveredRemedy(null)}
+                          className="sticky top-0 z-10 cursor-pointer border-b border-[var(--border-strong)] px-1 pt-2.5 pb-[10px] text-center font-semibold text-[var(--fg-accent)] transition-colors"
+                          style={{
+                            writingMode: "vertical-rl",
+                            textOrientation: "mixed",
+                            transform: "rotate(180deg)",
+                            height: "100px",
+                            verticalAlign: "middle",
+                            fontSize: "16px",
+                            whiteSpace: "nowrap",
+                            background: (hoveredRemedy === r.abbrev || selectedRemedy === r.abbrev) ? "var(--teal-soft)" : "var(--bg-sunken)",
+                          }}
+                        >
+                          {r.abbrev}
+                        </th>
+                      ))}
+                    </tr>
+                  </thead>
+                  <tbody>
                   {/* Score row */}
                   <tr>
-                    <td className="px-5 py-2.5 font-semibold border-b-2 border-[#D3DCDE] text-[16px] sticky left-0 z-10" style={{ background: "linear-gradient(180deg, #f3f6f7 0%, #e9eef0 100%)" }}>
+                    <td className="sticky left-0 z-10 border-b-2 border-[var(--border-strong)] bg-[var(--bg-sunken)] px-5 py-2.5 text-[16px] font-semibold">
                       <div className="flex items-center">
-                        <span className="text-[#065774]">Rubrics</span>
+                        <span className="text-[var(--fg-accent)]">Rubrics</span>
                         <span className="ml-auto flex items-center gap-2">
                           {selectedRubrics.length > 0 && (
                             <button
                               onClick={() => setShowClearConfirm(true)}
-                              className="inline-flex items-center gap-1.5 text-[#065774] text-sm font-medium cursor-pointer hover:text-[#042B58] transition-colors bg-transparent border-none p-0"
+                              className="inline-flex items-center gap-1.5 bg-transparent p-0 text-sm font-medium cursor-pointer text-[var(--fg-2)] transition-colors hover:text-[var(--fg-1)]"
                               data-testid="clear-all-rubrics"
                             >
                               Clear All ({selectedRubrics.length})
-                              <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
-                                <path d="M3 6h18" />
-                                <path d="M8 6V4a2 2 0 0 1 2-2h4a2 2 0 0 1 2 2v2" />
-                                <path d="M19 6l-1 14a2 2 0 0 1-2 2H8a2 2 0 0 1-2-2L5 6" />
-                                <line x1="10" y1="11" x2="10" y2="17" />
-                                <line x1="14" y1="11" x2="14" y2="17" />
-                              </svg>
                             </button>
                           )}
                         </span>
@@ -438,11 +462,11 @@ export default function Home() {
                         <td
                           key={r.abbrev}
                           onClick={() => setMinScore(r.totalScore)}
-                          className="text-center px-2 py-2.5 font-bold text-[16px] border-b-2 border-[#D3DCDE] cursor-pointer transition-all hover:scale-110"
+                          className="cursor-pointer border-b-2 border-[var(--border-strong)] px-2 py-2.5 text-center text-[16px] font-bold transition-colors"
                           style={{
                             background: bg,
                             color: fg,
-                            boxShadow: (hoveredRemedy === r.abbrev || selectedRemedy === r.abbrev) ? "inset 0 0 0 2px #065774" : undefined,
+                            boxShadow: (hoveredRemedy === r.abbrev || selectedRemedy === r.abbrev) ? "inset 0 0 0 2px var(--teal-deep)" : undefined,
                           }}
                           title={`Click to set minimum score to ${r.totalScore}`}
                         >
@@ -484,38 +508,43 @@ export default function Home() {
                         style={{
                           opacity: isHidden ? 0.4 : 1,
                           transition: "opacity 0.15s, background 0.15s",
-                          background: (selectedRubricRow === sym || hoveredRubricRow === sym) ? "#eef1f2" : undefined,
+                          background: (selectedRubricRow === sym || hoveredRubricRow === sym) ? "var(--ink-04)" : undefined,
                         }}
                       >
                         <td
                           onClick={() => {
                             setSelectedSymRow((prev) => prev === sym ? null : sym);
-                            setDetailPanel({ type: "rubric", name: sym });
+                            setRubricDetail((prev) => prev === sym ? null : sym);
+                            setIsRubricPanelOpen(true);
                           }}
-                          className="text-left px-5 py-2.5 border-b border-[#e4e9eb] cursor-pointer transition-colors text-[15px] sticky left-0 z-10"
+                          className="sticky left-0 z-10 cursor-pointer border-b border-[var(--border)] px-5 py-2.5 text-left text-[15px] transition-colors"
                           style={{
-                            background: (selectedRubricRow === sym || hoveredRubricRow === sym) ? "#eef1f2" : "white",
+                            background: (selectedRubricRow === sym || hoveredRubricRow === sym) ? "var(--ink-04)" : "var(--paper)",
                           }}
                         >
                           <div className="flex items-center gap-2">
                             <span
-                              className="flex-shrink-0 cursor-grab text-[#9ca3af]"
+                              className="flex-shrink-0 cursor-grab text-[var(--ink-30)]"
                               style={{ opacity: hoveredRubricRow === sym ? 1 : 0, transition: "opacity 0.15s", marginLeft: "-20px", marginRight: "4px" }}
                               title="Drag to reorder"
                               onMouseDown={(e) => e.stopPropagation()}
                             >
                               <svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor"><circle cx="9" cy="4" r="2"/><circle cx="15" cy="4" r="2"/><circle cx="9" cy="12" r="2"/><circle cx="15" cy="12" r="2"/><circle cx="9" cy="20" r="2"/><circle cx="15" cy="20" r="2"/></svg>
                             </span>
-                            <span className="flex-1" style={isHidden ? { textDecoration: "line-through", color: "#9ca3af" } : undefined}>{sym}</span>
-                            <span className="text-[#9ca3af] text-[15px]">
-                              ({rubricRemedyCount})
+                            <span className="flex-1" style={isHidden ? { textDecoration: "line-through", color: "var(--ink-30)" } : undefined}>{sym}</span>
+                            <span className="text-[15px] text-[var(--ink-30)]">
+                              {rubricRemedyCount}
                             </span>
                             <button
                               onClick={(e) => {
                                 e.stopPropagation();
-                                isHidden ? showRubric(sym) : hideRubric(sym);
+                                if (isHidden) {
+                                  showRubric(sym);
+                                } else {
+                                  hideRubric(sym);
+                                }
                               }}
-                              className="border-none w-[22px] h-[22px] rounded bg-[#D3DCDE] text-[#065774] text-xs cursor-pointer flex items-center justify-center hover:bg-[#065774] hover:text-white flex-shrink-0"
+                              className="hm-icon-button flex h-[22px] w-[22px] flex-shrink-0 items-center justify-center text-xs cursor-pointer"
                               style={{ opacity: hoveredRubricRow === sym ? 1 : 0, transition: "opacity 0.15s" }}
                               title={isHidden ? "Show rubric" : "Hide rubric"}
                             >
@@ -526,7 +555,7 @@ export default function Home() {
                                 e.stopPropagation();
                                 removeRubric(sym);
                               }}
-                              className="border-none w-[22px] h-[22px] rounded bg-[#D3DCDE] text-[#065774] text-xs cursor-pointer flex items-center justify-center hover:bg-[#065774] hover:text-white flex-shrink-0"
+                              className="hm-icon-button flex h-[22px] w-[22px] flex-shrink-0 items-center justify-center text-xs cursor-pointer"
                               style={{ opacity: hoveredRubricRow === sym ? 1 : 0, transition: "opacity 0.15s" }}
                               title="Remove rubric"
                             >
@@ -539,13 +568,17 @@ export default function Home() {
                           return (
                             <td
                               key={r.abbrev}
-                              className="text-center px-2 py-2.5 border-b border-[#e4e9eb]"
+                              onClick={() => {
+                                setSelectedSymRow(sym);
+                                setSelectedRemedy(r.abbrev);
+                              }}
+                              className="border-b border-[var(--border)] px-2 py-2.5 text-center"
                               style={{
                                 background:
                                   ((hoveredRemedy === r.abbrev || selectedRemedy === r.abbrev) && (hoveredRubricRow === sym || selectedRubricRow === sym))
-                                    ? "#d0dce0"
+                                    ? "var(--teal-soft)"
                                     : (hoveredRemedy === r.abbrev || selectedRemedy === r.abbrev || hoveredRubricRow === sym || selectedRubricRow === sym)
-                                      ? "#eef3f5"
+                                      ? "var(--ink-04)"
                                       : undefined,
                               }}
                             >
@@ -560,45 +593,84 @@ export default function Home() {
                       </tr>
                     );
                   })}
-                </tbody>
-              </table>
-            </div>
-          </>
-        )}
+                  </tbody>
+                </table>
+              </div>
+            </>
+          )}
+        </div>
 
       </div>
 
       {/* Detail panel + Lecture panel side by side - OUTSIDE the analysis panel */}
-      {detailPanel && (
-        <div className={`flex gap-5 mt-5 items-stretch ${isMobile ? "flex-col" : ""}`}>
-          <div className={`${isMobile ? "w-full" : "w-1/2"} min-w-0 flex`}>
-            <DetailPanel
-              type={detailPanel.type}
-              name={detailPanel.name}
-              rubrics={rubrics}
-              remedies={remedies}
-              selectedRubrics={selectedRubrics}
-              onClose={() => setDetailPanel(null)}
-              onShowRemedyDetail={(name) =>
-                setDetailPanel({ type: "remedy", name })
-              }
-              onPassageClick={(passage) => setHighlightPassage(passage)}
-              selectedPassage={highlightPassage}
-            />
-          </div>
-          {detailPanel.type === "remedy" && (
-            <div className={`${isMobile ? "w-full" : "w-1/2"} min-w-0 bg-white rounded-[10px] shadow-[0_10px_40px_rgba(0,0,0,0.2)] overflow-hidden animate-slide-up`}>
-              <div
-                className="px-5 py-3.5 text-white font-semibold"
-                style={{ background: "linear-gradient(135deg, #065774 0%, #042B58 100%)" }}
-              >
-                Lecture
-              </div>
-              <LecturePanel
-                remedyAbbrev={detailPanel.name}
+      {(rubricDetail || remedyDetail) && (
+        <div className="mt-5 space-y-5">
+          {rubricDetail && (
+            <div className="flex min-w-0 w-full">
+              <DetailPanel
+                type="rubric"
+                name={rubricDetail}
+                rubrics={rubrics}
+                remedies={remedies}
                 selectedRubrics={selectedRubrics}
-                highlightPassage={highlightPassage ?? undefined}
+                selectedRemedy={selectedRemedy}
+                isOpen={isRubricPanelOpen}
+                onToggleOpen={() => setIsRubricPanelOpen((prev) => !prev)}
+                onShowRemedyDetail={(name) => {
+                  setSelectedRemedy(name);
+                  setRemedyDetail(name);
+                  setIsRemedyPanelOpen(true);
+                  setIsLecturePanelOpen(true);
+                }}
+                onPassageClick={(passage) => setHighlightPassage(passage)}
+                selectedPassage={highlightPassage}
               />
+            </div>
+          )}
+          {remedyDetail && (
+            <div className={`flex gap-5 items-stretch ${isMobile ? "flex-col" : ""}`}>
+              <div className={`${isMobile ? "w-full" : "w-1/2"} min-w-0 flex`}>
+                <DetailPanel
+                  type="remedy"
+                  name={remedyDetail}
+                  rubrics={rubrics}
+                  remedies={remedies}
+                  selectedRubrics={selectedRubrics}
+                  selectedRemedy={selectedRemedy}
+                  isOpen={isRemedyPanelOpen}
+                  onToggleOpen={() => setIsRemedyPanelOpen((prev) => !prev)}
+                  onShowRemedyDetail={(name) => {
+                    setSelectedRemedy(name);
+                    setRemedyDetail(name);
+                    setIsRemedyPanelOpen(true);
+                    setIsLecturePanelOpen(true);
+                  }}
+                  onPassageClick={(passage) => setHighlightPassage(passage)}
+                  selectedPassage={highlightPassage}
+                />
+              </div>
+              <div className={`${isMobile ? "w-full" : "w-1/2"} hm-panel min-w-0 animate-slide-up flex flex-col`}>
+                <div className="hm-panel-header font-semibold" style={{ background: "var(--panel-bg)" }}>
+                  <div className="flex items-center justify-between gap-3">
+                    <span>Lecture</span>
+                    <button
+                      onClick={() => setIsLecturePanelOpen((prev) => !prev)}
+                      className="cursor-pointer border-none bg-transparent text-[var(--fg-muted-on-ink)] transition-colors hover:text-[var(--fg-inverse)]"
+                      title={isLecturePanelOpen ? "Collapse panel" : "Expand panel"}
+                    >
+                      <span className="sr-only">{isLecturePanelOpen ? "Collapse panel" : "Expand panel"}</span>
+                      <ChevronIcon direction={isLecturePanelOpen ? "up" : "down"} />
+                    </button>
+                  </div>
+                </div>
+                {isLecturePanelOpen ? (
+                  <LecturePanel
+                    remedyAbbrev={remedyDetail}
+                    selectedRubrics={selectedRubrics}
+                    highlightPassage={highlightPassage ?? undefined}
+                  />
+                ) : null}
+              </div>
             </div>
           )}
         </div>
@@ -608,21 +680,21 @@ export default function Home() {
       {showClearConfirm && (
         <div
           className="fixed inset-0 z-50 flex items-center justify-center"
-          style={{ background: "rgba(0,0,0,0.4)" }}
+          style={{ background: "var(--dialog-backdrop)" }}
           onClick={() => setShowClearConfirm(false)}
         >
           <div
-            className="bg-white rounded-xl shadow-xl p-6 max-w-sm w-full mx-4"
+            className="mx-4 w-full max-w-sm rounded-[14px] border border-[var(--border)] bg-[var(--paper)] p-6 shadow-[var(--shadow-xl)]"
             onClick={(e) => e.stopPropagation()}
           >
-            <h3 className="text-lg font-semibold text-[#042B58] mb-2">Clear all rubrics?</h3>
-            <p className="text-[#6b7280] text-sm mb-5">
+            <h3 className="mb-2 text-lg font-semibold text-[var(--fg-1)]">Clear all rubrics?</h3>
+            <p className="mb-5 text-sm text-[var(--fg-2)]">
               This will remove all {selectedRubrics.length} selected rubrics and reset the analysis.
             </p>
             <div className="flex justify-end gap-3">
               <button
                 onClick={() => setShowClearConfirm(false)}
-                className="px-4 py-2 bg-[#eef1f2] text-[#065774] border-none rounded-lg text-sm font-medium cursor-pointer hover:bg-[#D3DCDE] transition-colors"
+                className="hm-action-button hm-action-button--secondary px-4 py-2 text-sm font-medium cursor-pointer"
               >
                 Cancel
               </button>
@@ -633,7 +705,7 @@ export default function Home() {
                   sessionStorage.removeItem("homeo-magic-state");
                   setShowClearConfirm(false);
                 }}
-                className="px-4 py-2 bg-[#dc2626] text-white border-none rounded-lg text-sm font-medium cursor-pointer hover:bg-[#b91c1c] transition-colors"
+                className="hm-action-button rounded-lg border border-transparent bg-[#a23b2a] px-4 py-2 text-sm font-medium text-white cursor-pointer transition-colors hover:bg-[#842f22]"
               >
                 Clear All
               </button>
@@ -652,7 +724,7 @@ function HighlightMatch({ text, query }: { text: string; query: string }) {
   return (
     <>
       {text.slice(0, idx)}
-      <mark className="bg-[#fef08a] px-0.5 rounded-sm">
+      <mark className="hm-highlight">
         {text.slice(idx, idx + query.length)}
       </mark>
       {text.slice(idx + query.length)}
@@ -695,7 +767,9 @@ function DetailPanel({
   rubrics,
   remedies,
   selectedRubrics,
-  onClose,
+  selectedRemedy,
+  isOpen,
+  onToggleOpen,
   onShowRemedyDetail,
   onPassageClick,
   selectedPassage,
@@ -705,28 +779,36 @@ function DetailPanel({
   rubrics: Record<string, { remedies: Record<string, number> }> | null;
   remedies: Record<string, string> | null;
   selectedRubrics: string[];
-  onClose: () => void;
+  selectedRemedy: string | null;
+  isOpen: boolean;
+  onToggleOpen: () => void;
   onShowRemedyDetail: (name: string) => void;
   onPassageClick?: (passage: string) => void;
   selectedPassage?: string | null;
 }) {
   return (
-    <div className="bg-white rounded-[10px] shadow-[0_10px_40px_rgba(0,0,0,0.2)] overflow-hidden animate-slide-up w-full">
-      <div
-        className="px-5 py-3.5 text-white font-semibold"
-        style={{
-          background: "linear-gradient(135deg, #065774 0%, #042B58 100%)",
-        }}
-      >
-        <span>{type === "remedy" ? "Remedy" : "Rubric"}</span>
+    <div className="hm-panel animate-slide-up w-full">
+      <div className="hm-panel-header font-semibold" style={{ background: "var(--panel-bg)" }}>
+        <div className="flex items-center justify-between gap-3">
+          <span>{type === "remedy" ? "Remedy" : "Rubric"}</span>
+          <button
+            onClick={onToggleOpen}
+            className="cursor-pointer border-none bg-transparent text-[var(--fg-muted-on-ink)] transition-colors hover:text-[var(--fg-inverse)]"
+            title={isOpen ? "Collapse panel" : "Expand panel"}
+          >
+            <span className="sr-only">{isOpen ? "Collapse panel" : "Expand panel"}</span>
+            <ChevronIcon direction={isOpen ? "up" : "down"} />
+          </button>
+        </div>
       </div>
-      <div className="p-5 text-[15px] leading-relaxed text-[#374151]">
+      {isOpen ? (
+      <div className="bg-[var(--bg-surface)] p-5 text-[15px] leading-relaxed text-[var(--fg-2)]">
         {type === "remedy" ? (
           <>
-            <div className="text-2xl font-bold text-[#065774] mb-2">
+            <div className="mb-2 text-2xl font-bold text-[var(--fg-1)]">
               {remedies?.[name] || name}
             </div>
-            <div className="text-sm text-[#6b7280] mb-4">
+            <div className="mb-4 text-sm text-[var(--fg-2)]">
               Abbreviation: {name}
             </div>
             <MateriaPanel
@@ -751,31 +833,48 @@ function DetailPanel({
           </>
         ) : (
           <>
-            <div className="text-lg text-[#1f2937]">{name}</div>
+            <div className="mb-2 text-2xl font-bold text-[var(--fg-1)]">{name}</div>
             {rubrics?.[name] && (
-              <div className="mt-4 pt-4 border-t border-[#e5e7eb] text-sm text-[#6b7280]">
-                <strong>
-                  {Object.keys(rubrics[name].remedies).length}
-                </strong>{" "}
-                remedies cover this rubric
-                <div className="flex flex-wrap gap-2 mt-3">
+              <>
+                <div className="mb-4 text-sm text-[var(--fg-2)]">
+                  <strong>
+                    {Object.keys(rubrics[name].remedies).length}
+                  </strong>{" "}
+                  remedies cover this rubric
+                </div>
+                <div className="flex flex-wrap gap-2">
                   {Object.entries(rubrics[name].remedies)
                     .sort((a, b) => b[1] - a[1])
                     .map(([rem, grade]) => (
                       <span
                         key={rem}
                         onClick={() => onShowRemedyDetail(rem)}
-                        className={`grade-${grade} px-2.5 py-1 rounded-xl text-[16px] font-medium cursor-pointer`}
+                        className={`grade-${grade} cursor-pointer rounded-[999px] px-2.5 py-1 text-[16px] font-medium ${
+                          selectedRemedy === rem ? "border-4 border-[var(--teal)]" : "border-2 border-transparent"
+                        }`}
                       >
-                        {rem} ({grade})
+                        {rem}
                       </span>
                     ))}
                 </div>
-              </div>
+              </>
             )}
           </>
         )}
       </div>
+      ) : null}
     </div>
+  );
+}
+
+function ChevronIcon({ direction }: { direction: "up" | "down" }) {
+  return (
+    <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round">
+      {direction === "up" ? (
+        <polyline points="18 15 12 9 6 15" />
+      ) : (
+        <polyline points="6 9 12 15 18 9" />
+      )}
+    </svg>
   );
 }

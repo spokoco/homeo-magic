@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<title>Radii & Shadows</title>
+<link rel="stylesheet" href="../colors_and_type.css">
+<style>
+  body { margin: 0; padding: 20px; background: var(--bg-page); }
+  .eyebrow { font: 700 10px/1 var(--font-sans); letter-spacing: var(--tracking-caps); text-transform: uppercase; color: var(--fg-accent); margin-bottom: 14px; }
+  .grid { display: grid; grid-template-columns: repeat(4, 1fr); gap: 14px; margin-bottom: 18px; }
+  .box { height: 68px; background: var(--paper); border: 1px solid var(--border); display:flex; align-items:flex-end; justify-content:center; padding: 6px; font: 700 11px/1 var(--font-mono); color: var(--fg-3); }
+  .shad { height: 68px; background: var(--paper); border-radius: var(--r-lg); display:flex; align-items:flex-end; justify-content:center; padding: 6px; font: 700 11px/1 var(--font-mono); color: var(--fg-3); }
+</style>
+</head>
+<body>
+  <div class="eyebrow">Radii</div>
+  <div class="grid">
+    <div class="box" style="border-radius:2px">r-sm · 2</div>
+    <div class="box" style="border-radius:4px">r-md · 4</div>
+    <div class="box" style="border-radius:8px">r-lg · 8</div>
+    <div class="box" style="border-radius:14px">r-xl · 14</div>
+  </div>
+  <div class="eyebrow">Shadows</div>
+  <div class="grid">
+    <div class="shad" style="box-shadow:var(--shadow-sm)">sm</div>
+    <div class="shad" style="box-shadow:var(--shadow-md)">md</div>
+    <div class="shad" style="box-shadow:var(--shadow-lg)">lg</div>
+    <div class="shad" style="box-shadow:var(--shadow-xl)">xl</div>
+  </div>
+</body>
+</html>

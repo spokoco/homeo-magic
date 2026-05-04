@@ -184,7 +184,7 @@ export function MateriaPanel({
 
   if (loading) {
     return (
-      <div className="py-6 text-center text-[#6b7280] text-sm">
+      <div className="py-6 text-center text-sm text-[var(--fg-2)]">
         Loading materia medica...
       </div>
     );
@@ -192,8 +192,8 @@ export function MateriaPanel({
 
   if (notFound || !profile) {
     return (
-      <div className="py-16 px-6 text-center text-[#6b7280]">
-        <p className="text-sm font-medium mb-1">No Materia Medica available</p>
+      <div className="px-6 py-16 text-center text-[var(--fg-2)]">
+        <p className="mb-1 text-sm font-medium">No Materia Medica available</p>
         <p className="text-xs">
           Kent&apos;s Materia Medica does not include data for this remedy.
         </p>
@@ -206,7 +206,7 @@ export function MateriaPanel({
       {/* 1. Rubric Cross-References */}
       {selectedRubrics.length > 0 && (
         <section>
-          <h3 className="text-sm font-semibold text-[#065774] uppercase tracking-wide mb-3 flex items-center gap-2">
+          <h3 className="mb-3 flex items-center gap-2 text-sm font-semibold uppercase tracking-wide text-[var(--fg-accent)]">
             <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
               <path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z" />
               <polyline points="14 2 14 8 20 8" />
@@ -224,33 +224,32 @@ export function MateriaPanel({
                 <div
                   key={sym}
                   onClick={() => passage && onPassageClick?.(passage)}
-                  className={`rounded-lg border p-3 transition-colors ${
+                  className={`rounded-[8px] border p-3 transition-colors ${
                     passage ? "cursor-pointer" : ""
                   } ${
                     isSelected
-                      ? "border-[#EF9B0C] bg-[#EF9B0C]/20"
-                      : "border-[#e5e7eb] bg-[#f9fafb] hover:bg-[#fefce8]"
+                      ? "border-[var(--border-accent)] bg-[var(--teal-soft)]"
+                      : "border-[var(--border)] bg-[var(--bg-sunken)] hover:bg-[var(--sage-soft)]"
                   }`}
                 >
-                  <div className="flex items-center gap-2 mb-1">
+                  <div className="mb-1 flex items-center gap-2">
                     {grade && (
-                      <span className={`grade grade-${grade} inline-flex items-center justify-center w-6 h-6 rounded text-xs font-bold flex-shrink-0`}>
+                      <span className={`grade grade-${grade} inline-flex h-6 w-6 flex-shrink-0 items-center justify-center rounded text-xs font-bold`}>
                         {grade}
                       </span>
                     )}
-                    <span className="font-semibold text-[#1f2937] text-sm">
+                    <span className="text-sm font-semibold text-[var(--fg-1)]">
                       {sym}
                     </span>
                   </div>
                   {passage ? (
                     <div
-                      className="my-1 text-[14px] text-[#374151] leading-[1.7]"
-                      style={{ fontFamily: "Georgia, 'Times New Roman', serif" }}
+                      className="hm-serif my-1 text-[14px] text-[var(--fg-1)] leading-[1.7]"
                     >
                       &ldquo;{passage}&rdquo;
                     </div>
                   ) : (
-                    <p className="text-[13px] text-[#9ca3af] italic">
+                    <p className="text-[13px] italic text-[var(--ink-50)]">
                       No specific passage found.
                     </p>
                   )}
@@ -263,7 +262,7 @@ export function MateriaPanel({
 
       {/* 2. Constitutional Profile */}
       <section>
-        <h3 className="text-sm font-semibold text-[#065774] uppercase tracking-wide mb-3 flex items-center gap-2">
+        <h3 className="mb-3 flex items-center gap-2 text-sm font-semibold uppercase tracking-wide text-[var(--fg-accent)]">
           <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
             <path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2" />
             <circle cx="12" cy="7" r="4" />
@@ -282,7 +281,7 @@ export function MateriaPanel({
 
       {/* 3. Book Link */}
       <section>
-        <h3 className="text-sm font-semibold text-[#065774] uppercase tracking-wide mb-3 flex items-center gap-2">
+        <h3 className="mb-3 flex items-center gap-2 text-sm font-semibold uppercase tracking-wide text-[var(--fg-accent)]">
           <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
             <path d="M4 19.5A2.5 2.5 0 0 1 6.5 17H20" />
             <path d="M6.5 2H20v20H6.5A2.5 2.5 0 0 1 4 19.5v-15A2.5 2.5 0 0 1 6.5 2z" />
@@ -294,7 +293,7 @@ export function MateriaPanel({
             href={buildRemedyUrl(profile.file, selectedRubrics)}
             target="_blank"
             rel="noopener noreferrer"
-            className="inline-flex items-center gap-2 px-4 py-2.5 bg-[#065774] text-white rounded-lg text-sm font-medium hover:bg-[#042B58] transition-colors no-underline"
+            className="hm-action-button hm-action-button--primary inline-flex items-center gap-2 px-4 py-2.5 text-sm font-medium no-underline"
           >
             Read full Kent lecture: {profile.remedy}
             <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
@@ -308,7 +307,7 @@ export function MateriaPanel({
               href={archiveUrl}
               target="_blank"
               rel="noopener noreferrer"
-              className="inline-flex items-center gap-2 px-4 py-2.5 bg-[#8B4513] text-white rounded-lg text-sm font-medium hover:bg-[#6B3410] transition-colors no-underline"
+              className="hm-action-button hm-action-button--secondary inline-flex items-center gap-2 px-4 py-2.5 text-sm font-medium no-underline"
             >
               View original in Internet Archive
               <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
@@ -326,11 +325,11 @@ export function MateriaPanel({
 
 function ProfileField({ label, text }: { label: string; text: string }) {
   return (
-    <div className="rounded-lg border border-[#e5e7eb] bg-[#f9fafb] p-3">
-      <div className="text-xs font-semibold text-[#6b7280] uppercase tracking-wider mb-1">
+    <div className="rounded-[8px] border border-[var(--border)] bg-[var(--bg-sunken)] p-3">
+      <div className="mb-1 text-xs font-semibold uppercase tracking-wider text-[var(--fg-2)]">
         {label}
       </div>
-      <p className="text-[13px] text-[#374151] leading-relaxed m-0">{text}</p>
+      <p className="m-0 text-[13px] leading-relaxed text-[var(--fg-1)]">{text}</p>
     </div>
   );
 }

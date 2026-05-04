@@ -157,7 +157,7 @@ describe("Home page", () => {
     it("shows loading state initially", () => {
       setupFetchMock();
       render(<Home />);
-      expect(screen.getByText("Homeo-Magic")).toBeInTheDocument();
+      expect(screen.getByText("Remedy Rx")).toBeInTheDocument();
     });
 
     it("shows rubric/remedy counts after loading", async () => {
@@ -184,7 +184,7 @@ describe("Home page", () => {
     it("does NOT read localStorage during initial render", () => {
       setupFetchMock();
       render(<Home />);
-      expect(screen.getByText("Homeo-Magic")).toBeInTheDocument();
+      expect(screen.getByText("Remedy Rx")).toBeInTheDocument();
     });
 
     it("reads color scale from localStorage via useEffect", async () => {

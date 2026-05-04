@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<title>Logo</title>
+<link rel="stylesheet" href="../colors_and_type.css">
+<style>
+  body { margin: 0; padding: 20px; background: var(--bg-page); display:flex; flex-direction:column; gap:14px; }
+  .eyebrow { font: 700 10px/1 var(--font-sans); letter-spacing: var(--tracking-caps); text-transform: uppercase; color: var(--fg-accent); }
+  .tile { padding: 18px; border-radius: var(--r-lg); display:flex; align-items:center; justify-content:space-between; }
+  .light { background: var(--paper); border: 1px solid var(--border); }
+  .dark { background: var(--ink); }
+  .lab { font: 700 11px/1 var(--font-sans); letter-spacing:0.1em; text-transform:uppercase; color: var(--fg-3); }
+  .dark .lab { color: var(--ink-30); }
+</style>
+</head>
+<body>
+  <div class="eyebrow">Logo lockup</div>
+  <div class="tile light">
+    <img src="../assets/logo-lockup.svg" width="260" alt="Homeo-Magic">
+    <span class="lab">On paper</span>
+  </div>
+  <div class="tile dark">
+    <img src="../assets/logo-lockup-inverse.svg" width="260" alt="Homeo-Magic inverse">
+    <span class="lab">On ink</span>
+  </div>
+</body>
+</html>

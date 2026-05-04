@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<title>Spacing scale</title>
+<link rel="stylesheet" href="../colors_and_type.css">
+<style>
+  body { margin: 0; padding: 20px; background: var(--bg-page); }
+  .eyebrow { font: 700 10px/1 var(--font-sans); letter-spacing: var(--tracking-caps); text-transform: uppercase; color: var(--fg-accent); margin-bottom: 14px; }
+  .row { display: flex; align-items: center; gap: 12px; padding: 4px 0; }
+  .bar { background: var(--teal); height: 12px; border-radius: 2px; }
+  .lab { font: 700 12px/1 var(--font-mono); color: var(--fg-1); width: 42px; }
+  .px { font: 400 11px/1 var(--font-mono); color: var(--fg-3); width: 36px; }
+</style>
+</head>
+<body>
+  <div class="eyebrow">Spacing · 4px base</div>
+  <div class="row"><div class="lab">s-1</div><div class="px">4px</div><div class="bar" style="width:4px"></div></div>
+  <div class="row"><div class="lab">s-2</div><div class="px">8px</div><div class="bar" style="width:8px"></div></div>
+  <div class="row"><div class="lab">s-3</div><div class="px">12px</div><div class="bar" style="width:12px"></div></div>
+  <div class="row"><div class="lab">s-4</div><div class="px">16px</div><div class="bar" style="width:16px"></div></div>
+  <div class="row"><div class="lab">s-5</div><div class="px">20px</div><div class="bar" style="width:20px"></div></div>
+  <div class="row"><div class="lab">s-6</div><div class="px">24px</div><div class="bar" style="width:24px"></div></div>
+  <div class="row"><div class="lab">s-8</div><div class="px">32px</div><div class="bar" style="width:32px"></div></div>
+  <div class="row"><div class="lab">s-10</div><div class="px">40px</div><div class="bar" style="width:40px"></div></div>
+  <div class="row"><div class="lab">s-12</div><div class="px">48px</div><div class="bar" style="width:48px"></div></div>
+  <div class="row"><div class="lab">s-16</div><div class="px">64px</div><div class="bar" style="width:64px"></div></div>
+</body>
+</html>

@@ -91,11 +91,11 @@ function renderMarkdown(
     }
 
     if (isH1) {
-      elements.push(<h1 key={pi} className="text-2xl font-bold text-[#065774] mt-8 mb-3 font-serif">{rendered}</h1>);
+      elements.push(<h1 key={pi} className="mt-8 mb-3 font-serif text-2xl font-bold text-[var(--fg-accent)]">{rendered}</h1>);
     } else if (isH2) {
-      elements.push(<h2 key={pi} className="text-lg font-semibold text-[#065774] mt-6 mb-2 font-serif border-b border-[#D3DCDE] pb-2">{rendered}</h2>);
+      elements.push(<h2 key={pi} className="mt-6 mb-2 border-b border-[var(--border)] pb-2 font-serif text-lg font-semibold text-[var(--fg-accent)]">{rendered}</h2>);
     } else if (isQuote) {
-      elements.push(<blockquote key={pi} className="border-l-4 border-[#EF9B0C] pl-4 my-3 italic text-[#374151]">{rendered}</blockquote>);
+      elements.push(<blockquote key={pi} className="my-3 border-l-4 border-[var(--teal)] pl-4 italic text-[var(--ink-70)]">{rendered}</blockquote>);
     } else {
       elements.push(<p key={pi} className="my-2 leading-[1.7]">{rendered}</p>);
     }
@@ -129,8 +129,8 @@ function highlightText(
         key={i}
         data-highlight={r.primary ? "primary" : "secondary"}
         className={r.primary
-          ? "bg-[#EF9B0C]/30 rounded px-0.5 ring-2 ring-[#EF9B0C]/50"
-          : "bg-yellow-100 rounded px-0.5"
+          ? "rounded px-0.5 ring-2 ring-[color:var(--teal-tint)] bg-[var(--teal-soft)]"
+          : "rounded px-0.5 bg-[var(--sage-soft)]"
         }
       >
         {text.slice(r.start, r.end)}
@@ -244,7 +244,7 @@ export function LecturePanel({
 
   if (loading) {
     return (
-      <div className="py-12 text-center text-[#6b7280] text-sm loading-pulse">
+      <div className="flex flex-1 items-center justify-center bg-[var(--bg-surface)] px-5 py-12 text-center text-sm text-[var(--fg-2)] loading-pulse">
         Loading lecture text...
       </div>
     );
@@ -252,24 +252,29 @@ export function LecturePanel({
 
   if (!markdown) {
     return (
-      <div className="p-5">
+      <div className="flex flex-1 flex-col bg-[var(--bg-surface)] p-5">
         {/* Spacer matching remedy panel: name (text-2xl mb-2) + abbreviation (text-sm mb-4) */}
         <div className="text-2xl font-bold mb-2 invisible">&#8203;</div>
         <div className="text-sm mb-4 invisible">&#8203;</div>
-        <div className="py-16 px-6 text-center text-[#6b7280]">
-          <p className="text-sm font-medium mb-1">No lecture available</p>
+        <div className="flex flex-1 items-center justify-center px-6 py-16 text-center text-[var(--fg-2)]">
+          <div>
+          <p className="mb-1 text-sm font-medium">No lecture available</p>
           <p className="text-xs">
             Kent&apos;s Materia Medica does not include a lecture for this remedy.
           </p>
+          </div>
         </div>
       </div>
     );
   }
 
   return (
-    <div ref={containerRef} className="overflow-y-auto px-5 py-4 text-[14px] leading-[1.7] text-[#1f2937] font-serif remedy-text" style={{ maxHeight: "calc(100vh - 160px)" }}>
-      <h2 className="text-xl font-bold text-[#065774] mb-1 font-serif">{remedyName}</h2>
-      <p className="text-xs text-[#6b7280] mb-4">Kent&apos;s Lectures on Homeopathic Materia Medica</p>
+    <div
+      ref={containerRef}
+      className="remedy-text flex-1 min-h-0 overflow-y-auto bg-[var(--bg-surface)] px-5 py-4 font-serif text-[14px] leading-[1.7] text-[var(--fg-1)]"
+    >
+      <h2 className="mb-1 font-serif text-xl font-bold text-[var(--fg-1)]">{remedyName}</h2>
+      <p className="mb-4 text-xs uppercase tracking-[0.12em] text-[var(--fg-accent)]">Kent&apos;s Lectures on Homeopathic Materia Medica</p>
       {elements}
     </div>
   );
