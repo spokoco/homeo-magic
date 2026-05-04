@@ -1,6 +1,7 @@
 "use client";
 import Image from "next/image";
 import { dataUrl, navUrl } from "../../dataUrl";
+import { appPath } from "../../sitePaths";
 
 import { useState, useEffect, useRef, useMemo } from "react";
 
@@ -555,7 +556,7 @@ export default function RemedyReader({ slug }: { slug: string }) {
     return (
       <div className="flex min-h-screen items-center justify-center">
         <div className="hm-panel p-8 text-center">
-          <Image src="/mark.svg" alt="" width={48} height={48} className="mx-auto mb-4 h-12 w-12" />
+          <Image src={appPath("/mark.svg")} alt="" width={48} height={48} className="mx-auto mb-4 h-12 w-12" />
           <p className="text-lg text-[var(--fg-1)]">{error}</p>
           <a
             href={navUrl("/")}

@@ -6,6 +6,7 @@ import { useRepertorize } from "./useRepertorize";
 import chroma from "chroma-js";
 import { MateriaPanel } from "./MateriaPanel";
 import { LecturePanel } from "./LecturePanel";
+import { appPath } from "./sitePaths";
 
 // Color scale for score heat-mapping
 const defaultScale = () => chroma.scale(["#fef3c7", "#fca5a5"]).mode("lab");
@@ -220,7 +221,7 @@ export default function Home() {
           <div className="hm-eyebrow mb-3" style={{ color: "var(--fg-inverse)" }}>Repertorization matrix</div>
           <div className={`flex items-center gap-4 ${isMobile ? "flex-wrap" : ""}`}>
             <Image
-              src="/remedy-logo-01.svg"
+              src={appPath("/remedy-logo-01.svg")}
               alt="Remedy Rx"
               width={72}
               height={72}
@@ -327,7 +328,7 @@ export default function Home() {
         <div className="bg-[var(--bg-surface)]">
           {selectedRubrics.length === 0 ? (
             <div className="hm-empty-state px-6 py-16 text-center">
-              <Image src="/mark.svg" alt="" width={56} height={56} className="mx-auto mb-4 h-14 w-14 opacity-90" />
+              <Image src={appPath("/mark.svg")} alt="" width={56} height={56} className="mx-auto mb-4 h-14 w-14 opacity-90" />
               <p className="text-[16px] text-[var(--fg-2)]">Search and select rubrics above to find matching remedies</p>
             </div>
           ) : results.items.length === 0 ? (
