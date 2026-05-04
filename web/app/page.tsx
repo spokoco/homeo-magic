@@ -135,15 +135,18 @@ export default function Home() {
   const [query, setQuery] = useState("");
   const [dropdownOpen, setDropdownOpen] = useState(false);
   const [highlightedIndex, setHighlightedIndex] = useState(-1);
-  const [detailPanel, setDetailPanel] = useState<{
-    type: "remedy" | "rubric";
-    name: string;
-  } | null>(null);
+  const [remedyDetail, setRemedyDetail] = useState<string | null>(null);
+  const [rubricDetail, setRubricDetail] = useState<string | null>(null);
+  const [isRubricPanelOpen, setIsRubricPanelOpen] = useState(true);
+  const [isRemedyPanelOpen, setIsRemedyPanelOpen] = useState(true);
+  const [isLecturePanelOpen, setIsLecturePanelOpen] = useState(true);
 
   // Auto-select top remedy when results first appear
   useEffect(() => {
-    if (results.items.length > 0 && !detailPanel) {
-      setDetailPanel({ type: "remedy", name: results.items[0].abbrev });
+    if (results.items.length > 0 && !remedyDetail) {
+      setRemedyDetail(results.items[0].abbrev);
+      setIsRemedyPanelOpen(true);
+      setIsLecturePanelOpen(true);
     }
   }, [results.items.length > 0]);
   const inputRef = useRef<HTMLInputElement>(null);
@@ -395,7 +398,9 @@ export default function Home() {
                         key={r.abbrev}
                         onClick={() => {
                           setSelectedRemedy((prev) => prev === r.abbrev ? null : r.abbrev);
-                          setDetailPanel({ type: "remedy", name: r.abbrev });
+                          setRemedyDetail(r.abbrev);
+                          setIsRemedyPanelOpen(true);
+                          setIsLecturePanelOpen(true);
                         }
                         }
                         onMouseEnter={() => setHoveredRemedy(r.abbrev)}
@@ -496,7 +501,8 @@ export default function Home() {
                         <td
                           onClick={() => {
                             setSelectedSymRow((prev) => prev === sym ? null : sym);
-                            setDetailPanel({ type: "rubric", name: sym });
+                            setRubricDetail((prev) => prev === sym ? null : sym);
+                            setIsRubricPanelOpen(true);
                           }}
                           className="sticky left-0 z-10 cursor-pointer border-b border-[var(--border)] px-5 py-2.5 text-left text-[15px] transition-colors"
                           style={{
@@ -579,33 +585,74 @@ export default function Home() {
       </div>
 
       {/* Detail panel + Lecture panel side by side - OUTSIDE the analysis panel */}
-      {detailPanel && (
-        <div className={`flex gap-5 mt-5 items-stretch ${isMobile ? "flex-col" : ""}`}>
-          <div className={`${isMobile ? "w-full" : "w-1/2"} min-w-0 flex`}>
-            <DetailPanel
-              type={detailPanel.type}
-              name={detailPanel.name}
-              rubrics={rubrics}
-              remedies={remedies}
-              selectedRubrics={selectedRubrics}
-              onClose={() => setDetailPanel(null)}
-              onShowRemedyDetail={(name) =>
-                setDetailPanel({ type: "remedy", name })
-              }
-              onPassageClick={(passage) => setHighlightPassage(passage)}
-              selectedPassage={highlightPassage}
-            />
-          </div>
-          {detailPanel.type === "remedy" && (
-            <div className={`${isMobile ? "w-full" : "w-1/2"} hm-panel min-w-0 animate-slide-up`}>
-              <div className="hm-panel-header font-semibold" style={{ background: "var(--shell-bg)" }}>
-                Lecture
-              </div>
-              <LecturePanel
-                remedyAbbrev={detailPanel.name}
+      {(rubricDetail || remedyDetail) && (
+        <div className="mt-5 space-y-5">
+          {rubricDetail && (
+            <div className="flex min-w-0 w-full">
+              <DetailPanel
+                type="rubric"
+                name={rubricDetail}
+                rubrics={rubrics}
+                remedies={remedies}
                 selectedRubrics={selectedRubrics}
-                highlightPassage={highlightPassage ?? undefined}
+                selectedRemedy={selectedRemedy}
+                isOpen={isRubricPanelOpen}
+                onToggleOpen={() => setIsRubricPanelOpen((prev) => !prev)}
+                onShowRemedyDetail={(name) => {
+                  setSelectedRemedy(name);
+                  setRemedyDetail(name);
+                  setIsRemedyPanelOpen(true);
+                  setIsLecturePanelOpen(true);
+                }}
+                onPassageClick={(passage) => setHighlightPassage(passage)}
+                selectedPassage={highlightPassage}
               />
+            </div>
+          )}
+          {remedyDetail && (
+            <div className={`flex gap-5 items-stretch ${isMobile ? "flex-col" : ""}`}>
+              <div className={`${isMobile ? "w-full" : "w-1/2"} min-w-0 flex`}>
+                <DetailPanel
+                  type="remedy"
+                  name={remedyDetail}
+                  rubrics={rubrics}
+                  remedies={remedies}
+                  selectedRubrics={selectedRubrics}
+                  selectedRemedy={selectedRemedy}
+                  isOpen={isRemedyPanelOpen}
+                  onToggleOpen={() => setIsRemedyPanelOpen((prev) => !prev)}
+                  onShowRemedyDetail={(name) => {
+                    setSelectedRemedy(name);
+                    setRemedyDetail(name);
+                    setIsRemedyPanelOpen(true);
+                    setIsLecturePanelOpen(true);
+                  }}
+                  onPassageClick={(passage) => setHighlightPassage(passage)}
+                  selectedPassage={highlightPassage}
+                />
+              </div>
+              <div className={`${isMobile ? "w-full" : "w-1/2"} hm-panel min-w-0 animate-slide-up flex flex-col`}>
+                <div className="hm-panel-header font-semibold" style={{ background: "var(--shell-bg)" }}>
+                  <div className="flex items-center justify-between gap-3">
+                    <span>Lecture</span>
+                    <button
+                      onClick={() => setIsLecturePanelOpen((prev) => !prev)}
+                      className="cursor-pointer border-none bg-transparent text-[var(--fg-muted-on-ink)] transition-colors hover:text-[var(--fg-inverse)]"
+                      title={isLecturePanelOpen ? "Collapse panel" : "Expand panel"}
+                    >
+                      <span className="sr-only">{isLecturePanelOpen ? "Collapse panel" : "Expand panel"}</span>
+                      <ChevronIcon direction={isLecturePanelOpen ? "up" : "down"} />
+                    </button>
+                  </div>
+                </div>
+                {isLecturePanelOpen ? (
+                  <LecturePanel
+                    remedyAbbrev={remedyDetail}
+                    selectedRubrics={selectedRubrics}
+                    highlightPassage={highlightPassage ?? undefined}
+                  />
+                ) : null}
+              </div>
             </div>
           )}
         </div>
@@ -702,7 +749,9 @@ function DetailPanel({
   rubrics,
   remedies,
   selectedRubrics,
-  onClose,
+  selectedRemedy,
+  isOpen,
+  onToggleOpen,
   onShowRemedyDetail,
   onPassageClick,
   selectedPassage,
@@ -712,7 +761,9 @@ function DetailPanel({
   rubrics: Record<string, { remedies: Record<string, number> }> | null;
   remedies: Record<string, string> | null;
   selectedRubrics: string[];
-  onClose: () => void;
+  selectedRemedy: string | null;
+  isOpen: boolean;
+  onToggleOpen: () => void;
   onShowRemedyDetail: (name: string) => void;
   onPassageClick?: (passage: string) => void;
   selectedPassage?: string | null;
@@ -723,18 +774,16 @@ function DetailPanel({
         <div className="flex items-center justify-between gap-3">
           <span>{type === "remedy" ? "Remedy" : "Rubric"}</span>
           <button
-            onClick={onClose}
+            onClick={onToggleOpen}
             className="cursor-pointer border-none bg-transparent text-[var(--fg-muted-on-ink)] transition-colors hover:text-[var(--fg-inverse)]"
-            title="Close panel"
+            title={isOpen ? "Collapse panel" : "Expand panel"}
           >
-            <span className="sr-only">Close panel</span>
-            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
-              <line x1="18" y1="6" x2="6" y2="18" />
-              <line x1="6" y1="6" x2="18" y2="18" />
-            </svg>
+            <span className="sr-only">{isOpen ? "Collapse panel" : "Expand panel"}</span>
+            <ChevronIcon direction={isOpen ? "up" : "down"} />
           </button>
         </div>
       </div>
+      {isOpen ? (
       <div className="p-5 text-[15px] leading-relaxed text-[var(--fg-2)]">
         {type === "remedy" ? (
           <>
@@ -766,7 +815,7 @@ function DetailPanel({
           </>
         ) : (
           <>
-            <div className="text-lg text-[var(--fg-1)]">{name}</div>
+            <div className="text-2xl font-bold text-[var(--fg-1)]">{name}</div>
             {rubrics?.[name] && (
               <div className="mt-4 border-t border-[var(--border)] pt-4 text-sm text-[var(--fg-2)]">
                 <strong>
@@ -780,7 +829,9 @@ function DetailPanel({
                       <span
                         key={rem}
                         onClick={() => onShowRemedyDetail(rem)}
-                        className={`grade-${grade} cursor-pointer rounded-[999px] px-2.5 py-1 text-[16px] font-medium`}
+                        className={`grade-${grade} cursor-pointer rounded-[999px] px-2.5 py-1 text-[16px] font-medium ${
+                          selectedRemedy === rem ? "border-2 border-[var(--teal)]" : "border-2 border-transparent"
+                        }`}
                       >
                         {rem} ({grade})
                       </span>
@@ -791,6 +842,19 @@ function DetailPanel({
           </>
         )}
       </div>
+      ) : null}
     </div>
+  );
+}
+
+function ChevronIcon({ direction }: { direction: "up" | "down" }) {
+  return (
+    <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round">
+      {direction === "up" ? (
+        <polyline points="18 15 12 9 6 15" />
+      ) : (
+        <polyline points="6 9 12 15 18 9" />
+      )}
+    </svg>
   );
 }

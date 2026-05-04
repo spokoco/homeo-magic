@@ -244,7 +244,7 @@ export function LecturePanel({
 
   if (loading) {
     return (
-      <div className="py-12 text-center text-sm text-[var(--fg-2)] loading-pulse">
+      <div className="flex flex-1 items-center justify-center px-5 py-12 text-center text-sm text-[var(--fg-2)] loading-pulse">
         Loading lecture text...
       </div>
     );
@@ -252,22 +252,27 @@ export function LecturePanel({
 
   if (!markdown) {
     return (
-      <div className="p-5">
+      <div className="flex flex-1 flex-col p-5">
         {/* Spacer matching remedy panel: name (text-2xl mb-2) + abbreviation (text-sm mb-4) */}
         <div className="text-2xl font-bold mb-2 invisible">&#8203;</div>
         <div className="text-sm mb-4 invisible">&#8203;</div>
-        <div className="px-6 py-16 text-center text-[var(--fg-2)]">
+        <div className="flex flex-1 items-center justify-center px-6 py-16 text-center text-[var(--fg-2)]">
+          <div>
           <p className="mb-1 text-sm font-medium">No lecture available</p>
           <p className="text-xs">
             Kent&apos;s Materia Medica does not include a lecture for this remedy.
           </p>
+          </div>
         </div>
       </div>
     );
   }
 
   return (
-    <div ref={containerRef} className="remedy-text overflow-y-auto bg-[var(--paper)] px-5 py-4 font-serif text-[14px] leading-[1.7] text-[var(--fg-1)]" style={{ maxHeight: "calc(100vh - 160px)" }}>
+    <div
+      ref={containerRef}
+      className="remedy-text flex-1 min-h-0 overflow-y-auto bg-[var(--paper)] px-5 py-4 font-serif text-[14px] leading-[1.7] text-[var(--fg-1)]"
+    >
       <h2 className="mb-1 font-serif text-xl font-bold text-[var(--fg-1)]">{remedyName}</h2>
       <p className="mb-4 text-xs uppercase tracking-[0.12em] text-[var(--fg-accent)]">Kent&apos;s Lectures on Homeopathic Materia Medica</p>
       {elements}
