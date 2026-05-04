@@ -6,6 +6,7 @@
   --grade-4-fg: #ffffff;
   --dialog-backdrop: rgba(21, 24, 23, 0.4);
   --shell-bg: #5f725b;
+  --panel-bg: #546350;
 }
 
 html,
@@ -179,15 +180,15 @@ a {
 }
 
 .hm-panel {
-  background: var(--bg-surface);
-  border: 1px solid var(--border);
+  background: var(--panel-bg);
+  border: none;
   border-radius: var(--r-xl);
   box-shadow: var(--shadow-md);
   overflow: hidden;
 }
 
 .hm-panel-header {
-  background: var(--shell-bg);
+  background: var(--panel-bg);
   color: var(--fg-inverse);
   padding: 14px 20px;
 }

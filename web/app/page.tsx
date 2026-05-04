@@ -219,7 +219,19 @@ export default function Home() {
         <div className="min-w-0">
           <div className="hm-eyebrow mb-3" style={{ color: "var(--fg-inverse)" }}>Repertorization matrix</div>
           <div className={`flex items-center gap-4 ${isMobile ? "flex-wrap" : ""}`}>
-            <Image src="/logo-lockup.svg" alt="Homeo-Magic" width={220} height={44} className="h-11 w-auto max-w-full" priority />
+            <Image
+              src="/remedy-logo-01.svg"
+              alt="Remedy Rx"
+              width={72}
+              height={72}
+              className="h-[60px] w-[60px] flex-shrink-0"
+              priority
+            />
+            <div className="min-w-0">
+              <h1 className="text-[clamp(1.5rem,3.4vw,2.6rem)] font-semibold leading-none tracking-[-0.04em] text-[var(--fg-inverse)]">
+                Remedy Rx
+              </h1>
+            </div>
             {loadProgress.phase === "index" && (
               <div className="hm-tag inline-flex items-center gap-2 px-3 py-1.5 text-[13px] loading-pulse">
                 <span className="h-2 w-2 rounded-full bg-[var(--teal)]" />
@@ -228,7 +240,7 @@ export default function Home() {
             )}
           </div>
           <p className="mt-4 max-w-3xl text-[15px] leading-6 text-[var(--fg-inverse)]">
-            Search and select rubrics to find matching remedies. The matrix stays central; the reading panels stay quiet.
+            Search and select rubrics to find matching remedies.
           </p>
         </div>
         <div className={`hm-soft-card flex items-center gap-3 px-4 py-3 text-[15px] ${isMobile ? "w-full flex-wrap" : ""}`}>
@@ -270,7 +282,7 @@ export default function Home() {
       </header>
 
       <div className="hm-panel">
-        <div className="hm-panel-header" style={{ background: "var(--shell-bg)" }}>
+        <div className="hm-panel-header" style={{ background: "var(--panel-bg)" }}>
           <div className="hm-eyebrow mb-2" style={{ color: "var(--fg-inverse)" }}>Add rubrics</div>
           <label htmlFor="search" className="block text-[16px] font-semibold text-[var(--fg-inverse)] mb-3">
             Type to search the repertory
@@ -312,117 +324,118 @@ export default function Home() {
           </div>
         </div>
 
-        {selectedRubrics.length === 0 ? (
-          <div className="hm-empty-state px-6 py-16 text-center">
-            <Image src="/mark.svg" alt="" width={56} height={56} className="mx-auto mb-4 h-14 w-14 opacity-90" />
-            <p className="text-[16px] text-[var(--fg-2)]">Search and select rubrics above to find matching remedies</p>
-          </div>
-        ) : results.items.length === 0 ? (
-          <div className="hm-empty-state px-6 py-16 text-center">
-            <p className="text-[16px] text-[var(--fg-2)]">No remedies found for these rubrics</p>
-          </div>
-        ) : (
-          <>
-            <div className={`flex items-center border-b border-[var(--border)] bg-[var(--bg-sunken)] py-3 ${isMobile ? "flex-wrap gap-2 px-3" : ""}`}>
-              {!isMobile && (
-                <div className="px-5 text-[16px] font-semibold whitespace-nowrap text-[var(--fg-accent)]" style={{ width: rubricColWidth, minWidth: 420, flexShrink: 0 }}>
-                  Analysis
-                </div>
-              )}
-              {isMobile && (
-                <div className="px-5 text-[16px] font-semibold whitespace-nowrap text-[var(--fg-accent)]">
-                  Analysis
-                </div>
-              )}
-              <div className="flex items-center gap-4 px-2">
-                <span className="text-[16px] font-medium whitespace-nowrap text-[var(--fg-1)]">
-                  Showing {displayed.length} of {results.totalCount}{" "}remedies
-                  {filtered.length > displayed.length &&
-                    ` \u2022 ${filtered.length - displayed.length} more below`}
-                </span>
-              </div>
-              <div className={`flex items-center gap-3 ${isMobile ? "" : "ml-auto"} pr-5`}>
-                <label className="text-[16px] font-medium whitespace-nowrap text-[var(--fg-1)]">
-                  Min score:
-                </label>
-                <input
-                  type="range"
-                  min="0"
-                  max="100"
-                  value={minScore}
-                  onChange={(e) => setMinScore(parseInt(e.target.value))}
-                  className="score-slider w-[120px]"
-                  style={{
-                    direction: "rtl",
-                    background: `linear-gradient(to right, ${getScoreColor(minScore / 100)} ${100 - minScore}%, var(--border) ${100 - minScore}%)`,
-                  }}
-                />
-                <span
-                  className="rounded px-2 py-0.5 text-center text-sm font-bold"
-                  style={{
-                    minWidth: 35,
-                    background: getScoreColor(minScore / 100),
-                    color: getTextColor(getScoreColor(minScore / 100)),
-                  }}
-                >
-                  {minScore}
-                </span>
-                <button
-                  onClick={() => setMinScore(0)}
-                  className="hm-action-button hm-action-button--secondary px-3 py-1.5 text-xs font-medium cursor-pointer"
-                >
-                  Reset
-                </button>
-              </div>
+        <div className="bg-[var(--bg-surface)]">
+          {selectedRubrics.length === 0 ? (
+            <div className="hm-empty-state px-6 py-16 text-center">
+              <Image src="/mark.svg" alt="" width={56} height={56} className="mx-auto mb-4 h-14 w-14 opacity-90" />
+              <p className="text-[16px] text-[var(--fg-2)]">Search and select rubrics above to find matching remedies</p>
             </div>
+          ) : results.items.length === 0 ? (
+            <div className="hm-empty-state px-6 py-16 text-center">
+              <p className="text-[16px] text-[var(--fg-2)]">No remedies found for these rubrics</p>
+            </div>
+          ) : (
+            <>
+              <div className={`flex items-center border-b border-[var(--border)] bg-[var(--bg-sunken)] py-3 ${isMobile ? "flex-wrap gap-2 px-3" : ""}`}>
+                {!isMobile && (
+                  <div className="px-5 text-[16px] font-semibold whitespace-nowrap text-[var(--fg-accent)]" style={{ width: rubricColWidth, minWidth: 420, flexShrink: 0 }}>
+                    Analysis
+                  </div>
+                )}
+                {isMobile && (
+                  <div className="px-5 text-[16px] font-semibold whitespace-nowrap text-[var(--fg-accent)]">
+                    Analysis
+                  </div>
+                )}
+                <div className="flex items-center gap-4 px-2">
+                  <span className="text-[16px] font-medium whitespace-nowrap text-[var(--fg-1)]">
+                    Showing {displayed.length} of {results.totalCount}{" "}remedies
+                    {filtered.length > displayed.length &&
+                      ` \u2022 ${filtered.length - displayed.length} more below`}
+                  </span>
+                </div>
+                <div className={`flex items-center gap-3 ${isMobile ? "" : "ml-auto"} pr-5`}>
+                  <label className="text-[16px] font-medium whitespace-nowrap text-[var(--fg-1)]">
+                    Min score:
+                  </label>
+                  <input
+                    type="range"
+                    min="0"
+                    max="100"
+                    value={minScore}
+                    onChange={(e) => setMinScore(parseInt(e.target.value))}
+                    className="score-slider w-[120px]"
+                    style={{
+                      direction: "rtl",
+                      background: `linear-gradient(to right, ${getScoreColor(minScore / 100)} ${100 - minScore}%, var(--border) ${100 - minScore}%)`,
+                    }}
+                  />
+                  <span
+                    className="rounded px-2 py-0.5 text-center text-sm font-bold"
+                    style={{
+                      minWidth: 35,
+                      background: getScoreColor(minScore / 100),
+                      color: getTextColor(getScoreColor(minScore / 100)),
+                    }}
+                  >
+                    {minScore}
+                  </span>
+                  <button
+                    onClick={() => setMinScore(0)}
+                    className="hm-action-button hm-action-button--secondary px-3 py-1.5 text-xs font-medium cursor-pointer"
+                  >
+                    Reset
+                  </button>
+                </div>
+              </div>
 
-            {/* Table */}
-            <div ref={tableWrapRef} className="overflow-x-auto max-h-[70vh] relative">
-              {/* Single full-height resize handle overlay */}
-              <div
-                className="absolute top-0 bottom-0 z-30 w-[6px] cursor-col-resize transition-colors hover:bg-[var(--teal)]"
-                style={{ left: rubricColWidth - 3, pointerEvents: "auto" }}
-                onMouseDown={startResize}
-              />
-              <table className="w-full border-collapse text-[13px]">
-                <thead>
-                  <tr>
-                    <th
-                      className="sticky top-0 left-0 z-20 border-b border-[var(--border-strong)] bg-[var(--bg-herb)] px-5 py-2.5 text-right text-[16px] font-semibold text-[var(--fg-accent)]"
-                      style={{ width: rubricColWidth, minWidth: isMobile ? 100 : 420, maxWidth: 800 }}
-                    >
-                      Remedies
-                    </th>
-                    {displayed.map((r) => (
+              {/* Table */}
+              <div ref={tableWrapRef} className="overflow-x-auto max-h-[70vh] relative">
+                {/* Single full-height resize handle overlay */}
+                <div
+                  className="absolute top-0 bottom-0 z-30 w-[6px] cursor-col-resize transition-colors hover:bg-[var(--teal)]"
+                  style={{ left: rubricColWidth - 3, pointerEvents: "auto" }}
+                  onMouseDown={startResize}
+                />
+                <table className="w-full border-collapse text-[13px]">
+                  <thead>
+                    <tr>
                       <th
-                        key={r.abbrev}
-                        onClick={() => {
-                          setSelectedRemedy((prev) => prev === r.abbrev ? null : r.abbrev);
-                          setRemedyDetail(r.abbrev);
-                          setIsRemedyPanelOpen(true);
-                          setIsLecturePanelOpen(true);
-                        }
-                        }
-                        onMouseEnter={() => setHoveredRemedy(r.abbrev)}
-                        onMouseLeave={() => setHoveredRemedy(null)}
-                        className="sticky top-0 z-10 cursor-pointer border-b border-[var(--border-strong)] px-1 pt-2.5 pb-[10px] text-center font-semibold text-[var(--fg-accent)] transition-colors"
-                        style={{
-                          writingMode: "vertical-rl",
-                          textOrientation: "mixed",
-                          transform: "rotate(180deg)",
-                          height: "100px",
-                          verticalAlign: "middle",
-                          fontSize: "16px",
-                          whiteSpace: "nowrap",
-                          background: (hoveredRemedy === r.abbrev || selectedRemedy === r.abbrev) ? "var(--teal-soft)" : "var(--bg-sunken)",
-                        }}
+                        className="sticky top-0 left-0 z-20 border-b border-[var(--border-strong)] bg-[var(--bg-herb)] px-5 py-2.5 text-right text-[16px] font-semibold text-[var(--fg-accent)]"
+                        style={{ width: rubricColWidth, minWidth: isMobile ? 100 : 420, maxWidth: 800 }}
                       >
-                        {r.abbrev}
+                        Remedies
                       </th>
-                    ))}
-                  </tr>
-                </thead>
-                <tbody>
+                      {displayed.map((r) => (
+                        <th
+                          key={r.abbrev}
+                          onClick={() => {
+                            setSelectedRemedy((prev) => prev === r.abbrev ? null : r.abbrev);
+                            setRemedyDetail(r.abbrev);
+                            setIsRemedyPanelOpen(true);
+                            setIsLecturePanelOpen(true);
+                          }
+                          }
+                          onMouseEnter={() => setHoveredRemedy(r.abbrev)}
+                          onMouseLeave={() => setHoveredRemedy(null)}
+                          className="sticky top-0 z-10 cursor-pointer border-b border-[var(--border-strong)] px-1 pt-2.5 pb-[10px] text-center font-semibold text-[var(--fg-accent)] transition-colors"
+                          style={{
+                            writingMode: "vertical-rl",
+                            textOrientation: "mixed",
+                            transform: "rotate(180deg)",
+                            height: "100px",
+                            verticalAlign: "middle",
+                            fontSize: "16px",
+                            whiteSpace: "nowrap",
+                            background: (hoveredRemedy === r.abbrev || selectedRemedy === r.abbrev) ? "var(--teal-soft)" : "var(--bg-sunken)",
+                          }}
+                        >
+                          {r.abbrev}
+                        </th>
+                      ))}
+                    </tr>
+                  </thead>
+                  <tbody>
                   {/* Score row */}
                   <tr>
                     <td className="sticky left-0 z-10 border-b-2 border-[var(--border-strong)] bg-[var(--bg-sunken)] px-5 py-2.5 text-[16px] font-semibold">
@@ -555,6 +568,10 @@ export default function Home() {
                           return (
                             <td
                               key={r.abbrev}
+                              onClick={() => {
+                                setSelectedSymRow(sym);
+                                setSelectedRemedy(r.abbrev);
+                              }}
                               className="border-b border-[var(--border)] px-2 py-2.5 text-center"
                               style={{
                                 background:
@@ -576,11 +593,12 @@ export default function Home() {
                       </tr>
                     );
                   })}
-                </tbody>
-              </table>
-            </div>
-          </>
-        )}
+                  </tbody>
+                </table>
+              </div>
+            </>
+          )}
+        </div>
 
       </div>
 
@@ -632,7 +650,7 @@ export default function Home() {
                 />
               </div>
               <div className={`${isMobile ? "w-full" : "w-1/2"} hm-panel min-w-0 animate-slide-up flex flex-col`}>
-                <div className="hm-panel-header font-semibold" style={{ background: "var(--shell-bg)" }}>
+                <div className="hm-panel-header font-semibold" style={{ background: "var(--panel-bg)" }}>
                   <div className="flex items-center justify-between gap-3">
                     <span>Lecture</span>
                     <button
@@ -770,7 +788,7 @@ function DetailPanel({
 }) {
   return (
     <div className="hm-panel animate-slide-up w-full">
-      <div className="hm-panel-header font-semibold" style={{ background: "var(--shell-bg)" }}>
+      <div className="hm-panel-header font-semibold" style={{ background: "var(--panel-bg)" }}>
         <div className="flex items-center justify-between gap-3">
           <span>{type === "remedy" ? "Remedy" : "Rubric"}</span>
           <button
@@ -784,7 +802,7 @@ function DetailPanel({
         </div>
       </div>
       {isOpen ? (
-      <div className="p-5 text-[15px] leading-relaxed text-[var(--fg-2)]">
+      <div className="bg-[var(--bg-surface)] p-5 text-[15px] leading-relaxed text-[var(--fg-2)]">
         {type === "remedy" ? (
           <>
             <div className="mb-2 text-2xl font-bold text-[var(--fg-1)]">
@@ -815,14 +833,16 @@ function DetailPanel({
           </>
         ) : (
           <>
-            <div className="text-2xl font-bold text-[var(--fg-1)]">{name}</div>
+            <div className="mb-2 text-2xl font-bold text-[var(--fg-1)]">{name}</div>
             {rubrics?.[name] && (
-              <div className="mt-4 border-t border-[var(--border)] pt-4 text-sm text-[var(--fg-2)]">
-                <strong>
-                  {Object.keys(rubrics[name].remedies).length}
-                </strong>{" "}
-                remedies cover this rubric
-                <div className="flex flex-wrap gap-2 mt-3">
+              <>
+                <div className="mb-4 text-sm text-[var(--fg-2)]">
+                  <strong>
+                    {Object.keys(rubrics[name].remedies).length}
+                  </strong>{" "}
+                  remedies cover this rubric
+                </div>
+                <div className="flex flex-wrap gap-2">
                   {Object.entries(rubrics[name].remedies)
                     .sort((a, b) => b[1] - a[1])
                     .map(([rem, grade]) => (
@@ -830,14 +850,14 @@ function DetailPanel({
                         key={rem}
                         onClick={() => onShowRemedyDetail(rem)}
                         className={`grade-${grade} cursor-pointer rounded-[999px] px-2.5 py-1 text-[16px] font-medium ${
-                          selectedRemedy === rem ? "border-2 border-[var(--teal)]" : "border-2 border-transparent"
+                          selectedRemedy === rem ? "border-4 border-[var(--teal)]" : "border-2 border-transparent"
                         }`}
                       >
-                        {rem} ({grade})
+                        {rem}
                       </span>
                     ))}
                 </div>
-              </div>
+              </>
             )}
           </>
         )}
