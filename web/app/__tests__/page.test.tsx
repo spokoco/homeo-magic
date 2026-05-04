@@ -445,6 +445,36 @@ describe("Home page", () => {
         expect(row).toHaveStyle({ opacity: "0.4" });
       });
     });
+
+    it("updates the remedy detail panel when a remedy cell is clicked", async () => {
+      mockSessionStorage["homeo-magic-state"] = JSON.stringify({
+        selectedRubrics: ["Mind, anxiety", "Head, pain, forehead"],
+        hiddenRubrics: [],
+        minScore: 0,
+      });
+      setupFetchMock();
+      render(<Home />);
+
+      await waitFor(() =>
+        expect(screen.getByText(/Showing.*remedies/)).toBeInTheDocument()
+      );
+
+      await waitFor(() => {
+        expect(screen.getByText("Aconitum Napellus")).toBeInTheDocument();
+      });
+
+      const rubricRow = screen.getByText("Mind, anxiety").closest("tr");
+      expect(rubricRow).toBeTruthy();
+
+      const cells = rubricRow!.querySelectorAll("td");
+      expect(cells.length).toBeGreaterThan(2);
+
+      fireEvent.click(cells[2]);
+
+      await waitFor(() => {
+        expect(screen.getByText("Belladonna")).toBeInTheDocument();
+      });
+    });
   });
 
   describe("clear all rubrics", () => {

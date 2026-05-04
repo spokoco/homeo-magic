@@ -142,14 +142,27 @@ export default function Home() {
   const [isRemedyPanelOpen, setIsRemedyPanelOpen] = useState(true);
   const [isLecturePanelOpen, setIsLecturePanelOpen] = useState(true);
 
-  // Auto-select top remedy when results first appear
+  const selectRemedy = useCallback((abbrev: string) => {
+    setSelectedRemedy(abbrev);
+    setRemedyDetail(abbrev);
+    setIsRemedyPanelOpen(true);
+    setIsLecturePanelOpen(true);
+  }, []);
+
+  // Keep remedy detail selection in sync with the current result set.
   useEffect(() => {
-    if (results.items.length > 0 && !remedyDetail) {
-      setRemedyDetail(results.items[0].abbrev);
-      setIsRemedyPanelOpen(true);
-      setIsLecturePanelOpen(true);
+    if (results.items.length === 0) {
+      setSelectedRemedy(null);
+      setRemedyDetail(null);
+      return;
     }
-  }, [results.items.length > 0]);
+    const hasSelectedRemedy = remedyDetail
+      ? results.items.some((item) => item.abbrev === remedyDetail)
+      : false;
+    if (!hasSelectedRemedy) {
+      selectRemedy(results.items[0].abbrev);
+    }
+  }, [results.items, remedyDetail, selectRemedy]);
   const inputRef = useRef<HTMLInputElement>(null);
   const dropdownRef = useRef<HTMLDivElement>(null);
   const { getScoreColor } = useColorScale();
@@ -410,13 +423,7 @@ export default function Home() {
                       {displayed.map((r) => (
                         <th
                           key={r.abbrev}
-                          onClick={() => {
-                            setSelectedRemedy((prev) => prev === r.abbrev ? null : r.abbrev);
-                            setRemedyDetail(r.abbrev);
-                            setIsRemedyPanelOpen(true);
-                            setIsLecturePanelOpen(true);
-                          }
-                          }
+                          onClick={() => selectRemedy(r.abbrev)}
                           onMouseEnter={() => setHoveredRemedy(r.abbrev)}
                           onMouseLeave={() => setHoveredRemedy(null)}
                           className="sticky top-0 z-10 cursor-pointer border-b border-[var(--border-strong)] px-1 pt-2.5 pb-[10px] text-center font-semibold text-[var(--fg-accent)] transition-colors"
@@ -571,7 +578,7 @@ export default function Home() {
                               key={r.abbrev}
                               onClick={() => {
                                 setSelectedSymRow(sym);
-                                setSelectedRemedy(r.abbrev);
+                                selectRemedy(r.abbrev);
                               }}
                               className="border-b border-[var(--border)] px-2 py-2.5 text-center"
                               style={{
@@ -617,12 +624,7 @@ export default function Home() {
                 selectedRemedy={selectedRemedy}
                 isOpen={isRubricPanelOpen}
                 onToggleOpen={() => setIsRubricPanelOpen((prev) => !prev)}
-                onShowRemedyDetail={(name) => {
-                  setSelectedRemedy(name);
-                  setRemedyDetail(name);
-                  setIsRemedyPanelOpen(true);
-                  setIsLecturePanelOpen(true);
-                }}
+                onShowRemedyDetail={selectRemedy}
                 onPassageClick={(passage) => setHighlightPassage(passage)}
                 selectedPassage={highlightPassage}
               />
@@ -640,12 +642,7 @@ export default function Home() {
                   selectedRemedy={selectedRemedy}
                   isOpen={isRemedyPanelOpen}
                   onToggleOpen={() => setIsRemedyPanelOpen((prev) => !prev)}
-                  onShowRemedyDetail={(name) => {
-                    setSelectedRemedy(name);
-                    setRemedyDetail(name);
-                    setIsRemedyPanelOpen(true);
-                    setIsLecturePanelOpen(true);
-                  }}
+                  onShowRemedyDetail={selectRemedy}
                   onPassageClick={(passage) => setHighlightPassage(passage)}
                   selectedPassage={highlightPassage}
                 />
